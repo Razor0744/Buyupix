@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".CreateActivity">
+    tools:context=".CreateSubscriptionActivity">
 
     <TextView
         android:id="@+id/create"
@@ -41,6 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/create" />
 
     <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginTop="12dp"
@@ -76,6 +77,22 @@
             android:paddingTop="17dp"
             android:paddingBottom="16dp" />
     </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_create"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="100dp"
+        android:text="@string/button_create"
+        android:textAllCaps="false"
+        android:background="@color/button"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

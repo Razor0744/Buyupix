@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            reload();
+            reload()
         }
     }
 
@@ -83,13 +83,13 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, SubscriptionsActivity::class.java)
             startActivity(intent)
         }
     }
 
     private fun reload() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, Data::class.java)
         startActivity(intent)
     }
 }

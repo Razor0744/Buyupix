@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
         <activity
+            android:name=".Data"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SubscriptionsActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
@@ -25,12 +28,12 @@
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateActivity"
+            android:name=".CreateSubscriptionActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/SplashScreen"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#E5E5E5</color>
     <color name="textView">#3E3D48</color>
+    <color name="button">#3E82F9</color>
 </resources>

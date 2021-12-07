@@ -1,10 +1,12 @@
 package com.example.mys
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
 
     private val handler = Handler()
@@ -21,7 +23,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        handler.postDelayed(runnable, 2000)
+        handler.postDelayed(runnable, 200)
     }
 
     override fun onPause() {

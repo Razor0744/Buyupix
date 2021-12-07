@@ -1,16 +1,9 @@
 <resources>
     <string name="app_name">My S</string>
     <string name="name_app">My Subscriptions</string>
-    <string-array name="names">
-        <item>Spotify</item>
-        <item>VK Combo</item>
-    </string-array>
+    <string name="button_create">Create</string>
     <string-array name="cost">
-        <item>4,49$/mon</item>
-        <item>2,29$/mon</item>
+        <item>skfjdl</item>
+        <item>skfjdl</item>
     </string-array>
-    <integer-array name="image">
-        <item>@drawable/img</item>
-        <item>@drawable/img_1</item>
-    </integer-array>
 </resources>
