@@ -3,9 +3,8 @@ package com.example.mys
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
+import com.example.mys.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -14,19 +13,19 @@ import com.google.firebase.ktx.Firebase
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         // Initialize Firebase Auth
         auth = Firebase.auth
 
-        val emailEditText: EditText = findViewById(R.id.login)
-        val passwordEditText: EditText = findViewById(R.id.password)
-        val login = emailEditText.text
-        val password = passwordEditText.text
-        val buttonCreateOrLogin: Button = findViewById(R.id.LoginOrCreate)
-        buttonCreateOrLogin.setOnClickListener() {
+        val login = binding.login.text
+        val password = binding.password.text
+        binding.LoginOrCreate.setOnClickListener() {
             createAccount(login.toString(), password.toString())
             signIn(login.toString(), password.toString())
         }
@@ -89,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun reload() {
-        val intent = Intent(this, Data::class.java)
+        val intent = Intent(this, SubscriptionsActivity::class.java)
         startActivity(intent)
     }
 }
