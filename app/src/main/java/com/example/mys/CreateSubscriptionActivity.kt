@@ -3,9 +3,6 @@ package com.example.mys
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import com.example.mys.databinding.ActivityCreatSubscriptionBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -22,18 +19,15 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonCreate.setOnClickListener {
-            val nameOfSubscription = binding.name.text
-            val costOfSubscription = binding.costEditText.text
-            val costMonOfSubscription = binding.costMon.text
             val data = hashMapOf(
-                "name" to "$nameOfSubscription",
-                "cost" to "$costOfSubscription",
-                "costMon" to "$costMonOfSubscription"
+                "name" to "${binding.name.text}",
+                "cost" to "${binding.costEditText.text}",
+                "costSpinner" to "${binding.costEditText.text}",
+                "categorySpinner" to "${binding.costEditText.text}"
             )
-            db.collection("subscriptions").document(uid())
+            db.collection(uid()).document("${binding.name.text}")
                 .set(data)
                 .addOnSuccessListener {
-
                 }
             val intent = Intent(this, SubscriptionsActivity::class.java)
             startActivity(intent)

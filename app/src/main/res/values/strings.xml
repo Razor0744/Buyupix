@@ -1,9 +1,24 @@
 <resources>
     <string name="app_name">My S</string>
     <string name="name_app">My Subscriptions</string>
+
+    <string name="createNameSubscription">Name</string>
+    <string name="CrateCostSubscription">Cost</string>
+    <string name="costSpinner">$/mon</string>
+    <string name="categorySpinner">Category</string>
     <string name="button_create">Create</string>
+
+    <string name="login">Login</string>
+    <string name="createAccount">Create Account</string>
+    <string name="password">Password</string>
+
     <string-array name="cost">
         <item>skfjdl</item>
         <item>skfjdl</item>
     </string-array>
+
+    <string name="home">Home</string>
+    <string name="calendar">Calendar</string>
+    <string name="analytics">Analytics</string>
+    <string name="profile">Profile</string>
 </resources>
