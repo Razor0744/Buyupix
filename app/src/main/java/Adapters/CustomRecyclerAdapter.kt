@@ -1,6 +1,7 @@
 package Adapters
 
 import Model.Subscription
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -21,14 +22,21 @@ class CustomRecyclerAdapter(
         private val nameSubscription = itemView.findViewById<TextView>(R.id.names)
         private val costSubscription = itemView.findViewById<TextView>(R.id.cost)
         private val imageSubscription = itemView.findViewById<ImageView>(R.id.imageView)
+        private val categorySubscription = itemView.findViewById<TextView>(R.id.category)
+        private val dateSubscription = itemView.findViewById<TextView>(R.id.date)
 
+        @SuppressLint("SetTextI18n")
         fun bindSubscription(subscription: Subscription, context: Context){
             val resourceId = context.resources.getIdentifier(subscription.image, "drawable", context.packageName)
             imageSubscription?.setImageResource(resourceId)
 
             nameSubscription?.text = subscription.name
 
-            costSubscription?.text = subscription.cost
+            costSubscription?.text = subscription.cost + subscription.costSpinner
+
+            categorySubscription?.text = subscription.category
+
+            dateSubscription?.text = subscription.date
         }
     }
 

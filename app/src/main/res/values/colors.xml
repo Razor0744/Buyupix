@@ -10,4 +10,6 @@
     <color name="background">#E5E5E5</color>
     <color name="textView">#3E3D48</color>
     <color name="button">#3E82F9</color>
+    <color name="recyclerViewItemBlack">#434952</color>
+    <color name="recyclerViewItemGrey">#939AA6</color>
 </resources>

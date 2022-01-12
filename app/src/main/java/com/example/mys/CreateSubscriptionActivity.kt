@@ -23,7 +23,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 "name" to "${binding.name.text}",
                 "cost" to "${binding.costEditText.text}",
                 "costSpinner" to "${binding.costEditText.text}",
-                "categorySpinner" to "${binding.costEditText.text}"
+                "category" to "${binding.costEditText.text}"
             )
             db.collection(uid()).document("${binding.name.text}")
                 .set(data)
