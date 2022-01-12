@@ -1,7 +1,8 @@
 package com.example.mys
 
 import Adapters.CustomRecyclerAdapter
-import Service.DataService
+import Model.Subscription
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,13 +10,14 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mys.databinding.ActivitySubscriptionsBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.*
 
 
 class SubscriptionsActivity : AppCompatActivity() {
 
-    private val db = Firebase.firestore
+    private lateinit var subscriptions: ArrayList<Subscription>
+    private lateinit var adapter: CustomRecyclerAdapter
+    private lateinit var db : FirebaseFirestore
     private lateinit var binding: ActivitySubscriptionsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +26,10 @@ class SubscriptionsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // all subscriptions
+        subscriptions = arrayListOf()
+        adapter = CustomRecyclerAdapter(this, subscriptions)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = CustomRecyclerAdapter(this, DataService.subscriptions)
+        binding.recyclerView.adapter = adapter
 
         // Go to other layouts
         binding.plus.setOnClickListener {
@@ -56,17 +60,29 @@ class SubscriptionsActivity : AppCompatActivity() {
         return uid.toString()
     }
 
-    private fun makeText(message: String){
+    private fun makeText(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun fireStore(){
+    private fun fireStore() {
+        db = FirebaseFirestore.getInstance()
         db.collection(uid())
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    makeText("${document.id} => ${document.data}")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if (error != null) {
+                        makeText("Govno")
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!) {
+                        if (dc.type == DocumentChange.Type.ADDED) {
+                            subscriptions.add(dc.document.toObject(Subscription::class.java))
+                        }
+                    }
+                    adapter.notifyDataSetChanged()
                 }
-            }
+
+            })
     }
 }

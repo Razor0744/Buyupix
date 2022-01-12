@@ -1,14 +1,10 @@
 package Model
 
-class Subscription(
-    var name: String,
-    var image: String,
-    var cost: String,
-    var category: String,
-    var date: String,
-    var costSpinner:String
-) {
-    override fun toString(): String {
-        return name
-    }
-}
+data class Subscription(
+    var name: String? = null,
+    var image: String? = null,
+    var cost: String? = null,
+    var category: String? = null,
+    var date: String? = null,
+    var costSpinner: String? = null
+)

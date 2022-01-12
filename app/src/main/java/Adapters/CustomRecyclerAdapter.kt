@@ -42,7 +42,7 @@ class CustomRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
-            LayoutInflater.from(context)
+            LayoutInflater.from(parent.context)
                 .inflate(R.layout.recyclerview_item, parent, false)
         return MyViewHolder(itemView)
     }
