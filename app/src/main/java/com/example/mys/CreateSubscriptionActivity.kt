@@ -23,8 +23,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             val data = hashMapOf(
                 "name" to "${binding.name.text}",
                 "cost" to "${binding.costEditText.text}",
-                "costSpinner" to "${binding.costEditText.text}",
-                "category" to "${binding.costEditText.text}",
+                "costSpinner" to "${binding.costSpinner.selectedItem}",
+                "category" to "${binding.categorySpinner.selectedItem}",
                 "date" to  "${binding.name.text}",
                 "image" to "${binding.name.text}"
             )
