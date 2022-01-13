@@ -4,17 +4,24 @@
 
     <string name="createNameSubscription">Name</string>
     <string name="CrateCostSubscription">Cost</string>
-    <string name="costSpinner">$/mon</string>
-    <string name="categorySpinner">Category</string>
     <string name="button_create">Create</string>
 
     <string name="login">Login</string>
     <string name="createAccount">Create Account</string>
     <string name="password">Password</string>
 
-    <string-array name="cost">
-        <item>skfjdl</item>
-        <item>skfjdl</item>
+    <string-array name="costSpinner">
+        <item>$ / mon</item>
+        <item>$ / week</item>
+    </string-array>
+
+    <string-array name="category">
+        <item>Music</item>
+        <item>Movies</item>
+        <item>Games</item>
+        <item>Education</item>
+        <item>Books</item>
+        <item>Delivery</item>
     </string-array>
 
     <string name="home">Home</string>

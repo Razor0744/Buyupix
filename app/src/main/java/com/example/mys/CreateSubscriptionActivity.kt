@@ -3,6 +3,7 @@ package com.example.mys
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import com.example.mys.databinding.ActivityCreatSubscriptionBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -23,7 +24,9 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 "name" to "${binding.name.text}",
                 "cost" to "${binding.costEditText.text}",
                 "costSpinner" to "${binding.costEditText.text}",
-                "category" to "${binding.costEditText.text}"
+                "category" to "${binding.costEditText.text}",
+                "date" to  "${binding.name.text}",
+                "image" to "${binding.name.text}"
             )
             db.collection(uid()).document("${binding.name.text}")
                 .set(data)

@@ -27,9 +27,11 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginRight="16dp"
+        android:autofillHints="username"
         android:background="@drawable/item_background"
         android:fontFamily="@font/roboto_medium"
         android:hint="@string/createNameSubscription"
+        android:inputType="text"
         android:maxLines="1"
         android:paddingStart="16dp"
         android:paddingTop="17dp"
@@ -38,7 +40,8 @@
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create" />
+        app:layout_constraintTop_toBottomOf="@+id/create"
+        tools:ignore="RtlSymmetry" />
 
     <LinearLayout
         android:id="@+id/layout"
@@ -57,12 +60,12 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="12dp"
             android:layout_weight="1"
+            android:autofillHints="username"
             android:background="@drawable/item_background"
             android:hint="@string/CrateCostSubscription"
+            android:inputType="text"
             android:maxLines="1"
-            android:paddingStart="16dp"
-            android:paddingTop="17dp"
-            android:paddingBottom="16dp" />
+            tools:ignore="RtlSymmetry" />
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/costSpinner"
@@ -72,9 +75,9 @@
             android:layout_marginEnd="16dp"
             android:layout_weight="1"
             android:background="@drawable/item_background"
-            android:paddingStart="16dp"
-            android:paddingTop="17dp"
-            android:paddingBottom="16dp" />
+            android:entries="@array/costSpinner"
+            android:popupBackground="@drawable/item_background"
+            tools:ignore="RtlSymmetry" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatSpinner
@@ -85,6 +88,8 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/item_background"
+        android:entries="@array/category"
+        android:popupBackground="@drawable/item_background"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout" />
@@ -132,6 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:contentDescription="@string/home"
                 android:src="@drawable/ic_home" />
 
             <TextView
@@ -159,6 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:contentDescription="@string/calendar"
                 android:src="@drawable/ic_search" />
 
             <TextView
@@ -186,6 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_group_5" />
         </LinearLayout>
 
@@ -205,6 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:contentDescription="@string/analytics"
                 android:src="@drawable/ic_bar_chart" />
 
             <TextView
@@ -232,6 +241,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:contentDescription="@string/profile"
                 android:src="@drawable/ic_user" />
 
             <TextView
