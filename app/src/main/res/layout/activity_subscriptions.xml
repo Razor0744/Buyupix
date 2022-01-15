@@ -34,10 +34,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="70dp"
         android:background="@drawable/item_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -49,14 +46,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:drawableTop="@drawable/ic_home"
             android:fontFamily="@font/roboto_medium"
-            android:text="Home"
+            android:text="@string/home"
             android:textColor="@color/textView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/search"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableTopCompat="@drawable/ic_home" />
 
 
         <TextView
@@ -64,14 +61,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:drawableTop="@drawable/ic_search"
             android:fontFamily="@font/roboto_medium"
-            android:text="Search"
+            android:text="@string/calendar"
             android:textColor="@color/textView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/home"
             app:layout_constraintRight_toLeftOf="@id/plus"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableTopCompat="@drawable/ic_search" />
 
 
         <ImageButton
@@ -84,7 +81,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/search"
             app:layout_constraintRight_toLeftOf="@id/analytic"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
 
         <TextView
@@ -92,14 +90,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:drawableTop="@drawable/ic_bar_chart"
             android:fontFamily="@font/roboto_medium"
-            android:text="Analytic"
+            android:text="@string/analytics"
             android:textColor="@color/textView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/plus"
             app:layout_constraintRight_toLeftOf="@id/profile"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableTopCompat="@drawable/ic_bar_chart" />
 
 
         <TextView
@@ -107,14 +105,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:drawableTop="@drawable/ic_user"
             android:fontFamily="@font/roboto_medium"
-            android:text="Profile"
+            android:text="@string/profile"
             android:textColor="@color/textView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/analytic"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableTopCompat="@drawable/ic_user" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
