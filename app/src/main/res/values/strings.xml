@@ -13,6 +13,8 @@
     <string-array name="costSpinner">
         <item>$ / mon</item>
         <item>$ / week</item>
+        <item>BYN / mon</item>
+        <item></item>
     </string-array>
 
     <string-array name="category">
@@ -29,4 +31,6 @@
     <string name="analytics">Analytics</string>
     <string name="profile">Profile</string>
     <string name="create">Create</string>
+
+    <string name="darkMode">Dark Mode</string>
 </resources>

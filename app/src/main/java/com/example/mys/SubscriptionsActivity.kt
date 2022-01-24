@@ -60,10 +60,6 @@ class SubscriptionsActivity : AppCompatActivity() {
         return uid.toString()
     }
 
-    private fun makeText(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-    }
-
     private fun fireStore() {
         db = FirebaseFirestore.getInstance()
         db.collection(uid())
@@ -71,7 +67,6 @@ class SubscriptionsActivity : AppCompatActivity() {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                     if (error != null) {
-                        makeText("Govno")
                         return
                     }
 

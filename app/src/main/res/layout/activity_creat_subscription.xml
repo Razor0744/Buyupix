@@ -43,42 +43,40 @@
         app:layout_constraintTop_toBottomOf="@+id/create"
         tools:ignore="RtlSymmetry" />
 
-    <LinearLayout
-        android:id="@+id/layout"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/cost_EditText"
+        android:layout_width="0dp"
         android:layout_height="52dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:orientation="horizontal"
+        android:layout_marginEnd="12dp"
+        android:autofillHints="username"
+        android:background="@drawable/item_background"
+        android:hint="@string/CrateCostSubscription"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingLeft="16dp"
+        android:paddingTop="17dp"
+        android:paddingBottom="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/costSpinner"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/costSpinner"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/item_background"
+        android:entries="@array/costSpinner"
+        android:popupBackground="@drawable/item_background"
+        app:layout_constraintLeft_toRightOf="@id/cost_EditText"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name">
-
-        <EditText
-            android:id="@+id/cost_EditText"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="12dp"
-            android:layout_weight="1"
-            android:autofillHints="username"
-            android:background="@drawable/item_background"
-            android:hint="@string/CrateCostSubscription"
-            android:inputType="text"
-            android:maxLines="1"
-            tools:ignore="RtlSymmetry" />
-
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/costSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="16dp"
-            android:layout_weight="1"
-            android:background="@drawable/item_background"
-            android:entries="@array/costSpinner"
-            android:popupBackground="@drawable/item_background"
-            tools:ignore="RtlSymmetry" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/name"
+        tools:ignore="RtlSymmetry" />
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/categorySpinner"
@@ -92,7 +90,7 @@
         android:popupBackground="@drawable/item_background"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout" />
+        app:layout_constraintTop_toBottomOf="@id/costSpinner" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_create"
