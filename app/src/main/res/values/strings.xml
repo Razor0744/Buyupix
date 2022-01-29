@@ -6,9 +6,15 @@
     <string name="CrateCostSubscription">Cost</string>
     <string name="button_create">Create</string>
 
-    <string name="login">Login</string>
-    <string name="createAccount">Create Account</string>
-    <string name="password">Password</string>
+    <!--LoginActivity-->
+    <string name="login">Email</string>
+    <string name="password">Пароль</string>
+
+    <!--FirstActivity-->
+    <string name="signUp">Sign Up</string>
+    <string name="continueWithEmail">continue with Email</string>
+    <string name="ContinueWithGoogle">Continue with Google</string>
+    <string name="logIn">Log In</string>
 
     <string-array name="costSpinner">
         <item>$ / mon</item>
@@ -26,6 +32,7 @@
         <item>Delivery</item>
     </string-array>
 
+    <!--Navigation-->
     <string name="home">Home</string>
     <string name="calendar">Calendar</string>
     <string name="analytics">Analytics</string>

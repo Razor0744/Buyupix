@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
         <activity
-            android:name=".Data"
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FirstActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

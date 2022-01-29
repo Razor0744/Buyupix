@@ -13,7 +13,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/analytics"
-        android:textColor="@color/textView"
+        android:textColor="@color/grey_200"
         android:textSize="22sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +21,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/item_background"
+        android:background="@drawable/item_background_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
@@ -51,7 +51,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/home"
-                android:textColor="@color/textView" />
+                android:textColor="@color/grey_200" />
         </LinearLayout>
 
         <LinearLayout
@@ -79,7 +79,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/calendar"
-                android:textColor="@color/textView" />
+                android:textColor="@color/grey_200" />
         </LinearLayout>
 
         <LinearLayout
@@ -127,7 +127,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/analytics"
-                android:textColor="@color/textView" />
+                android:textColor="@color/grey_200" />
         </LinearLayout>
 
         <LinearLayout
@@ -155,7 +155,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/profile"
-                android:textColor="@color/textView" />
+                android:textColor="@color/grey_200" />
         </LinearLayout>
 
 
