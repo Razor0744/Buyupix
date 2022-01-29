@@ -2,13 +2,14 @@ package com.example.mys
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.mys.databinding.ActivityProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 
+
 class ProfileActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityProfileBinding
+    private lateinit var binding: ActivityProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +17,13 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.email.text = uid()
+
+        binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                delegate.applyDayNight()
+            }
+        }
     }
 
     private fun uid(): String {
