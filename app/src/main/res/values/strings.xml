@@ -1,4 +1,11 @@
 <resources>
+
+    <!--FirstActivity-->
+    <string name="welcome">Welcome</string>
+    <string name="description">Manage subscriptions, lower your bills, and stay on top of your financial life.</string>
+    <string name="logIn">Log In</string>
+    <string name="signUp">Sign Up</string>
+    
     <string name="app_name">My S</string>
     <string name="name_app">My Subscriptions</string>
 
@@ -10,11 +17,8 @@
     <string name="login">Email</string>
     <string name="password">Пароль</string>
 
-    <!--FirstActivity-->
-    <string name="signUp">Sign Up</string>
     <string name="continueWithEmail">continue with Email</string>
     <string name="ContinueWithGoogle">Continue with Google</string>
-    <string name="logIn">Log In</string>
 
     <string-array name="costSpinner">
         <item>$ / mon</item>

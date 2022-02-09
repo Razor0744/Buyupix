@@ -4,69 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".FirstActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/signUp"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/item_background_blue"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/signUp"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="13sp"
+    <ImageView
+        android:id="@+id/first_activity_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/first_activity_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintVertical_bias="0.1"
+        tools:ignore="ContentDescription" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/continueWithEmail"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/item_background_frame"
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="@string/continueWithEmail"
-        android:textAllCaps="false"
+        android:text="@string/welcome"
         android:textColor="@color/grey_200"
-        android:textSize="13sp"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signUp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/continueWithGoogle"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/item_background_frame"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/continueWithEmail"
-        android:textAllCaps="false"
-        android:textColor="@color/grey_200"
-        android:textSize="13sp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/continueWithEmail" />
+        app:layout_constraintTop_toBottomOf="@id/first_activity_image" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/logIn"
+        android:layout_marginTop="12dp"
+        android:ems="15"
+        android:fontFamily="@font/roboto"
+        android:text="@string/description"
+        android:textAlignment="center"
         android:textColor="@color/grey_200"
         android:textSize="14sp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/continueWithGoogle" />
+        app:layout_constraintTop_toBottomOf="@id/welcome_text" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/logIn"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/item_background_blue"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/logIn"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/signUp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signUp"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/item_background_frame"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/signUp"
+        android:textAllCaps="false"
+        android:textColor="@color/grey_200"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
