@@ -9,4 +9,5 @@
     <color name="recyclerViewItemBlack">#434952</color>
     <color name="recyclerViewItemGrey">#939AA6</color>
     <color name="grey_200">#434952</color>
+    <color name="hint_color">#BFC8D8</color>
 </resources>

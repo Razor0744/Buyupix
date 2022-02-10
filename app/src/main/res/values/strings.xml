@@ -5,20 +5,26 @@
     <string name="description">Manage subscriptions, lower your bills, and stay on top of your financial life.</string>
     <string name="logIn">Log In</string>
     <string name="signUp">Sign Up</string>
-    
+
+    <!--LoginActivity-->
+    <string name="login">Email</string>
+    <string name="password">Password</string>
+    <string name="continue_button">Continue</string>
+    <string name="forgot">Forgot your password?</string>
+    <string name="continueWithGoogle">continue With Google</string>
+    <string name="ContinueWithFacebook">Continue With Facebook</string>
+
+    <!--Recovery1Activity-->
+    <string name="recovery">Password recovery</string>
+    <string name="code">A confirmation code has been sent to your email</string>
+    <string name="codeAgain">Get code again</string>
+
     <string name="app_name">My S</string>
     <string name="name_app">My Subscriptions</string>
 
     <string name="createNameSubscription">Name</string>
     <string name="CrateCostSubscription">Cost</string>
     <string name="button_create">Create</string>
-
-    <!--LoginActivity-->
-    <string name="login">Email</string>
-    <string name="password">Пароль</string>
-
-    <string name="continueWithEmail">continue with Email</string>
-    <string name="ContinueWithGoogle">Continue with Google</string>
 
     <string-array name="costSpinner">
         <item>$ / mon</item>

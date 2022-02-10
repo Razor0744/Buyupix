@@ -20,47 +20,20 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize Firebase Auth
-        auth = Firebase.auth
-
-        val login = binding.login.text
-        val password = binding.password.text
-        binding.LoginOrCreate.setOnClickListener {
-            createAccount(login.toString(), password.toString())
-            signIn(login.toString(), password.toString())
+        binding.continueButton.setOnClickListener {
+            val login = binding.login.text.toString()
+            val password = binding.password.text.toString()
+            signIn(login, password)
         }
-    }
 
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            reload()
+        binding.forgot.setOnClickListener {
+            startActivity(Intent(this, Recovery1Activity::class.java))
         }
-    }
-
-    private fun createAccount(email: String, password: String) {
-        // [START create_user_with_email]
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = auth.currentUser
-                    updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    //Toast.makeText(
-                    //    applicationContext, "Введите почту",
-                    //    Toast.LENGTH_SHORT
-                    //).show()
-                    updateUI(null)
-                }
-            }
-        // [END create_user_with_email]
     }
 
     private fun signIn(email: String, password: String) {
+        // Initialize Firebase Auth
+        auth = Firebase.auth
         // [START sign_in_with_email]
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -85,10 +58,5 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, SubscriptionsActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    private fun reload() {
-        val intent = Intent(this, SubscriptionsActivity::class.java)
-        startActivity(intent)
     }
 }
