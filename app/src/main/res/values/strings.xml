@@ -23,6 +23,7 @@
     <string name="getCode">Get code</string>
 
     <!--SignUp2Activity-->
+    <string name="page2">2/3</string>
 
     <!--SignUp2Activity-->
     <string name="repeatPassword">Repeat Password</string>

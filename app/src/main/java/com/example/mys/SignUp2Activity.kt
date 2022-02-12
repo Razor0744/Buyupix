@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.mys.databinding.ActivitySignUp2Binding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SignUp2Activity : AppCompatActivity() {
 
@@ -11,7 +13,7 @@ class SignUp2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivitySignUp2Binding.inflate(layoutInflater)
+        binding = ActivitySignUp2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val email = intent.getStringExtra("Email")
