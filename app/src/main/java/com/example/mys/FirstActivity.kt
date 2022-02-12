@@ -23,7 +23,7 @@ class FirstActivity : AppCompatActivity() {
         }
 
         binding.signUp.setOnClickListener {
-            startActivity(Intent(this, SignUpActivity::class.java))
+            startActivity(Intent(this, SignUp1Activity::class.java))
         }
     }
 
@@ -34,12 +34,12 @@ class FirstActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            reload()
+            //reload()
         }
     }
 
     private fun reload() {
-        //val intent = Intent(this, SubscriptionsActivity::class.java)
-        //startActivity(intent)
+        val intent = Intent(this, SubscriptionsActivity::class.java)
+        startActivity(intent)
     }
 }

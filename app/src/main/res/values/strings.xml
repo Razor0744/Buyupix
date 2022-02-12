@@ -11,13 +11,22 @@
     <string name="password">Password</string>
     <string name="continue_button">Continue</string>
     <string name="forgot">Forgot your password?</string>
-    <string name="continueWithGoogle">continue With Google</string>
-    <string name="ContinueWithFacebook">Continue With Facebook</string>
+    <string name="continueWithGoogle">Continue With Google</string>
+    <string name="continueWithFacebook">Continue With Facebook</string>
 
     <!--Recovery1Activity-->
     <string name="recovery">Password recovery</string>
     <string name="code">A confirmation code has been sent to your email</string>
     <string name="codeAgain">Get code again</string>
+
+    <!--SignUp1Activity-->
+    <string name="getCode">Get code</string>
+
+    <!--SignUp2Activity-->
+
+    <!--SignUp2Activity-->
+    <string name="repeatPassword">Repeat Password</string>
+
 
     <string name="app_name">My S</string>
     <string name="name_app">My Subscriptions</string>

@@ -107,14 +107,19 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/item_background_white"
+        android:drawableStart="@drawable/ic_google"
+        android:drawablePadding="20dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="@string/ContinueWithFacebook"
+        android:gravity="center_vertical"
+        android:paddingStart="100dp"
+        android:text="@string/continueWithGoogle"
         android:textAllCaps="false"
         android:textColor="@color/grey_200"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/facebook"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="RtlSymmetry" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/facebook"
@@ -124,12 +129,17 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/item_background_white"
+        android:drawableStart="@drawable/ic_facebook"
+        android:drawablePadding="20dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="@string/ContinueWithFacebook"
+        android:gravity="center_vertical"
+        android:paddingStart="95dp"
+        android:text="@string/continueWithFacebook"
         android:textAllCaps="false"
         android:textColor="@color/grey_200"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="RtlSymmetry" />
 </androidx.constraintlayout.widget.ConstraintLayout>
