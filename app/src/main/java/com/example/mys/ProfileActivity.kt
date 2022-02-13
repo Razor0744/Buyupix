@@ -1,5 +1,6 @@
 package com.example.mys
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
@@ -23,6 +24,10 @@ class ProfileActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 delegate.applyDayNight()
             }
+        }
+
+        binding.first.setOnClickListener {
+            startActivity(Intent(this, FirstActivity::class.java))
         }
     }
 
