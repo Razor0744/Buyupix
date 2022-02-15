@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".SignUp3Activity">
+    tools:context="team.four.mys.SignUp3Activity">
 
     <EditText
         android:id="@+id/password"

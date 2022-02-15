@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mys">
+    package="team.four.mys">
 
     <application
         android:allowBackup="true"
@@ -10,40 +10,40 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
         <activity
-            android:name=".SignUp3Activity"
+            android:name="team.four.mys.SignUp3Activity"
             android:exported="false" />
         <activity
-            android:name=".SignUp2Activity"
+            android:name="team.four.mys.SignUp2Activity"
             android:exported="false" />
         <activity
-            android:name=".Recovery1Activity"
+            android:name="team.four.mys.Recovery1Activity"
             android:exported="false" />
         <activity
-            android:name=".SignUp1Activity"
+            android:name="team.four.mys.SignUp1Activity"
             android:exported="false" />
         <activity
-            android:name=".FirstActivity"
+            android:name="team.four.mys.FirstActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name="team.four.mys.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SubscriptionsActivity"
+            android:name="team.four.mys.SubscriptionsActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name="team.four.mys.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".AnalyticActivity"
+            android:name="team.four.mys.AnalyticActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
+            android:name="team.four.mys.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateSubscriptionActivity"
+            android:name="team.four.mys.CreateSubscriptionActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name="team.four.mys.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/SplashScreen">
             <intent-filter>

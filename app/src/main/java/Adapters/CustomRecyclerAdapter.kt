@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mys.R
+import team.four.mys.R
 
 
 class CustomRecyclerAdapter(

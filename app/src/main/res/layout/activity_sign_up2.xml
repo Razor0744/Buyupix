@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".SignUp2Activity">
+    tools:context="team.four.mys.SignUp2Activity">
 
     <ImageView
         android:src="@drawable/ic_chevron_left"
