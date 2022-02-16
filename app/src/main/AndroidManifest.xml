@@ -37,7 +37,7 @@
             android:name="team.four.mys.AnalyticActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.SearchActivity"
+            android:name="team.four.mys.CalendarActivity"
             android:exported="false" />
         <activity
             android:name="team.four.mys.CreateSubscriptionActivity"

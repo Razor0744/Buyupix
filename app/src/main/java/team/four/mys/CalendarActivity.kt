@@ -5,15 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import team.four.mys.databinding.ActivityAnalyticBinding
+import team.four.mys.databinding.ActivityCalendarBinding
 
-class AnalyticActivity : AppCompatActivity() {
+class CalendarActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAnalyticBinding
+    private lateinit var binding: ActivityCalendarBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAnalyticBinding.inflate(layoutInflater)
+        binding = ActivityCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         number()
@@ -24,7 +24,7 @@ class AnalyticActivity : AppCompatActivity() {
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         val fragment = NavigationFragment()
         val bundle = Bundle()
-        bundle.putInt("i", 4)
+        bundle.putInt("i", 2)
         fragment.arguments = bundle
         fragmentTransaction.add(R.id.fragment, fragment).commit()
     }

@@ -1,11 +1,13 @@
 package team.four.mys
 
 import Adapters.CustomRecyclerAdapter
+import Fragments.NavigationFragment
 import Model.Subscription
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import team.four.mys.databinding.ActivitySubscriptionsBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -30,25 +32,8 @@ class SubscriptionsActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
 
-        // Go to other layouts
-        binding.plus.setOnClickListener {
-            val intent = Intent(this, CreateSubscriptionActivity::class.java)
-            startActivity(intent)
-        }
-        binding.search.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
-            startActivity(intent)
-        }
-        binding.analytic.setOnClickListener {
-            val intent = Intent(this, AnalyticActivity::class.java)
-            startActivity(intent)
-        }
-        binding.profile.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
-        }
-
         fireStore()
+        number()
     }
 
 
@@ -78,5 +63,15 @@ class SubscriptionsActivity : AppCompatActivity() {
                 }
 
             })
+    }
+
+    private fun number(){
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        val fragment = NavigationFragment()
+        val bundle = Bundle()
+        bundle.putInt("i", 1)
+        fragment.arguments = bundle
+        fragmentTransaction.add(R.id.fragment, fragment).commit()
     }
 }
