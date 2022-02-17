@@ -36,20 +36,20 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/calendar"
             android:textColor="@color/grey_200"
-            app:drawableTopCompat="@drawable/ic_search"
+            app:drawableTopCompat="@drawable/ic_calendar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/home"
-            app:layout_constraintRight_toLeftOf="@id/plus"
+            app:layout_constraintRight_toLeftOf="@id/createSubscription"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <ImageButton
-            android:id="@+id/plus"
+            android:id="@+id/createSubscription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@color/white"
-            android:src="@drawable/ic_group_5"
+            android:src="@drawable/ic_create_subscription"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/calendar"
             app:layout_constraintRight_toLeftOf="@id/analytic"
@@ -65,9 +65,9 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/analytics"
             android:textColor="@color/grey_200"
-            app:drawableTopCompat="@drawable/ic_bar_chart"
+            app:drawableTopCompat="@drawable/ic_analytic"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/plus"
+            app:layout_constraintLeft_toRightOf="@id/createSubscription"
             app:layout_constraintRight_toLeftOf="@id/profile"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,7 +80,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/profile"
             android:textColor="@color/grey_200"
-            app:drawableTopCompat="@drawable/ic_user"
+            app:drawableTopCompat="@drawable/ic_profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/analytic"
             app:layout_constraintRight_toRightOf="parent"

@@ -1,8 +1,11 @@
 package team.four.mys
 
+import Fragments.NavigationFragment
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -35,6 +38,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        number()
     }
 
     private fun uid(): String {
@@ -42,5 +47,15 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
         return uid.toString()
+    }
+
+    private fun number(){
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        val fragment = NavigationFragment()
+        val bundle = Bundle()
+        bundle.putInt("i", 3)
+        fragment.arguments = bundle
+        fragmentTransaction.add(R.id.fragment, fragment).commit()
     }
 }
