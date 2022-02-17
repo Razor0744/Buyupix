@@ -8,6 +8,7 @@
     <color name="blue_200">#50A7EA</color>
     <color name="recyclerViewItemBlack">#434952</color>
     <color name="recyclerViewItemGrey">#939AA6</color>
-    <color name="grey_200">#434952</color>
+    <color name="grey_434952">#434952</color>
+    <color name="grey_7E8899">#7E8899</color>
     <color name="hint_color">#BFC8D8</color>
 </resources>

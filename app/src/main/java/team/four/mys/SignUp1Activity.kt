@@ -55,4 +55,5 @@ class SignUp1Activity : AppCompatActivity() {
            startActivity(signUp2Activity)
         }
     }
+
 }

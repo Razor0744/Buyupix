@@ -21,10 +21,6 @@ class FirstActivity : AppCompatActivity() {
         binding.logIn.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
-
-        binding.signUp.setOnClickListener {
-            startActivity(Intent(this, SignUp1Activity::class.java))
-        }
     }
 
     public override fun onStart() {
