@@ -36,6 +36,6 @@ class FirstActivity : AppCompatActivity() {
 
     private fun reload() {
         val intent = Intent(this, SubscriptionsActivity::class.java)
-        startActivity(intent)
+        //startActivity(intent)
     }
 }
