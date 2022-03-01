@@ -1,33 +1,16 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!--FirstActivity-->
     <string name="welcome">Welcome</string>
     <string name="description">Manage subscriptions, lower your bills, and stay on top of your financial life.</string>
-    <string name="logIn">Log In</string>
-    <string name="signUp">Sign Up</string>
 
     <!--LoginActivity-->
-    <string name="login">Email</string>
-    <string name="password">Password</string>
-    <string name="continue_button">Continue</string>
-    <string name="forgot">Forgot your password?</string>
-    <string name="continueWithGoogle">Continue With Google</string>
-    <string name="continueWithFacebook">Continue With Facebook</string>
-
-    <!--Recovery1Activity-->
-    <string name="recovery">Password recovery</string>
-    <string name="code">A confirmation code has been sent to your email</string>
-    <string name="codeAgain">Get code again</string>
-
-    <!--SignUp1Activity-->
-    <string name="getCode">Get code</string>
-
-    <!--SignUp2Activity-->
-    <string name="page2">2/3</string>
-
-    <!--SignUp2Activity-->
-    <string name="repeatPassword">Repeat Password</string>
-
+    <string name="authorization">Authorization</string>
+    <string name="text">Enter phone number in international format</string>
+    <string name="number" tools:ignore="TypographyDashes">+ 7 (111) 111–11-11</string>
+    <string name="continueButton">Continue</string>
+    <string name="google">Continue With Google</string>
+    <string name="facebook">Continue With Facebook</string>
 
     <string name="app_name">My Subscriptions</string>
     <string name="name_app">My Subscriptions</string>
@@ -59,7 +42,8 @@
     <string name="profile">Profile</string>
     <string name="create">Create</string>
 
+    <!--ProfileActivity-->
     <string name="darkMode">Dark Mode</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="language">Language</string>
+    <string name="logOut">Log out</string>
 </resources>
