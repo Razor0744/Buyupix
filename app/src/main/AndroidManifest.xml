@@ -10,40 +10,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
         <activity
-            android:name="team.four.mys.SignUp3Activity"
+            android:name=".CodeSendActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.SignUp2Activity"
+            android:name=".SignUp3Activity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.Recovery1Activity"
+            android:name=".SignUp2Activity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.SignUp1Activity"
+            android:name=".Recovery1Activity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.FirstActivity"
+            android:name=".SignUp1Activity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.LoginActivity"
+            android:name=".FirstActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.SubscriptionsActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.ProfileActivity"
+            android:name=".SubscriptionsActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.AnalyticActivity"
+            android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.CalendarActivity"
+            android:name=".AnalyticActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.CreateSubscriptionActivity"
+            android:name=".CalendarActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.SplashScreenActivity"
+            android:name=".CreateSubscriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreenActivity"
             android:exported="true"
             android:theme="@style/SplashScreen">
             <intent-filter>
