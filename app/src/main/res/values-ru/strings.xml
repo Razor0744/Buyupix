@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My S</string>
+    <string name="app_name">My Subscriptions</string>
     <string name="name_app">My Subscriptions</string>
 
     <string name="createNameSubscription">Name</string>

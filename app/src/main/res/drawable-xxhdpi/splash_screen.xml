@@ -4,6 +4,7 @@
         android:drawable="@color/white"/>
     <item>
         <bitmap android:gravity="center"
+
             android:src="@drawable/splash_screen_image"/>
     </item>
 </layer-list>
