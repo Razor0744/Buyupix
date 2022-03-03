@@ -13,18 +13,6 @@
             android:name=".CodeSendActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUp3Activity"
-            android:exported="false" />
-        <activity
-            android:name=".SignUp2Activity"
-            android:exported="false" />
-        <activity
-            android:name=".Recovery1Activity"
-            android:exported="false" />
-        <activity
-            android:name=".SignUp1Activity"
-            android:exported="false" />
-        <activity
             android:name=".FirstActivity"
             android:exported="false" />
         <activity

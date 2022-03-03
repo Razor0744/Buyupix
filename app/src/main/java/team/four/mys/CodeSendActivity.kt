@@ -3,7 +3,6 @@ package team.four.mys
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.google.firebase.auth.*
 import team.four.mys.databinding.ActivityCodeSendBinding
 
