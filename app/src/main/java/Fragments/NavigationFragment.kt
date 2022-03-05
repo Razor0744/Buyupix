@@ -32,7 +32,7 @@ class NavigationFragment : Fragment() {
         //get resources
         val drawableHome = resources.getDrawable(R.drawable.ic_home_click, context?.theme)
         val drawableCalendar = resources.getDrawable(R.drawable.ic_calendar_click, context?.theme)
-        val drawableCreateSubscription = resources.getDrawable(R.drawable.ic_create_subscription, context?.theme)
+        val drawableCreateSubscription = resources.getDrawable(R.drawable.ic_create_subscription_click, context?.theme)
         val drawableAnalytic = resources.getDrawable(R.drawable.ic_analytic_click, context?.theme)
         val drawableProfile = resources.getDrawable(R.drawable.ic_profile_click, context?.theme)
         val color = resources.getColor(R.color.blue_200, context?.theme)

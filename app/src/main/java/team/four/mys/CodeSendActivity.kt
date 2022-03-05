@@ -24,7 +24,7 @@ class CodeSendActivity : AppCompatActivity() {
         val storedVerificationId = intent.getStringExtra("storedVerificationId")
 
         binding.continueButton.setOnClickListener {
-            val code = binding.code.text.toString().trim()
+            val code = binding.code1.text.toString().trim()
             if (code.isNotEmpty()) {
                 verifyPhoneNumberWithCode(storedVerificationId, code)
             }

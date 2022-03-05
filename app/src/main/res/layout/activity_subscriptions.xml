@@ -16,9 +16,30 @@
         android:fontFamily="@font/roboto_medium"
         android:text="@string/name_app"
         android:textColor="@color/grey_200"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28.5dp"
+        android:layout_marginEnd="18dp"
+        android:src="@drawable/ic_search"
+        app:layout_constraintRight_toLeftOf="@id/filter"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28.5dp"
+        android:layout_marginEnd="18dp"
+        android:src="@drawable/ic_filter"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -33,8 +54,8 @@
         tools:listitem="@layout/recyclerview_item" />
 
     <FrameLayout
-        android:layout_width="match_parent"
         android:id="@+id/fragment"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -42,4 +63,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

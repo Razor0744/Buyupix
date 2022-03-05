@@ -8,6 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:elevation="50dp"
         android:background="@drawable/item_background_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -27,7 +28,6 @@
             app:layout_constraintRight_toLeftOf="@id/calendar"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/calendar"
             android:layout_width="wrap_content"
@@ -42,7 +42,6 @@
             app:layout_constraintRight_toLeftOf="@id/createSubscription"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <ImageButton
             android:id="@+id/createSubscription"
             android:layout_width="wrap_content"
@@ -55,7 +54,6 @@
             app:layout_constraintRight_toLeftOf="@id/analytic"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
-
 
         <TextView
             android:id="@+id/analytic"
@@ -70,7 +68,6 @@
             app:layout_constraintLeft_toRightOf="@id/createSubscription"
             app:layout_constraintRight_toLeftOf="@id/profile"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/profile"
