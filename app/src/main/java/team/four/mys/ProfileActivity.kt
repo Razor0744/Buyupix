@@ -46,6 +46,7 @@ class ProfileActivity : AppCompatActivity() {
             Firebase.auth.signOut()
             googleSignInClient.signOut()
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
 
         number()

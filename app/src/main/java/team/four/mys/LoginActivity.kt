@@ -160,7 +160,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        startActivity(Intent(this, SubscriptionsActivity::class.java))
         if (user != null) {
             startActivity(Intent(this, SubscriptionsActivity::class.java))
             finish()
