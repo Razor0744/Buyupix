@@ -107,6 +107,10 @@
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/layout/activity_sign_up2.xml" value="0.2" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/layout/activity_subscriptions.xml" value="0.1" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/layout/fragment_navigation.xml" value="0.21" />
+        <entry key="app/src/main/res/drawable/application_icon.xml" value="0.183" />
+        <entry key="app/src/main/res/drawable/first_activity_image.xml" value="0.1895" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.1895" />
+        <entry key="app/src/main/res/layout/activity_creat_subscription.xml" value="0.2921195652173913" />
       </map>
     </option>
   </component>
