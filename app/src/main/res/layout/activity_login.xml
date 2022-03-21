@@ -50,7 +50,7 @@
         android:paddingStart="14dp"
         android:paddingTop="15dp"
         android:paddingBottom="14dp"
-        android:textColorHint="@color/grey_500"
+        android:textColorHint="@drawable/item_edit_text"
         android:textSize="16sp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
