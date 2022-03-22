@@ -4,6 +4,7 @@ import Fragments.NavigationFragment
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
@@ -39,6 +40,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             finish()
         }
 
+        autoCompleteName()
         number()
     }
 
@@ -57,5 +59,11 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         bundle.putInt("i", 3)
         fragment.arguments = bundle
         fragmentTransaction.add(R.id.fragment, fragment).commit()
+    }
+
+    private fun autoCompleteName(){
+        val name = resources.getStringArray(R.array.autoName)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, name)
+        binding.name.setAdapter(adapter)
     }
 }

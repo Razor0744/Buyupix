@@ -105,6 +105,9 @@ class NavigationFragment : Fragment() {
         binding?.calendar?.setOnClickListener {
             startActivity(Intent(context, CalendarActivity::class.java))
         }
+        binding?.createSubscription?.setOnClickListener {
+            startActivity(Intent(context, SubscriptionsActivity::class.java))
+        }
         binding?.analytic?.setOnClickListener {
             startActivity(Intent(context, AnalyticActivity::class.java))
         }

@@ -29,13 +29,13 @@ class FirstActivity : AppCompatActivity() {
         auth = Firebase.auth
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        if (currentUser != null) {
+        if (currentUser == null) {
             reload()
         }
     }
 
     private fun reload() {
-        startActivity(Intent(this, LoginActivity::class.java))
+        startActivity(Intent(this, SubscriptionsActivity::class.java))
         finish()
     }
 }

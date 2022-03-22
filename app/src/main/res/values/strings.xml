@@ -19,17 +19,21 @@
     <string name="app_name">My Subscriptions</string>
     <string name="name_app">My Subscriptions</string>
 
+    <!--CreateSubscriptionActivity-->
     <string name="createNameSubscription">Name</string>
     <string name="CrateCostSubscription">Cost</string>
     <string name="button_create">Create</string>
-
+    <string-array name="autoName">
+        <item>Spotify</item>
+        <item>VK Combo</item>
+        <item>Netflix</item>
+        <item>Apple Music</item>
+    </string-array>
     <string-array name="costSpinner">
         <item>$ / mon</item>
         <item>$ / week</item>
         <item>BYN / mon</item>
-        <item></item>
     </string-array>
-
     <string-array name="category">
         <item>Music</item>
         <item>Movies</item>
