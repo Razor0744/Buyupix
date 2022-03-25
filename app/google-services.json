@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "594022083059",
+    "firebase_url": "https://my-subscriptions-96306-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "my-subscriptions-96306",
     "storage_bucket": "my-subscriptions-96306.appspot.com"
   },
@@ -14,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "594022083059-oa89els3fp7letkd7e95nii0qr38jhh6.apps.googleusercontent.com",
+          "client_id": "594022083059-3t979gmmdkqpod7vpls7efg30viekoas.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "team.four.mys",

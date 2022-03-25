@@ -28,12 +28,10 @@ class CustomRecyclerAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bindSubscription(subscription: Subscription, context: Context) {
-            //val resourceId = context.resources.getIdentifier(subscription.image, "drawable", context.packageName)
             Glide
                 .with(context)
                 .load(subscription.image)
                 .into(imageSubscription)
-            //imageSubscription?.setImageResource(resourceId)
 
             nameSubscription?.text = subscription.name
 

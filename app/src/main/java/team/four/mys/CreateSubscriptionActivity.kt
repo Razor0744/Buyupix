@@ -23,19 +23,12 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonCreate.setOnClickListener {
-            var url = ""
-            when(binding.name.text.toString()){
-                "Spotify" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.jpg?alt=media&token=e950e3b9-526b-4c81-9d0c-289d34c0f2c9"}
-                "VK Combo" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/VK%20Combo.svg?alt=media&token=3915139a-f0f3-4294-9f77-d2cf977f05db"}
-                "Netflix" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Vector.jpg?alt=media&token=28126d71-fa77-4d18-91f2-89e6163647bc"}
-                "Apple Music" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Apple%20Music.svg?alt=media&token=9473b8c5-bc2c-4505-95a2-9305e48ac915"}
-            }
             val data = hashMapOf(
                 "name" to "${binding.name.text}",
                 "cost" to "${binding.costEditText.text}",
                 "costSpinner" to "${binding.costSpinner.selectedItem}",
                 "date" to  "${binding.name.text}",
-                "image" to url
+                "image" to icons()
             )
             db.collection(uid()).document("${binding.name.text}")
                 .set(data)
@@ -71,5 +64,17 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         val name = resources.getStringArray(R.array.autoName)
         val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, name)
         binding.name.setAdapter(adapter)
+    }
+
+    //url icons from storage firebase
+    private fun icons(): String{
+        var url = ""
+        when(binding.name.text.toString()){
+            "Spotify" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.jpg?alt=media&token=e950e3b9-526b-4c81-9d0c-289d34c0f2c9"}
+            "VK Combo" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/VK%20Combo.jpg?alt=media&token=3b953e5d-3eea-4622-9b70-b041cf8d66c1"}
+            "Netflix" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Netflix.jpg?alt=media&token=49c9b12b-dca8-43b0-8d55-21dbfaee76ca"}
+            "Apple Music" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Apple%20Music.jpg?alt=media&token=ea4719ee-750e-41e3-8724-cfa8ddace378"}
+        }
+        return url
     }
 }
