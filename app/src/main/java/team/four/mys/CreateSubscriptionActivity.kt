@@ -23,20 +23,39 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonCreate.setOnClickListener {
-            val data = hashMapOf(
-                "name" to "${binding.name.text}",
-                "cost" to "${binding.costEditText.text}",
-                "costSpinner" to "${binding.costSpinner.selectedItem}",
-                "date" to  "${binding.name.text}",
-                "image" to icons()
-            )
-            db.collection(uid()).document("Date").collection(uid()).document("${binding.name.text}")
-                .set(data)
-                .addOnSuccessListener {
-                }
-            val intent = Intent(this, SubscriptionsActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (binding.date.text.trim().toString().isEmpty()) {
+                val data = hashMapOf(
+                    "name" to "${binding.name.text.trim()}",
+                    "cost" to "${binding.costEditText.text.trim()}",
+                    "costSpinner" to "${binding.costSpinner.selectedItem}",
+                    "image" to icons()
+                )
+                db.collection(uid()).document("Date").collection(uid())
+                    .document("${binding.name.text}")
+                    .set(data)
+                    .addOnSuccessListener {
+                    }
+                val intent = Intent(this, SubscriptionsActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                val data = hashMapOf(
+                    "name" to "${binding.name.text.trim()}",
+                    "cost" to "${binding.costEditText.text.trim()}",
+                    "costSpinner" to "${binding.costSpinner.selectedItem}",
+                    "date" to "${binding.date.text.trim()}",
+                    "image" to icons()
+                )
+                db.collection(uid()).document("Date").collection(uid())
+                    .document("${binding.name.text}")
+                    .set(data)
+                    .addOnSuccessListener {
+                    }
+                val intent = Intent(this, SubscriptionsActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
         }
 
         autoCompleteName()
@@ -50,7 +69,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         return uid.toString()
     }
 
-    private fun number(){
+    private fun number() {
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         val fragment = NavigationFragment()
@@ -60,20 +79,32 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         fragmentTransaction.add(R.id.fragment, fragment).commit()
     }
 
-    private fun autoCompleteName(){
+    private fun autoCompleteName() {
         val name = resources.getStringArray(R.array.autoName)
         val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, name)
         binding.name.setAdapter(adapter)
     }
 
     //url icons from storage firebase
-    private fun icons(): String{
+    private fun icons(): String {
         var url = ""
-        when(binding.name.text.toString()){
-            "Spotify" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.jpg?alt=media&token=e950e3b9-526b-4c81-9d0c-289d34c0f2c9"}
-            "VK Combo" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/VK%20Combo.jpg?alt=media&token=3b953e5d-3eea-4622-9b70-b041cf8d66c1"}
-            "Netflix" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Netflix.jpg?alt=media&token=49c9b12b-dca8-43b0-8d55-21dbfaee76ca"}
-            "Apple Music" -> {url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Apple%20Music.jpg?alt=media&token=ea4719ee-750e-41e3-8724-cfa8ddace378"}
+        when (binding.name.text.toString()) {
+            "Spotify" -> {
+                url =
+                    "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.jpg?alt=media&token=e950e3b9-526b-4c81-9d0c-289d34c0f2c9"
+            }
+            "VK Combo" -> {
+                url =
+                    "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/VK%20Combo.jpg?alt=media&token=3b953e5d-3eea-4622-9b70-b041cf8d66c1"
+            }
+            "Netflix" -> {
+                url =
+                    "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Netflix.jpg?alt=media&token=49c9b12b-dca8-43b0-8d55-21dbfaee76ca"
+            }
+            "Apple Music" -> {
+                url =
+                    "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Apple%20Music.jpg?alt=media&token=ea4719ee-750e-41e3-8724-cfa8ddace378"
+            }
         }
         return url
     }

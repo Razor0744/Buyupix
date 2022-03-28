@@ -21,7 +21,8 @@
 
     <!--CreateSubscriptionActivity-->
     <string name="createNameSubscription">Name</string>
-    <string name="CrateCostSubscription">Cost</string>
+    <string name="crateCostSubscription">Cost</string>
+    <string name="date">Enter the write-off date</string>
     <string name="button_create">Create</string>
     <string-array name="autoName">
         <item>Spotify</item>
