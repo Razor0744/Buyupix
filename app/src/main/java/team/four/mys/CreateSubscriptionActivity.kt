@@ -30,7 +30,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 "date" to  "${binding.name.text}",
                 "image" to icons()
             )
-            db.collection(uid()).document("${binding.name.text}")
+            db.collection(uid()).document("Date").collection(uid()).document("${binding.name.text}")
                 .set(data)
                 .addOnSuccessListener {
                 }

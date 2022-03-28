@@ -46,7 +46,7 @@ class SubscriptionsActivity : AppCompatActivity() {
 
     private fun fireStore() {
         db = FirebaseFirestore.getInstance()
-        db.collection(uid())
+        db.collection(uid()).document("Date").collection(uid())
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
