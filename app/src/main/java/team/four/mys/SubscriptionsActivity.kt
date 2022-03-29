@@ -1,13 +1,16 @@
 package team.four.mys
 
-import Adapters.CustomRecyclerAdapter
+import Adapters.CustomRecyclerAdapterDate
+import Adapters.CustomRecyclerAdapterNoDate
 import Fragments.NavigationFragment
-import Model.Subscription
+import Model.SubscriptionDate
+import Model.SubscriptionNoDate
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import team.four.mys.databinding.ActivitySubscriptionsBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -16,8 +19,10 @@ import com.google.firebase.firestore.*
 
 class SubscriptionsActivity : AppCompatActivity() {
 
-    private lateinit var subscriptions: ArrayList<Subscription>
-    private lateinit var adapter: CustomRecyclerAdapter
+    private lateinit var subscriptionsDate: ArrayList<SubscriptionDate>
+    private lateinit var subscriptionsNoDate: ArrayList<SubscriptionNoDate>
+    private lateinit var adapterDate: CustomRecyclerAdapterDate
+    private lateinit var adapterNoDate: CustomRecyclerAdapterNoDate
     private lateinit var db : FirebaseFirestore
     private lateinit var binding: ActivitySubscriptionsBinding
 
@@ -27,10 +32,13 @@ class SubscriptionsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // all subscriptions
-        subscriptions = arrayListOf()
-        adapter = CustomRecyclerAdapter(this, subscriptions)
+        subscriptionsDate = arrayListOf()
+        subscriptionsNoDate = arrayListOf()
+        adapterDate = CustomRecyclerAdapterDate(this, subscriptionsDate)
+        adapterNoDate = CustomRecyclerAdapterNoDate(this, subscriptionsNoDate)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = adapter
+        val concatAdapter = ConcatAdapter(adapterNoDate, adapterDate)
+        binding.recyclerView.adapter = concatAdapter
 
         fireStore()
         number()
@@ -56,10 +64,29 @@ class SubscriptionsActivity : AppCompatActivity() {
 
                     for (dc: DocumentChange in value?.documentChanges!!) {
                         if (dc.type == DocumentChange.Type.ADDED) {
-                            subscriptions.add(dc.document.toObject(Subscription::class.java))
+                            subscriptionsDate.add(dc.document.toObject(SubscriptionDate::class.java))
                         }
                     }
-                    adapter.notifyDataSetChanged()
+                    adapterDate.notifyDataSetChanged()
+                }
+
+            })
+
+
+        db.collection(uid()).document("NoDate").collection(uid())
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if (error != null) {
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!) {
+                        if (dc.type == DocumentChange.Type.ADDED) {
+                            subscriptionsNoDate.add(dc.document.toObject(SubscriptionNoDate::class.java))
+                        }
+                    }
+                    adapterNoDate.notifyDataSetChanged()
                 }
 
             })

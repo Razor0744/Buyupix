@@ -1,6 +1,6 @@
 package Model
 
-data class Subscription(
+data class SubscriptionDate(
     var name: String? = null,
     var image: String? = null,
     var cost: String? = null,

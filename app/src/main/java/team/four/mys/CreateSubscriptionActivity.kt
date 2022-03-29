@@ -30,7 +30,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                     "costSpinner" to "${binding.costSpinner.selectedItem}",
                     "image" to icons()
                 )
-                db.collection(uid()).document("Date").collection(uid())
+                db.collection(uid()).document("NoDate").collection(uid())
                     .document("${binding.name.text}")
                     .set(data)
                     .addOnSuccessListener {

@@ -50,8 +50,7 @@
         android:layout_marginRight="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_app"
-        tools:listitem="@layout/recyclerview_item" />
+        app:layout_constraintTop_toBottomOf="@+id/name_app" />
 
     <FrameLayout
         android:id="@+id/fragment"

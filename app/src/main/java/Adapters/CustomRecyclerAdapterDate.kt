@@ -1,6 +1,6 @@
 package Adapters
 
-import Model.Subscription
+import Model.SubscriptionDate
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,15 +10,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.model.GlideUrl
 import team.four.mys.R
 
 
-class CustomRecyclerAdapter(
+class CustomRecyclerAdapterDate(
     private val context: Context,
-    private val subscriptions: List<Subscription>
+    private val subscriptionDates: List<SubscriptionDate>
 ) :
-    RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>() {
+    RecyclerView.Adapter<CustomRecyclerAdapterDate.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameSubscription = itemView.findViewById<TextView>(R.id.names)
@@ -27,17 +26,17 @@ class CustomRecyclerAdapter(
         private val dateSubscription = itemView.findViewById<TextView>(R.id.date)
 
         @SuppressLint("SetTextI18n")
-        fun bindSubscription(subscription: Subscription, context: Context) {
+        fun bindSubscription(subscriptionDate: SubscriptionDate, context: Context) {
             Glide
                 .with(context)
-                .load(subscription.image)
+                .load(subscriptionDate.image)
                 .into(imageSubscription)
 
-            nameSubscription?.text = subscription.name
+            nameSubscription?.text = subscriptionDate.name
 
-            costSubscription?.text = subscription.cost + subscription.costSpinner
+            costSubscription?.text = subscriptionDate.cost + subscriptionDate.costSpinner
 
-            dateSubscription?.text = subscription.date
+            dateSubscription?.text = subscriptionDate.date
         }
     }
 
@@ -49,8 +48,12 @@ class CustomRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bindSubscription(subscriptions[position], context)
+        holder.bindSubscription(subscriptionDates[position], context)
     }
 
-    override fun getItemCount() = subscriptions.size
+    override fun getItemCount() = subscriptionDates.size
+
+    override fun getItemViewType(position: Int): Int {
+        return R.layout.recyclerview_item
+    }
 }
