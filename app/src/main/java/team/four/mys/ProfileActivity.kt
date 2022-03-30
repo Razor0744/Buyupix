@@ -1,6 +1,6 @@
 package team.four.mys
 
-import Fragments.NavigationFragment
+import fragments.NavigationFragment
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

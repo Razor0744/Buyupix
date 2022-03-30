@@ -1,10 +1,10 @@
 package team.four.mys
 
-import Adapters.CustomRecyclerAdapterDate
-import Adapters.CustomRecyclerAdapterNoDate
-import Fragments.NavigationFragment
-import Model.SubscriptionDate
-import Model.SubscriptionNoDate
+import adapters.CustomRecyclerAdapterDate
+import adapters.CustomRecyclerAdapterNoDate
+import fragments.NavigationFragment
+import model.SubscriptionDate
+import model.SubscriptionNoDate
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
