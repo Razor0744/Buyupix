@@ -37,7 +37,7 @@ class SubscriptionsActivity : AppCompatActivity() {
         adapterDate = CustomRecyclerAdapterDate(this, subscriptionsDate)
         adapterNoDate = CustomRecyclerAdapterNoDate(this, subscriptionsNoDate)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        val concatAdapter = ConcatAdapter(adapterNoDate, adapterDate)
+        val concatAdapter = ConcatAdapter(adapterDate, adapterNoDate)
         binding.recyclerView.adapter = concatAdapter
 
         fireStore()
@@ -54,25 +54,6 @@ class SubscriptionsActivity : AppCompatActivity() {
 
     private fun fireStore() {
         db = FirebaseFirestore.getInstance()
-        db.collection(uid()).document("Date").collection(uid())
-            .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                @SuppressLint("NotifyDataSetChanged")
-                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                    if (error != null) {
-                        return
-                    }
-
-                    for (dc: DocumentChange in value?.documentChanges!!) {
-                        if (dc.type == DocumentChange.Type.ADDED) {
-                            subscriptionsDate.add(dc.document.toObject(SubscriptionDate::class.java))
-                        }
-                    }
-                    adapterDate.notifyDataSetChanged()
-                }
-
-            })
-
-
         db.collection(uid()).document("NoDate").collection(uid())
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 @SuppressLint("NotifyDataSetChanged")
@@ -87,6 +68,24 @@ class SubscriptionsActivity : AppCompatActivity() {
                         }
                     }
                     adapterNoDate.notifyDataSetChanged()
+                }
+
+            })
+
+        db.collection(uid()).document("Date").collection(uid())
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if (error != null) {
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!) {
+                        if (dc.type == DocumentChange.Type.ADDED) {
+                            subscriptionsDate.add(dc.document.toObject(SubscriptionDate::class.java))
+                        }
+                    }
+                    adapterDate.notifyDataSetChanged()
                 }
 
             })
