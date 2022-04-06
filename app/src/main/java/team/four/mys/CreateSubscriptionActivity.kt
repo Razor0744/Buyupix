@@ -91,11 +91,11 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         when (binding.name.text.toString()) {
             "Spotify" -> {
                 url =
-                    "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.jpg?alt=media&token=e950e3b9-526b-4c81-9d0c-289d34c0f2c9"
+                    "R.drawable.icon_spotify"
             }
             "VK Combo" -> {
                 url =
-                    "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/VK%20Combo.jpg?alt=media&token=3b953e5d-3eea-4622-9b70-b041cf8d66c1"
+                    "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/icon_spotify.xml?alt=media&token=66121332-30aa-4b46-9163-0d9e8fdab4ca"
             }
             "Netflix" -> {
                 url =

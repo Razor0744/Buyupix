@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import team.four.mys.R
 
 
@@ -27,10 +26,6 @@ class CustomRecyclerAdapterDate(
 
         @SuppressLint("SetTextI18n")
         fun bindSubscription(subscriptionDate: SubscriptionDate, context: Context) {
-            Glide
-                .with(context)
-                .load(subscriptionDate.image)
-                .into(imageSubscription)
 
             nameSubscription?.text = subscriptionDate.name
 

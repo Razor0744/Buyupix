@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import model.Utils
 import team.four.mys.R
 
 
@@ -26,10 +26,8 @@ class CustomRecyclerAdapterNoDate(
 
         @SuppressLint("SetTextI18n")
         fun bindSubscription(subscriptionNoDate: SubscriptionNoDate, context: Context) {
-            Glide
-                .with(context)
-                .load(subscriptionNoDate.image)
-                .into(imageSubscription)
+            val url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/facebook-4.svg?alt=media&token=6d15337a-d9c7-4f49-b07a-2d5da47aac9f"
+            Utils.fetchSvg(context, url, imageSubscription)
 
             nameSubscription?.text = subscriptionNoDate.name
 
