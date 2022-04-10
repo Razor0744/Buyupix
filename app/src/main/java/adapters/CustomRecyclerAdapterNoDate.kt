@@ -1,15 +1,21 @@
 package adapters
 
-import model.SubscriptionNoDate
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
-import model.Utils
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
+import model.SubscriptionNoDate
 import team.four.mys.R
 
 
@@ -26,8 +32,11 @@ class CustomRecyclerAdapterNoDate(
 
         @SuppressLint("SetTextI18n")
         fun bindSubscription(subscriptionNoDate: SubscriptionNoDate, context: Context) {
-            val url = "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/facebook-4.svg?alt=media&token=6d15337a-d9c7-4f49-b07a-2d5da47aac9f"
-            Utils.fetchSvg(context, url, imageSubscription)
+
+            Glide
+                .with(context)
+                .load(subscriptionNoDate.image)
+                .into(imageSubscription)
 
             nameSubscription?.text = subscriptionNoDate.name
 
