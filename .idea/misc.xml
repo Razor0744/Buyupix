@@ -49,8 +49,11 @@
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_sp.xml" value="0.1865" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/icon_apple_music.xml" value="0.1865" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/icon_netfix.xml" value="0.1865" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/icon_spotify.xml" value="0.1865" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/item_bacground_button_calendar.xml" value="0.1865" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/item_background.xml" value="0.32037037037037036" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_blue.xml" value="0.1575" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_button_calendar.xml" value="0.1865" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_code.xml" value="0.142" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_frame.xml" value="0.142" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_frame_1.xml" value="0.125" />
@@ -64,7 +67,7 @@
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/font/roboto.xml" value="0.33611111111111114" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/font/roboto_medium.xml" value="0.33611111111111114" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_analytic.xml" value="0.22" />
-        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_calendar.xml" value="0.25" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_calendar.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_code_send.xml" value="0.2" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_creat_subscription.xml" value="0.25" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_first.xml" value="0.25" />
