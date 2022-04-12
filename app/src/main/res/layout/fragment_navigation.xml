@@ -6,14 +6,6 @@
     tools:context="fragments.NavigationFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="@drawable/background_navigation_bar"
-        app:layout_constraintBottom_toTopOf="@id/navigationBar" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="70dp"

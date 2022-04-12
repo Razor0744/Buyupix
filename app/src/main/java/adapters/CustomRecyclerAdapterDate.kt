@@ -44,7 +44,7 @@ class CustomRecyclerAdapterDate(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.recyclerview_item, parent, false)
+                .inflate(R.layout.recyclerview_item_date, parent, false)
         return MyViewHolder(itemView)
     }
 
@@ -55,6 +55,6 @@ class CustomRecyclerAdapterDate(
     override fun getItemCount() = subscriptionDates.size
 
     override fun getItemViewType(position: Int): Int {
-        return R.layout.recyclerview_item
+        return R.layout.recyclerview_item_date
     }
 }
