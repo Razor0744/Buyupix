@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="52dp"
         android:background="@drawable/item_background_white"
         android:elevation="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
