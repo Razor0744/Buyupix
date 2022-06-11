@@ -2,18 +2,19 @@ package fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.fonts.Font
-import android.graphics.fonts.FontFamily
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
-import team.four.mys.*
-import team.four.mys.databinding.FragmentNavigationBinding
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
+import team.four.mys.CalendarActivity
+import team.four.mys.ProfileActivity
+import team.four.mys.R
+import team.four.mys.SubscriptionsActivity
+import team.four.mys.databinding.FragmentNavigationBinding
 
 class NavigationFragment : Fragment() {
 
