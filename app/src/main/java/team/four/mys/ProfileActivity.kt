@@ -48,8 +48,6 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
-
-        number()
     }
 
     private fun uid(): String {
@@ -57,15 +55,5 @@ class ProfileActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.email
         return uid.toString()
-    }
-
-    private fun number(){
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val fragment = NavigationFragment()
-        val bundle = Bundle()
-        bundle.putInt("i", 5)
-        fragment.arguments = bundle
-        fragmentTransaction.add(R.id.fragment, fragment).commit()
     }
 }

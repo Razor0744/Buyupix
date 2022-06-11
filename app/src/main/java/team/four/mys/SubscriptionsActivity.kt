@@ -3,8 +3,8 @@ package team.four.mys
 import adapters.CustomRecyclerAdapterDate
 import adapters.CustomRecyclerAdapterNoDate
 import fragments.NavigationFragment
-import model.SubscriptionDate
-import model.SubscriptionNoDate
+import models.SubscriptionDate
+import models.SubscriptionNoDate
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

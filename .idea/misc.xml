@@ -46,7 +46,11 @@
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_profile.xml" value="0.125" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_profile_click.xml" value="0.1865" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_search.xml" value="0.125" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_settings.xml" value="0.1865" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_settings_click.xml" value="0.1865" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_sp.xml" value="0.1865" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_statistics.xml" value="0.1865" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_statistics_click.xml" value="0.1865" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/icon_apple_music.xml" value="0.1865" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/icon_netfix.xml" value="0.1865" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/icon_spotify.xml" value="0.1865" />
@@ -80,7 +84,7 @@
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_splash_screen.xml" value="0.371875" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_subscriptions.xml" value="0.22" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/cost_spinner_item.xml" value="0.371875" />
-        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/fragment_navigation.xml" value="0.3367662203913491" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/fragment_navigation.xml" value="0.25" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/recyclerview_item.xml" value="0.33" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/recyclerview_item_calendar.xml" value="0.371875" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/recyclerview_item_date.xml" value="0.371875" />

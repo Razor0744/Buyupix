@@ -1,4 +1,4 @@
-package model
+package models
 
 data class SubscriptionDate(
     var name: String? = null,

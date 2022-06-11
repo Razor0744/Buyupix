@@ -5,11 +5,12 @@
     <color name="background">#F1F3F9</color>
     <color name="grey_100">#3E3D48</color>
     <color name="blue_100">#3E82F9</color>
-    <color name="blue_200">#50A7EA</color>
+    <color name="blue_200">#2D8DD8</color>
     <color name="recyclerViewItemBlack">#434952</color>
     <color name="recyclerViewItemGrey">#939AA6</color>
     <color name="grey_200">#434952</color>
     <color name="grey_300">#7E8899</color>
+    <color name="grey_400">#9EA2AB</color>
     <color name="grey_500">#BFC8D8</color>
     <color name="grey_600">#E8EBED</color>
 </resources>

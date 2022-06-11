@@ -38,10 +38,8 @@
 
     <!--Navigation-->
     <string name="home">Home</string>
-    <string name="calendar">Calendar</string>
-    <string name="analytics">Analytics</string>
-    <string name="profile">Profile</string>
-    <string name="create">Create</string>
+    <string name="statistics">Statistics</string>
+    <string name="settings">Settings</string>
 
     <!--ProfileActivity-->
     <string name="darkMode">Dark Mode</string>

@@ -1,6 +1,6 @@
 package adapters
 
-import model.SubscriptionDate
+import models.SubscriptionDate
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater

@@ -31,33 +31,26 @@ class NavigationFragment : Fragment() {
 
         //get resources
         val drawableHome = resources.getDrawable(R.drawable.ic_home_click, context?.theme)
-        val drawableCalendar = resources.getDrawable(R.drawable.ic_calendar_click, context?.theme)
-        val drawableCreateSubscription = resources.getDrawable(R.drawable.ic_create_subscription_click, context?.theme)
-        val drawableAnalytic = resources.getDrawable(R.drawable.ic_analytic_click, context?.theme)
-        val drawableProfile = resources.getDrawable(R.drawable.ic_profile_click, context?.theme)
+        val drawableStatistics = resources.getDrawable(R.drawable.ic_statistics_click, context?.theme)
+        val drawableSettings = resources.getDrawable(R.drawable.ic_settings_click, context?.theme)
         val color = resources.getColor(R.color.blue_200, context?.theme)
 
         when (i) {
             1 -> home()
-            2 -> calendar()
-            3 -> createSubscription()
-            4 -> analytic()
-            5 -> profile()
+            2 -> statistics()
+            3 -> settings()
         }
 
         when (i) {
             1 -> binding?.home?.setTextColor(color)
-            2 -> binding?.calendar?.setTextColor(color)
-            4 -> binding?.analytic?.setTextColor(color)
-            5 -> binding?.profile?.setTextColor(color)
+            2 -> binding?.statistics?.setTextColor(color)
+            3 -> binding?.settings?.setTextColor(color)
         }
 
         when(i){
             1 -> binding?.home?.setCompoundDrawablesWithIntrinsicBounds(null, drawableHome, null, null)
-            2 -> binding?.calendar?.setCompoundDrawablesWithIntrinsicBounds(null, drawableCalendar, null, null)
-            3 -> binding?.createSubscription?.setImageDrawable(drawableCreateSubscription)
-            4 -> binding?.analytic?.setCompoundDrawablesWithIntrinsicBounds(null, drawableAnalytic, null, null)
-            5 -> binding?.profile?.setCompoundDrawablesWithIntrinsicBounds(null, drawableProfile, null, null)
+            2 -> binding?.statistics?.setCompoundDrawablesWithIntrinsicBounds(null, drawableStatistics, null, null)
+            3 -> binding?.settings?.setCompoundDrawablesWithIntrinsicBounds(null, drawableSettings, null, null)
         }
 
         return binding?.root
@@ -69,80 +62,29 @@ class NavigationFragment : Fragment() {
     }
 
     private fun home() {
-        binding?.calendar?.setOnClickListener {
+        binding?.statisticsLayout?.setOnClickListener {
             startActivity(Intent(context, CalendarActivity::class.java))
         }
-        binding?.createSubscription?.setOnClickListener {
+        binding?.settingsLayout?.setOnClickListener {
             startActivity(Intent(context, CreateSubscriptionActivity::class.java))
-        }
-        binding?.analytic?.setOnClickListener {
-            startActivity(Intent(context, AnalyticActivity::class.java))
-        }
-        binding?.profile?.setOnClickListener {
-            startActivity(Intent(context, ProfileActivity::class.java))
         }
     }
 
-    private fun calendar() {
-        binding?.home?.setOnClickListener {
+    private fun statistics() {
+        binding?.homeLayout?.setOnClickListener {
             startActivity(Intent(context, SubscriptionsActivity::class.java))
         }
-        binding?.createSubscription?.setOnClickListener {
+        binding?.settingsLayout?.setOnClickListener {
             startActivity(Intent(context, CreateSubscriptionActivity::class.java))
-        }
-        binding?.analytic?.setOnClickListener {
-            startActivity(Intent(context, AnalyticActivity::class.java))
-        }
-        binding?.profile?.setOnClickListener {
-            startActivity(Intent(context, ProfileActivity::class.java))
         }
     }
 
-    private fun createSubscription() {
-        binding?.home?.setOnClickListener {
+    private fun settings() {
+        binding?.homeLayout?.setOnClickListener {
             startActivity(Intent(context, SubscriptionsActivity::class.java))
         }
-        binding?.calendar?.setOnClickListener {
+        binding?.statisticsLayout?.setOnClickListener {
             startActivity(Intent(context, CalendarActivity::class.java))
-        }
-        binding?.createSubscription?.setOnClickListener {
-            startActivity(Intent(context, SubscriptionsActivity::class.java))
-        }
-        binding?.analytic?.setOnClickListener {
-            startActivity(Intent(context, AnalyticActivity::class.java))
-        }
-        binding?.profile?.setOnClickListener {
-            startActivity(Intent(context, ProfileActivity::class.java))
-        }
-    }
-
-    private fun analytic() {
-        binding?.home?.setOnClickListener {
-            startActivity(Intent(context, SubscriptionsActivity::class.java))
-        }
-        binding?.calendar?.setOnClickListener {
-            startActivity(Intent(context, CalendarActivity::class.java))
-        }
-        binding?.createSubscription?.setOnClickListener {
-            startActivity(Intent(context, CreateSubscriptionActivity::class.java))
-        }
-        binding?.profile?.setOnClickListener {
-            startActivity(Intent(context, ProfileActivity::class.java))
-        }
-    }
-
-    private fun profile() {
-        binding?.home?.setOnClickListener {
-            startActivity(Intent(context, SubscriptionsActivity::class.java))
-        }
-        binding?.calendar?.setOnClickListener {
-            startActivity(Intent(context, CalendarActivity::class.java))
-        }
-        binding?.createSubscription?.setOnClickListener {
-            startActivity(Intent(context, CreateSubscriptionActivity::class.java))
-        }
-        binding?.analytic?.setOnClickListener {
-            startActivity(Intent(context, AnalyticActivity::class.java))
         }
     }
 }

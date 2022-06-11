@@ -1,4 +1,4 @@
-package model
+package models
 
 data class SubscriptionNoDate(
     var name: String? = null,
