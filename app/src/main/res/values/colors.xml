@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">#F1F3F9</color>
+    <color name="background">#F9F9F9</color>
     <color name="grey_100">#3E3D48</color>
     <color name="blue_100">#3E82F9</color>
     <color name="blue_200">#2D8DD8</color>
@@ -13,4 +13,8 @@
     <color name="grey_400">#9EA2AB</color>
     <color name="grey_500">#BFC8D8</color>
     <color name="grey_600">#E8EBED</color>
+    <color name="iconsNavigationBar">#9EA2AB</color>
+    <color name="iconsNavigationBarClick">#2D8DD8</color>
+    <color name="textNavigationBar">#2D8DD8</color>
+    <color name="backgroundNavigationBar">#FFFFFF</color>
 </resources>

@@ -38,7 +38,7 @@ class NavigationFragment : Fragment() {
         val drawableHome = resources.getDrawable(R.drawable.ic_home_click, context?.theme)
         val drawableStatistics = resources.getDrawable(R.drawable.ic_statistics_click, context?.theme)
         val drawableSettings = resources.getDrawable(R.drawable.ic_settings_click, context?.theme)
-        val color = resources.getColor(R.color.blue_200, context?.theme)
+        val color = resources.getColor(R.color.textNavigationBar, context?.theme)
         val fontFamily = context?.let { ResourcesCompat.getFont(it, R.font.roboto_medium) }
 
         when (i) {
