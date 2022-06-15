@@ -5,14 +5,13 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import team.four.mys.CalendarActivity
-import team.four.mys.ProfileActivity
+import team.four.mys.SettingsActivity
 import team.four.mys.R
 import team.four.mys.SubscriptionsActivity
 import team.four.mys.databinding.FragmentNavigationBinding
@@ -78,7 +77,7 @@ class NavigationFragment : Fragment() {
             startActivity(Intent(context, CalendarActivity::class.java))
         }
         binding?.settingsLayout?.setOnClickListener {
-            startActivity(Intent(context, ProfileActivity::class.java))
+            startActivity(Intent(context, SettingsActivity::class.java))
         }
     }
 
@@ -87,7 +86,7 @@ class NavigationFragment : Fragment() {
             startActivity(Intent(context, SubscriptionsActivity::class.java))
         }
         binding?.settingsLayout?.setOnClickListener {
-            startActivity(Intent(context, ProfileActivity::class.java))
+            startActivity(Intent(context, SettingsActivity::class.java))
         }
     }
 

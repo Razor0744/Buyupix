@@ -41,8 +41,9 @@
     <string name="statistics">Statistics</string>
     <string name="settings">Settings</string>
 
-    <!--ProfileActivity-->
+    <!--SettingsActivity-->
+    <string name="alert">Alert</string>
     <string name="darkMode">Dark Mode</string>
     <string name="language">Language</string>
-    <string name="logOut">Log out</string>
+    <string name="about">About</string>
 </resources>

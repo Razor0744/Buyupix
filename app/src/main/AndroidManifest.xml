@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="team.four.mys">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/application_icon"
@@ -10,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
+        <activity
+            android:name=".LanguageActivity"
+            android:exported="false" />
         <activity
             android:name=".CodeSendActivity"
             android:exported="false" />
@@ -23,7 +27,7 @@
             android:name=".SubscriptionsActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".AnalyticActivity"

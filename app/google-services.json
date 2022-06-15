@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "594022083059-bg447vr3dmrcqha81bt3dl8ki80bjnc3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "team.four.mys",
+            "certificate_hash": "2c41e826f4d10038fb59a05362ba42a7b1a27220"
+          }
+        },
+        {
           "client_id": "594022083059-eb8h2ln92dne7eeu2k4v4qdaaskeku66.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -13,20 +13,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import team.four.mys.databinding.ActivityProfileBinding
+import team.four.mys.databinding.ActivitySettingsBinding
 
 
-class ProfileActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityProfileBinding
+    private lateinit var binding: ActivitySettingsBinding
     private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityProfileBinding.inflate(layoutInflater)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.email.text = uid()
 
         binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -35,27 +33,7 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
-        binding.logOut.setOnClickListener {
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build()
-
-            googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-            Firebase.auth.signOut()
-            googleSignInClient.signOut()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
         number()
-    }
-
-    private fun uid(): String {
-        // get UID
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.email
-        return uid.toString()
     }
 
     private fun number(){
