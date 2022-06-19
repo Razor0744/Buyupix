@@ -32,9 +32,9 @@ class CustomRecyclerAdapterNoDate(
                 .load(subscriptionNoDate.image)
                 .into(imageSubscription)
 
-            nameSubscription?.text = subscriptionNoDate.name
+            nameSubscription.text = subscriptionNoDate.name
 
-            costSubscription?.text = subscriptionNoDate.cost + subscriptionNoDate.costSpinner
+            costSubscription.text = subscriptionNoDate.cost + subscriptionNoDate.costSpinner
         }
     }
 

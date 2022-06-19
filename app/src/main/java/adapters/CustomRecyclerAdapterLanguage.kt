@@ -6,40 +6,48 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import models.SubscriptionDate
+import models.Language
 import team.four.mys.R
 
 class CustomRecyclerAdapterLanguage(
     private val context: Context,
-    private val subscriptionDates: List<SubscriptionDate>
+    private val language: List<Language>
 ) :
     RecyclerView.Adapter<CustomRecyclerAdapterLanguage.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val iconLanguage = itemView.findViewById<ImageView>(R.id.iconLanguage)
+        private val textLanguage = itemView.findViewById<TextView>(R.id.textLanguage)
+        private val radioButton = itemView.findViewById<RadioButton>(R.id.radioButtonLanguage)
 
         @SuppressLint("SetTextI18n")
-        fun bindSubscription(subscriptionDate: SubscriptionDate, context: Context) {
+        fun bindSubscription(language: Language, context: Context) {
+
+            textLanguage.text = language.name
+
+            val resourceId =
+                context.resources.getIdentifier(language.icon, "drawable", context.packageName)
+            iconLanguage.setImageResource(resourceId)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.recyclerview_item_date, parent, false)
+                .inflate(R.layout.recyclerview_item_language, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bindSubscription(subscriptionDates[position], context)
+        holder.bindSubscription(language[position], context)
     }
 
-    override fun getItemCount() = subscriptionDates.size
+    override fun getItemCount() = language.size
 
     override fun getItemViewType(position: Int): Int {
-        return R.layout.recyclerview_item_date
+        return R.layout.recyclerview_item_language
     }
 }

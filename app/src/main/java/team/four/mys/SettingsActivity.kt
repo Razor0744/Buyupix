@@ -1,5 +1,6 @@
 package team.four.mys
 
+import android.content.Intent
 import fragments.NavigationFragment
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,10 @@ class SettingsActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 delegate.applyDayNight()
             }
+        }
+
+        binding.language.setOnClickListener {
+            startActivity(Intent(this, LanguageActivity::class.java))
         }
 
         number()
