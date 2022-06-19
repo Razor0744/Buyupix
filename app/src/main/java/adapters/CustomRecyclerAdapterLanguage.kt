@@ -23,17 +23,6 @@ class CustomRecyclerAdapterLanguage(
 
         @SuppressLint("SetTextI18n")
         fun bindSubscription(subscriptionDate: SubscriptionDate, context: Context) {
-
-            Glide
-                .with(context)
-                .load(subscriptionDate.image)
-                .into(imageSubscription)
-
-            nameSubscription?.text = subscriptionDate.name
-
-            costSubscription?.text = subscriptionDate.cost + subscriptionDate.costSpinner
-
-            dateSubscription?.text = subscriptionDate.date
         }
     }
 
