@@ -18,19 +18,25 @@ class CustomRecyclerAdapterLanguage(
 ) :
     RecyclerView.Adapter<CustomRecyclerAdapterLanguage.MyViewHolder>() {
 
-    class MyViewHolder(itemView: View, private val itemClick: (Language) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View, private val itemClick: (Language) -> Unit) :
+        RecyclerView.ViewHolder(itemView) {
         private val iconLanguage = itemView.findViewById<ImageView>(R.id.iconLanguage)
         private val textLanguage = itemView.findViewById<TextView>(R.id.textLanguage)
-        private val radioButton = itemView.findViewById<RadioButton>(R.id.radioButtonLanguage)
-
+        private val imageButton = itemView.findViewById<ImageView>(R.id.imageLanguage)
 
         fun bindSubscription(language: Language, context: Context) {
 
             textLanguage.text = language.name
 
-            val resourceId =
+            val resourceIdIcon =
                 context.resources.getIdentifier(language.icon, "drawable", context.packageName)
-            iconLanguage.setImageResource(resourceId)
+            iconLanguage.setImageResource(resourceIdIcon)
+
+            val resourceIdImage =
+                context.resources.getIdentifier("ic_radio_button_click", "drawable", context.packageName)
+            if (language.name == "Usa"){
+                imageButton.setImageResource(resourceIdImage)
+            }
 
             itemView.setOnClickListener {
                 itemClick(language)

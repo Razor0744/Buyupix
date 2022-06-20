@@ -20,6 +20,7 @@ class LanguageActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapterLanguage = CustomRecyclerAdapterLanguage(this, language) { language ->
+
             startActivity(Intent(this, SettingsActivity::class.java))
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
