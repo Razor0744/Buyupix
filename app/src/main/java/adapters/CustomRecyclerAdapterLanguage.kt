@@ -1,6 +1,5 @@
 package adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -14,16 +13,17 @@ import team.four.mys.R
 
 class CustomRecyclerAdapterLanguage(
     private val context: Context,
-    private val language: List<Language>
+    private val language: List<Language>,
+    private val itemClick: (Language) -> Unit
 ) :
     RecyclerView.Adapter<CustomRecyclerAdapterLanguage.MyViewHolder>() {
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View, private val itemClick: (Language) -> Unit) : RecyclerView.ViewHolder(itemView) {
         private val iconLanguage = itemView.findViewById<ImageView>(R.id.iconLanguage)
         private val textLanguage = itemView.findViewById<TextView>(R.id.textLanguage)
         private val radioButton = itemView.findViewById<RadioButton>(R.id.radioButtonLanguage)
 
-        @SuppressLint("SetTextI18n")
+
         fun bindSubscription(language: Language, context: Context) {
 
             textLanguage.text = language.name
@@ -31,6 +31,10 @@ class CustomRecyclerAdapterLanguage(
             val resourceId =
                 context.resources.getIdentifier(language.icon, "drawable", context.packageName)
             iconLanguage.setImageResource(resourceId)
+
+            itemView.setOnClickListener {
+                itemClick(language)
+            }
         }
     }
 
@@ -38,7 +42,7 @@ class CustomRecyclerAdapterLanguage(
         val itemView =
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.recyclerview_item_language, parent, false)
-        return MyViewHolder(itemView)
+        return MyViewHolder(itemView, itemClick)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
