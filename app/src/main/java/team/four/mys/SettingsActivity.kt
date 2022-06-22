@@ -53,8 +53,6 @@ class SettingsActivity : AppCompatActivity() {
                     db.collection(uid()).document("language").set(data)
                 } else {
                     locale = document.get("language") as String
-                    println(locale)
-                    println("locale")
                 }
             }
     }

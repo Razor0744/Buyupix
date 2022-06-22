@@ -1,9 +1,10 @@
 package team.four.mys
 
 import adapters.CustomRecyclerAdapterLanguage
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,16 +31,25 @@ class LanguageActivity : AppCompatActivity() {
                 "USA" -> {
                     data += "language" to "en"
                     db.collection(uid()).document("language").set(data)
+                    LocaleHelper().setLocale(this, "en")
+                    recreate()
                 }
                 "Russia" -> {
                     data += "language" to "ru"
                     db.collection(uid()).document("language").set(data)
+                    LocaleHelper().setLocale(this, "ru")
+                    recreate()
                 }
             }
             startActivity(Intent(this, SettingsActivity::class.java))
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapterLanguage
+    }
+
+    override fun attachBaseContext(base: Context) {
+        LocaleHelper().setLocale(base, LocaleHelper().getLanguage(base))
+        super.attachBaseContext(LocaleHelper().onAttach(base))
     }
 
     private fun uid(): String {

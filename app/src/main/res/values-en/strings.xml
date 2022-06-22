@@ -1,0 +1,49 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--FirstActivity-->
+    <string name="welcome">Welcome</string>
+    <string name="description">Manage subscriptions, lower your bills, and stay on top of your financial life.</string>
+
+    <!--LoginActivity-->
+    <string name="authorization">Authorization</string>
+    <string name="textL">Enter phone number in international format</string>
+    <string name="number" tools:ignore="TypographyDashes">+ 7 (111) 111–11-11</string>
+    <string name="continueButton">Continue</string>
+    <string name="google">Continue With Google</string>
+    <string name="facebook">Continue With Facebook</string>
+
+    <!--CodeSendActivity-->
+    <string name="textC">Enter code from sms</string>
+    <string name="codeSendAgain">Resend code via</string>
+
+    <string name="app_name">My Subscriptions</string>
+    <string name="name_app">My Subscriptions</string>
+
+    <!--CreateSubscriptionActivity-->
+    <string name="createNameSubscription">Name</string>
+    <string name="crateCostSubscription">Cost</string>
+    <string name="date">Enter the write-off date</string>
+    <string name="button_create">Create</string>
+    <string-array name="autoName">
+        <item>Spotify</item>
+        <item>VK Combo</item>
+        <item>Netflix</item>
+        <item>Apple Music</item>
+    </string-array>
+    <string-array name="costSpinner">
+        <item>$ / mon</item>
+        <item>$ / week</item>
+        <item>BYN / mon</item>
+    </string-array>
+
+    <!--Navigation-->
+    <string name="home">Home</string>
+    <string name="statistics">Statistics</string>
+    <string name="settings">Settings</string>
+
+    <!--SettingsActivity-->
+    <string name="alert">Alert</string>
+    <string name="darkMode">Dark Mode</string>
+    <string name="language">Language</string>
+    <string name="about">About</string>
+</resources>
