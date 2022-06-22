@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import models.Language
@@ -14,6 +13,7 @@ import team.four.mys.R
 class CustomRecyclerAdapterLanguage(
     private val context: Context,
     private val language: List<Language>,
+    private val locale: String,
     private val itemClick: (Language) -> Unit
 ) :
     RecyclerView.Adapter<CustomRecyclerAdapterLanguage.MyViewHolder>() {
@@ -24,7 +24,7 @@ class CustomRecyclerAdapterLanguage(
         private val textLanguage = itemView.findViewById<TextView>(R.id.textLanguage)
         private val imageButton = itemView.findViewById<ImageView>(R.id.imageLanguage)
 
-        fun bindSubscription(language: Language, context: Context) {
+        fun bindSubscription(language: Language, context: Context, locale: String) {
 
             textLanguage.text = language.name
 
@@ -33,9 +33,21 @@ class CustomRecyclerAdapterLanguage(
             iconLanguage.setImageResource(resourceIdIcon)
 
             val resourceIdImage =
-                context.resources.getIdentifier("ic_radio_button_click", "drawable", context.packageName)
-            if (language.name == "Usa"){
-                imageButton.setImageResource(resourceIdImage)
+                context.resources.getIdentifier(
+                    "ic_radio_button_click",
+                    "drawable",
+                    context.packageName
+                )
+            when (locale) {
+                "ru" -> if (language.name == "Russia") {
+                    imageButton.setImageResource(resourceIdImage)
+                }
+                "en" -> if (language.name == "USA") {
+                    imageButton.setImageResource(resourceIdImage)
+                }
+                else -> if (language.name == "USA") {
+                    imageButton.setImageResource(resourceIdImage)
+                }
             }
 
             itemView.setOnClickListener {
@@ -52,7 +64,7 @@ class CustomRecyclerAdapterLanguage(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bindSubscription(language[position], context)
+        holder.bindSubscription(language[position], context, locale)
     }
 
     override fun getItemCount() = language.size
