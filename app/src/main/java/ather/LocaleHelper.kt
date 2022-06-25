@@ -1,4 +1,4 @@
-package team.four.mys
+package ather
 
 import android.annotation.TargetApi
 import android.content.Context
@@ -12,11 +12,6 @@ class LocaleHelper {
 
     fun onAttach(context: Context): Context {
         val lang = getPersistedData(context, Locale.getDefault().language).toString()
-        return setLocale(context, lang)
-    }
-
-    fun onAttach(context: Context, defaultLanguage: String): Context {
-        val lang = getPersistedData(context, defaultLanguage).toString()
         return setLocale(context, lang)
     }
 

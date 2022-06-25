@@ -14,6 +14,8 @@
     <color name="grey_500">#BFC8D8</color>
     <color name="grey_600">#E8EBED</color>
 
+    <color name="clickOnItems">#EBEBEB</color>
+
     <!--Navigation Bar-->
     <color name="iconsNavigationBar">#9EA2AB</color>
     <color name="iconsNavigationBarClick">#2D8DD8</color>

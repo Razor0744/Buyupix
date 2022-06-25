@@ -1,11 +1,11 @@
 package team.four.mys
 
 import adapters.CustomRecyclerAdapterLanguage
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import ather.LocaleHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import models.Language
@@ -22,34 +22,20 @@ class LanguageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLanguageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //init firebase
         db = FirebaseFirestore.getInstance()
 
         val locale = intent.getStringExtra("locale").toString()
         adapterLanguage = CustomRecyclerAdapterLanguage(this, language, locale) { language ->
-            val data: MutableMap<String, String> = mutableMapOf("language" to locale)
             when (language.name) {
-                "USA" -> {
-                    data += "language" to "en"
-                    db.collection(uid()).document("language").set(data)
-                    LocaleHelper().setLocale(this, "en")
-                    recreate()
-                }
-                "Russia" -> {
-                    data += "language" to "ru"
-                    db.collection(uid()).document("language").set(data)
-                    LocaleHelper().setLocale(this, "ru")
-                    recreate()
-                }
+                "USA" -> LocaleHelper().setLocale(this, "en")
+                "Russia" -> LocaleHelper().setLocale(this, "ru")
             }
             startActivity(Intent(this, SettingsActivity::class.java))
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapterLanguage
-    }
-
-    override fun attachBaseContext(base: Context) {
-        LocaleHelper().setLocale(base, LocaleHelper().getLanguage(base))
-        super.attachBaseContext(LocaleHelper().onAttach(base))
     }
 
     private fun uid(): String {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="#EFEFEF"
+    android:color="@color/clickOnItems"
     android:exitFadeDuration="@android:integer/config_longAnimTime">
     <item android:state_pressed="true">
         <shape android:shape="rectangle">

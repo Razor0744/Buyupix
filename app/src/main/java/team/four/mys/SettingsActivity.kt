@@ -1,5 +1,6 @@
 package team.four.mys
 
+import android.content.Context
 import android.content.Intent
 import fragments.NavigationFragment
 import android.os.Bundle
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import ather.LocaleHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import team.four.mys.databinding.ActivitySettingsBinding
@@ -32,29 +34,18 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         binding.language.setOnClickListener {
+            locale = Locale.getDefault().language
             val intent = Intent(this, LanguageActivity::class.java)
             intent.putExtra("locale", locale)
             startActivity(intent)
         }
 
         number()
-        languageDataBase()
     }
 
-    private fun languageDataBase() {
-        db = FirebaseFirestore.getInstance()
-
-        locale = Locale.getDefault().language
-        val data: MutableMap<String, String> = mutableMapOf("language" to locale)
-        db.collection(uid()).document("language").get()
-            .addOnSuccessListener { document ->
-                val languageData = document.get("language")
-                if (languageData == null) {
-                    db.collection(uid()).document("language").set(data)
-                } else {
-                    locale = document.get("language") as String
-                }
-            }
+    override fun attachBaseContext(base: Context) {
+        LocaleHelper().setLocale(base, LocaleHelper().getLanguage(base))
+        super.attachBaseContext(LocaleHelper().onAttach(base))
     }
 
     private fun uid(): String {
