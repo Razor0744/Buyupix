@@ -44,6 +44,7 @@ class NavigationFragment : Fragment() {
             1 -> home()
             2 -> statistics()
             3 -> settings()
+            4 -> others()
         }
 
         when (i) {
@@ -96,6 +97,18 @@ class NavigationFragment : Fragment() {
         }
         binding?.statisticsLayout?.setOnClickListener {
             startActivity(Intent(context, CalendarActivity::class.java))
+        }
+    }
+
+    private fun others() {
+        binding?.homeLayout?.setOnClickListener {
+            startActivity(Intent(context, SubscriptionsActivity::class.java))
+        }
+        binding?.statisticsLayout?.setOnClickListener {
+            startActivity(Intent(context, CalendarActivity::class.java))
+        }
+        binding?.settingsLayout?.setOnClickListener {
+            startActivity(Intent(context, SettingsActivity::class.java))
         }
     }
 }

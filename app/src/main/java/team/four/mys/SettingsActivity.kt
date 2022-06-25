@@ -37,7 +37,7 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        number()
+        navigationFragment()
     }
 
     override fun attachBaseContext(base: Context) {
@@ -45,7 +45,7 @@ class SettingsActivity : AppCompatActivity() {
         super.attachBaseContext(LocaleHelper().onAttach(base))
     }
 
-    private fun number(){
+    private fun navigationFragment(){
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         val fragment = NavigationFragment()
