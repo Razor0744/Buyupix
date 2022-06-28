@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
         <activity
+            android:name=".AlertActivity"
+            android:exported="false" />
+        <activity
             android:name=".LanguageActivity"
             android:exported="false" />
         <activity
@@ -28,9 +31,6 @@
             android:exported="false" />
         <activity
             android:name=".SettingsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AnalyticActivity"
             android:exported="false" />
         <activity
             android:name=".CalendarActivity"

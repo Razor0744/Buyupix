@@ -42,7 +42,7 @@
     <string name="settings">Настройки</string>
 
     <!--SettingsActivity-->
-    <string name="alert">Звуки</string>
+    <string name="alert">Оповещения</string>
     <string name="darkMode">Тёмная тема</string>
     <string name="language">Язык</string>
     <string name="about">О нас</string>

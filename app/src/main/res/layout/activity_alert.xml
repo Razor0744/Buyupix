@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".LanguageActivity">
+    tools:context=".AlertActivity">
 
     <TextView
         android:id="@+id/textLanguage"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="@string/language"
+        android:text="@string/alert"
         android:textColor="@color/textSettingsActivity"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
