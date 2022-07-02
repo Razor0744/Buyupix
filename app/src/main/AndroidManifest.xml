@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".AlertActivity"
             android:exported="false" />
         <activity

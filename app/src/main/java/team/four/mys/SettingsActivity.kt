@@ -27,28 +27,28 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.alert.setOnClickListener {
-            val intent = Intent(this, AlertActivity::class.java)
-            intent.putExtra("alert", alert)
-            startActivity(intent)
-        }
+        //binding.alert.setOnClickListener {
+        //    val intent = Intent(this, AlertActivity::class.java)
+        //  intent.putExtra("alert", alert)
+        //startActivity(intent)
+        //}
 
-        binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                delegate.applyDayNight()
-            }
-        }
+        //binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+        //  if (isChecked) {
+        //    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        //  delegate.applyDayNight()
+        //}
+        //}
 
-        binding.language.setOnClickListener {
-            locale = Locale.getDefault().language
-            val intent = Intent(this, LanguageActivity::class.java)
-            intent.putExtra("locale", locale)
-            startActivity(intent)
-        }
+        //binding.language.setOnClickListener {
+        //  locale = Locale.getDefault().language
+        //val intent = Intent(this, LanguageActivity::class.java)
+        //intent.putExtra("locale", locale)
+        //startActivity(intent)
+        //}
 
-        alert()
-        navigationFragment()
+        //alert()
+        //navigationFragment()
     }
 
     override fun attachBaseContext(base: Context) {

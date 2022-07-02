@@ -37,7 +37,7 @@ class FirstActivity : AppCompatActivity() {
     }
 
     private fun reload() {
-        startActivity(Intent(this, SubscriptionsActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 
