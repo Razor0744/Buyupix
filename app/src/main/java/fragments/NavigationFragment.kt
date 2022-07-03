@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import team.four.mys.CalendarActivity
 import team.four.mys.SettingsActivity
 import team.four.mys.R
 import team.four.mys.SubscriptionsActivity
@@ -41,12 +40,6 @@ class NavigationFragment : Fragment() {
         val fontFamily = context?.let { ResourcesCompat.getFont(it, R.font.roboto_medium) }
 
         when (i) {
-            1 -> home()
-            2 -> statistics()
-            3 -> settings()
-        }
-
-        when (i) {
             1 -> binding?.home?.setTextColor(color)
             2 -> binding?.statistics?.setTextColor(color)
             3 -> binding?.settings?.setTextColor(color)
@@ -72,30 +65,4 @@ class NavigationFragment : Fragment() {
         binding = null
     }
 
-    private fun home() {
-        binding?.statisticsLayout?.setOnClickListener {
-            startActivity(Intent(context, CalendarActivity::class.java))
-        }
-        binding?.settingsLayout?.setOnClickListener {
-            startActivity(Intent(context, SettingsActivity::class.java))
-        }
-    }
-
-    private fun statistics() {
-        binding?.homeLayout?.setOnClickListener {
-            startActivity(Intent(context, SubscriptionsActivity::class.java))
-        }
-        binding?.settingsLayout?.setOnClickListener {
-            startActivity(Intent(context, SettingsActivity::class.java))
-        }
-    }
-
-    private fun settings() {
-        binding?.homeLayout?.setOnClickListener {
-            startActivity(Intent(context, SubscriptionsActivity::class.java))
-        }
-        binding?.statisticsLayout?.setOnClickListener {
-            startActivity(Intent(context, CalendarActivity::class.java))
-        }
-    }
 }

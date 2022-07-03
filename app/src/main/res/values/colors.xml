@@ -15,19 +15,43 @@
     <color name="grey_600">#E8EBED</color>
 
     <color name="clickOnItems">#EBEBEB</color>
-
-    <!--Navigation Bar-->
     <color name="iconsNavigationBar">#9EA2AB</color>
     <color name="iconsNavigationBarClick">#2D8DD8</color>
     <color name="textNavigationBarClick">#2D8DD8</color>
     <color name="textNavigationBar">#9EA2AB</color>
     <color name="backgroundNavigationBar">#FFFFFF</color>
 
-    <!--SettingsActivity-->
     <color name="textSettingsActivity">#3F3F3F</color>
     <color name="iconsSettingsActivity">#9098A6</color>
 
-    <!--LanguageActivity-->
     <color name="textLanguageActivity">#3F3F3F</color>
     <color name="radioButtonLanguageActivity">#9098A6</color>
+    
+    
+    <!--Background-->
+    <color name="backgroundMain">#F9F9F9</color>
+    <color name="backgroundSecondary">#9098A6</color>
+    <color name="backgroundInactive">#E0E0E0</color>
+    <color name="backgroundNavBar">#FFFFFF</color>
+    <color name="backgroundStroke">#DBDBDB</color>
+
+    <!--Text-->
+    <color name="textMain">#3F3F3F</color>
+    <color name="textMain2">#F9F9F9</color>
+    <color name="textSecondary">#9EA2AB</color>
+    <color name="textPlaceholder">#A8A8A8</color>
+
+    <!--Button-->
+    <color name="buttonClick">#EBEBEB</color>
+    <color name="buttonLiner">#E56A6F</color>
+    <color name="buttonLinerClick">#F9E4E5</color>
+
+    <!--Accent-->
+    <color name="blueMain">#2D8DD8</color>
+    <color name="blue">#443FEE</color>
+    <color name="blueLight">#44B6EB</color>
+    <color name="yellow">#FFCE2F</color>
+    <color name="red">#E05358</color>
+    <color name="violet">#BB81F2</color>
+    <color name="turquoise">#2DD1B5</color>
 </resources>
