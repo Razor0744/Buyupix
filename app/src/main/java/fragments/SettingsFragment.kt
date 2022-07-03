@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import team.four.mys.AlertActivity
 import team.four.mys.LanguageActivity
 import team.four.mys.databinding.FragmentSettingsBinding
@@ -15,6 +17,8 @@ import java.util.*
 class SettingsFragment : Fragment() {
 
     private var binding: FragmentSettingsBinding? = null
+    private lateinit var db: FirebaseFirestore
+    private lateinit var alert: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,8 +28,6 @@ class SettingsFragment : Fragment() {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         binding?.alert?.setOnClickListener {
-            val bundle = arguments
-            val alert = bundle?.getString("alert")
             val intent = Intent(context, AlertActivity::class.java)
             intent.putExtra("alert", alert)
             startActivity(intent)
@@ -44,11 +46,34 @@ class SettingsFragment : Fragment() {
             startActivity(intent)
         }
 
+        alert()
+
         return binding?.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+    }
+
+    private fun uid(): String {
+        // get UID
+        val user = FirebaseAuth.getInstance().currentUser
+        val uid = user?.uid
+        return uid.toString()
+    }
+
+    private fun alert() {
+        db = FirebaseFirestore.getInstance()
+        db.collection(uid()).document("alert").get()
+            .addOnSuccessListener { document ->
+                val alertDocument = document.get("alert")
+                if (alertDocument == null) {
+                    val data = hashMapOf("alert" to "The day before the write-off")
+                    db.collection(uid()).document("alert").set(data)
+                } else {
+                    alert = alertDocument as String
+                }
+            }
     }
 }
