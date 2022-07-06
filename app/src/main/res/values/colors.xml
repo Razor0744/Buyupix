@@ -10,24 +10,7 @@
     <color name="recyclerViewItemGrey">#939AA6</color>
     <color name="grey_200">#F5F5F5</color>
     <color name="grey_300">#7E8899</color>
-    <color name="grey_400">#9EA2AB</color>
     <color name="grey_500">#BFC8D8</color>
-    <color name="grey_600">#E8EBED</color>
-
-    <color name="clickOnItems">#EBEBEB</color>
-    <color name="iconsNavigationBar">#9EA2AB</color>
-    <color name="iconsNavigationBarClick">#2D8DD8</color>
-    <color name="textNavigationBarClick">#2D8DD8</color>
-    <color name="textNavigationBar">#9EA2AB</color>
-    <color name="backgroundNavigationBar">#FFFFFF</color>
-
-    <color name="textSettingsActivity">#3F3F3F</color>
-    <color name="iconsSettingsActivity">#9098A6</color>
-
-    <color name="textLanguageActivity">#3F3F3F</color>
-    <color name="radioButtonLanguageActivity">#9098A6</color>
-    
-    
     <!--Background-->
     <color name="backgroundMain">#F9F9F9</color>
     <color name="backgroundSecondary">#9098A6</color>

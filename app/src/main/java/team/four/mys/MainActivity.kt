@@ -39,7 +39,12 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        replaceFragment(homeFragment)
+        when (intent.getStringExtra("fragment")) {
+            "HomeFragment" -> binding.bottomNavigation.selectedItemId = R.id.home
+            "StatisticsFragment" -> binding.bottomNavigation.selectedItemId = R.id.statistics
+            "SettingsFragment" -> binding.bottomNavigation.selectedItemId = R.id.settings
+            else -> binding.bottomNavigation.selectedItemId = R.id.home
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {

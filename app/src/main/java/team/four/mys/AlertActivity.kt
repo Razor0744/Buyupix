@@ -26,10 +26,18 @@ class AlertActivity : AppCompatActivity() {
             db = FirebaseFirestore.getInstance()
             val data = hashMapOf("alert" to alertClick.name)
             db.collection(uid()).document("alert").set(data)
-            startActivity(Intent(this, MainActivity::class.java))
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("fragment", "SettingsFragment")
+            startActivity(intent)
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapterAlert
+
+        binding.buttonArrowLeft.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("fragment", "SettingsFragment")
+            startActivity(intent)
+        }
     }
 
     private fun uid(): String {

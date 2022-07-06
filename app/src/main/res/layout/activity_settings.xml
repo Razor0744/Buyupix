@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/backgroundMain"
     tools:context="team.four.mys.SettingsActivity">
 
     <FrameLayout
@@ -19,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:background="@color/white"
-        app:itemIconTint="@color/iconsNavigationBar"
-        app:itemTextColor="@color/textNavigationBar"
+        app:itemIconTint="@color/textMain"
+        app:itemTextColor="@color/textMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

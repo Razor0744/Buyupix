@@ -2,7 +2,6 @@ package team.four.mys
 
 import adapters.CustomRecyclerAdapterDate
 import adapters.CustomRecyclerAdapterNoDate
-import fragments.NavigationFragment
 import models.SubscriptionDate
 import models.SubscriptionNoDate
 import android.annotation.SuppressLint
@@ -94,10 +93,7 @@ class SubscriptionsActivity : AppCompatActivity() {
     private fun number(){
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val fragment = NavigationFragment()
         val bundle = Bundle()
         bundle.putInt("i", 1)
-        fragment.arguments = bundle
-        fragmentTransaction.add(R.id.fragment, fragment).commit()
     }
 }

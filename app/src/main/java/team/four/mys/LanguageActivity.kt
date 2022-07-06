@@ -26,13 +26,11 @@ class LanguageActivity : AppCompatActivity() {
                 "USA" -> LocaleHelper().setLocale(this, "en")
                 "Russia" -> LocaleHelper().setLocale(this, "ru")
             }
-            startActivity(Intent(this, SettingsActivity::class.java))
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapterLanguage
 
         binding.buttonArrowLeft.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
         }
     }
 }

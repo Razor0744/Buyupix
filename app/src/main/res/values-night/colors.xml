@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">#191A1F</color>
+    <color name="background">#F9F9F9</color>
     <color name="grey_100">#3E3D48</color>
     <color name="blue_100">#3E82F9</color>
     <color name="blue_200">#2D8DD8</color>
@@ -10,23 +10,31 @@
     <color name="recyclerViewItemGrey">#939AA6</color>
     <color name="grey_200">#F5F5F5</color>
     <color name="grey_300">#7E8899</color>
-    <color name="grey_400">#9EA2AB</color>
     <color name="grey_500">#BFC8D8</color>
-    <color name="grey_600">#E8EBED</color>
+    <!--Background-->
+    <color name="backgroundMain">#191A1F</color>
+    <color name="backgroundSecondary">#6B6B78</color>
+    <color name="backgroundInactive">#2F2F3A</color>
+    <color name="backgroundNavBar">#24242D</color>
+    <color name="backgroundStroke">#6B6B78</color>
 
-    <color name="clickOnItems">#15161C</color>
+    <!--Text-->
+    <color name="textMain">#F2F2F2</color>
+    <color name="textMain2">#F9F9F9</color>
+    <color name="textSecondary">#727283</color>
+    <color name="textPlaceholder">#727283</color>
 
-    <!--Navigation Bar-->
-    <color name="iconsNavigationBar">#9EA2AB</color>
-    <color name="iconsNavigationBarClick">#2D8DD8</color>
-    <color name="textNavigationBarClick">#2D8DD8</color>
-    <color name="textNavigationBar">#727283</color>
-    <color name="backgroundNavigationBar">#24242D</color>
+    <!--Button-->
+    <color name="buttonClick">#EBEBEB</color>
+    <color name="buttonLiner">#E56A6F</color>
+    <color name="buttonLinerClick">#1AB499</color>
 
-    <!--SettingsActivity-->
-    <color name="textSettingsActivity">#3F3F3F</color>
-    <color name="iconsSettingsActivity">#9098A6</color>
-
-    <!--LanguageActivity-->
-    <color name="textLanguageActivity">#F2F2F2</color>
+    <!--Accent-->
+    <color name="blueMain">#52ACF1</color>
+    <color name="blue">#3B36E1</color>
+    <color name="blueLight">#2BA2D9</color>
+    <color name="yellow">#E9B91D</color>
+    <color name="red">#CB393F</color>
+    <color name="violet">#9855D8</color>
+    <color name="turquoise">#1AB499</color>
 </resources>

@@ -1,6 +1,5 @@
 package team.four.mys
 
-import fragments.NavigationFragment
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -72,11 +71,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     private fun number() {
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val fragment = NavigationFragment()
         val bundle = Bundle()
         bundle.putInt("i", 3)
-        fragment.arguments = bundle
-        fragmentTransaction.add(R.id.fragment, fragment).commit()
     }
 
     private fun autoCompleteName() {
