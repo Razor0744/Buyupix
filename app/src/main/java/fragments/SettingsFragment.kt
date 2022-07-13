@@ -1,5 +1,6 @@
 package fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import team.four.mys.AlertActivity
 import team.four.mys.LanguageActivity
 import team.four.mys.databinding.FragmentSettingsBinding
@@ -17,8 +16,6 @@ import java.util.*
 class SettingsFragment : Fragment() {
 
     private var binding: FragmentSettingsBinding? = null
-    private lateinit var db: FirebaseFirestore
-    private lateinit var alert: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,15 +25,15 @@ class SettingsFragment : Fragment() {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         binding?.alert?.setOnClickListener {
-            val intent = Intent(context, AlertActivity::class.java)
-            intent.putExtra("alert", alert)
-            startActivity(intent)
+            startActivity(Intent(context, AlertActivity::class.java))
         }
 
         binding?.switchDarkMode?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
+                onSaveDarkMode(true)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
+                onSaveDarkMode(false)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
@@ -48,7 +45,7 @@ class SettingsFragment : Fragment() {
             startActivity(intent)
         }
 
-        alert()
+        onLoadDarkMode()
 
         return binding?.root
     }
@@ -58,24 +55,22 @@ class SettingsFragment : Fragment() {
         binding = null
     }
 
-    private fun uid(): String {
-        // get UID
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid
-        return uid.toString()
+    private fun onSaveDarkMode(boolean: Boolean) {
+        val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
+        val editor = preferences?.edit()
+        editor?.putBoolean("DarkMode", boolean)
+        editor?.commit()
     }
 
-    private fun alert() {
-        db = FirebaseFirestore.getInstance()
-        db.collection(uid()).document("alert").get()
-            .addOnSuccessListener { document ->
-                val alertDocument = document.get("alert")
-                if (alertDocument == null) {
-                    val data = hashMapOf("alert" to "The day before the write-off")
-                    db.collection(uid()).document("alert").set(data)
-                } else {
-                    alert = alertDocument as String
-                }
-            }
+    private fun onLoadDarkMode() {
+        val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
+        val darkMode = preferences?.getBoolean("DarkMode", false)
+        if (darkMode == true) {
+            binding?.switchDarkMode?.setOnCheckedChangeListener(null)
+            binding?.switchDarkMode?.isChecked = true
+        } else {
+            binding?.switchDarkMode?.setOnCheckedChangeListener(null)
+            binding?.switchDarkMode?.isChecked = false
+        }
     }
 }

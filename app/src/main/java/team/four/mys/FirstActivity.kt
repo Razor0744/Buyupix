@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import ather.LocaleHelper
 import team.four.mys.databinding.ActivityFirstBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +24,8 @@ class FirstActivity : AppCompatActivity() {
         binding.logIn.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
+
+        darkMode()
     }
 
     public override fun onStart() {
@@ -44,5 +47,16 @@ class FirstActivity : AppCompatActivity() {
     override fun attachBaseContext(base: Context) {
         LocaleHelper().setLocale(base, LocaleHelper().getLanguage(base))
         super.attachBaseContext(LocaleHelper().onAttach(base))
+    }
+
+    private fun darkMode(){
+        val preferences = getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
+        val darkMode = preferences.getBoolean("DarkMode", false)
+        println(darkMode)
+        if (darkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 }
