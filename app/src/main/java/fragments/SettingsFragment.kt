@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import team.four.mys.AlertActivity
 import team.four.mys.LanguageActivity
 import team.four.mys.databinding.FragmentSettingsBinding
-import java.util.*
 
 class SettingsFragment : Fragment() {
 

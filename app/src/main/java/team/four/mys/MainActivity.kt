@@ -40,10 +40,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         when (intent.getStringExtra("fragment")) {
-            "HomeFragment" -> binding.bottomNavigation.selectedItemId = R.id.home
-            "StatisticsFragment" -> binding.bottomNavigation.selectedItemId = R.id.statistics
-            "SettingsFragment" -> binding.bottomNavigation.selectedItemId = R.id.settings
-            else -> binding.bottomNavigation.selectedItemId = R.id.home
+            "HomeFragment" -> {
+                binding.bottomNavigation.selectedItemId = R.id.home
+                replaceFragment(homeFragment)
+            }
+            "StatisticsFragment" -> {
+                binding.bottomNavigation.selectedItemId = R.id.statistics
+                replaceFragment(statisticsFragment)
+            }
+            "SettingsFragment" -> {
+                binding.bottomNavigation.selectedItemId = R.id.settings
+                replaceFragment(settingsFragment)
+            }
+            else -> {
+                binding.bottomNavigation.selectedItemId = R.id.home
+                replaceFragment(homeFragment)
+            }
         }
     }
 

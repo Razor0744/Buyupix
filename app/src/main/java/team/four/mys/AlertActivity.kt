@@ -45,7 +45,6 @@ class AlertActivity : AppCompatActivity() {
     private fun onLoadAlert(): String {
         val preferences = getSharedPreferences("Alert", Context.MODE_PRIVATE)
         val alert = preferences.getString("Alert", "The day before the write-off")
-        println(alert)
         return alert.toString()
     }
 }
