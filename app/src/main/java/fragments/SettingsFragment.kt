@@ -24,6 +24,8 @@ class SettingsFragment : Fragment() {
     ): View? {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
+        onLoadDarkMode()
+
         binding?.alert?.setOnClickListener {
             startActivity(Intent(context, AlertActivity::class.java))
         }
@@ -39,13 +41,8 @@ class SettingsFragment : Fragment() {
         }
 
         binding?.language?.setOnClickListener {
-            val locale: String = Locale.getDefault().language
-            val intent = Intent(context, LanguageActivity::class.java)
-            intent.putExtra("locale", locale)
-            startActivity(intent)
+            startActivity(Intent(context, LanguageActivity::class.java))
         }
-
-        onLoadDarkMode()
 
         return binding?.root
     }

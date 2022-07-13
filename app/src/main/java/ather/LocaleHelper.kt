@@ -3,12 +3,9 @@ package ather
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
-import android.preference.PreferenceManager
 import java.util.*
 
 class LocaleHelper {
-
-    private val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
 
     fun onAttach(context: Context): Context {
         val lang = getPersistedData(context, Locale.getDefault().language).toString()
@@ -31,16 +28,16 @@ class LocaleHelper {
     }
 
     private fun getPersistedData(context: Context, defaultLanguage: String): String? {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        return preferences.getString(SELECTED_LANGUAGE, defaultLanguage)
+        val preferences = context.getSharedPreferences("Locale", Context.MODE_PRIVATE)
+        return preferences.getString("Locale", defaultLanguage)
     }
 
     private fun persist(context: Context, language: String) {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val preferences = context.getSharedPreferences("Locale", Context.MODE_PRIVATE)
         val editor = preferences.edit()
 
-        editor.putString(SELECTED_LANGUAGE, language)
-        editor.apply()
+        editor.putString("Locale", language)
+        editor.commit()
     }
 
     @TargetApi(Build.VERSION_CODES.N)

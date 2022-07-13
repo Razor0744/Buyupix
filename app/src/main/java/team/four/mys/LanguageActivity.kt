@@ -20,18 +20,30 @@ class LanguageActivity : AppCompatActivity() {
         binding = ActivityLanguageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val locale = intent.getStringExtra("locale").toString()
-        adapterLanguage = CustomRecyclerAdapterLanguage(this, language, locale) { language ->
-            when (language.name) {
-                "USA" -> LocaleHelper().setLocale(this, "en")
-                "Russia" -> LocaleHelper().setLocale(this, "ru")
+        adapterLanguage =
+            CustomRecyclerAdapterLanguage(this, language, onLoadLanguage()) { language ->
+                when (language.name) {
+                    "USA" -> LocaleHelper().setLocale(this, "en")
+                    "Russia" -> LocaleHelper().setLocale(this, "ru")
+                }
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("fragment", "SettingsFragment")
+                startActivity(intent)
             }
-        }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapterLanguage
 
         binding.buttonArrowLeft.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("fragment", "SettingsFragment")
+            startActivity(intent)
         }
+    }
+
+    private fun onLoadLanguage(): String {
+        val preferences = getSharedPreferences("Locale", MODE_PRIVATE)
+        val locale = preferences.getString("Locale", "en")
+        return locale.toString()
     }
 }
 
