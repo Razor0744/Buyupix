@@ -13,6 +13,7 @@
     <color name="grey_500">#BFC8D8</color>
     <!--Background-->
     <color name="backgroundMain">#F9F9F9</color>
+    <color name="backgroundMainDark">#191A1F</color>
     <color name="backgroundSecondary">#9098A6</color>
     <color name="backgroundInactive">#E0E0E0</color>
     <color name="backgroundNavBar">#FFFFFF</color>
@@ -20,6 +21,7 @@
 
     <!--Text-->
     <color name="textMain">#3F3F3F</color>
+    <color name="textMainDark">#F2F2F2</color>
     <color name="textMain2">#F9F9F9</color>
     <color name="textSecondary">#9EA2AB</color>
     <color name="textPlaceholder">#A8A8A8</color>

@@ -2,15 +2,20 @@ package fragments
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.res.ResourcesCompat
 import team.four.mys.AlertActivity
 import team.four.mys.LanguageActivity
+import team.four.mys.R
 import team.four.mys.databinding.FragmentSettingsBinding
+import kotlin.math.hypot
 
 class SettingsFragment : Fragment() {
 
@@ -32,10 +37,12 @@ class SettingsFragment : Fragment() {
         binding?.switchDarkMode?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 onSaveDarkMode(true)
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                revealDark()
             } else {
                 onSaveDarkMode(false)
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                revealLight()
             }
         }
 
@@ -68,5 +75,76 @@ class SettingsFragment : Fragment() {
             binding?.switchDarkMode?.setOnCheckedChangeListener(null)
             binding?.switchDarkMode?.isChecked = false
         }
+    }
+
+    private fun revealDark() {
+        val x: Int = binding?.layout!!.right
+        val y: Int = binding?.layout!!.bottom
+
+        val startRadius = 0
+
+        val endRadius = hypot(
+            binding?.layout?.width!!.toDouble(),
+            binding?.layout?.height!!.toDouble()
+        ).toInt()
+
+        //background
+        binding?.layout?.backgroundTintList = ColorStateList.valueOf(
+            ResourcesCompat.getColor(
+                resources,
+                R.color.backgroundMainDark,
+                null
+            )
+        )
+
+        //text
+        val color = resources.getColor(R.color.textMainDark, context?.theme)
+        binding?.textSettings?.setTextColor(color)
+
+        //items
+
+
+        val anim = ViewAnimationUtils.createCircularReveal(
+            binding?.layout,
+            x,
+            y,
+            startRadius.toFloat(),
+            endRadius.toFloat()
+        )
+
+        anim.start()
+    }
+
+    private fun revealLight() {
+        val x: Int = binding?.layout!!.right
+        val y: Int = binding?.layout!!.bottom
+
+        val startRadius = 0
+
+        val endRadius = hypot(
+            binding?.layout?.width!!.toDouble(),
+            binding?.layout?.height!!.toDouble()
+        ).toInt()
+
+        binding?.layout?.backgroundTintList = ColorStateList.valueOf(
+            ResourcesCompat.getColor(
+                resources,
+                R.color.backgroundMain,
+                null
+            )
+        )
+
+        val color = resources.getColor(R.color.textMain, context?.theme)
+        binding?.textSettings?.setTextColor(color)
+
+        val anim = ViewAnimationUtils.createCircularReveal(
+            binding?.layout,
+            x,
+            y,
+            startRadius.toFloat(),
+            endRadius.toFloat()
+        )
+
+        anim.start()
     }
 }
