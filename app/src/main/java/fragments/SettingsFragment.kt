@@ -36,11 +36,11 @@ class SettingsFragment : Fragment() {
 
         binding?.switchDarkMode?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                onSaveDarkMode(true)
+                //onSaveDarkMode(true)
                 //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 revealDark()
             } else {
-                onSaveDarkMode(false)
+                //onSaveDarkMode(false)
                 //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 revealLight()
             }
@@ -78,8 +78,11 @@ class SettingsFragment : Fragment() {
     }
 
     private fun revealDark() {
-        val x: Int = binding?.layout!!.right
-        val y: Int = binding?.layout!!.bottom
+        val x: Int = binding?.switchDarkMode!!.right
+        val y1: Int = binding?.darkMode!!.top
+        val y2: Int = binding?.darkMode!!.bottom
+        val y12: Int = (y2 - y1) / 2
+        val y: Int = y1 + y12
 
         val startRadius = 0
 
@@ -98,11 +101,18 @@ class SettingsFragment : Fragment() {
         )
 
         //text
-        val color = resources.getColor(R.color.textMainDark, context?.theme)
-        binding?.textSettings?.setTextColor(color)
+        val colorText = resources.getColor(R.color.textMainDark, context?.theme)
+        binding?.textSettings?.setTextColor(colorText)
 
         //items
-
+        binding?.alert?.background =
+            ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
+        binding?.darkMode?.background =
+            ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
+        binding?.language?.background =
+            ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
+        binding?.about?.background =
+            ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
 
         val anim = ViewAnimationUtils.createCircularReveal(
             binding?.layout,
@@ -111,7 +121,7 @@ class SettingsFragment : Fragment() {
             startRadius.toFloat(),
             endRadius.toFloat()
         )
-
+        anim.duration = 10000
         anim.start()
     }
 
@@ -144,7 +154,7 @@ class SettingsFragment : Fragment() {
             startRadius.toFloat(),
             endRadius.toFloat()
         )
-
+        anim.duration = 1000
         anim.start()
     }
 }

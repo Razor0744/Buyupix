@@ -28,6 +28,7 @@
 
     <!--Button-->
     <color name="buttonClick">#EBEBEB</color>
+    <color name="buttonClickDark">#15161C</color>
     <color name="buttonLiner">#E56A6F</color>
     <color name="buttonLinerClick">#F9E4E5</color>
 
