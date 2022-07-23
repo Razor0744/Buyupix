@@ -15,8 +15,10 @@
     <color name="backgroundMain">#F9F9F9</color>
     <color name="backgroundMainDark">#191A1F</color>
     <color name="backgroundSecondary">#9098A6</color>
+    <color name="backgroundSecondaryDark">#6B6B78</color>
     <color name="backgroundInactive">#E0E0E0</color>
     <color name="backgroundNavBar">#FFFFFF</color>
+    <color name="backgroundNavBarDark">#24242D</color>
     <color name="backgroundStroke">#DBDBDB</color>
 
     <!--Text-->
@@ -24,6 +26,7 @@
     <color name="textMainDark">#F2F2F2</color>
     <color name="textMain2">#F9F9F9</color>
     <color name="textSecondary">#9EA2AB</color>
+    <color name="textSecondaryDark">#727283</color>
     <color name="textPlaceholder">#A8A8A8</color>
 
     <!--Button-->

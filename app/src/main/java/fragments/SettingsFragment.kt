@@ -4,18 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewAnimationUtils
-import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
+import android.view.*
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import team.four.mys.AlertActivity
 import team.four.mys.LanguageActivity
 import team.four.mys.R
 import team.four.mys.databinding.FragmentSettingsBinding
 import kotlin.math.hypot
+
 
 class SettingsFragment : Fragment() {
 
@@ -40,7 +38,7 @@ class SettingsFragment : Fragment() {
                 //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 revealDark()
             } else {
-                //onSaveDarkMode(false)
+                onSaveDarkMode(false)
                 //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 revealLight()
             }
@@ -100,19 +98,91 @@ class SettingsFragment : Fragment() {
             )
         )
 
-        //text
+        //items//
+
         val colorText = resources.getColor(R.color.textMainDark, context?.theme)
         binding?.textSettings?.setTextColor(colorText)
 
-        //items
+        //alert
         binding?.alert?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
+        val drawableAlert = resources.getDrawable(R.drawable.ic_alert_dark, context?.theme)
+        binding?.alertText?.setCompoundDrawablesWithIntrinsicBounds(
+            drawableAlert,
+            null,
+            null,
+            null
+        )
+        binding?.alertText?.setTextColor(colorText)
+        binding?.alertImage?.setImageResource(R.drawable.ic_arrow_right_dark)
+
+        //darkMode
         binding?.darkMode?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
+        val drawableDarkMode = resources.getDrawable(R.drawable.ic_dark_mode_dark, context?.theme)
+        binding?.darkModeText?.setCompoundDrawablesWithIntrinsicBounds(
+            drawableDarkMode,
+            null,
+            null,
+            null
+        )
+        binding?.darkModeText?.setTextColor(colorText)
+
+        //language
         binding?.language?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
+        val drawableLanguage = resources.getDrawable(R.drawable.ic_language_dark, context?.theme)
+        binding?.languageText?.setCompoundDrawablesWithIntrinsicBounds(
+            drawableLanguage,
+            null,
+            null,
+            null
+        )
+        binding?.languageText?.setTextColor(colorText)
+        binding?.languageImage?.setImageResource(R.drawable.ic_arrow_right_dark)
+
+        //about
         binding?.about?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
+        val drawableAbout = resources.getDrawable(R.drawable.ic_alert_dark, context?.theme)
+        binding?.aboutText?.setCompoundDrawablesWithIntrinsicBounds(
+            drawableAbout,
+            null,
+            null,
+            null
+        )
+        binding?.aboutText?.setTextColor(colorText)
+        binding?.aboutImage?.setImageResource(R.drawable.ic_arrow_right_dark)
+
+        //statusBar
+        requireActivity().window.statusBarColor =
+            requireContext().getColor(R.color.backgroundMainDark)
+        requireActivity().window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+
+        //menu
+        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigationView?.backgroundTintList = ColorStateList.valueOf(
+            ResourcesCompat.getColor(
+                resources,
+                R.color.backgroundNavBarDark,
+                null
+            )
+        )
+        bottomNavigationView?.itemBackground = context?.getDrawable(R.drawable.click_on_navigation_dark)
+        bottomNavigationView?.itemIconTintList = ColorStateList.valueOf(
+            ResourcesCompat.getColor(
+                resources,
+                R.color.textSecondaryDark,
+                null
+            )
+        )
+        bottomNavigationView?.itemTextColor = ColorStateList.valueOf(
+            ResourcesCompat.getColor(
+                resources,
+                R.drawable.navigation_view_state_dark,
+                null
+            )
+        )
 
         val anim = ViewAnimationUtils.createCircularReveal(
             binding?.layout,
@@ -121,7 +191,7 @@ class SettingsFragment : Fragment() {
             startRadius.toFloat(),
             endRadius.toFloat()
         )
-        anim.duration = 10000
+        anim.duration = 400
         anim.start()
     }
 
@@ -135,6 +205,9 @@ class SettingsFragment : Fragment() {
             binding?.layout?.width!!.toDouble(),
             binding?.layout?.height!!.toDouble()
         ).toInt()
+
+        //statusBar
+        requireActivity().window.statusBarColor = requireContext().getColor(R.color.backgroundMain)
 
         binding?.layout?.backgroundTintList = ColorStateList.valueOf(
             ResourcesCompat.getColor(

@@ -34,6 +34,7 @@
         app:layout_constraintTop_toBottomOf="@id/textSettings">
 
         <TextView
+            android:id="@+id/alertText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="24dp"
@@ -49,6 +50,7 @@
             tools:ignore="RtlSymmetry" />
 
         <ImageView
+            android:id="@+id/alertImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="14dp"
@@ -72,6 +74,7 @@
         app:layout_constraintTop_toBottomOf="@id/alert">
 
         <TextView
+            android:id="@+id/darkModeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="24dp"
@@ -111,6 +114,7 @@
         app:layout_constraintTop_toBottomOf="@id/darkMode">
 
         <TextView
+            android:id="@+id/languageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="24dp"
@@ -126,6 +130,7 @@
             tools:ignore="RtlSymmetry" />
 
         <ImageView
+            android:id="@+id/languageImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="14dp"
@@ -149,6 +154,7 @@
         app:layout_constraintTop_toBottomOf="@id/language">
 
         <TextView
+            android:id="@+id/aboutText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="24dp"
@@ -164,6 +170,7 @@
             tools:ignore="RtlSymmetry" />
 
         <ImageView
+            android:id="@+id/aboutImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="14dp"
