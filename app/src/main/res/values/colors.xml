@@ -14,24 +14,30 @@
     <!--Background-->
     <color name="backgroundMain">#F9F9F9</color>
     <color name="backgroundMainDark">#191A1F</color>
+    <color name="backgroundMainWhite">#F9F9F9</color>
     <color name="backgroundSecondary">#9098A6</color>
     <color name="backgroundSecondaryDark">#6B6B78</color>
+    <color name="backgroundSecondaryWhite">#9098A6</color>
     <color name="backgroundInactive">#E0E0E0</color>
     <color name="backgroundNavBar">#FFFFFF</color>
     <color name="backgroundNavBarDark">#24242D</color>
+    <color name="backgroundNavBarWhite">#FFFFFF</color>
     <color name="backgroundStroke">#DBDBDB</color>
 
     <!--Text-->
     <color name="textMain">#3F3F3F</color>
     <color name="textMainDark">#F2F2F2</color>
+    <color name="textMainWhite">#3F3F3F</color>
     <color name="textMain2">#F9F9F9</color>
     <color name="textSecondary">#9EA2AB</color>
     <color name="textSecondaryDark">#727283</color>
+    <color name="textSecondaryWhite">#9EA2AB</color>
     <color name="textPlaceholder">#A8A8A8</color>
 
     <!--Button-->
     <color name="buttonClick">#EBEBEB</color>
     <color name="buttonClickDark">#15161C</color>
+    <color name="buttonClickWhite">#EBEBEB</color>
     <color name="buttonLiner">#E56A6F</color>
     <color name="buttonLinerClick">#F9E4E5</color>
 
