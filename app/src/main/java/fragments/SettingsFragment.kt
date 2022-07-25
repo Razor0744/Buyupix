@@ -4,21 +4,31 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewAnimationUtils
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import team.four.mys.AlertActivity
 import team.four.mys.LanguageActivity
-import team.four.mys.MainActivity
 import team.four.mys.R
 import team.four.mys.databinding.FragmentSettingsBinding
+import java.util.*
+import kotlin.concurrent.timerTask
 import kotlin.math.hypot
 
 
 class SettingsFragment : Fragment() {
 
     private var binding: FragmentSettingsBinding? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        onLoadDarkMode()
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +37,7 @@ class SettingsFragment : Fragment() {
     ): View? {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
-        onLoadDarkMode()
+        onLoadDarkModeSwitch()
 
         binding?.alert?.setOnClickListener {
             startActivity(Intent(context, AlertActivity::class.java))
@@ -36,13 +46,9 @@ class SettingsFragment : Fragment() {
         binding?.switchDarkMode?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 onSaveDarkMode(true)
-                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 revealDark()
-                activity?.startActivity(Intent(context, MainActivity::class.java))
-                activity?.overridePendingTransition(0, 0)
             } else {
                 onSaveDarkMode(false)
-                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 revealLight()
             }
         }
@@ -66,7 +72,7 @@ class SettingsFragment : Fragment() {
         editor?.commit()
     }
 
-    private fun onLoadDarkMode() {
+    private fun onLoadDarkModeSwitch() {
         val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
         val darkMode = preferences?.getBoolean("DarkMode", false)
         if (darkMode == true) {
@@ -75,6 +81,16 @@ class SettingsFragment : Fragment() {
         } else {
             binding?.switchDarkMode?.setOnCheckedChangeListener(null)
             binding?.switchDarkMode?.isChecked = false
+        }
+    }
+
+    private fun onLoadDarkMode() {
+        val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
+        val darkMode = preferences?.getBoolean("DarkMode", false)
+        if (darkMode == true) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 
@@ -190,8 +206,9 @@ class SettingsFragment : Fragment() {
             startRadius.toFloat(),
             endRadius.toFloat()
         )
-        anim.duration = 10000
+        anim.duration = 400
         anim.start()
+
     }
 
     private fun revealLight() {
@@ -307,7 +324,7 @@ class SettingsFragment : Fragment() {
             startRadius.toFloat(),
             endRadius.toFloat()
         )
-        anim.duration = 10000
+        anim.duration = 400
         anim.start()
     }
 }
