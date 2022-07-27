@@ -17,6 +17,7 @@ import team.four.mys.LanguageActivity
 import team.four.mys.R
 import team.four.mys.databinding.FragmentSettingsBinding
 import java.util.*
+import kotlin.concurrent.thread
 import kotlin.concurrent.timerTask
 import kotlin.math.hypot
 
@@ -45,11 +46,11 @@ class SettingsFragment : Fragment() {
 
         binding?.switchDarkMode?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                onSaveDarkMode(true)
-                revealDark()
+                thread { onSaveDarkMode(true) }
+                //revealDark()
             } else {
-                onSaveDarkMode(false)
-                revealLight()
+                thread { onSaveDarkMode(false) }
+                //revealLight()
             }
         }
 
@@ -70,6 +71,7 @@ class SettingsFragment : Fragment() {
         val editor = preferences?.edit()
         editor?.putBoolean("DarkMode", boolean)
         editor?.commit()
+        println("nice")
     }
 
     private fun onLoadDarkModeSwitch() {
