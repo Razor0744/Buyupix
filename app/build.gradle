@@ -41,9 +41,9 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.core:core-ktx:1.8.0'
-    implementation "androidx.fragment:fragment-ktx:1.5.0"
-    implementation 'androidx.activity:activity-ktx:1.5.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.0'
+    implementation 'androidx.fragment:fragment-ktx:1.5.1'
+    implementation 'androidx.activity:activity-ktx:1.5.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -56,19 +56,15 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.3.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.2.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.2.1'
 
     //Google
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
 
     //MVVM
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.0'
-
-    //RxJava2
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
 
     //preferences
-    implementation "androidx.preference:preference-ktx:1.2.0"
+    implementation 'androidx.preference:preference-ktx:1.2.0'
 }
