@@ -3,6 +3,7 @@ package team.four.mys
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import ather.LocaleHelper
 import fragments.HomeFragment
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private val settingsFragment = SettingsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        onLoadDarkMode()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -68,5 +70,15 @@ class MainActivity : AppCompatActivity() {
     override fun attachBaseContext(base: Context) {
         LocaleHelper().setLocale(base, LocaleHelper().getLanguage(base))
         super.attachBaseContext(LocaleHelper().onAttach(base))
+    }
+
+    private fun onLoadDarkMode() {
+        val preferences = getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
+        val darkMode = preferences?.getBoolean("DarkMode", false)
+        if (darkMode == true) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 }

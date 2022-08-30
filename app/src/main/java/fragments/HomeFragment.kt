@@ -1,23 +1,26 @@
 package fragments
 
+import adapters.CustomRecyclerAdapterLanguage
+import adapters.CustomRecyclerAdapterSubscriptions
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
-import team.four.mys.R
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import ather.LocaleHelper
+import team.four.mys.DataLanguage
+import team.four.mys.MainActivity
 import team.four.mys.databinding.FragmentHomeBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        onLoadDarkMode()
-        super.onCreate(savedInstanceState)
-    }
+    private var adapterSubscriptions: CustomRecyclerAdapterSubscriptions? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +29,11 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        adapterSubscriptions = CustomRecyclerAdapterSubscriptions(requireContext(), )
+        binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
+        binding?.recyclerView?.adapter = adapterSubscriptions
+
+        date()
 
         return binding?.root
     }
@@ -35,13 +43,8 @@ class HomeFragment : Fragment() {
         binding = null
     }
 
-    private fun onLoadDarkMode() {
-        val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
-        val darkMode = preferences?.getBoolean("DarkMode", false)
-        if (darkMode == true) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+    private fun date(){
+        val month: String = SimpleDateFormat("LLLL", Locale.getDefault()).format(Date())
+        binding?.month?.text = month
     }
 }

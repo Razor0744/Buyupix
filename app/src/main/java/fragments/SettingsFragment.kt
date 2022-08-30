@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -16,20 +15,13 @@ import team.four.mys.AlertActivity
 import team.four.mys.LanguageActivity
 import team.four.mys.R
 import team.four.mys.databinding.FragmentSettingsBinding
-import java.util.*
 import kotlin.concurrent.thread
-import kotlin.concurrent.timerTask
 import kotlin.math.hypot
 
 
 class SettingsFragment : Fragment() {
 
     private var binding: FragmentSettingsBinding? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        onLoadDarkMode()
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,10 +39,10 @@ class SettingsFragment : Fragment() {
         binding?.switchDarkMode?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 thread { onSaveDarkMode(true) }
-                //revealDark()
+                revealDark()
             } else {
                 thread { onSaveDarkMode(false) }
-                //revealLight()
+                revealLight()
             }
         }
 
@@ -70,7 +62,7 @@ class SettingsFragment : Fragment() {
         val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
         val editor = preferences?.edit()
         editor?.putBoolean("DarkMode", boolean)
-        editor?.commit()
+        editor?.apply()
         println("nice")
     }
 
@@ -83,16 +75,6 @@ class SettingsFragment : Fragment() {
         } else {
             binding?.switchDarkMode?.setOnCheckedChangeListener(null)
             binding?.switchDarkMode?.isChecked = false
-        }
-    }
-
-    private fun onLoadDarkMode() {
-        val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
-        val darkMode = preferences?.getBoolean("DarkMode", false)
-        if (darkMode == true) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 
@@ -127,7 +109,8 @@ class SettingsFragment : Fragment() {
         //alert
         binding?.alert?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
-        val drawableAlert = resources.getDrawable(R.drawable.ic_alert_dark, context?.theme)
+        val drawableAlert =
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_alert_dark, context?.theme)
         binding?.alertText?.setCompoundDrawablesWithIntrinsicBounds(
             drawableAlert,
             null,
@@ -140,7 +123,8 @@ class SettingsFragment : Fragment() {
         //darkMode
         binding?.darkMode?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
-        val drawableDarkMode = resources.getDrawable(R.drawable.ic_dark_mode_dark, context?.theme)
+        val drawableDarkMode =
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_dark_mode_dark, context?.theme)
         binding?.darkModeText?.setCompoundDrawablesWithIntrinsicBounds(
             drawableDarkMode,
             null,
@@ -152,7 +136,8 @@ class SettingsFragment : Fragment() {
         //language
         binding?.language?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
-        val drawableLanguage = resources.getDrawable(R.drawable.ic_language_dark, context?.theme)
+        val drawableLanguage =
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_language_dark, context?.theme)
         binding?.languageText?.setCompoundDrawablesWithIntrinsicBounds(
             drawableLanguage,
             null,
@@ -165,7 +150,8 @@ class SettingsFragment : Fragment() {
         //about
         binding?.about?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_dark, null)
-        val drawableAbout = resources.getDrawable(R.drawable.ic_alert_dark, context?.theme)
+        val drawableAbout =
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_alert_dark, context?.theme)
         binding?.aboutText?.setCompoundDrawablesWithIntrinsicBounds(
             drawableAbout,
             null,
@@ -198,7 +184,7 @@ class SettingsFragment : Fragment() {
         bottomNavigationView?.itemIconTintList = ColorStateList(states, colors)
         bottomNavigationView?.itemTextColor = ColorStateList(states, colors)
         bottomNavigationView?.itemBackground =
-            context?.getDrawable(R.drawable.click_on_navigation_dark)
+            ResourcesCompat.getDrawable(resources, R.drawable.click_on_navigation_dark, null)
 
         //animation
         val anim = ViewAnimationUtils.createCircularReveal(
@@ -244,7 +230,8 @@ class SettingsFragment : Fragment() {
         //alert
         binding?.alert?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_white, null)
-        val drawableAlert = resources.getDrawable(R.drawable.ic_alert_white, context?.theme)
+        val drawableAlert =
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_alert_white, context?.theme)
         binding?.alertText?.setCompoundDrawablesWithIntrinsicBounds(
             drawableAlert,
             null,
@@ -257,7 +244,8 @@ class SettingsFragment : Fragment() {
         //darkMode
         binding?.darkMode?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_white, null)
-        val drawableDarkMode = resources.getDrawable(R.drawable.ic_dark_mode_white, context?.theme)
+        val drawableDarkMode =
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_dark_mode_white, context?.theme)
         binding?.darkModeText?.setCompoundDrawablesWithIntrinsicBounds(
             drawableDarkMode,
             null,
@@ -269,7 +257,8 @@ class SettingsFragment : Fragment() {
         //language
         binding?.language?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_white, null)
-        val drawableLanguage = resources.getDrawable(R.drawable.ic_language_white, context?.theme)
+        val drawableLanguage =
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_language_white, context?.theme)
         binding?.languageText?.setCompoundDrawablesWithIntrinsicBounds(
             drawableLanguage,
             null,
@@ -282,7 +271,8 @@ class SettingsFragment : Fragment() {
         //about
         binding?.about?.background =
             ResourcesCompat.getDrawable(resources, R.drawable.click_on_items_white, null)
-        val drawableAbout = resources.getDrawable(R.drawable.ic_alert_white, context?.theme)
+        val drawableAbout =
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_alert_white, context?.theme)
         binding?.aboutText?.setCompoundDrawablesWithIntrinsicBounds(
             drawableAbout,
             null,
@@ -316,7 +306,7 @@ class SettingsFragment : Fragment() {
         bottomNavigationView?.itemIconTintList = ColorStateList(states, colors)
         bottomNavigationView?.itemTextColor = ColorStateList(states, colors)
         bottomNavigationView?.itemBackground =
-            context?.getDrawable(R.drawable.click_on_navigation_white)
+            ResourcesCompat.getDrawable(resources, R.drawable.click_on_navigation_white, null)
 
         //animation
         val anim = ViewAnimationUtils.createCircularReveal(

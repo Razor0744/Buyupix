@@ -58,7 +58,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         }
 
         autoCompleteName()
-        number()
     }
 
     private fun uid(): String {
@@ -66,13 +65,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
         return uid.toString()
-    }
-
-    private fun number() {
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val bundle = Bundle()
-        bundle.putInt("i", 3)
     }
 
     private fun autoCompleteName() {
