@@ -45,7 +45,7 @@ class AlertActivity : AppCompatActivity() {
         val preferences = getSharedPreferences("Alert", Context.MODE_PRIVATE)
         val editor = preferences.edit()
         editor.putString("Alert", string)
-        editor.commit()
+        editor.apply()
     }
 
     private fun onLoadAlert(): String {
