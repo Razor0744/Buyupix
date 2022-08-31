@@ -21,6 +21,7 @@
 
     <!--CreateSubscriptionActivity-->
     <string name="createSubscription">Create Sub</string>
+    <string name="createNameSubscription">Name</string>
 
     <!--Navigation-->
     <string name="home">Home</string>

@@ -28,7 +28,7 @@ class CustomRecyclerAdapterSubscriptions(
                 .into(binding.imageSubscription)
 
             binding.nameSubscription.text = subscriptions.name
-            binding.costSubscription.text = subscriptions.cost
+            binding.priceSubscription.text = subscriptions.price
             binding.writeOffDateSubscription.text = subscriptions.writeOffDate
         }
     }
@@ -44,7 +44,7 @@ class CustomRecyclerAdapterSubscriptions(
                 .into(binding.imageSubscription)
 
             binding.nameSubscription.text = subscriptions.name
-            binding.costSubscription.text = subscriptions.cost
+            binding.priceSubscription.text = subscriptions.price
         }
     }
 
