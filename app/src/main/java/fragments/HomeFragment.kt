@@ -2,6 +2,7 @@ package fragments
 
 import adapters.CustomRecyclerAdapterSubscriptions
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
 import models.Subscriptions
+import team.four.mys.CreateSubscriptionActivity
 import team.four.mys.databinding.FragmentHomeBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,6 +37,10 @@ class HomeFragment : Fragment() {
         adapterSubscriptions =
             CustomRecyclerAdapterSubscriptions(requireContext(), subscriptions)
         binding?.recyclerView?.adapter = adapterSubscriptions
+
+        binding?.createSubscription?.setOnClickListener {
+            startActivity(Intent(context, CreateSubscriptionActivity::class.java))
+        }
 
         date()
         fireStore()

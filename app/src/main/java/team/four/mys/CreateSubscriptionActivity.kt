@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -21,43 +22,11 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         binding = ActivityCreatSubscriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonCreate.setOnClickListener {
-            if (binding.date.text.trim().toString().isEmpty()) {
-                val data = hashMapOf(
-                    "name" to "${binding.name.text.trim()}",
-                    "cost" to "${binding.costEditText.text.trim()}",
-                    "costSpinner" to "${binding.costSpinner.selectedItem}",
-                    "image" to icons()
-                )
-                db.collection(uid()).document("NoDate").collection(uid())
-                    .document("${binding.name.text}")
-                    .set(data)
-                    .addOnSuccessListener {
-                    }
-                val intent = Intent(this, SubscriptionsActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                val data = hashMapOf(
-                    "name" to "${binding.name.text.trim()}",
-                    "cost" to "${binding.costEditText.text.trim()}",
-                    "costSpinner" to "${binding.costSpinner.selectedItem}",
-                    "date" to "${binding.date.text.trim()}",
-                    "image" to icons()
-                )
-                db.collection(uid()).document("Date").collection(uid())
-                    .document("${binding.name.text}")
-                    .set(data)
-                    .addOnSuccessListener {
-                    }
-                val intent = Intent(this, SubscriptionsActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
+        Glide
+            .with(this)
+            .load("https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.png?alt=media&token=89cd172f-201d-4a5e-acc6-e0da3344c26e")
+            .into(binding.imageOfSubscription)
 
-        }
-
-        autoCompleteName()
     }
 
     private fun uid(): String {
@@ -67,16 +36,10 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         return uid.toString()
     }
 
-    private fun autoCompleteName() {
-        val name = resources.getStringArray(R.array.autoName)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, name)
-        binding.name.setAdapter(adapter)
-    }
-
     //url icons from storage firebase
     private fun icons(): String {
         var url = ""
-        when (binding.name.text.toString()) {
+        when (binding.nameActivity.text) {
             "Spotify" -> {
                 url =
                     "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.png?alt=media&token=89cd172f-201d-4a5e-acc6-e0da3344c26e"
