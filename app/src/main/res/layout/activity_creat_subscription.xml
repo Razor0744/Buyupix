@@ -65,10 +65,52 @@
 
     <EditText
         android:id="@+id/price"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints="username"
+        android:background="@drawable/item_background_create_subscription"
+        android:hint="@string/price"
+        android:inputType="number"
+        android:paddingStart="13dp"
+        android:textColor="@color/textMain"
+        android:textColorHint="@color/textPlaceholder"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/priceSpinner"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        tools:ignore="RtlSymmetry" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/priceSpinner"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/item_background_create_subscription"
+        app:layout_constraintLeft_toRightOf="@id/price"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+
+    <EditText
+        android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="46dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:autofillHints="username"
+        android:background="@drawable/item_background_create_subscription"
+        android:hint="@string/description"
+        android:inputType="text"
+        android:paddingStart="13dp"
+        android:textColor="@color/textMain"
+        android:textColorHint="@color/textPlaceholder"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/price"
+        tools:ignore="RtlSymmetry" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
