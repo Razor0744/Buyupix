@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ConcatAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
     private lateinit var subscriptions: ArrayList<Subscriptions>
     private lateinit var adapterSubscriptions: CustomRecyclerAdapterSubscriptions
 
-    private lateinit var db : FirebaseFirestore
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,8 +32,8 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         subscriptions = arrayListOf()
-        adapterSubscriptions = CustomRecyclerAdapterSubscriptions(requireContext(), subscriptions)
-        binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
+        adapterSubscriptions =
+            CustomRecyclerAdapterSubscriptions(requireContext(), subscriptions)
         binding?.recyclerView?.adapter = adapterSubscriptions
 
         date()
@@ -56,10 +56,13 @@ class HomeFragment : Fragment() {
 
     private fun fireStore() {
         db = FirebaseFirestore.getInstance()
-        db.collection(uid()).document("NoDate").collection(uid())
+        db.collection(uid()).document("1").collection("2")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 @SuppressLint("NotifyDataSetChanged")
-                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                override fun onEvent(
+                    value: QuerySnapshot?,
+                    error: FirebaseFirestoreException?
+                ) {
                     if (error != null) {
                         return
                     }

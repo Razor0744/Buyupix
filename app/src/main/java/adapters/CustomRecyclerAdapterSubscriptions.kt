@@ -1,56 +1,85 @@
 package adapters
 
+import adapters.Const.HASWRITEOFFDATE
+import adapters.Const.NOWRITEOFFDATE
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import models.Subscriptions
-import team.four.mys.R
+import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithDateBinding
+import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithoutDateBinding
 
 class CustomRecyclerAdapterSubscriptions(
     private val context: Context,
     private val subscriptions: List<Subscriptions>
 ) :
-    RecyclerView.Adapter<CustomRecyclerAdapterSubscriptions.MyViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val name = itemView.findViewById<TextView>(R.id.nameSubscription)
-        private val image = itemView.findViewById<ImageView>(R.id.imageSubscription)
-        private val cost = itemView.findViewById<TextView>(R.id.costSubscription)
-        private val writeOffDate = itemView.findViewById<TextView>(R.id.writeOffDateSubscription)
+    inner class ViewHolderWithDate(private val binding: RecyclerviewItemSubscriptionsWithDateBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bindSubscription(subscriptions: Subscriptions, context: Context) {
+        fun bind(subscriptions: Subscriptions, context: Context) {
 
             Glide
                 .with(context)
                 .load(subscriptions.image)
-                .into(image)
+                .into(binding.imageSubscription)
 
-            name.text = subscriptions.name
-            cost.text = subscriptions.cost
-            writeOffDate.text = subscriptions.writeOffDate
-
+            binding.nameSubscription.text = subscriptions.name
+            binding.costSubscription.text = subscriptions.cost
+            binding.writeOffDateSubscription.text = subscriptions.writeOffDate
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.recyclerview_item_subscriptions, parent, false)
-        return MyViewHolder(itemView)
+    inner class ViewHolderWithoutDate(private val binding: RecyclerviewItemSubscriptionsWithoutDateBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(subscriptions: Subscriptions, context: Context) {
+
+            Glide
+                .with(context)
+                .load(subscriptions.image)
+                .into(binding.imageSubscription)
+
+            binding.nameSubscription.text = subscriptions.name
+            binding.costSubscription.text = subscriptions.cost
+        }
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bindSubscription(subscriptions[position], context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == HASWRITEOFFDATE) {
+            val binding =
+                RecyclerviewItemSubscriptionsWithDateBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                )
+            ViewHolderWithDate(binding)
+        } else {
+            val binding =
+                RecyclerviewItemSubscriptionsWithoutDateBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                )
+            ViewHolderWithoutDate(binding)
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (getItemViewType(position) == HASWRITEOFFDATE) {
+            (holder as ViewHolderWithDate).bind(subscriptions[position], context)
+        } else {
+            (holder as ViewHolderWithoutDate).bind(subscriptions[position], context)
+        }
     }
 
     override fun getItemCount() = subscriptions.size
 
     override fun getItemViewType(position: Int): Int {
-        return R.layout.recyclerview_item_subscriptions
+        return if (subscriptions[position].writeOffDate != null) HASWRITEOFFDATE else NOWRITEOFFDATE
     }
+}
+
+private object Const {
+    const val HASWRITEOFFDATE = 0
+    const val NOWRITEOFFDATE = 1
 }
