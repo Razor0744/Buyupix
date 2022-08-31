@@ -55,7 +55,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/item_background_blue"
+        android:background="@drawable/item_background_button_create_subscription"
         android:fontFamily="@font/roboto_medium"
         android:stateListAnimator="@null"
         android:text="@string/continueButton"

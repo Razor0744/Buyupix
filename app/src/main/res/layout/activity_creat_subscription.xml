@@ -113,4 +113,45 @@
         app:layout_constraintTop_toBottomOf="@id/price"
         tools:ignore="RtlSymmetry" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="24.5dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/reminder"
+        android:textColor="@color/textMain"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/create"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="24dp"
+        android:thumb="@drawable/thumb_switch"
+        app:layout_constraintBottom_toTopOf="@id/create"
+        app:layout_constraintRight_toRightOf="parent"
+        app:track="@drawable/track_switch" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/create"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/item_background_button_create_subscription"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:text="@string/buttonCreate"
+        android:textAllCaps="false"
+        android:textColor="@color/textMain2"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

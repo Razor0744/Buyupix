@@ -24,6 +24,8 @@
     <string name="createNameSubscription">Name</string>
     <string name="price">Price</string>
     <string name="description">Description</string>
+    <string name="reminder">Reminder</string>
+    <string name="buttonCreate">Create</string>
 
     <!--Navigation-->
     <string name="home">Home</string>
