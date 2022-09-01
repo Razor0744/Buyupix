@@ -1,28 +1,21 @@
 package team.four.mys
 
-import adapters.CustomRecyclerAdapterDate
-import adapters.CustomRecyclerAdapterNoDate
-import models.SubscriptionDate
-import models.SubscriptionNoDate
+import adapters.CustomRecyclerAdapterSubscriptions
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import team.four.mys.databinding.ActivitySubscriptionsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
+import models.Subscriptions
 
 
 class SubscriptionsActivity : AppCompatActivity() {
 
-    private lateinit var subscriptionsDate: ArrayList<SubscriptionDate>
-    private lateinit var subscriptionsNoDate: ArrayList<SubscriptionNoDate>
-    private lateinit var adapterDate: CustomRecyclerAdapterDate
-    private lateinit var adapterNoDate: CustomRecyclerAdapterNoDate
-    private lateinit var db : FirebaseFirestore
+    private lateinit var subscriptions: ArrayList<Subscriptions>
+    private lateinit var adapter: CustomRecyclerAdapterSubscriptions
+    private lateinit var db: FirebaseFirestore
     private lateinit var binding: ActivitySubscriptionsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,16 +24,12 @@ class SubscriptionsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // all subscriptions
-        subscriptionsDate = arrayListOf()
-        subscriptionsNoDate = arrayListOf()
-        adapterDate = CustomRecyclerAdapterDate(this, subscriptionsDate)
-        adapterNoDate = CustomRecyclerAdapterNoDate(this, subscriptionsNoDate)
+        subscriptions = arrayListOf()
+        adapter = CustomRecyclerAdapterSubscriptions(this, subscriptions)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        val concatAdapter = ConcatAdapter(adapterDate, adapterNoDate)
-        binding.recyclerView.adapter = concatAdapter
+        binding.recyclerView.adapter = adapter
 
         fireStore()
-        number()
     }
 
 
@@ -53,47 +42,52 @@ class SubscriptionsActivity : AppCompatActivity() {
 
     private fun fireStore() {
         db = FirebaseFirestore.getInstance()
-        db.collection(uid()).document("NoDate").collection(uid())
-            .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                @SuppressLint("NotifyDataSetChanged")
-                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                    if (error != null) {
-                        return
-                    }
-
-                    for (dc: DocumentChange in value?.documentChanges!!) {
-                        if (dc.type == DocumentChange.Type.ADDED) {
-                            subscriptionsNoDate.add(dc.document.toObject(SubscriptionNoDate::class.java))
+        var i = 1
+        while (i <= 31) {
+            println(i)
+            db.collection(uid()).document(i.toString()).collection("date")
+                .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                    @SuppressLint("NotifyDataSetChanged")
+                    override fun onEvent(
+                        value: QuerySnapshot?,
+                        error: FirebaseFirestoreException?
+                    ) {
+                        if (error != null) {
+                            return
                         }
-                    }
-                    adapterNoDate.notifyDataSetChanged()
-                }
 
-            })
-
-        db.collection(uid()).document("Date").collection(uid())
-            .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                @SuppressLint("NotifyDataSetChanged")
-                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                    if (error != null) {
-                        return
-                    }
-
-                    for (dc: DocumentChange in value?.documentChanges!!) {
-                        if (dc.type == DocumentChange.Type.ADDED) {
-                            subscriptionsDate.add(dc.document.toObject(SubscriptionDate::class.java))
+                        for (dc: DocumentChange in value?.documentChanges!!) {
+                            if (dc.type == DocumentChange.Type.ADDED) {
+                                subscriptions.add(dc.document.toObject(Subscriptions::class.java))
+                            }
                         }
+                        adapter.notifyDataSetChanged()
                     }
-                    adapterDate.notifyDataSetChanged()
-                }
 
-            })
-    }
+                })
 
-    private fun number(){
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val bundle = Bundle()
-        bundle.putInt("i", 1)
+            db.collection(uid()).document(i.toString()).collection("noDate")
+                .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                    @SuppressLint("NotifyDataSetChanged")
+                    override fun onEvent(
+                        value: QuerySnapshot?,
+                        error: FirebaseFirestoreException?
+                    ) {
+                        if (error != null) {
+                            return
+                        }
+
+                        for (dc: DocumentChange in value?.documentChanges!!) {
+                            if (dc.type == DocumentChange.Type.ADDED) {
+                                subscriptions.add(dc.document.toObject(Subscriptions::class.java))
+                            }
+                        }
+                        adapter.notifyDataSetChanged()
+                    }
+
+                })
+            println(i)
+            i++
+        }
     }
 }

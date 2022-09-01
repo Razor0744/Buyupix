@@ -62,26 +62,52 @@ class HomeFragment : Fragment() {
 
     private fun fireStore() {
         db = FirebaseFirestore.getInstance()
-        db.collection(uid()).document("1").collection("2")
-            .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                @SuppressLint("NotifyDataSetChanged")
-                override fun onEvent(
-                    value: QuerySnapshot?,
-                    error: FirebaseFirestoreException?
-                ) {
-                    if (error != null) {
-                        return
-                    }
-
-                    for (dc: DocumentChange in value?.documentChanges!!) {
-                        if (dc.type == DocumentChange.Type.ADDED) {
-                            subscriptions.add(dc.document.toObject(Subscriptions::class.java))
+        var i = 1
+        while (i <= 31) {
+            db.collection(uid()).document(i.toString()).collection("date")
+                .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                    @SuppressLint("NotifyDataSetChanged")
+                    override fun onEvent(
+                        value: QuerySnapshot?,
+                        error: FirebaseFirestoreException?
+                    ) {
+                        if (error != null) {
+                            return
                         }
-                    }
-                    adapterSubscriptions.notifyDataSetChanged()
-                }
 
-            })
+                        for (dc: DocumentChange in value?.documentChanges!!) {
+                            if (dc.type == DocumentChange.Type.ADDED) {
+                                subscriptions.add(dc.document.toObject(Subscriptions::class.java))
+                            }
+                        }
+                        adapterSubscriptions.notifyDataSetChanged()
+                    }
+
+                })
+
+            db.collection(uid()).document(i.toString()).collection("noDate")
+                .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                    @SuppressLint("NotifyDataSetChanged")
+                    override fun onEvent(
+                        value: QuerySnapshot?,
+                        error: FirebaseFirestoreException?
+                    ) {
+                        if (error != null) {
+                            return
+                        }
+
+                        for (dc: DocumentChange in value?.documentChanges!!) {
+                            if (dc.type == DocumentChange.Type.ADDED) {
+                                subscriptions.add(dc.document.toObject(Subscriptions::class.java))
+                            }
+                        }
+                        adapterSubscriptions.notifyDataSetChanged()
+                    }
+
+                })
+            println(i)
+            i++
+        }
     }
 
     private fun date() {
