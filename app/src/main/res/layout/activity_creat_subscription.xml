@@ -8,6 +8,7 @@
     tools:context="team.four.mys.CreateSubscriptionActivity">
 
     <ImageView
+        android:id="@+id/buttonArrowLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"

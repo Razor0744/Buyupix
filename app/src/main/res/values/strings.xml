@@ -2,7 +2,6 @@
 
     <!--FirstActivity-->
     <string name="welcome">Welcome</string>
-    <string name="description">Manage subscriptions, lower your bills, and stay on top of your financial life.</string>
 
     <!--LoginActivity-->
     <string name="authorization">Authorization</string>
@@ -26,6 +25,11 @@
     <string name="description">Description</string>
     <string name="reminder">Reminder</string>
     <string name="buttonCreate">Create</string>
+
+    <!--SubscriptionInfo-->
+    <string name="subscriptionInfo">Subs info</string>
+    <string name="name">Name</string>
+    <string name="category">Category</string>
 
     <!--Navigation-->
     <string name="home">Home</string>

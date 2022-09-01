@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/background_home_fragment.xml" value="0.182" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_arrow_right.xml" value="0.157" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_create_subscription.xml" value="0.157" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_search.xml" value="0.157" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/ic_search_normal.xml" value="0.157" />
@@ -15,7 +16,9 @@
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_home_fragment.xml" value="0.182" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_subscription.xml" value="0.182" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_alert.xml" value="0.371875" />
-        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_creat_subscription.xml" value="0.25" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_creat_subscription.xml" value="0.5" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_language.xml" value="0.371875" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_subscription_info.xml" value="0.25" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/fragment_settings.xml" value="0.18085106382978725" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/recyclerview_item_date.xml" value="0.18085106382978725" />
@@ -27,5 +30,5 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="16" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16_PREVIEW" project-jdk-name="16" project-jdk-type="JavaSDK" />
 </project>
