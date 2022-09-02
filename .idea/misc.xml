@@ -16,7 +16,7 @@
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_home_fragment.xml" value="0.182" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_subscription.xml" value="0.182" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_alert.xml" value="0.371875" />
-        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_creat_subscription.xml" value="0.5" />
+        <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_creat_subscription.xml" value="0.25" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_language.xml" value="0.371875" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/activity_subscription_info.xml" value="0.25" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/fragment_home.xml" value="0.25" />
@@ -30,5 +30,5 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_16_PREVIEW" project-jdk-name="16" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="16" project-jdk-type="JavaSDK" />
 </project>
