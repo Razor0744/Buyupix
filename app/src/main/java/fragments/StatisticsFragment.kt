@@ -14,7 +14,6 @@ class StatisticsFragment : Fragment() {
     private var binding: FragmentStatisticsBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        onLoadDarkMode()
         super.onCreate(savedInstanceState)
     }
 
@@ -31,15 +30,5 @@ class StatisticsFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
-    }
-
-    private fun onLoadDarkMode() {
-        val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
-        val darkMode = preferences?.getBoolean("DarkMode", false)
-        if (darkMode == true) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
-    }
+    }   
 }

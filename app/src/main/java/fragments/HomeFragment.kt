@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.ConcatAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 import models.Subscriptions
 import team.four.mys.CreateSubscriptionActivity
 import team.four.mys.databinding.FragmentHomeBinding
@@ -43,7 +46,9 @@ class HomeFragment : Fragment() {
         }
 
         date()
-        fireStore()
+        CoroutineScope(IO).launch {
+            fireStore()
+        }
 
         return binding?.root
     }

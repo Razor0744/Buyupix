@@ -29,8 +29,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             .into(binding.imageOfSubscription)
 
         binding.create.setOnClickListener {
-            if (binding.name.text.trim().toString().isEmpty()) {
-                if (binding.price.text.trim().toString().isEmpty()) {
+            if (binding.name.text.trim().toString().isNotEmpty()) {
+                if (binding.price.text.trim().toString().isNotEmpty()) {
                     db.collection(uid()).document()
                     val data = hashMapOf(
                         "name" to binding.name.text.trim().toString(),

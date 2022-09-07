@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/black</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -28,6 +28,20 @@
 
     <style name="BottomNavigationViewTextStyle">
         <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="CalendarViewCustom">
+        <item name="android:background">@drawable/calendarview_background</item>
+        <item name="android:textColorPrimary">@color/blueMain</item>
+        <item name="colorAccent">@color/blueMain</item>
+    </style>
+
+    <style name="CalendarViewDateCustomText">
+        <item name="android:textColor">@color/textMain</item>
+    </style>
+
+    <style name="CalendarViewWeekCustomText">
+        <item name="android:textColor">@color/textSecondary</item>
     </style>
 
 </resources>
