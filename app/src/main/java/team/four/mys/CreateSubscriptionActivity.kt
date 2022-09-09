@@ -1,27 +1,47 @@
 package team.four.mys
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import adapters.CustomRecyclerAdapterCalendar
+import android.os.Build
 import android.os.Bundle
-import android.widget.ArrayAdapter
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import team.four.mys.databinding.ActivityCreatSubscriptionBinding
+import java.time.LocalDate
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
+
 
 class CreateSubscriptionActivity : AppCompatActivity() {
 
     private val db = Firebase.firestore
     private lateinit var binding: ActivityCreatSubscriptionBinding
 
+    private lateinit var adapterCalendar: CustomRecyclerAdapterCalendar
+    private lateinit var selectedDate: LocalDate
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreatSubscriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        binding.calendarView.root.visibility = View.INVISIBLE
+//        binding.buttonCalender.setOnClickListener {
+//            if (binding.calendarView.root.visibility == View.INVISIBLE) {
+//                binding.calendarView.root.visibility = View.VISIBLE
+//            } else {
+//                binding.calendarView.root.visibility = View.INVISIBLE
+//            }
+//        }
 
         Glide
             .with(this)
@@ -48,6 +68,9 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 Toast.makeText(this, "Ты ебаны рот название напиши", Toast.LENGTH_LONG).show()
             }
         }
+
+        selectedDate = LocalDate.now()
+        setMonthView()
     }
 
     private fun uid(): String {
@@ -79,5 +102,58 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             }
         }
         return url
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setMonthView() {
+        binding.monthYearTV.text = monthYearFromDate(selectedDate)
+        val daysInMonth = daysInMonthArray(selectedDate)
+        adapterCalendar = CustomRecyclerAdapterCalendar(daysInMonth)
+        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(applicationContext, 7)
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.adapter = adapterCalendar
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun daysInMonthArray(date: LocalDate): ArrayList<String> {
+        val daysInMonthArray = ArrayList<String>()
+        val yearMonth: YearMonth = YearMonth.from(date)
+        val daysInMonth: Int = yearMonth.lengthOfMonth()
+        val firstOfMonth = selectedDate.withDayOfMonth(1)
+        val dayOfWeek = firstOfMonth.dayOfWeek.value
+        for (i in 1..42) {
+            if (i <= dayOfWeek || i > daysInMonth + dayOfWeek) {
+                daysInMonthArray.add("")
+            } else {
+                daysInMonthArray.add((i - dayOfWeek).toString())
+            }
+        }
+        return daysInMonthArray
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun monthYearFromDate(date: LocalDate): String {
+        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
+        return date.format(formatter)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun previousMonthAction(view: View?) {
+        selectedDate = selectedDate.minusMonths(1)
+        setMonthView()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun nextMonthAction(view: View?) {
+        selectedDate = selectedDate.plusMonths(1)
+        setMonthView()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun onItemClick(position: Int, dayText: String) {
+        if (dayText != "") {
+            val message = "Selected Date " + dayText + " " + monthYearFromDate(selectedDate)
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        }
     }
 }

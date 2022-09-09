@@ -41,6 +41,7 @@
     </style>
 
     <style name="CalendarViewWeekCustomText">
+
         <item name="android:textColor">@color/textSecondary</item>
     </style>
 
