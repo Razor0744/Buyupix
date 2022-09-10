@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -60,7 +61,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                     val data = hashMapOf(
                                         "name" to binding.name.text.trim().toString(),
                                         "price" to binding.price.text.trim().toString(),
-                                        "description" to binding.description.text.trim().toString()
+                                        "description" to binding.description.text.trim().toString(),
+                                        "image" to image()
                                     )
                                     db.collection(uid())
                                         .document(binding.buttonCalender.text.trim().toString())
@@ -73,7 +75,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "price" to binding.price.text.trim().toString(),
                                         "description" to binding.description.text.trim().toString(),
                                         "writeOffDate" to binding.buttonCalender.text.trim()
-                                            .toString()
+                                            .toString(),
+                                        "image" to image()
                                     )
                                     db.collection(uid())
                                         .document(binding.buttonCalender.text.trim().toString())
@@ -104,6 +107,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
 
         selectedDate = LocalDate.now()
         setMonthView()
+        autoCompleteTextView()
     }
 
     private fun uid(): String {
@@ -114,9 +118,9 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     }
 
     //url icons from storage firebase
-    private fun icons(): String {
+    private fun image(): String {
         var url = ""
-        when (binding.nameActivity.text) {
+        when (binding.name.text.trim().toString()) {
             "Spotify" -> {
                 url =
                     "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.png?alt=media&token=89cd172f-201d-4a5e-acc6-e0da3344c26e"
@@ -135,6 +139,13 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             }
         }
         return url
+    }
+
+    private fun autoCompleteTextView() {
+        val names = resources.getStringArray(R.array.names)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, names)
+        binding.name.setAdapter(adapter)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
