@@ -18,6 +18,8 @@ import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class CreateSubscriptionActivity : AppCompatActivity() {
@@ -41,6 +43,14 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             } else {
                 binding.groupCalendar.visibility = View.INVISIBLE
             }
+        }
+
+        binding.buttonLeftCalendar.setOnClickListener{
+            nextMonthAction()
+        }
+
+        binding.buttonRightCalendar.setOnClickListener{
+            previousMonthAction()
         }
 
         Glide
@@ -132,18 +142,19 @@ class CreateSubscriptionActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun monthYearFromDate(date: LocalDate): String {
-        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
+        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("LLLL")
         return date.format(formatter)
+            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun previousMonthAction(view: View?) {
+    fun previousMonthAction() {
         selectedDate = selectedDate.minusMonths(1)
         setMonthView()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun nextMonthAction(view: View?) {
+    fun nextMonthAction() {
         selectedDate = selectedDate.plusMonths(1)
         setMonthView()
     }
