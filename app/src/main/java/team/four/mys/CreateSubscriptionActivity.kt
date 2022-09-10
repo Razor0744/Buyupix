@@ -4,12 +4,10 @@ import adapters.CustomRecyclerAdapterCalendar
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -121,6 +119,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         adapterCalendar = CustomRecyclerAdapterCalendar(daysInMonth)
         binding.recyclerView.layoutManager = GridLayoutManager(this, 7)
         binding.recyclerView.adapter = adapterCalendar
+        binding.recyclerView.suppressLayout(true)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
