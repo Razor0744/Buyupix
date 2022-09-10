@@ -34,14 +34,14 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         binding = ActivityCreatSubscriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        binding.calendarView.root.visibility = View.INVISIBLE
-//        binding.buttonCalender.setOnClickListener {
-//            if (binding.calendarView.root.visibility == View.INVISIBLE) {
-//                binding.calendarView.root.visibility = View.VISIBLE
-//            } else {
-//                binding.calendarView.root.visibility = View.INVISIBLE
-//            }
-//        }
+        binding.groupCalendar.visibility = View.INVISIBLE
+        binding.buttonCalender.setOnClickListener {
+            if (binding.groupCalendar.visibility == View.INVISIBLE) {
+                binding.groupCalendar.visibility = View.VISIBLE
+            } else {
+                binding.groupCalendar.visibility = View.INVISIBLE
+            }
+        }
 
         Glide
             .with(this)
@@ -109,8 +109,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         binding.monthYearTV.text = monthYearFromDate(selectedDate)
         val daysInMonth = daysInMonthArray(selectedDate)
         adapterCalendar = CustomRecyclerAdapterCalendar(daysInMonth)
-        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(applicationContext, 7)
-        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.layoutManager = GridLayoutManager(this, 7)
         binding.recyclerView.adapter = adapterCalendar
     }
 
