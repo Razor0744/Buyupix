@@ -56,7 +56,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                         db.collection(uid()).document(binding.buttonCalender.text.trim().toString())
                             .collection("date").get()
                             .addOnSuccessListener { document ->
-                                if (document != null) {
+                                if (document.documents.isNotEmpty()) {
                                     val data = hashMapOf(
                                         "name" to binding.name.text.trim().toString(),
                                         "price" to binding.price.text.trim().toString(),
