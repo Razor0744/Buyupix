@@ -1,6 +1,7 @@
 package team.four.mys
 
 import adapters.CustomRecyclerAdapterCalendar
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -43,14 +44,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             }
         }
 
-        binding.buttonLeftCalendar.setOnClickListener{
-            nextMonthAction()
-        }
-
-        binding.buttonRightCalendar.setOnClickListener{
-            previousMonthAction()
-        }
-
         Glide
             .with(this)
             .load("https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.png?alt=media&token=89cd172f-201d-4a5e-acc6-e0da3344c26e")
@@ -59,12 +52,43 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         binding.create.setOnClickListener {
             if (binding.name.text.trim().toString().isNotEmpty()) {
                 if (binding.price.text.trim().toString().isNotEmpty()) {
-                    db.collection(uid()).document()
-                    val data = hashMapOf(
-                        "name" to binding.name.text.trim().toString(),
-                        "price" to binding.price.text.trim().toString(),
-                        "description" to binding.description.text.trim().toString()
-                    )
+                    if (binding.buttonCalender.text.trim().toString() != "Write-off date") {
+                        db.collection(uid()).document(binding.buttonCalender.text.trim().toString())
+                            .collection("date").get()
+                            .addOnSuccessListener { document ->
+                                if (document != null) {
+                                    val data = hashMapOf(
+                                        "name" to binding.name.text.trim().toString(),
+                                        "price" to binding.price.text.trim().toString(),
+                                        "description" to binding.description.text.trim().toString()
+                                    )
+                                    db.collection(uid())
+                                        .document(binding.buttonCalender.text.trim().toString())
+                                        .collection("noDate")
+                                        .document(binding.name.text.trim().toString()).set(data)
+                                    startActivity(Intent(this, MainActivity::class.java))
+                                } else {
+                                    val data = hashMapOf(
+                                        "name" to binding.name.text.trim().toString(),
+                                        "price" to binding.price.text.trim().toString(),
+                                        "description" to binding.description.text.trim().toString(),
+                                        "writeOffDate" to binding.buttonCalender.text.trim()
+                                            .toString()
+                                    )
+                                    db.collection(uid())
+                                        .document(binding.buttonCalender.text.trim().toString())
+                                        .collection("date")
+                                        .document(binding.name.text.trim().toString()).set(data)
+                                    startActivity(Intent(this, MainActivity::class.java))
+                                }
+                            }
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Не, ну деньги я полагаю у тебя каждый день списывают",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 } else {
                     Toast.makeText(
                         this,
@@ -76,6 +100,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 Toast.makeText(this, "Ты ебаны рот название напиши", Toast.LENGTH_LONG).show()
             }
         }
+
 
         selectedDate = LocalDate.now()
         setMonthView()
@@ -116,10 +141,19 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     private fun setMonthView() {
         binding.monthYearTV.text = monthYearFromDate(selectedDate)
         val daysInMonth = daysInMonthArray(selectedDate)
-        adapterCalendar = CustomRecyclerAdapterCalendar(daysInMonth)
+        adapterCalendar = CustomRecyclerAdapterCalendar(daysInMonth) { calendarClick ->
+            onItemClick(daysInMonth[calendarClick])
+        }
         binding.recyclerView.layoutManager = GridLayoutManager(this, 7)
         binding.recyclerView.adapter = adapterCalendar
         binding.recyclerView.suppressLayout(true)
+
+        binding.buttonLeftCalendar.setOnClickListener {
+            nextMonthAction()
+        }
+        binding.buttonRightCalendar.setOnClickListener {
+            previousMonthAction()
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -159,10 +193,12 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun onItemClick(position: Int, dayText: String) {
+    fun onItemClick(dayText: String) {
         if (dayText != "") {
             val message = "Selected Date " + dayText + " " + monthYearFromDate(selectedDate)
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            binding.buttonCalender.text = dayText
+            binding.groupCalendar.visibility = View.INVISIBLE
         }
     }
 }
