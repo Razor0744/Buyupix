@@ -11,8 +11,8 @@ android {
         applicationId "team.four.mys"
         minSdk 23
         targetSdk 31
-        versionCode 11
-        versionName "1.4.0.2"
+        versionCode 12
+        versionName "1.4.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
