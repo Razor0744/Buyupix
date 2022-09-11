@@ -2,6 +2,7 @@ package fragments
 
 import adapters.CustomRecyclerAdapterSubscriptions
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import models.Subscriptions
 import team.four.mys.CreateSubscriptionActivity
+import team.four.mys.R
 import team.four.mys.databinding.FragmentHomeBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,6 +51,7 @@ class HomeFragment : Fragment() {
         CoroutineScope(IO).launch {
             fireStore()
         }
+        statusBar()
 
         return binding?.root
     }
@@ -56,6 +59,20 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+    }
+
+    private fun statusBar() {
+        requireActivity().window.statusBarColor =
+            requireContext().getColor(R.color.backgroundNavBar)
+        val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
+        val darkMode = preferences?.getBoolean("DarkMode", false)
+        if (darkMode == true) {
+            requireActivity().window.decorView.systemUiVisibility =
+                (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+        } else {
+            requireActivity().window.decorView.systemUiVisibility =
+                (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+        }
     }
 
     private fun uid(): String {

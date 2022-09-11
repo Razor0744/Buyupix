@@ -43,6 +43,7 @@
 
     <!--Accent-->
     <color name="blueMain">#2D8DD8</color>
+    <color name="blueClick">#1F78BC</color>
     <color name="blue">#443FEE</color>
     <color name="blueLight">#44B6EB</color>
     <color name="yellow">#FFCE2F</color>
