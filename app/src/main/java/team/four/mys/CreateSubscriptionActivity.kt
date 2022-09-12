@@ -36,6 +36,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         binding = ActivityCreatSubscriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Calendar visibility
         binding.groupCalendar.visibility = View.INVISIBLE
         binding.buttonCalender.setOnClickListener {
             if (binding.groupCalendar.visibility == View.INVISIBLE) {
@@ -43,6 +44,12 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             } else {
                 binding.groupCalendar.visibility = View.INVISIBLE
             }
+        }
+
+        binding.buttonArrowLeft.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("fragment", "HomeFragment")
+            startActivity(intent)
         }
 
         Glide
