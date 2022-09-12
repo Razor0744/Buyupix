@@ -17,6 +17,7 @@
     <color name="backgroundInactive">#2F2F3A</color>
     <color name="backgroundNavBar">#24242D</color>
     <color name="backgroundStroke">#6B6B78</color>
+    <color name="backgroundCalendar">#474747</color>
 
     <!--Text-->
     <color name="textMain">#F2F2F2</color>

@@ -69,15 +69,22 @@
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/layout/recyclerview_item_no_date.xml" value="0.18085106382978725" />
         <entry key="..\:/Users/Razor/AndroidStudioProjects/my-subscriptions/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.125" />
         <entry key="..\:/Users/Razor/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_dropdown_item_1line.xml" value="0.24003623188405798" />
+        <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/calendarview_background.xml" value="0.13" />
+        <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/click_on_item_calendar.xml" value="0.13" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/click_on_items.xml" value="0.13" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/ic_arrow_left.xml" value="0.13" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/ic_arrow_left_click.xml" value="0.13" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/ic_chevron_left.xml" value="0.1" />
+        <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/ic_create_subscription.xml" value="0.13" />
+        <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/ic_create_subscription_click.xml" value="0.13" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/ic_ellipse_1.xml" value="0.13" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/ic_home.xml" value="0.1" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/ic_home_click.xml" value="0.1" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/icon_arrow_left.xml" value="0.13" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/icon_create.xml" value="0.13" />
+        <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_button_create_subscription.xml" value="0.13" />
+        <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_code.xml" value="0.13" />
+        <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/item_background_create_subscription.xml" value="0.13" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/language_usa.xml" value="0.13" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/splash_screen.xml" value="0.1" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/drawable/splash_screen_image.xml" value="0.1" />
@@ -92,7 +99,9 @@
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/layout/activity_sign_up1.xml" value="0.2" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/layout/activity_sign_up2.xml" value="0.2" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/layout/activity_subscriptions.xml" value="0.1" />
+        <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/layout/fragment_navigation.xml" value="0.21" />
+        <entry key="..\:/Users/Razor/StudioProjects/my-subscriptions/app/src/main/res/layout/recyclerview_item_calendar.xml" value="0.1" />
       </map>
     </option>
   </component>

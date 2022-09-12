@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/backgroundCalendar"
     android:layout_width="match_parent"
+    android:background="@drawable/click_on_item_calendar"
     android:layout_height="42dp">
 
     <TextView
         android:id="@+id/dayOfCalendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
         android:textSize="16sp"
         android:textColor="@color/textMain"
         app:layout_constraintBottom_toBottomOf="parent"

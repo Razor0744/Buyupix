@@ -23,6 +23,7 @@
     <color name="backgroundNavBarDark">#24242D</color>
     <color name="backgroundNavBarWhite">#FFFFFF</color>
     <color name="backgroundStroke">#DBDBDB</color>
+    <color name="backgroundCalendar">#EBEBEB</color>
 
     <!--Text-->
     <color name="textMain">#3F3F3F</color>

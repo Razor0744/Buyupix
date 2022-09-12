@@ -351,7 +351,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            android:layout_margin="1dp"
+            android:layout_margin="3dp"
             android:background="@drawable/calendarview_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
