@@ -10,8 +10,7 @@ import team.four.mys.databinding.RecyclerviewItemCalendarBinding
 
 class CustomRecyclerAdapterCalendar(
     private val days: List<String>,
-    private val itemClick: (Int) -> Unit,
-    private val dayClick: Int
+    private val itemClick: (Int) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -23,19 +22,6 @@ class CustomRecyclerAdapterCalendar(
         fun bind(days: String, itemClick: (Int) -> Unit) {
 
             binding.dayOfCalendar.text = days
-            binding.root.setOnClickListener { itemClick(absoluteAdapterPosition) }
-        }
-    }
-
-    inner class ViewHolderClick(
-        private val binding: RecyclerviewItemCalendarBinding
-    ) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(days: String, itemClick: (Int) -> Unit) {
-
-            binding.dayOfCalendar.text = days
-            binding.backgroundCalendar.isSelected = true
             binding.root.setOnClickListener { itemClick(absoluteAdapterPosition) }
         }
     }
@@ -52,11 +38,7 @@ class CustomRecyclerAdapterCalendar(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        if (dayClick == position){
-            (holder as ViewHolderClick).bind(days[position], itemClick)
-        } else {
             (holder as ViewHolder).bind(days[position], itemClick)
-        }
     }
 
     override fun getItemCount() = days.size

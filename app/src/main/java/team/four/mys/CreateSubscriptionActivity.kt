@@ -113,6 +113,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
 
 
         selectedDate = LocalDate.now()
+        println(selectedDate)
         setMonthView()
         autoCompleteTextView()
     }

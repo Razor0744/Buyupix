@@ -30,19 +30,4 @@
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
-    <style name="CalendarViewCustom">
-        <item name="android:background">@drawable/calendarview_background</item>
-        <item name="android:textColorPrimary">@color/blueMain</item>
-        <item name="colorAccent">@color/blueMain</item>
-    </style>
-
-    <style name="CalendarViewDateCustomText">
-        <item name="android:textColor">@color/textMain</item>
-    </style>
-
-    <style name="CalendarViewWeekCustomText">
-
-        <item name="android:textColor">@color/textSecondary</item>
-    </style>
-
 </resources>
