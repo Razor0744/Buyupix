@@ -42,10 +42,31 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         binding.buttonCalender.setOnClickListener {
             if (binding.groupCalendar.visibility == View.INVISIBLE) {
                 binding.groupCalendar.visibility = View.VISIBLE
-                binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(null, null, ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar_click, null), null)
+                binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(
+                    null,
+                    null,
+                    ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar_click, null),
+                    null
+                )
             } else {
                 binding.groupCalendar.visibility = View.INVISIBLE
-                binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(null, null, ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar, null), null)
+                binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(
+                    null,
+                    null,
+                    ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar, null),
+                    null
+                )
+            }
+        }
+        binding.constrainParent.setOnClickListener {
+            if (binding.groupCalendar.visibility == View.VISIBLE) {
+                binding.groupCalendar.visibility = View.INVISIBLE
+                binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(
+                    null,
+                    null,
+                    ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar, null),
+                    null
+                )
             }
         }
 
@@ -217,10 +238,14 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun onItemClick(dayText: String) {
         if (dayText != "") {
-            val message = "Selected Date " + dayText + " " + monthYearFromDate(selectedDate)
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             binding.buttonCalender.text = dayText
             binding.groupCalendar.visibility = View.INVISIBLE
+            binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(
+                null,
+                null,
+                ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar, null),
+                null
+            )
         }
     }
 }
