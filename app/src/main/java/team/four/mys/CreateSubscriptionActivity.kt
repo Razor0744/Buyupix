@@ -11,7 +11,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -75,11 +74,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             intent.putExtra("fragment", "HomeFragment")
             startActivity(intent)
         }
-
-        Glide
-            .with(this)
-            .load("https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.png?alt=media&token=89cd172f-201d-4a5e-acc6-e0da3344c26e")
-            .into(binding.imageOfSubscription)
 
         binding.create.setOnClickListener {
             if (binding.name.text.trim().toString().isNotEmpty()) {
