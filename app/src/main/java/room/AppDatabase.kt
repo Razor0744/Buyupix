@@ -6,15 +6,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import modelsRoom.AlertDao
 import modelsRoom.AlertRoom
+import modelsRoom.LanguageDao
+import modelsRoom.LanguageRoom
 
 @Database(
-    entities = [AlertRoom::class],
-    version = 2,
+    entities = [AlertRoom::class, LanguageRoom::class],
+    version = 4,
     exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun alertDao(): AlertDao
+    abstract fun languageDao(): LanguageDao
 
     companion object {
 

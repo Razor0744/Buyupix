@@ -12,7 +12,4 @@ interface AlertDao {
 
     @Update
     suspend fun updateAlert(alert: AlertRoom)
-
-    @Delete
-    suspend fun deleteAlert(alert: AlertRoom)
 }

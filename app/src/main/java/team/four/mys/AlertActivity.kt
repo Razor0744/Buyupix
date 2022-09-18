@@ -36,7 +36,8 @@ class AlertActivity : AppCompatActivity() {
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            adapter()
+            //adapter()
+            //println(onLoadAlert())
         }
     }
 

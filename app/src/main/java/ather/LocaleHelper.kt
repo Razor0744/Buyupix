@@ -37,7 +37,7 @@ class LocaleHelper {
         val editor = preferences.edit()
 
         editor.putString("Locale", language)
-        editor.commit()
+        editor.apply()
     }
 
     @TargetApi(Build.VERSION_CODES.N)

@@ -24,8 +24,6 @@ class FirstActivity : AppCompatActivity() {
         binding.logIn.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
-
-        darkMode()
     }
 
     public override fun onStart() {
@@ -47,16 +45,5 @@ class FirstActivity : AppCompatActivity() {
     override fun attachBaseContext(base: Context) {
         LocaleHelper().setLocale(base, LocaleHelper().getLanguage(base))
         super.attachBaseContext(LocaleHelper().onAttach(base))
-    }
-
-    private fun darkMode(){
-        val preferences = getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
-        val darkMode = preferences.getBoolean("DarkMode", false)
-        println(darkMode)
-        if (darkMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
     }
 }

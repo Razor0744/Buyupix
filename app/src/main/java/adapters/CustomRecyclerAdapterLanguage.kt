@@ -39,10 +39,10 @@ class CustomRecyclerAdapterLanguage(
                     context.packageName
                 )
             when (locale) {
-                "ru" -> if (language.name == "Russia") {
+                "Russia" -> if (language.name == "Russia") {
                     imageButton.setImageResource(resourceIdImage)
                 }
-                "en" -> if (language.name == "USA") {
+                "USA" -> if (language.name == "USA") {
                     imageButton.setImageResource(resourceIdImage)
                 }
                 else -> if (language.name == "USA") {
