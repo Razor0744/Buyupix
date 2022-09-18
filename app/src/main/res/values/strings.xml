@@ -26,7 +26,8 @@
     <string name="reminder">Reminder</string>
     <string name="buttonCreate">Create</string>
     <string name="writeOffDate">Write-off date</string>
-    
+
+    <!--Calendar-->
     <string name="monday">Mon</string>
     <string name="tuesday">Tue</string>
     <string name="wednesday">Wed</string>
@@ -34,6 +35,13 @@
     <string name="friday">Fri</string>
     <string name="saturday">Sat</string>
     <string name="sunday">Sun</string>
+
+    <!--Spinner-->
+    <string-array name="spinner">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>BYN</item>
+    </string-array>
 
     <!--SubscriptionInfo-->
     <string name="subscriptionInfo">Subs info</string>

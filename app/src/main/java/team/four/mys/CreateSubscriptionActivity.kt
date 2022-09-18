@@ -75,6 +75,14 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        selectedDate = LocalDate.now()
+        println(selectedDate)
+        setMonthView()
+        autoCompleteTextView()
+        fireStore()
+    }
+
+    private fun fireStore(){
         binding.create.setOnClickListener {
             if (binding.name.text.trim().toString().isNotEmpty()) {
                 if (binding.price.text.trim().toString().isNotEmpty()) {
@@ -128,12 +136,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 Toast.makeText(this, "Ты ебаны рот название напиши", Toast.LENGTH_LONG).show()
             }
         }
-
-
-        selectedDate = LocalDate.now()
-        println(selectedDate)
-        setMonthView()
-        autoCompleteTextView()
     }
 
     private fun uid(): String {
