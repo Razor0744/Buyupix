@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import models.Alert
-import room.AlertRoom
+import modelsRoom.AlertRoom
 import room.AppDatabase
 import team.four.mys.databinding.ActivityAlertBinding
 

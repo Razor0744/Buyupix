@@ -1,4 +1,4 @@
-package room
+package modelsRoom
 
 import androidx.room.*
 
