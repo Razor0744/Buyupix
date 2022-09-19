@@ -11,8 +11,7 @@ import modelsRoom.LanguageRoom
 
 @Database(
     entities = [AlertRoom::class, LanguageRoom::class],
-    version = 4,
-    exportSchema = true
+    version = 5
 )
 abstract class AppDatabase : RoomDatabase() {
 
@@ -43,6 +42,7 @@ abstract class AppDatabase : RoomDatabase() {
                 AppDatabase::class.java,
                 "Database"
             )
+                .fallbackToDestructiveMigration()
                 .build()
         }
     }

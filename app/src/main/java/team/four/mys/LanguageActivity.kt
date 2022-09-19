@@ -12,7 +12,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import models.Language
-import modelsRoom.AlertRoom
 import modelsRoom.LanguageRoom
 import room.AppDatabase
 import team.four.mys.DataLanguage.language
@@ -39,8 +38,8 @@ class LanguageActivity : AppCompatActivity() {
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            saveConst()
             adapter()
+            println(onLoadLanguage())
         }
     }
 
@@ -60,11 +59,6 @@ class LanguageActivity : AppCompatActivity() {
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapterLanguage
-    }
-
-    private suspend fun saveConst(){
-        val language = LanguageRoom(1, "USA")
-        database.addLanguage(language)
     }
 
     private suspend fun onSaveLanguage(string: String) {
