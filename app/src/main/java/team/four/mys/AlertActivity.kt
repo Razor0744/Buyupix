@@ -1,7 +1,6 @@
 package team.four.mys
 
 import adapters.CustomRecyclerAdapterAlert
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +20,8 @@ class AlertActivity : AppCompatActivity() {
     private lateinit var adapterAlert: CustomRecyclerAdapterAlert
 
     //Room
-    private val database by lazy { AppDatabase.getDatabase(this).alertDao() }
+    private val databaseAlert by lazy { AppDatabase.getDatabase(this).alertDao() }
+    private val databaseDarkMode by lazy { AppDatabase.getDatabase(this).darkModeDao() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         onLoadDarkMode()
@@ -56,19 +56,17 @@ class AlertActivity : AppCompatActivity() {
 
     private suspend fun onSaveAlert(string: String) {
         val alert = AlertRoom(1, string)
-        database.addAlert(alert)
-        database.updateAlert(AlertRoom(1, string))
+        databaseAlert.updateAlert(AlertRoom(1, string))
     }
 
     private fun onLoadAlert(): String {
-        val alert = database.getById(1)
+        val alert = databaseAlert.getById(1)
         return alert.name
     }
 
     private fun onLoadDarkMode() {
-        val preferences = getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
-        val darkMode = preferences?.getBoolean("DarkMode", false)
-        if (darkMode == true) {
+        val darkMode = databaseDarkMode.getById(1)
+        if (darkMode.mode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

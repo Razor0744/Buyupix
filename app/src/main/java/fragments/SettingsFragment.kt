@@ -11,6 +11,11 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import modelsRoom.DarkModeRoom
+import room.AppDatabase
 import team.four.mys.AlertActivity
 import team.four.mys.LanguageActivity
 import team.four.mys.R
@@ -22,6 +27,9 @@ import kotlin.math.hypot
 class SettingsFragment : Fragment() {
 
     private var binding: FragmentSettingsBinding? = null
+
+    //Room
+    private val databaseDarkMode by lazy { AppDatabase.getDatabase(requireContext()).darkModeDao() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,11 +46,11 @@ class SettingsFragment : Fragment() {
 
         binding?.switchDarkMode?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                thread { onSaveDarkMode(true) }
-                revealDark()
+                CoroutineScope(Dispatchers.IO).launch { onSaveDarkMode(true) }
+                //revealDark()
             } else {
-                thread { onSaveDarkMode(false) }
-                revealLight()
+                CoroutineScope(Dispatchers.IO).launch { onSaveDarkMode(false) }
+                //revealLight()
             }
         }
 
@@ -58,12 +66,9 @@ class SettingsFragment : Fragment() {
         binding = null
     }
 
-    private fun onSaveDarkMode(boolean: Boolean) {
-        val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
-        val editor = preferences?.edit()
-        editor?.putBoolean("DarkMode", boolean)
-        editor?.apply()
-        println("nice")
+    private suspend fun onSaveDarkMode(boolean: Boolean) {
+        val darkMode = DarkModeRoom(1, boolean)
+        databaseDarkMode.updateDarkMode(darkMode)
     }
 
     private fun onLoadDarkModeSwitch() {

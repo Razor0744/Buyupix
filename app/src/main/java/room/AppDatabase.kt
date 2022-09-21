@@ -4,19 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import modelsRoom.AlertDao
-import modelsRoom.AlertRoom
-import modelsRoom.LanguageDao
-import modelsRoom.LanguageRoom
+import modelsRoom.*
 
 @Database(
-    entities = [AlertRoom::class, LanguageRoom::class],
-    version = 5
+    entities = [AlertRoom::class, LanguageRoom::class, DarkModeRoom::class],
+    version = 6
 )
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun alertDao(): AlertDao
     abstract fun languageDao(): LanguageDao
+    abstract fun darkModeDao(): DarkModeDao
 
     companion object {
 

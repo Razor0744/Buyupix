@@ -13,6 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import modelsRoom.AlertRoom
+import modelsRoom.DarkModeRoom
 import modelsRoom.LanguageRoom
 import room.AppDatabase
 
@@ -20,10 +21,6 @@ class FirstActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var binding : ActivityFirstBinding
-
-    //Room
-    private val databaseLanguage by lazy { AppDatabase.getDatabase(this).languageDao() }
-    private val databaseAlert by lazy { AppDatabase.getDatabase(this).alertDao() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,17 +30,6 @@ class FirstActivity : AppCompatActivity() {
         binding.logIn.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
-
-        CoroutineScope(Dispatchers.Main).launch {
-            onSaveConst()
-        }
-    }
-
-    private suspend fun onSaveConst(){
-        val alert = AlertRoom(1, "The day before the write-off")
-        val language = LanguageRoom(1, "USA")
-        databaseAlert.addAlert(alert)
-        databaseLanguage.addLanguage(language)
     }
 
     public override fun onStart() {

@@ -127,7 +127,6 @@ class HomeFragment : Fragment() {
                     }
 
                 })
-            println(i)
             i++
         }
     }
