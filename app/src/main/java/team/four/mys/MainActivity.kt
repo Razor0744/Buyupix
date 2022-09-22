@@ -33,13 +33,13 @@ class MainActivity : AppCompatActivity() {
     private val databaseDarkMode by lazy { AppDatabase.getDatabase(this).darkModeDao() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        CoroutineScope(Dispatchers.IO).launch {
-            onSaveConst()
-            onLoadDarkMode()
-        }
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            onSaveConst()
+        }
 
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {

@@ -27,7 +27,6 @@ class LanguageActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        onLoadDarkMode()
         super.onCreate(savedInstanceState)
         binding = ActivityLanguageBinding.inflate(layoutInflater)
         setContentView(binding.root)

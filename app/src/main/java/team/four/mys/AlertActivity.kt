@@ -24,7 +24,6 @@ class AlertActivity : AppCompatActivity() {
     private val databaseDarkMode by lazy { AppDatabase.getDatabase(this).darkModeDao() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        onLoadDarkMode()
         super.onCreate(savedInstanceState)
         binding = ActivityAlertBinding.inflate(layoutInflater)
         setContentView(binding.root)
