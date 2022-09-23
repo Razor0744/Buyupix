@@ -49,9 +49,9 @@ class HomeFragment : Fragment() {
         date()
         CoroutineScope(IO).launch {
             fireStore()
+            setPrice()
         }
         statusBar()
-        setPrice()
 
         return binding?.root
     }
@@ -131,16 +131,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun setPrice() {
-        binding?.price?.text = "0 USD"
         db = FirebaseFirestore.getInstance()
-        var i = 1
-        println("gg")
-        while (i <= 31) {
-            db.collection(uid()).document(i.toString()).collection("date").document()
-                .get()
-
-            i++
-        }
+        db.collection(uid()).document("price")
+            .get()
+            .addOnSuccessListener { doc->
+                binding?.price?.text = "${doc.get("price").toString()} USD"
+            }
     }
 
     private fun date() {
