@@ -2,20 +2,13 @@ package team.four.mys
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import ather.LocaleHelper
-import team.four.mys.databinding.ActivityFirstBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import modelsRoom.AlertRoom
-import modelsRoom.DarkModeRoom
-import modelsRoom.LanguageRoom
-import room.AppDatabase
+import team.four.mys.databinding.ActivityFirstBinding
 
 class FirstActivity : AppCompatActivity() {
 

@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.ConcatAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
@@ -52,6 +51,7 @@ class HomeFragment : Fragment() {
             fireStore()
         }
         statusBar()
+        setPrice()
 
         return binding?.root
     }
@@ -125,8 +125,20 @@ class HomeFragment : Fragment() {
                         }
                         adapterSubscriptions.notifyDataSetChanged()
                     }
-
                 })
+            i++
+        }
+    }
+
+    private fun setPrice() {
+        binding?.price?.text = "0 USD"
+        db = FirebaseFirestore.getInstance()
+        var i = 1
+        println("gg")
+        while (i <= 31) {
+            db.collection(uid()).document(i.toString()).collection("date").document()
+                .get()
+
             i++
         }
     }

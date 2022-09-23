@@ -19,7 +19,6 @@ import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class CreateSubscriptionActivity : AppCompatActivity() {
@@ -82,7 +81,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         fireStore()
     }
 
-    private fun fireStore(){
+    private fun fireStore() {
         binding.create.setOnClickListener {
             if (binding.name.text.trim().toString().isNotEmpty()) {
                 if (binding.price.text.trim().toString().isNotEmpty()) {
@@ -97,6 +96,19 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "description" to binding.description.text.trim().toString(),
                                         "image" to image()
                                     )
+                                    db.collection(uid()).document("price")
+                                        .get()
+                                        .addOnSuccessListener { doc ->
+                                            val priceStart = doc.get("price")
+                                            val priceEnd = Integer.parseInt(priceStart.toString()) + Integer.parseInt(
+                                                binding.price.text.toString().trim()
+                                            )
+                                            val price = hashMapOf(
+                                                "price" to priceEnd as Number
+                                            )
+                                            db.collection(uid()).document("price")
+                                                .set(price)
+                                        }
                                     db.collection(uid())
                                         .document(binding.buttonCalender.text.trim().toString())
                                         .collection("noDate")
@@ -111,6 +123,19 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             .toString(),
                                         "image" to image()
                                     )
+                                    db.collection(uid()).document("price")
+                                        .get()
+                                        .addOnSuccessListener { doc ->
+                                            val priceStart = doc.get("price")
+                                            val priceEnd = Integer.parseInt(priceStart.toString()) + Integer.parseInt(
+                                                binding.price.text.toString().trim()
+                                            )
+                                            val price = hashMapOf(
+                                                "price" to priceEnd
+                                            )
+                                            db.collection(uid()).document("price")
+                                                .set(price)
+                                        }
                                     db.collection(uid())
                                         .document(binding.buttonCalender.text.trim().toString())
                                         .collection("date")
