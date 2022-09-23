@@ -130,6 +130,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setPrice() {
         db = FirebaseFirestore.getInstance()
         db.collection(uid()).document("price")
