@@ -1,6 +1,7 @@
 package team.four.mys
 
 import adapters.CustomRecyclerAdapterLanguage
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -23,12 +24,12 @@ class LanguageActivity : AppCompatActivity() {
 
     //Room
     private val databaseLanguage by lazy { AppDatabase.getDatabase(this).languageDao() }
-    private val databaseDarkMode by lazy { AppDatabase.getDatabase(this).darkModeDao() }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLanguageBinding.inflate(layoutInflater)
+        onLoadDarkMode()
         setContentView(binding.root)
 
         binding.buttonArrowLeft.setOnClickListener {
@@ -63,7 +64,7 @@ class LanguageActivity : AppCompatActivity() {
 
     private suspend fun onSaveLanguage(string: String) {
         val language = LanguageRoom(1, string)
-        databaseLanguage.updateLanguage(LanguageRoom(1, string))
+        databaseLanguage.updateLanguage(language)
     }
 
     private fun onLoadLanguage(): String {
@@ -72,8 +73,9 @@ class LanguageActivity : AppCompatActivity() {
     }
 
     private fun onLoadDarkMode() {
-        val darkMode = databaseDarkMode.getById(1)
-        if (darkMode.mode) {
+        val preferences = getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
+        val darkMode = preferences?.getBoolean("DarkMode", false)
+        if (darkMode == true) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

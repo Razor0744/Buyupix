@@ -1,6 +1,7 @@
 package team.four.mys
 
 import adapters.CustomRecyclerAdapterAlert
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +27,7 @@ class AlertActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAlertBinding.inflate(layoutInflater)
+        onLoadDarkMode()
         setContentView(binding.root)
 
         binding.buttonArrowLeft.setOnClickListener {
@@ -64,8 +66,9 @@ class AlertActivity : AppCompatActivity() {
     }
 
     private fun onLoadDarkMode() {
-        val darkMode = databaseDarkMode.getById(1)
-        if (darkMode.mode) {
+        val preferences = getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
+        val darkMode = preferences?.getBoolean("DarkMode", false)
+        if (darkMode == true) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

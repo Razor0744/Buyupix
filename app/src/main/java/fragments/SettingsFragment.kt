@@ -66,9 +66,11 @@ class SettingsFragment : Fragment() {
         binding = null
     }
 
-    private suspend fun onSaveDarkMode(boolean: Boolean) {
-        val darkMode = DarkModeRoom(1, boolean)
-        databaseDarkMode.updateDarkMode(darkMode)
+    private fun onSaveDarkMode(boolean: Boolean) {
+        val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
+        val editor = preferences?.edit()
+        editor?.putBoolean("DarkMode", boolean)
+        editor?.apply()
     }
 
     private fun onLoadDarkModeSwitch() {

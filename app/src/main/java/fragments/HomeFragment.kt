@@ -39,14 +39,13 @@ class HomeFragment : Fragment() {
 
         subscriptions = arrayListOf()
         adapterSubscriptions =
-            CustomRecyclerAdapterSubscriptions(requireContext(), subscriptions)
+            CustomRecyclerAdapterSubscriptions(requireContext(), subscriptions, date())
         binding?.recyclerView?.adapter = adapterSubscriptions
 
         binding?.createSubscription?.setOnClickListener {
             startActivity(Intent(context, CreateSubscriptionActivity::class.java))
         }
 
-        date()
         CoroutineScope(IO).launch {
             fireStore()
             setPrice()
@@ -140,8 +139,9 @@ class HomeFragment : Fragment() {
             }
     }
 
-    private fun date() {
+    private fun date(): String {
         val month: String = SimpleDateFormat("LLLL", Locale.getDefault()).format(Date())
         binding?.month?.text = month
+        return month
     }
 }

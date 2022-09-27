@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        onLoadDarkMode()
         setContentView(binding.root)
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -97,9 +98,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onLoadDarkMode() {
-        val darkMode = databaseDarkMode.getById(1)
-        println(darkMode.mode)
-        if (darkMode.mode) {
+        val preferences = getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
+        val darkMode = preferences?.getBoolean("DarkMode", false)
+        if (darkMode == true) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

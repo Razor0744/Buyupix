@@ -13,7 +13,8 @@ import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithoutDateBinding
 
 class CustomRecyclerAdapterSubscriptions(
     private val context: Context,
-    private val subscriptions: List<Subscriptions>
+    private val subscriptions: List<Subscriptions>,
+     private val month: String
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -29,7 +30,7 @@ class CustomRecyclerAdapterSubscriptions(
 
             binding.nameSubscription.text = subscriptions.name
             binding.priceSubscription.text = subscriptions.price
-            binding.writeOffDateSubscription.text = subscriptions.writeOffDate
+            binding.writeOffDateSubscription.text = subscriptions.writeOffDate + " $month"
         }
     }
 
