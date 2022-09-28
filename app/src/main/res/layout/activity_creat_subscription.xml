@@ -67,25 +67,40 @@
         app:layout_constraintTop_toBottomOf="@+id/imageOfSubscription"
         tools:ignore="RtlSymmetry" />
 
-    <EditText
-        android:id="@+id/price"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/priceLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="46dp"
+        android:layout_height="51dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="8dp"
-        android:autofillHints="username"
-        android:background="@drawable/item_background_create_subscription"
         android:hint="@string/price"
-        android:inputType="number"
-        android:paddingStart="13dp"
         android:textColor="@color/textMain"
         android:textColorHint="@color/textPlaceholder"
         android:textSize="16sp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="@color/blueMain"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/blueMain"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/priceSpinner"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        tools:ignore="RtlSymmetry" />
+        app:layout_constraintTop_toBottomOf="@id/name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autofillHints="username"
+            android:inputType="number"
+            android:paddingStart="13dp"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/priceSpinner"
@@ -95,7 +110,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/item_background_create_subscription"
-        app:layout_constraintLeft_toRightOf="@id/price"
+        app:layout_constraintLeft_toRightOf="@id/priceLayout"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name" />
 
@@ -116,7 +131,7 @@
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/price"
+        app:layout_constraintTop_toBottomOf="@id/priceLayout"
         tools:ignore="RtlSymmetry" />
 
     <androidx.appcompat.widget.AppCompatButton

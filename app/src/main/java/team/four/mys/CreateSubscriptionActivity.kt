@@ -84,7 +84,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     private fun fireStore() {
         binding.create.setOnClickListener {
             if (binding.name.text.trim().toString().isNotEmpty()) {
-                if (binding.price.text.trim().toString().isNotEmpty()) {
+                if (binding.price.text?.trim().toString().isNotEmpty()) {
                     if (binding.buttonCalender.text.trim().toString() != "Write-off date") {
                         db.collection(uid()).document(binding.buttonCalender.text.trim().toString())
                             .collection("date").get()
@@ -92,7 +92,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                 if (document.documents.isNotEmpty()) {
                                     val data = hashMapOf(
                                         "name" to binding.name.text.trim().toString(),
-                                        "price" to binding.price.text.trim().toString(),
+                                        "price" to binding.price.text?.trim().toString(),
                                         "description" to binding.description.text.trim().toString(),
                                         "image" to image()
                                     )
@@ -117,7 +117,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                 } else {
                                     val data = hashMapOf(
                                         "name" to binding.name.text.trim().toString(),
-                                        "price" to binding.price.text.trim().toString(),
+                                        "price" to binding.price.text?.trim().toString(),
                                         "description" to binding.description.text.trim().toString(),
                                         "writeOffDate" to binding.buttonCalender.text.trim()
                                             .toString(),
