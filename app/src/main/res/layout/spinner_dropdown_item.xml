@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/text1"
+    android:maxLines="1"
+    android:layout_width="match_parent"
+    android:background="@drawable/item_background_create_subscription"
+    android:gravity="start|center"
+    android:paddingStart="13dp"
+    android:layout_height="46dp"
+    android:textColor="@color/textPlaceholder"
+    tools:ignore="RtlSymmetry" />

@@ -29,7 +29,11 @@ class CustomRecyclerAdapterSubscriptions(
                 .into(binding.imageSubscription)
 
             binding.nameSubscription.text = subscriptions.name
-            binding.priceSubscription.text = subscriptions.price
+            when (subscriptions.priceSpinner){
+                "BYN" -> binding.priceSubscription.text = "Br" + subscriptions.price
+                "EUR" -> binding.priceSubscription.text = "€" + subscriptions.price
+                "USD" -> binding.priceSubscription.text = "$" + subscriptions.price
+            }
             binding.writeOffDateSubscription.text = subscriptions.writeOffDate + " $month"
         }
     }
@@ -45,7 +49,11 @@ class CustomRecyclerAdapterSubscriptions(
                 .into(binding.imageSubscription)
 
             binding.nameSubscription.text = subscriptions.name
-            binding.priceSubscription.text = subscriptions.price
+            when (subscriptions.priceSpinner){
+                "BYN" -> binding.priceSubscription.text = "Br" + subscriptions.price
+                "EUR" -> binding.priceSubscription.text = "€" + subscriptions.price
+                "USD" -> binding.priceSubscription.text = "$" + subscriptions.price
+            }
         }
     }
 

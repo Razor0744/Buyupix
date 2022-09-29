@@ -134,8 +134,12 @@ class HomeFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
         db.collection(uid()).document("price")
             .get()
-            .addOnSuccessListener { doc->
-                binding?.price?.text = "${doc.get("price").toString()} USD"
+            .addOnSuccessListener { doc ->
+                if (doc.get("price") != null) {
+                    binding?.price?.text = "${doc.get("price").toString()} USD"
+                } else {
+                    binding?.price?.text = "0 USD"
+                }
             }
     }
 

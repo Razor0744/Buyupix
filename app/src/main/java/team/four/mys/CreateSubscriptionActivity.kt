@@ -35,7 +35,30 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         binding = ActivityCreatSubscriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Calendar visibility
+        binding.buttonArrowLeft.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("fragment", "HomeFragment")
+            startActivity(intent)
+        }
+
+        selectedDate = LocalDate.now()
+        setMonthView()
+        autoCompleteTextView()
+        fireStore()
+        calendarVisibility()
+        priceSpinner()
+    }
+
+    private fun priceSpinner() {
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.spinner, R.layout.spinner_item
+        )
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
+        binding.priceSpinner.adapter = adapter
+    }
+
+    private fun calendarVisibility() {
         binding.groupCalendar.visibility = View.INVISIBLE
         binding.buttonCalender.setOnClickListener {
             if (binding.groupCalendar.visibility == View.INVISIBLE) {
@@ -67,18 +90,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 )
             }
         }
-
-        binding.buttonArrowLeft.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("fragment", "HomeFragment")
-            startActivity(intent)
-        }
-
-        selectedDate = LocalDate.now()
-        println(selectedDate)
-        setMonthView()
-        autoCompleteTextView()
-        fireStore()
     }
 
     private fun fireStore() {
@@ -86,23 +97,30 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             if (binding.name.text.trim().toString().isNotEmpty()) {
                 if (binding.price.text?.trim().toString().isNotEmpty()) {
                     if (binding.buttonCalender.text?.trim().toString() != "Write-off date") {
-                        db.collection(uid()).document(binding.buttonCalender.text?.trim().toString())
+                        db.collection(uid())
+                            .document(binding.buttonCalender.text?.trim().toString())
                             .collection("date").get()
                             .addOnSuccessListener { document ->
                                 if (document.documents.isNotEmpty()) {
                                     val data = hashMapOf(
                                         "name" to binding.name.text.trim().toString(),
                                         "price" to binding.price.text?.trim().toString(),
-                                        "description" to binding.description.text?.trim().toString(),
-                                        "image" to image()
+                                        "description" to binding.description.text?.trim()
+                                            .toString(),
+                                        "image" to image(),
+                                        "priceSpinner" to binding.priceSpinner.selectedItem.toString()
                                     )
                                     db.collection(uid()).document("price")
                                         .get()
                                         .addOnSuccessListener { doc ->
-                                            val priceStart = doc.get("price")
-                                            val priceEnd = Integer.parseInt(priceStart.toString()) + Integer.parseInt(
-                                                binding.price.text.toString().trim()
-                                            )
+                                            var priceStart = doc.get("price")
+                                            if (priceStart == null){
+                                                priceStart = 0
+                                            }
+                                            val priceEnd =
+                                                Integer.parseInt(priceStart.toString()) + Integer.parseInt(
+                                                    binding.price.text.toString().trim()
+                                                )
                                             val price = hashMapOf(
                                                 "price" to priceEnd as Number
                                             )
@@ -118,18 +136,24 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                     val data = hashMapOf(
                                         "name" to binding.name.text.trim().toString(),
                                         "price" to binding.price.text?.trim().toString(),
-                                        "description" to binding.description.text?.trim().toString(),
+                                        "description" to binding.description.text?.trim()
+                                            .toString(),
                                         "writeOffDate" to binding.buttonCalender.text?.trim()
                                             .toString(),
-                                        "image" to image()
+                                        "image" to image(),
+                                        "priceSpinner" to binding.priceSpinner.selectedItem.toString()
                                     )
                                     db.collection(uid()).document("price")
                                         .get()
                                         .addOnSuccessListener { doc ->
-                                            val priceStart = doc.get("price")
-                                            val priceEnd = Integer.parseInt(priceStart.toString()) + Integer.parseInt(
-                                                binding.price.text.toString().trim()
-                                            )
+                                            var priceStart = doc.get("price")
+                                            if (priceStart == null){
+                                                priceStart = 0
+                                            }
+                                            val priceEnd =
+                                                Integer.parseInt(priceStart.toString()) + Integer.parseInt(
+                                                    binding.price.text.toString().trim()
+                                                )
                                             val price = hashMapOf(
                                                 "price" to priceEnd
                                             )
