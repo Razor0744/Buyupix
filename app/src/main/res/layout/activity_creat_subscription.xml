@@ -84,7 +84,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/priceLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="51dp"
         android:layout_marginStart="20dp"
@@ -132,7 +132,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/descriptionLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="51dp"
         android:layout_marginStart="20dp"
@@ -166,28 +166,44 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonCalender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/buttonCalenderLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/item_background_create_subscription"
-        android:drawableEnd="@drawable/ic_calendar"
-        android:fontFamily="@font/roboto"
-        android:gravity="start|center"
-        android:paddingStart="13dp"
-        android:paddingEnd="13dp"
-        android:stateListAnimator="@null"
-        android:text="@string/writeOffDate"
-        android:textAllCaps="false"
-        android:textColor="@color/textPlaceholder"
+        android:hint="@string/writeOffDate"
+        android:textColor="@color/textMain"
+        android:textColorHint="@color/textPlaceholder"
         android:textSize="16sp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="@drawable/text_input_box_stroke_color"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/blueMain"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/descriptionLayout"
-        tools:ignore="RtlSymmetry" />
+        app:layout_constraintTop_toBottomOf="@id/descriptionLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/buttonCalender"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autofillHints="username"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:fontFamily="@font/roboto"
+            android:gravity="start|center"
+            android:inputType="text"
+            android:paddingStart="13dp"
+            android:paddingEnd="13dp"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -249,7 +265,7 @@
         android:layout_marginBottom="-10dp"
         android:background="@drawable/group_calendarview_background"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/buttonCalender"
+        app:layout_constraintBottom_toTopOf="@id/buttonCalenderLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 

@@ -85,8 +85,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         binding.create.setOnClickListener {
             if (binding.name.text.trim().toString().isNotEmpty()) {
                 if (binding.price.text?.trim().toString().isNotEmpty()) {
-                    if (binding.buttonCalender.text.trim().toString() != "Write-off date") {
-                        db.collection(uid()).document(binding.buttonCalender.text.trim().toString())
+                    if (binding.buttonCalender.text?.trim().toString() != "Write-off date") {
+                        db.collection(uid()).document(binding.buttonCalender.text?.trim().toString())
                             .collection("date").get()
                             .addOnSuccessListener { document ->
                                 if (document.documents.isNotEmpty()) {
@@ -110,7 +110,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                                 .set(price)
                                         }
                                     db.collection(uid())
-                                        .document(binding.buttonCalender.text.trim().toString())
+                                        .document(binding.buttonCalender.text?.trim().toString())
                                         .collection("noDate")
                                         .document(binding.name.text.trim().toString()).set(data)
                                     startActivity(Intent(this, MainActivity::class.java))
@@ -119,7 +119,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "name" to binding.name.text.trim().toString(),
                                         "price" to binding.price.text?.trim().toString(),
                                         "description" to binding.description.text?.trim().toString(),
-                                        "writeOffDate" to binding.buttonCalender.text.trim()
+                                        "writeOffDate" to binding.buttonCalender.text?.trim()
                                             .toString(),
                                         "image" to image()
                                     )
@@ -137,7 +137,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                                 .set(price)
                                         }
                                     db.collection(uid())
-                                        .document(binding.buttonCalender.text.trim().toString())
+                                        .document(binding.buttonCalender.text?.trim().toString())
                                         .collection("date")
                                         .document(binding.name.text.trim().toString()).set(data)
                                     startActivity(Intent(this, MainActivity::class.java))
@@ -259,7 +259,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun onItemClick(dayText: String) {
         if (dayText != "") {
-            binding.buttonCalender.text = dayText
+            binding.buttonCalender.setText(dayText)
             binding.groupCalendar.visibility = View.INVISIBLE
             binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(
                 null,
