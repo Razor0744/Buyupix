@@ -2,7 +2,6 @@
 
     <!--FirstActivity-->
     <string name="welcome">Welcome</string>
-    <string name="description">Manage subscriptions, lower your bills, and stay on top of your financial life.</string>
 
     <!--LoginActivity-->
     <string name="authorization">Authorization</string>
@@ -20,30 +19,52 @@
     <string name="name_app">My Subscriptions</string>
 
     <!--CreateSubscriptionActivity-->
+    <string name="createSubscription">Create Sub</string>
     <string name="createNameSubscription">Name</string>
-    <string name="crateCostSubscription">Cost</string>
-    <string name="date">Enter the write-off date</string>
-    <string name="button_create">Create</string>
-    <string-array name="autoName">
-        <item>Spotify</item>
-        <item>VK Combo</item>
-        <item>Netflix</item>
-        <item>Apple Music</item>
+    <string name="price">Price</string>
+    <string name="description">Description</string>
+    <string name="reminder">Reminder</string>
+    <string name="buttonCreate">Create</string>
+    <string name="writeOffDate">Write-off date</string>
+
+    <!--Calendar-->
+    <string name="monday">Mon</string>
+    <string name="tuesday">Tue</string>
+    <string name="wednesday">Wed</string>
+    <string name="thursday">Thu</string>
+    <string name="friday">Fri</string>
+    <string name="saturday">Sat</string>
+    <string name="sunday">Sun</string>
+
+    <!--Spinner-->
+    <string-array name="spinner">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>BYN</item>
     </string-array>
-    <string-array name="costSpinner">
-        <item>$ / mon</item>
-        <item>$ / week</item>
-        <item>BYN / mon</item>
-    </string-array>
+
+    <!--SubscriptionInfo-->
+    <string name="subscriptionInfo">Subs info</string>
+    <string name="name">Name</string>
+    <string name="category">Category</string>
 
     <!--Navigation-->
     <string name="home">Home</string>
     <string name="statistics">Statistics</string>
     <string name="settings">Settings</string>
 
-    <!--SettingsActivity-->
+    <!--SettingsFragment-->
     <string name="alert">Alert</string>
     <string name="darkMode">Dark Mode</string>
     <string name="language">Language</string>
     <string name="about">About</string>
+
+    <!--HomeFragment-->
+    <string-array name="names">
+        <item>Spotify</item>
+        <item>VK Combo</item>
+        <item>Netflix</item>
+        <item>Apple Music</item>
+    </string-array>
+
 </resources>

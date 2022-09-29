@@ -93,7 +93,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                     val data = hashMapOf(
                                         "name" to binding.name.text.trim().toString(),
                                         "price" to binding.price.text?.trim().toString(),
-                                        "description" to binding.description.text.trim().toString(),
+                                        "description" to binding.description.text?.trim().toString(),
                                         "image" to image()
                                     )
                                     db.collection(uid()).document("price")
@@ -118,7 +118,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                     val data = hashMapOf(
                                         "name" to binding.name.text.trim().toString(),
                                         "price" to binding.price.text?.trim().toString(),
-                                        "description" to binding.description.text.trim().toString(),
+                                        "description" to binding.description.text?.trim().toString(),
                                         "writeOffDate" to binding.buttonCalender.text.trim()
                                             .toString(),
                                         "image" to image()
