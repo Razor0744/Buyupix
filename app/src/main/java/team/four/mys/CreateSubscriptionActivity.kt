@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -80,6 +81,14 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             }
         }
         binding.constrainParent.setOnClickListener {
+            binding.name.clearFocus()
+            binding.price.clearFocus()
+            binding.description.clearFocus()
+            binding.buttonCalender.clearFocus()
+            val imm = getSystemService(
+                INPUT_METHOD_SERVICE
+            ) as InputMethodManager
+            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
             if (binding.groupCalendar.visibility == View.VISIBLE) {
                 binding.groupCalendar.visibility = View.INVISIBLE
                 binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(

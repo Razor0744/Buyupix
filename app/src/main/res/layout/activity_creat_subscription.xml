@@ -55,7 +55,6 @@
         android:hint="@string/createNameSubscription"
         android:textColor="@color/textMain"
         android:textColorHint="@color/textPlaceholder"
-        android:textSize="16sp"
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopEnd="8dp"
@@ -71,6 +70,7 @@
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/name"
             android:layout_width="match_parent"
+            android:textSize="16sp"
             android:layout_height="match_parent"
             android:autofillHints="username"
             android:completionThreshold="1"
