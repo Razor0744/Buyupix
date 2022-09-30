@@ -1,6 +1,8 @@
 package team.four.mys
 
 import adapters.CustomRecyclerAdapterCalendar
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -48,6 +50,21 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         fireStore()
         calendarVisibility()
         priceSpinner()
+        statusBar()
+    }
+
+    private fun statusBar() {
+        window.statusBarColor =
+            ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+        val preferences = getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
+        val darkMode = preferences?.getBoolean("DarkMode", false)
+        if (darkMode == true) {
+            window.decorView.systemUiVisibility =
+                (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+        } else {
+          window.decorView.systemUiVisibility =
+                (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+        }
     }
 
     private fun priceSpinner() {
