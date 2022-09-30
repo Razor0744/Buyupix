@@ -60,7 +60,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
 
     private fun calendarVisibility() {
         binding.groupCalendar.visibility = View.INVISIBLE
-        binding.buttonCalender.setOnClickListener {
+        binding.calendarVis.setOnClickListener {
             if (binding.groupCalendar.visibility == View.INVISIBLE) {
                 binding.groupCalendar.visibility = View.VISIBLE
                 binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(
