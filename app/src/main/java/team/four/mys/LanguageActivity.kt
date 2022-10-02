@@ -8,12 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import ather.LocaleHelper
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import models.Language
-import modelsRoom.LanguageRoom
-import room.AppDatabase
 import team.four.mys.DataLanguage.language
 import team.four.mys.databinding.ActivityLanguageBinding
 

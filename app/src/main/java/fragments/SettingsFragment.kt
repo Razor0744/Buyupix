@@ -10,12 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.ViewGroup
+import androidx.core.animation.doOnEnd
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import team.four.mys.AlertActivity
 import team.four.mys.LanguageActivity
 import team.four.mys.R
@@ -42,10 +40,10 @@ class SettingsFragment : Fragment() {
 
         binding?.switchDarkMode?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                CoroutineScope(Dispatchers.IO).launch { onSaveDarkMode(true) }
+                onSaveDarkMode(true)
                 revealDark()
             } else {
-                CoroutineScope(Dispatchers.IO).launch { onSaveDarkMode(false) }
+                onSaveDarkMode(false)
                 revealLight()
             }
         }
@@ -201,14 +199,9 @@ class SettingsFragment : Fragment() {
         binding?.alert?.isEnabled = false
         binding?.switchDarkMode?.isEnabled = false
         binding?.language?.isEnabled = false
-        anim.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                super.onAnimationEnd(animation)
-                binding?.alert?.isEnabled = true
-                binding?.switchDarkMode?.isEnabled = true
-                binding?.language?.isEnabled = true
-            }
-        })
+        anim.doOnEnd { binding?.alert?.isEnabled = true
+            binding?.switchDarkMode?.isEnabled = true
+            binding?.language?.isEnabled = true }
         anim.start()
     }
 
@@ -333,14 +326,9 @@ class SettingsFragment : Fragment() {
         binding?.alert?.isEnabled = false
         binding?.switchDarkMode?.isEnabled = false
         binding?.language?.isEnabled = false
-        anim.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                super.onAnimationEnd(animation)
-                binding?.alert?.isEnabled = true
-                binding?.switchDarkMode?.isEnabled = true
-                binding?.language?.isEnabled = true
-            }
-        })
+        anim.doOnEnd { binding?.alert?.isEnabled = true
+            binding?.switchDarkMode?.isEnabled = true
+            binding?.language?.isEnabled = true }
         anim.start()
     }
 }

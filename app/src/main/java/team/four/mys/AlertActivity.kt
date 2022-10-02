@@ -7,12 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import models.Alert
-import modelsRoom.AlertRoom
-import room.AppDatabase
 import team.four.mys.databinding.ActivityAlertBinding
 
 class AlertActivity : AppCompatActivity() {

@@ -9,13 +9,6 @@ import ather.LocaleHelper
 import fragments.HomeFragment
 import fragments.SettingsFragment
 import fragments.StatisticsFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import modelsRoom.AlertRoom
-import modelsRoom.DarkModeRoom
-import modelsRoom.LanguageRoom
-import room.AppDatabase
 import team.four.mys.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -27,20 +20,11 @@ class MainActivity : AppCompatActivity() {
     private val statisticsFragment = StatisticsFragment()
     private val settingsFragment = SettingsFragment()
 
-    //Room
-    private val databaseLanguage by lazy { AppDatabase.getDatabase(this).languageDao() }
-    private val databaseAlert by lazy { AppDatabase.getDatabase(this).alertDao() }
-    private val databaseDarkMode by lazy { AppDatabase.getDatabase(this).darkModeDao() }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         onLoadDarkMode()
         setContentView(binding.root)
-
-        CoroutineScope(Dispatchers.IO).launch {
-            onSaveConst()
-        }
 
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
@@ -75,15 +59,6 @@ class MainActivity : AppCompatActivity() {
                 replaceFragment(homeFragment)
             }
         }
-    }
-
-    private suspend fun onSaveConst() {
-        val alert = AlertRoom(1, "The day before the write-off")
-        val language = LanguageRoom(1, "USA")
-        val darkMode = DarkModeRoom(1, false)
-        databaseAlert.addAlert(alert)
-        databaseLanguage.addLanguage(language)
-        databaseDarkMode.addDarkMode(darkMode)
     }
 
     private fun replaceFragment(fragment: Fragment) {
