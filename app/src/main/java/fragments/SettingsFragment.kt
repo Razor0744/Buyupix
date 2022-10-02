@@ -1,5 +1,7 @@
 package fragments
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -14,22 +16,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import modelsRoom.DarkModeRoom
-import room.AppDatabase
 import team.four.mys.AlertActivity
 import team.four.mys.LanguageActivity
 import team.four.mys.R
 import team.four.mys.databinding.FragmentSettingsBinding
-import kotlin.concurrent.thread
 import kotlin.math.hypot
 
 
 class SettingsFragment : Fragment() {
 
     private var binding: FragmentSettingsBinding? = null
-
-    //Room
-    private val databaseDarkMode by lazy { AppDatabase.getDatabase(requireContext()).darkModeDao() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,10 +43,10 @@ class SettingsFragment : Fragment() {
         binding?.switchDarkMode?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 CoroutineScope(Dispatchers.IO).launch { onSaveDarkMode(true) }
-                //revealDark()
+                revealDark()
             } else {
                 CoroutineScope(Dispatchers.IO).launch { onSaveDarkMode(false) }
-                //revealLight()
+                revealLight()
             }
         }
 
@@ -202,8 +198,18 @@ class SettingsFragment : Fragment() {
             endRadius.toFloat()
         )
         anim.duration = 400
+        binding?.alert?.isEnabled = false
+        binding?.switchDarkMode?.isEnabled = false
+        binding?.language?.isEnabled = false
+        anim.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                super.onAnimationEnd(animation)
+                binding?.alert?.isEnabled = true
+                binding?.switchDarkMode?.isEnabled = true
+                binding?.language?.isEnabled = true
+            }
+        })
         anim.start()
-
     }
 
     private fun revealLight() {
@@ -324,6 +330,17 @@ class SettingsFragment : Fragment() {
             endRadius.toFloat()
         )
         anim.duration = 400
+        binding?.alert?.isEnabled = false
+        binding?.switchDarkMode?.isEnabled = false
+        binding?.language?.isEnabled = false
+        anim.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                super.onAnimationEnd(animation)
+                binding?.alert?.isEnabled = true
+                binding?.switchDarkMode?.isEnabled = true
+                binding?.language?.isEnabled = true
+            }
+        })
         anim.start()
     }
 }

@@ -22,14 +22,10 @@ class LanguageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLanguageBinding
     private lateinit var adapterLanguage: CustomRecyclerAdapterLanguage
 
-    //Room
-    private val databaseLanguage by lazy { AppDatabase.getDatabase(this).languageDao() }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        onLoadDarkMode()
         super.onCreate(savedInstanceState)
         binding = ActivityLanguageBinding.inflate(layoutInflater)
-        onLoadDarkMode()
         setContentView(binding.root)
 
         binding.buttonArrowLeft.setOnClickListener {
@@ -38,21 +34,15 @@ class LanguageActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            adapter()
-            println(onLoadLanguage())
-        }
+        adapter()
     }
 
-    private fun adapter(){
+    private fun adapter() {
         adapterLanguage =
             CustomRecyclerAdapterLanguage(this, language, onLoadLanguage()) { language ->
                 when (language.name) {
                     "USA" -> LocaleHelper().setLocale(this, "en")
                     "Russia" -> LocaleHelper().setLocale(this, "ru")
-                }
-                CoroutineScope(Dispatchers.IO).launch {
-                    onSaveLanguage(language.name.toString())
                 }
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")
@@ -62,14 +52,10 @@ class LanguageActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapterLanguage
     }
 
-    private suspend fun onSaveLanguage(string: String) {
-        val language = LanguageRoom(1, string)
-        databaseLanguage.updateLanguage(language)
-    }
-
     private fun onLoadLanguage(): String {
-        val language = databaseLanguage.getById(1)
-        return language.name
+        val preferences = getSharedPreferences("Locale", MODE_PRIVATE)
+        val locale = preferences.getString("Locale", "en")
+        return locale.toString()
     }
 
     private fun onLoadDarkMode() {

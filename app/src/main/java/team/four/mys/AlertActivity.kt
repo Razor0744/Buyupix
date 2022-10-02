@@ -20,14 +20,10 @@ class AlertActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAlertBinding
     private lateinit var adapterAlert: CustomRecyclerAdapterAlert
 
-    //Room
-    private val databaseAlert by lazy { AppDatabase.getDatabase(this).alertDao() }
-    private val databaseDarkMode by lazy { AppDatabase.getDatabase(this).darkModeDao() }
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        onLoadDarkMode()
         super.onCreate(savedInstanceState)
         binding = ActivityAlertBinding.inflate(layoutInflater)
-        onLoadDarkMode()
         setContentView(binding.root)
 
         binding.buttonArrowLeft.setOnClickListener {
@@ -36,17 +32,13 @@ class AlertActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            adapter()
-        }
+        adapter()
     }
 
-    private fun adapter(){
+    private fun adapter() {
         adapterAlert =
             CustomRecyclerAdapterAlert(this, DataAlert.alert, onLoadAlert()) { alertClick ->
-                CoroutineScope(Dispatchers.IO).launch {
-                    onSaveAlert(alertClick.name.toString())
-                }
+                onSaveAlert(alertClick.name.toString())
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")
                 startActivity(intent)
@@ -55,14 +47,17 @@ class AlertActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapterAlert
     }
 
-    private suspend fun onSaveAlert(string: String) {
-        val alert = AlertRoom(1, string)
-        databaseAlert.updateAlert(AlertRoom(1, string))
+    private fun onSaveAlert(string: String) {
+        val preferences = getSharedPreferences("Alert", Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putString("Alert", string)
+        editor.apply()
     }
 
     private fun onLoadAlert(): String {
-        val alert = databaseAlert.getById(1)
-        return alert.name
+        val preferences = getSharedPreferences("Alert", Context.MODE_PRIVATE)
+        val alert = preferences.getString("Alert", "The day before the write-off")
+        return alert.toString()
     }
 
     private fun onLoadDarkMode() {
