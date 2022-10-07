@@ -2,13 +2,10 @@ package adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import models.Language
-import team.four.mys.R
+import team.four.mys.databinding.RecyclerviewItemLanguageBinding
 
 class CustomRecyclerAdapterLanguage(
     private val context: Context,
@@ -16,21 +13,18 @@ class CustomRecyclerAdapterLanguage(
     private val locale: String,
     private val itemClick: (Language) -> Unit
 ) :
-    RecyclerView.Adapter<CustomRecyclerAdapterLanguage.MyViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    class MyViewHolder(itemView: View, private val itemClick: (Language) -> Unit) :
-        RecyclerView.ViewHolder(itemView) {
-        private val iconLanguage = itemView.findViewById<ImageView>(R.id.iconLanguage)
-        private val textLanguage = itemView.findViewById<TextView>(R.id.textLanguage)
-        private val imageButton = itemView.findViewById<ImageView>(R.id.imageLanguage)
+    class ViewHolderLanguage(private val binding: RecyclerviewItemLanguageBinding, private val itemClick: (Language) -> Unit) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bindSubscription(language: Language, context: Context, locale: String) {
 
-            textLanguage.text = language.name
+            binding.textLanguage.text = language.name
 
             val resourceIdIcon =
                 context.resources.getIdentifier(language.icon, "drawable", context.packageName)
-            iconLanguage.setImageResource(resourceIdIcon)
+            binding.iconLanguage.setImageResource(resourceIdIcon)
 
             val resourceIdImage =
                 context.resources.getIdentifier(
@@ -40,13 +34,13 @@ class CustomRecyclerAdapterLanguage(
                 )
             when (locale) {
                 "ru" -> if (language.name == "Russia") {
-                    imageButton.setImageResource(resourceIdImage)
+                    binding.imageLanguage.setImageResource(resourceIdImage)
                 }
                 "en" -> if (language.name == "USA") {
-                    imageButton.setImageResource(resourceIdImage)
+                    binding.imageLanguage.setImageResource(resourceIdImage)
                 }
                 else -> if (language.name == "USA") {
-                    imageButton.setImageResource(resourceIdImage)
+                    binding.imageLanguage.setImageResource(resourceIdImage)
                 }
             }
 
@@ -56,20 +50,17 @@ class CustomRecyclerAdapterLanguage(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.recyclerview_item_language, parent, false)
-        return MyViewHolder(itemView, itemClick)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val binding =
+            RecyclerviewItemLanguageBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        return ViewHolderLanguage(binding, itemClick)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bindSubscription(language[position], context, locale)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as ViewHolderLanguage).bindSubscription(language[position], context, locale)
     }
 
     override fun getItemCount() = language.size
-
-    override fun getItemViewType(position: Int): Int {
-        return R.layout.recyclerview_item_language
-    }
 }

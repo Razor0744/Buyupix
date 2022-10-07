@@ -1,7 +1,6 @@
 package team.four.mys
 
 import adapters.CustomRecyclerAdapterCalendar
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Build

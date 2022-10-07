@@ -60,11 +60,11 @@
     <string name="about">About</string>
 
     <!--HomeFragment-->
-<string-array name="names">
-    <item>Spotify</item>
-    <item>VK Combo</item>
-    <item>Netflix</item>
-    <item>Apple Music</item>
-</string-array>
+    <string-array name="names">
+        <item>Spotify</item>
+        <item>VK Combo</item>
+        <item>Netflix</item>
+        <item>Apple Music</item>
+    </string-array>
 
 </resources>

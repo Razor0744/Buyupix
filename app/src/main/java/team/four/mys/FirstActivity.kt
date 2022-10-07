@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import ather.LocaleHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -16,6 +17,7 @@ class FirstActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFirstBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        onLoadDarkMode()
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -39,6 +41,15 @@ class FirstActivity : AppCompatActivity() {
     private fun reload() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
+    }
+
+    private fun onLoadDarkMode() {
+        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        when(preferences?.getString("DarkMode", "System Theme")){
+            "System Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            "Dark Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            "Light Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     override fun attachBaseContext(base: Context) {

@@ -16,7 +16,6 @@ class AlertActivity : AppCompatActivity() {
     private lateinit var adapterAlert: CustomRecyclerAdapterAlert
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        onLoadDarkMode()
         super.onCreate(savedInstanceState)
         binding = ActivityAlertBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -43,26 +42,16 @@ class AlertActivity : AppCompatActivity() {
     }
 
     private fun onSaveAlert(string: String) {
-        val preferences = getSharedPreferences("Alert", Context.MODE_PRIVATE)
+        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
         val editor = preferences.edit()
         editor.putString("Alert", string)
         editor.apply()
     }
 
     private fun onLoadAlert(): String {
-        val preferences = getSharedPreferences("Alert", Context.MODE_PRIVATE)
+        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
         val alert = preferences.getString("Alert", "The day before the write-off")
         return alert.toString()
-    }
-
-    private fun onLoadDarkMode() {
-        val preferences = getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
-        val darkMode = preferences?.getBoolean("DarkMode", false)
-        if (darkMode == true) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
     }
 }
 

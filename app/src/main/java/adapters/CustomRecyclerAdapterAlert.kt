@@ -2,13 +2,10 @@ package adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import models.Alert
-import team.four.mys.R
+import team.four.mys.databinding.RecyclerviewItemAlertBinding
 
 class CustomRecyclerAdapterAlert(
     private val context: Context,
@@ -16,16 +13,14 @@ class CustomRecyclerAdapterAlert(
     private val alertDay: String,
     private val itemClick: (Alert) -> Unit
 ) :
-    RecyclerView.Adapter<CustomRecyclerAdapterAlert.MyViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    class MyViewHolder(itemView: View, private val itemClick: (Alert) -> Unit) :
-        RecyclerView.ViewHolder(itemView) {
-        private val textAlert = itemView.findViewById<TextView>(R.id.textAlert)
-        private val imageButton = itemView.findViewById<ImageView>(R.id.imageAlert)
+    inner class ViewHolderAlert(private val binding: RecyclerviewItemAlertBinding, private val itemClick: (Alert) -> Unit) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bindSubscription(alert: Alert, context: Context, alertDay: String) {
 
-            textAlert.text = alert.name
+            binding.textAlert.text = alert.name
 
             val resourceIdImage =
                 context.resources.getIdentifier(
@@ -35,16 +30,16 @@ class CustomRecyclerAdapterAlert(
                 )
             when (alertDay) {
                 "The day before the write-off" -> if (alert.name == "The day before the write-off") {
-                    imageButton.setImageResource(resourceIdImage)
+                    binding.imageAlert.setImageResource(resourceIdImage)
                 }
                 "Two days before cancellation" -> if (alert.name == "Two days before cancellation") {
-                    imageButton.setImageResource(resourceIdImage)
+                    binding.imageAlert.setImageResource(resourceIdImage)
                 }
                 "Three days before cancellation" -> if (alert.name == "Three days before cancellation") {
-                    imageButton.setImageResource(resourceIdImage)
+                    binding.imageAlert.setImageResource(resourceIdImage)
                 }
                 else -> if (alert.name == "The day before the write-off") {
-                    imageButton.setImageResource(resourceIdImage)
+                    binding.imageAlert.setImageResource(resourceIdImage)
                 }
             }
 
@@ -54,20 +49,17 @@ class CustomRecyclerAdapterAlert(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.recyclerview_item_alert, parent, false)
-        return MyViewHolder(itemView, itemClick)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val binding =
+            RecyclerviewItemAlertBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        return ViewHolderAlert(binding, itemClick)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bindSubscription(alert[position], context, alertDay)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as ViewHolderAlert).bindSubscription(alert[position], context, alertDay)
     }
 
     override fun getItemCount() = alert.size
-
-    override fun getItemViewType(position: Int): Int {
-        return R.layout.recyclerview_item_alert
-    }
 }

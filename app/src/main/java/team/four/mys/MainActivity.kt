@@ -21,9 +21,9 @@ class MainActivity : AppCompatActivity() {
     private val settingsFragment = SettingsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        onLoadDarkMode()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        onLoadDarkMode()
         setContentView(binding.root)
 
         binding.bottomNavigation.setOnItemSelectedListener {
@@ -73,12 +73,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onLoadDarkMode() {
-        val preferences = getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
-        val darkMode = preferences?.getBoolean("DarkMode", false)
-        if (darkMode == true) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        when(preferences?.getString("DarkMode", "System Theme")){
+            "System Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            "Dark Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            "Light Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 }
