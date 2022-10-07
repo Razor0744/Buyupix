@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundMain"
-    tools:context=".SubscriptionInfo">
+    tools:context=".SubscriptionInfoActivity">
 
     <ImageView
         android:id="@+id/buttonArrowLeft"
@@ -157,7 +157,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="34.5dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="@string/description"
+        android:text="@string/category"
         android:textColor="@color/textMain"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"

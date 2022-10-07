@@ -43,7 +43,7 @@
         <item>BYN</item>
     </string-array>
 
-    <!--SubscriptionInfo-->
+    <!--SubscriptionInfoActivity-->
     <string name="subscriptionInfo">Subs info</string>
     <string name="name">Name</string>
     <string name="category">Category</string>

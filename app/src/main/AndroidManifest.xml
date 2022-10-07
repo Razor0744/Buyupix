@@ -19,7 +19,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SubscriptionInfo"
+            android:name=".SubscriptionInfoActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

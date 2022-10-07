@@ -61,7 +61,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility =
                 (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
         } else {
-          window.decorView.systemUiVisibility =
+            window.decorView.systemUiVisibility =
                 (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
         }
     }
@@ -133,13 +133,15 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "description" to binding.description.text?.trim()
                                             .toString(),
                                         "image" to image(),
-                                        "priceSpinner" to binding.priceSpinner.selectedItem.toString()
+                                        "priceSpinner" to binding.priceSpinner.selectedItem.toString(),
+                                        "date" to binding.buttonCalender.text.toString(),
+                                        "dateType" to "noDate"
                                     )
                                     db.collection(uid()).document("price")
                                         .get()
                                         .addOnSuccessListener { doc ->
                                             var priceStart = doc.get("price")
-                                            if (priceStart == null){
+                                            if (priceStart == null) {
                                                 priceStart = 0
                                             }
                                             val priceEnd =
@@ -166,13 +168,15 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "writeOffDate" to binding.buttonCalender.text?.trim()
                                             .toString(),
                                         "image" to image(),
-                                        "priceSpinner" to binding.priceSpinner.selectedItem.toString()
+                                        "priceSpinner" to binding.priceSpinner.selectedItem.toString(),
+                                        "date" to binding.buttonCalender.text.toString(),
+                                        "dateType" to "date"
                                     )
                                     db.collection(uid()).document("price")
                                         .get()
                                         .addOnSuccessListener { doc ->
                                             var priceStart = doc.get("price")
-                                            if (priceStart == null){
+                                            if (priceStart == null) {
                                                 priceStart = 0
                                             }
                                             val priceEnd =

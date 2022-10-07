@@ -14,11 +14,15 @@ import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithoutDateBinding
 class CustomRecyclerAdapterSubscriptions(
     private val context: Context,
     private val subscriptions: List<Subscriptions>,
-     private val month: String
+    private val month: String,
+    private val itemClick: (Subscriptions) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    inner class ViewHolderWithDate(private val binding: RecyclerviewItemSubscriptionsWithDateBinding) :
+    inner class ViewHolderWithDate(
+        private val binding: RecyclerviewItemSubscriptionsWithDateBinding,
+        private val itemClick: (Subscriptions) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(subscriptions: Subscriptions, context: Context) {
@@ -29,16 +33,23 @@ class CustomRecyclerAdapterSubscriptions(
                 .into(binding.imageSubscription)
 
             binding.nameSubscription.text = subscriptions.name
-            when (subscriptions.priceSpinner){
+            when (subscriptions.priceSpinner) {
                 "BYN" -> binding.priceSubscription.text = "Br" + subscriptions.price
                 "EUR" -> binding.priceSubscription.text = "€" + subscriptions.price
                 "USD" -> binding.priceSubscription.text = "$" + subscriptions.price
             }
             binding.writeOffDateSubscription.text = subscriptions.writeOffDate + " $month"
+
+            itemView.setOnClickListener {
+                itemClick(subscriptions)
+            }
         }
     }
 
-    inner class ViewHolderWithoutDate(private val binding: RecyclerviewItemSubscriptionsWithoutDateBinding) :
+    inner class ViewHolderWithoutDate(
+        private val binding: RecyclerviewItemSubscriptionsWithoutDateBinding,
+        private val itemClick: (Subscriptions) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(subscriptions: Subscriptions, context: Context) {
@@ -49,10 +60,14 @@ class CustomRecyclerAdapterSubscriptions(
                 .into(binding.imageSubscription)
 
             binding.nameSubscription.text = subscriptions.name
-            when (subscriptions.priceSpinner){
+            when (subscriptions.priceSpinner) {
                 "BYN" -> binding.priceSubscription.text = "Br" + subscriptions.price
                 "EUR" -> binding.priceSubscription.text = "€" + subscriptions.price
                 "USD" -> binding.priceSubscription.text = "$" + subscriptions.price
+            }
+
+            itemView.setOnClickListener {
+                itemClick(subscriptions)
             }
         }
     }
@@ -63,13 +78,13 @@ class CustomRecyclerAdapterSubscriptions(
                 RecyclerviewItemSubscriptionsWithDateBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
-            ViewHolderWithDate(binding)
+            ViewHolderWithDate(binding, itemClick)
         } else {
             val binding =
                 RecyclerviewItemSubscriptionsWithoutDateBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
-            ViewHolderWithoutDate(binding)
+            ViewHolderWithoutDate(binding, itemClick)
         }
     }
 

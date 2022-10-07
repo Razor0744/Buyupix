@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import models.Subscriptions
 import team.four.mys.CreateSubscriptionActivity
 import team.four.mys.R
+import team.four.mys.SubscriptionInfoActivity
 import team.four.mys.databinding.FragmentHomeBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -39,7 +40,13 @@ class HomeFragment : Fragment() {
 
         subscriptions = arrayListOf()
         adapterSubscriptions =
-            CustomRecyclerAdapterSubscriptions(requireContext(), subscriptions, date())
+            CustomRecyclerAdapterSubscriptions(requireContext(), subscriptions, date()){ subscriptionsClick ->
+                val intent = Intent(context, SubscriptionInfoActivity::class.java)
+                intent.putExtra("name", subscriptionsClick.name)
+                intent.putExtra("date", subscriptionsClick.date)
+                intent.putExtra("dateType", subscriptionsClick.dateType)
+                startActivity(intent)
+            }
         binding?.recyclerView?.adapter = adapterSubscriptions
 
         binding?.createSubscription?.setOnClickListener {
