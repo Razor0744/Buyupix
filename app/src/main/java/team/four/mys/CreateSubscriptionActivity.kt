@@ -133,7 +133,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "description" to binding.description.text?.trim()
                                             .toString(),
                                         "image" to image(),
-                                        "priceSpinner" to binding.priceSpinner.selectedItem.toString(),
+                                        "priceSpinner" to getPriceSpinner(),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "noDate"
                                     )
@@ -168,7 +168,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "writeOffDate" to binding.buttonCalender.text?.trim()
                                             .toString(),
                                         "image" to image(),
-                                        "priceSpinner" to binding.priceSpinner.selectedItem.toString(),
+                                        "priceSpinner" to getPriceSpinner(),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "date"
                                     )
@@ -214,6 +214,16 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 Toast.makeText(this, "Ты ебаны рот название напиши", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun getPriceSpinner(): String {
+        var price = ""
+        when (binding.priceSpinner.selectedItem) {
+            "USD" -> price = "$"
+            "EUR" -> price = "€"
+            "BYN" -> price = "Br"
+        }
+        return price
     }
 
     private fun uid(): String {

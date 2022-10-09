@@ -33,11 +33,7 @@ class CustomRecyclerAdapterSubscriptions(
                 .into(binding.imageSubscription)
 
             binding.nameSubscription.text = subscriptions.name
-            when (subscriptions.priceSpinner) {
-                "BYN" -> binding.priceSubscription.text = "Br" + subscriptions.price
-                "EUR" -> binding.priceSubscription.text = "€" + subscriptions.price
-                "USD" -> binding.priceSubscription.text = "$" + subscriptions.price
-            }
+            binding.priceSubscription.text = subscriptions.priceSpinner + subscriptions.price
             binding.writeOffDateSubscription.text = subscriptions.writeOffDate + " $month"
 
             itemView.setOnClickListener {
@@ -60,11 +56,7 @@ class CustomRecyclerAdapterSubscriptions(
                 .into(binding.imageSubscription)
 
             binding.nameSubscription.text = subscriptions.name
-            when (subscriptions.priceSpinner) {
-                "BYN" -> binding.priceSubscription.text = "Br" + subscriptions.price
-                "EUR" -> binding.priceSubscription.text = "€" + subscriptions.price
-                "USD" -> binding.priceSubscription.text = "$" + subscriptions.price
-            }
+            binding.priceSubscription.text = subscriptions.priceSpinner + subscriptions.price
 
             itemView.setOnClickListener {
                 itemClick(subscriptions)
