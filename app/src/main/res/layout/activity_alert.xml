@@ -22,7 +22,7 @@
 
     <ImageButton
         android:id="@+id/buttonArrowLeft"
-        android:background="@drawable/click_on_items"
+        android:background="@drawable/click_on_arrow_left"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="20dp"

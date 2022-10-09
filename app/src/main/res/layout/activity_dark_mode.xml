@@ -26,7 +26,7 @@
         android:layout_height="32dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/click_on_items"
+        android:background="@drawable/click_on_arrow_left"
         android:src="@drawable/ic_arrow_left"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -29,7 +31,7 @@ class HomeFragment : Fragment() {
     private lateinit var subscriptions: ArrayList<Subscriptions>
     private lateinit var adapterSubscriptions: CustomRecyclerAdapterSubscriptions
 
-    private lateinit var db: FirebaseFirestore
+    private var db = Firebase.firestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -93,7 +95,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun fireStore() {
-        db = FirebaseFirestore.getInstance()
         var i = 1
         while (i <= 31) {
             db.collection(uid()).document(i.toString()).collection("date")
@@ -142,7 +143,6 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setPrice() {
-        db = FirebaseFirestore.getInstance()
         db.collection(uid()).document("price")
             .get()
             .addOnSuccessListener { doc ->
