@@ -40,7 +40,11 @@ class HomeFragment : Fragment() {
 
         subscriptions = arrayListOf()
         adapterSubscriptions =
-            CustomRecyclerAdapterSubscriptions(requireContext(), subscriptions, date()){ subscriptionsClick ->
+            CustomRecyclerAdapterSubscriptions(
+                requireContext(),
+                subscriptions,
+                date()
+            ) { subscriptionsClick ->
                 val intent = Intent(context, SubscriptionInfoActivity::class.java)
                 intent.putExtra("name", subscriptionsClick.name)
                 intent.putExtra("date", subscriptionsClick.date)

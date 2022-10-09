@@ -12,7 +12,7 @@ class SubscriptionInfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySubscriptionInfoBinding
 
-    val db = Firebase.firestore
+    private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +23,9 @@ class SubscriptionInfoActivity : AppCompatActivity() {
     }
 
     private fun subscriptionInfo() {
-        db.collection(uid()).document("7")
-            .collection("date")
-            .document("Spotify")
+        db.collection(uid()).document(intent.getStringExtra("date").toString())
+            .collection(intent.getStringExtra("dateType").toString())
+            .document(intent.getStringExtra("name").toString())
             .get()
             .addOnSuccessListener { document ->
                 Glide

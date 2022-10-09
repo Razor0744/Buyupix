@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onLoadDarkMode() {
-        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val preferences = getSharedPreferences("Settings", MODE_PRIVATE)
         when(preferences?.getString("DarkMode", "System Theme")){
             "System Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
             "Dark Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
