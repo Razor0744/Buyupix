@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import api.retrofit.RetrofitClient
+import api.retrofit.RetrofitService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
@@ -18,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import models.Subscriptions
+import retrofit2.create
 import team.four.mys.CreateSubscriptionActivity
 import team.four.mys.R
 import team.four.mys.SubscriptionInfoActivity

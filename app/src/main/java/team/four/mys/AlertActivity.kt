@@ -4,11 +4,15 @@ import adapters.CustomRecyclerAdapterAlert
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import retrofit2.Call
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
+import api.retrofit.Currencies
 import models.Alert
+import models.Rates
+import retrofit2.Response
 import team.four.mys.databinding.ActivityAlertBinding
+import retrofit2.Callback
 
 class AlertActivity : AppCompatActivity() {
 
