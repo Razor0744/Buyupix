@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import api.firestore.FirestorePrice
 import api.retrofit.Currencies
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import models.Alert
 import models.Rates
 import retrofit2.Response
@@ -33,7 +36,9 @@ class AlertActivity : AppCompatActivity() {
 
         adapter()
         val firestore = FirestorePrice()
-        firestore.retrofit()
+        CoroutineScope(Dispatchers.IO).launch {
+            firestore.fullPrice()
+        }
     }
 
     private fun adapter() {
