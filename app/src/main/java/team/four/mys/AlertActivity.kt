@@ -4,19 +4,10 @@ import adapters.CustomRecyclerAdapterAlert
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import retrofit2.Call
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import api.firestore.FirestorePrice
-import api.retrofit.Currencies
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import models.Alert
-import models.Rates
-import retrofit2.Response
 import team.four.mys.databinding.ActivityAlertBinding
-import retrofit2.Callback
 
 class AlertActivity : AppCompatActivity() {
 
@@ -35,10 +26,6 @@ class AlertActivity : AppCompatActivity() {
         }
 
         adapter()
-        val firestore = FirestorePrice()
-        CoroutineScope(Dispatchers.IO).launch {
-            firestore.fullPrice()
-        }
     }
 
     private fun adapter() {

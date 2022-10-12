@@ -9,18 +9,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import api.retrofit.RetrofitClient
-import api.retrofit.RetrofitService
+import api.retrofit.Currencies
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import models.Rates
 import models.Subscriptions
-import retrofit2.create
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import team.four.mys.CreateSubscriptionActivity
 import team.four.mys.R
 import team.four.mys.SubscriptionInfoActivity
@@ -35,6 +38,14 @@ class HomeFragment : Fragment() {
     private lateinit var adapterSubscriptions: CustomRecyclerAdapterSubscriptions
 
     private var db = Firebase.firestore
+
+    //Price
+    private var EUR: Float? = null
+    private var BYN: Float? = null
+    private var priceUSD: Int? = null
+    private var priceBYN: Int? = null
+    private var priceEUR: Int? = null
+    private var fullPrice: Float? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,9 +73,9 @@ class HomeFragment : Fragment() {
             startActivity(Intent(context, CreateSubscriptionActivity::class.java))
         }
 
-        CoroutineScope(IO).launch {
+        CoroutineScope(Dispatchers.Default).launch {
             fireStore()
-            setPrice()
+            fullPrice()
         }
         statusBar()
 
@@ -144,15 +155,63 @@ class HomeFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun setPrice() {
-        db.collection(uid()).document("price")
+//    @SuppressLint("SetTextI18n")
+//    private fun setPrice() {
+//        db.collection(uid()).document("price")
+//            .get()
+//            .addOnSuccessListener { doc ->
+//                if (doc.get("price") != null) {
+//                    binding?.price?.text = "${doc.get("price").toString()} USD"
+//                } else {
+//                    binding?.price?.text = "0 USD"
+//                }
+//            }
+//    }
+
+    private fun fullPrice() {
+        getPrice("USD")
+        getPrice("BYN")
+        getPrice("EUR")
+        retrofit()
+        while (true) {
+            if (EUR != null && BYN != null && priceBYN != null && priceUSD != null && priceEUR != null) {
+                fullPrice = priceUSD!! + (priceBYN!! * BYN!!) + (priceEUR!! * EUR!!)
+                binding?.price?.text = fullPrice.toString()
+                break
+            }
+        }
+    }
+
+    private fun retrofit() {
+        Currencies.retrofitService.getRates().enqueue(object : Callback<Rates> {
+            override fun onResponse(call: Call<Rates>, response: Response<Rates>) {
+                val responses = response.body() as Rates
+                EUR = responses.rates?.EUR
+                BYN = responses.rates?.BYN
+            }
+
+            override fun onFailure(call: Call<Rates>, t: Throwable) {
+                println(t)
+            }
+        })
+    }
+
+    private fun getPrice(string: String) {
+        db.collection(uid()).document(string)
             .get()
             .addOnSuccessListener { doc ->
                 if (doc.get("price") != null) {
-                    binding?.price?.text = "${doc.get("price").toString()} USD"
+                    when (string) {
+                        "USD" -> priceUSD = Integer.parseInt(doc.get("price").toString())
+                        "BYN" -> priceBYN = Integer.parseInt(doc.get("price").toString())
+                        "EUR" -> priceEUR = Integer.parseInt(doc.get("price").toString())
+                    }
                 } else {
-                    binding?.price?.text = "0 USD"
+                    when (string) {
+                        "USD" -> priceUSD = 0
+                        "BYN" -> priceBYN = 0
+                        "EUR" -> priceEUR = 0
+                    }
                 }
             }
     }
