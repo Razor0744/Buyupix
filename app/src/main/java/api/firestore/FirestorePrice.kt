@@ -9,61 +9,43 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FirestorePrice() {
+class FirestorePrice {
 
     private val db = Firebase.firestore
 
-    fun fullPrice(){
-        val priceUSD = getPriceUSD()
-        val priceBYN = getPriceBYN()
-        val priceEUR = getPriceEUR()
+    private var EUR: Float? = null
+    private var BYN: Float? = null
+
+    private fun fullPrice() {
+        val priceUSD = getPrice("USD")
+        val priceBYN = getPrice("BYN")
+        val priceEUR = getPrice("EUR")
+        val fullPrice = priceUSD + (priceBYN * BYN!!) + (priceEUR * EUR!!)
+        println(fullPrice)
     }
 
-    private fun retrofit() {
+    fun retrofit() {
         Currencies.retrofitService.getRates().enqueue(object : Callback<Rates> {
             override fun onResponse(call: Call<Rates>, response: Response<Rates>) {
                 val responses = response.body() as Rates
-                println(responses.rates?.EUR)
+                EUR = responses.rates?.EUR
+                BYN = responses.rates?.BYN
+                fullPrice()
             }
 
             override fun onFailure(call: Call<Rates>, t: Throwable) {
                 println(t)
             }
         })
-        println()
     }
 
-    private fun getPriceUSD(): Int {
+    private fun getPrice(string: String): Int {
         var price = 0
-        db.collection(uid()).document("USD")
+        db.collection(uid()).document(string)
             .get()
             .addOnSuccessListener { doc ->
                 if (doc.get("price") != null) {
-                    price = doc.get("price") as Int
-                }
-            }
-        return price
-    }
-
-    private fun getPriceBYN(): Int {
-        var price = 0
-        db.collection(uid()).document("BYN")
-            .get()
-            .addOnSuccessListener { doc ->
-                if (doc.get("price") != null) {
-                    price = doc.get("price") as Int
-                }
-            }
-        return price
-    }
-
-    private fun getPriceEUR(): Int {
-        var price = 0
-        db.collection(uid()).document("EUR")
-            .get()
-            .addOnSuccessListener { doc ->
-                if (doc.get("price") != null) {
-                    price = doc.get("price") as Int
+                    price = Integer.parseInt(doc.get("price").toString())
                 }
             }
         return price

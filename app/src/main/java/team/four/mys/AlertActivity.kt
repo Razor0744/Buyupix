@@ -7,6 +7,7 @@ import android.os.Bundle
 import retrofit2.Call
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import api.firestore.FirestorePrice
 import api.retrofit.Currencies
 import models.Alert
 import models.Rates
@@ -31,6 +32,8 @@ class AlertActivity : AppCompatActivity() {
         }
 
         adapter()
+        val firestore = FirestorePrice()
+        firestore.retrofit()
     }
 
     private fun adapter() {

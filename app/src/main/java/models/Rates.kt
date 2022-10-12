@@ -5,7 +5,7 @@ data class Rates(
 )
 
 data class Currencies(
-    var BYN: String? = null,
-    var RUB: String? = null,
-    var EUR: String? = null
+    var BYN: Float? = null,
+    var RUB: Float? = null,
+    var EUR: Float? = null
 )
