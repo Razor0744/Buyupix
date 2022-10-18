@@ -1,4 +1,4 @@
-package team.four.mys
+package team.four.mys.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

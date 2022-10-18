@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import api.retrofit.Currencies
+import team.four.mys.data.repository.Currencies
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
@@ -23,9 +23,9 @@ import team.four.mys.domain.models.Subscriptions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import team.four.mys.CreateSubscriptionActivity
+import team.four.mys.presentation.CreateSubscriptionActivity
 import team.four.mys.R
-import team.four.mys.SubscriptionInfoActivity
+import team.four.mys.presentation.SubscriptionInfoActivity
 import team.four.mys.databinding.FragmentHomeBinding
 import java.text.SimpleDateFormat
 import java.util.*

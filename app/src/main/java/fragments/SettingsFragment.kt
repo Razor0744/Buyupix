@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import team.four.mys.AlertActivity
-import team.four.mys.DarkModeActivity
-import team.four.mys.LanguageActivity
+import team.four.mys.presentation.AlertActivity
+import team.four.mys.presentation.DarkModeActivity
+import team.four.mys.presentation.LanguageActivity
 import team.four.mys.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {

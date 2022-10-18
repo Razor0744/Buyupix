@@ -1,11 +1,11 @@
-package team.four.mys
+package team.four.mys.presentation
 
 import adapters.CustomRecyclerAdapterDarkMode
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import team.four.mys.data.Preferences
+import team.four.mys.data.db.Preferences
 import team.four.mys.domain.models.DarkMode
 import team.four.mys.databinding.ActivityDarkModeBinding
 
@@ -26,7 +26,8 @@ class DarkModeActivity : AppCompatActivity() {
 
     private fun adapter() {
         adapterDarkMode =
-            CustomRecyclerAdapterDarkMode(this, DataDarkMode.darkMode, Preferences.getSettings("DarkMode")) { alertClick ->
+            CustomRecyclerAdapterDarkMode(this,
+                DataDarkMode.darkMode, Preferences.getSettings("DarkMode")) { alertClick ->
                 Preferences.setSettings("DarkMode", alertClick.name.toString())
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")
@@ -35,19 +36,6 @@ class DarkModeActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapterDarkMode
     }
-
-//    private fun onLoadDarkModeAdapter(): String {
-//        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-//        val darkMode = preferences.getString("DarkMode", "System Theme")
-//        return darkMode.toString()
-//    }
-
-//    private fun onSaveDarkMode(string: String) {
-//        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-//        val editor = preferences.edit()
-//        editor.putString("DarkMode", string)
-//        editor.apply()
-//    }
 }
 
 object DataDarkMode {

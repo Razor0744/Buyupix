@@ -1,4 +1,4 @@
-package team.four.mys
+package team.four.mys.presentation
 
 import adapters.CustomRecyclerAdapterLanguage
 import android.content.Context
@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import ather.LocaleHelper
 import team.four.mys.domain.models.Language
-import team.four.mys.DataLanguage.language
+import team.four.mys.presentation.DataLanguage.language
 import team.four.mys.databinding.ActivityLanguageBinding
 
 class LanguageActivity : AppCompatActivity() {

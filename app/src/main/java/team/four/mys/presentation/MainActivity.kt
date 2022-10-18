@@ -1,4 +1,4 @@
-package team.four.mys
+package team.four.mys.presentation
 
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +9,7 @@ import ather.LocaleHelper
 import fragments.HomeFragment
 import fragments.SettingsFragment
 import fragments.StatisticsFragment
+import team.four.mys.R
 import team.four.mys.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package api.retrofit
+package team.four.mys.data.api.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

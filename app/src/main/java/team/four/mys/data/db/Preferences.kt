@@ -1,4 +1,4 @@
-package team.four.mys.data
+package team.four.mys.data.db
 
 import android.content.Context
 import android.content.SharedPreferences

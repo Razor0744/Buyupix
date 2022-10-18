@@ -1,4 +1,4 @@
-package team.four.mys
+package team.four.mys.presentation
 
 import android.annotation.SuppressLint
 import android.content.Intent

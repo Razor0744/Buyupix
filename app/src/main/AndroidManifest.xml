@@ -12,38 +12,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
         <activity
-            android:name=".DarkModeActivity"
+            android:name=".presentation.DarkModeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SubscriptionInfoActivity"
+            android:name=".presentation.SubscriptionInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".AlertActivity"
+            android:name=".presentation.AlertActivity"
             android:exported="false" />
         <activity
-            android:name=".LanguageActivity"
+            android:name=".presentation.LanguageActivity"
             android:exported="false" />
         <activity
-            android:name=".CodeSendActivity"
+            android:name=".presentation.CodeSendActivity"
             android:exported="false" />
         <activity
-            android:name=".FirstActivity"
+            android:name=".presentation.FirstActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".presentation.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateSubscriptionActivity"
+            android:name=".presentation.CreateSubscriptionActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".presentation.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/SplashScreen">
             <intent-filter>

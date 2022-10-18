@@ -1,4 +1,4 @@
-package team.four.mys
+package team.four.mys.presentation
 
 import adapters.CustomRecyclerAdapterCalendar
 import android.content.Context
@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import team.four.mys.R
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import java.time.LocalDate
 import java.time.YearMonth

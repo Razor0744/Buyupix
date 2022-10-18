@@ -1,4 +1,4 @@
-package api.retrofit
+package team.four.mys.domain.repository
 
 import team.four.mys.domain.models.Rates
 import retrofit2.Call
