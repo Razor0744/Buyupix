@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import models.Language
+import team.four.mys.domain.models.Language
 import team.four.mys.databinding.RecyclerviewItemLanguageBinding
 
 class CustomRecyclerAdapterLanguage(

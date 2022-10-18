@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import ather.LocaleHelper
-import models.Language
+import team.four.mys.domain.models.Language
 import team.four.mys.DataLanguage.language
 import team.four.mys.databinding.ActivityLanguageBinding
 

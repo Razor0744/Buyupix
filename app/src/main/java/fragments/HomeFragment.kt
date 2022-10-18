@@ -17,10 +17,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-import models.Rates
-import models.Subscriptions
+import team.four.mys.domain.models.Rates
+import team.four.mys.domain.models.Subscriptions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -73,7 +72,7 @@ class HomeFragment : Fragment() {
             startActivity(Intent(context, CreateSubscriptionActivity::class.java))
         }
 
-        CoroutineScope(Dispatchers.Default).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             fireStore()
             fullPrice()
         }
@@ -155,19 +154,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    @SuppressLint("SetTextI18n")
-//    private fun setPrice() {
-//        db.collection(uid()).document("price")
-//            .get()
-//            .addOnSuccessListener { doc ->
-//                if (doc.get("price") != null) {
-//                    binding?.price?.text = "${doc.get("price").toString()} USD"
-//                } else {
-//                    binding?.price?.text = "0 USD"
-//                }
-//            }
-//    }
-
     private fun fullPrice() {
         getPrice("USD")
         getPrice("BYN")
@@ -175,8 +161,10 @@ class HomeFragment : Fragment() {
         retrofit()
         while (true) {
             if (EUR != null && BYN != null && priceBYN != null && priceUSD != null && priceEUR != null) {
-                fullPrice = priceUSD!! + (priceBYN!! * BYN!!) + (priceEUR!! * EUR!!)
-                binding?.price?.text = fullPrice.toString()
+                activity?.runOnUiThread {
+                    fullPrice = priceUSD!! + (priceBYN!! / BYN!!) + (priceEUR!! / EUR!!)
+                    binding?.price?.text = fullPrice.toString()
+                }
                 break
             }
         }

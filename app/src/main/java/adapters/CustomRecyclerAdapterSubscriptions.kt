@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import models.Subscriptions
+import team.four.mys.domain.models.Subscriptions
 import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithDateBinding
 import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithoutDateBinding
 

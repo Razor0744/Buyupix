@@ -137,7 +137,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "noDate"
                                     )
-                                    db.collection(uid()).document("price")
+                                    db.collection(uid()).document(binding.priceSpinner.selectedItem.toString())
                                         .get()
                                         .addOnSuccessListener { doc ->
                                             var priceStart = doc.get("price")
@@ -151,7 +151,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             val price = hashMapOf(
                                                 "price" to priceEnd as Number
                                             )
-                                            db.collection(uid()).document("price")
+                                            db.collection(uid()).document(binding.priceSpinner.selectedItem.toString())
                                                 .set(price)
                                         }
                                     db.collection(uid())
@@ -172,7 +172,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "date"
                                     )
-                                    db.collection(uid()).document("price")
+                                    db.collection(uid()).document(binding.priceSpinner.selectedItem.toString())
                                         .get()
                                         .addOnSuccessListener { doc ->
                                             var priceStart = doc.get("price")
@@ -186,7 +186,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             val price = hashMapOf(
                                                 "price" to priceEnd
                                             )
-                                            db.collection(uid()).document("price")
+                                            db.collection(uid()).document(binding.priceSpinner.selectedItem.toString())
                                                 .set(price)
                                         }
                                     db.collection(uid())

@@ -1,4 +1,4 @@
-package models
+package team.four.mys.domain.models
 
 class Subscriptions(
     var image: String? = null,

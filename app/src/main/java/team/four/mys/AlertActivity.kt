@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import models.Alert
+import team.four.mys.domain.models.Alert
 import team.four.mys.databinding.ActivityAlertBinding
 
 class AlertActivity : AppCompatActivity() {

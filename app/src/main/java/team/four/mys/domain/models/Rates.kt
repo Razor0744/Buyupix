@@ -1,4 +1,4 @@
-package models
+package team.four.mys.domain.models
 
 data class Rates(
     var rates: Currencies? = null

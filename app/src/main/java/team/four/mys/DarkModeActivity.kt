@@ -1,12 +1,12 @@
 package team.four.mys
 
 import adapters.CustomRecyclerAdapterDarkMode
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import models.DarkMode
+import team.four.mys.data.Preferences
+import team.four.mys.domain.models.DarkMode
 import team.four.mys.databinding.ActivityDarkModeBinding
 
 class DarkModeActivity : AppCompatActivity() {
@@ -17,6 +17,7 @@ class DarkModeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Preferences.init(this)
         binding = ActivityDarkModeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -25,8 +26,8 @@ class DarkModeActivity : AppCompatActivity() {
 
     private fun adapter() {
         adapterDarkMode =
-            CustomRecyclerAdapterDarkMode(this, DataDarkMode.darkMode, onLoadDarkModeAdapter()) { alertClick ->
-                onSaveDarkMode(alertClick.name.toString())
+            CustomRecyclerAdapterDarkMode(this, DataDarkMode.darkMode, Preferences.getSettings("DarkMode")) { alertClick ->
+                Preferences.setSettings("DarkMode", alertClick.name.toString())
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")
                 startActivity(intent)
@@ -35,18 +36,18 @@ class DarkModeActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapterDarkMode
     }
 
-    private fun onLoadDarkModeAdapter(): String {
-        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val darkMode = preferences.getString("DarkMode", "System Theme")
-        return darkMode.toString()
-    }
+//    private fun onLoadDarkModeAdapter(): String {
+//        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+//        val darkMode = preferences.getString("DarkMode", "System Theme")
+//        return darkMode.toString()
+//    }
 
-    private fun onSaveDarkMode(string: String) {
-        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val editor = preferences.edit()
-        editor.putString("DarkMode", string)
-        editor.apply()
-    }
+//    private fun onSaveDarkMode(string: String) {
+//        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+//        val editor = preferences.edit()
+//        editor.putString("DarkMode", string)
+//        editor.apply()
+//    }
 }
 
 object DataDarkMode {
