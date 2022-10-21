@@ -42,11 +42,4 @@ class SettingsFragment : Fragment() {
         super.onDestroy()
         binding = null
     }
-
-    private fun onSaveDarkMode(boolean: Boolean) {
-        val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
-        val editor = preferences?.edit()
-        editor?.putBoolean("DarkMode", boolean)
-        editor?.apply()
-    }
 }

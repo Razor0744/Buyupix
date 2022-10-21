@@ -10,6 +10,7 @@ import fragments.HomeFragment
 import fragments.SettingsFragment
 import fragments.StatisticsFragment
 import team.four.mys.R
+import team.four.mys.data.db.Preferences
 import team.four.mys.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +23,12 @@ class MainActivity : AppCompatActivity() {
     private val settingsFragment = SettingsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        onLoadDarkMode()
+        Preferences.init(this)
+        when(Preferences.getSettings("DarkMode")){
+            "System Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            "Dark Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            "Light Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -71,14 +77,5 @@ class MainActivity : AppCompatActivity() {
     override fun attachBaseContext(base: Context) {
         LocaleHelper().setLocale(base, LocaleHelper().getLanguage(base))
         super.attachBaseContext(LocaleHelper().onAttach(base))
-    }
-
-    private fun onLoadDarkMode() {
-        val preferences = getSharedPreferences("Settings", MODE_PRIVATE)
-        when(preferences?.getString("DarkMode", "System Theme")){
-            "System Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            "Dark Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            "Light Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
     }
 }

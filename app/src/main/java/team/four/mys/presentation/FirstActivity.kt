@@ -9,6 +9,7 @@ import ather.LocaleHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import team.four.mys.data.db.Preferences
 import team.four.mys.databinding.ActivityFirstBinding
 
 class FirstActivity : AppCompatActivity() {
@@ -17,7 +18,12 @@ class FirstActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFirstBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        onLoadDarkMode()
+        Preferences.init(this)
+        when(Preferences.getSettings("DarkMode")){
+            "System Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            "Dark Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            "Light Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -41,15 +47,6 @@ class FirstActivity : AppCompatActivity() {
     private fun reload() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
-    }
-
-    private fun onLoadDarkMode() {
-        val preferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        when(preferences?.getString("DarkMode", "System Theme")){
-            "System Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            "Dark Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            "Light Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
     }
 
     override fun attachBaseContext(base: Context) {

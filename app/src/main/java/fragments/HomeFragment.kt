@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import team.four.mys.data.repository.Currencies
+import team.four.mys.data.repository.CurrenciesRetrofit
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
@@ -18,7 +18,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import team.four.mys.domain.models.Rates
+import team.four.mys.domain.models.CurrenciesJSON
 import team.four.mys.domain.models.Subscriptions
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +27,9 @@ import team.four.mys.presentation.CreateSubscriptionActivity
 import team.four.mys.R
 import team.four.mys.presentation.SubscriptionInfoActivity
 import team.four.mys.databinding.FragmentHomeBinding
+import team.four.mys.domain.models.Currencies
+import team.four.mys.domain.usecases.GetCurrenciesUseCase
+import team.four.mys.domain.usecases.GetUIDUseCase
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -74,7 +77,7 @@ class HomeFragment : Fragment() {
 
         CoroutineScope(Dispatchers.IO).launch {
             fireStore()
-            fullPrice()
+            GetCurrenciesUseCase().execute()
         }
         statusBar()
 
@@ -100,17 +103,10 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun uid(): String {
-        // get UID
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid
-        return uid.toString()
-    }
-
     private fun fireStore() {
         var i = 1
         while (i <= 31) {
-            db.collection(uid()).document(i.toString()).collection("date")
+            db.collection(GetUIDUseCase().execute()).document(i.toString()).collection("date")
                 .addSnapshotListener(object : EventListener<QuerySnapshot> {
                     @SuppressLint("NotifyDataSetChanged")
                     override fun onEvent(
@@ -131,7 +127,7 @@ class HomeFragment : Fragment() {
 
                 })
 
-            db.collection(uid()).document(i.toString()).collection("noDate")
+            db.collection(GetUIDUseCase().execute()).document(i.toString()).collection("noDate")
                 .addSnapshotListener(object : EventListener<QuerySnapshot> {
                     @SuppressLint("NotifyDataSetChanged")
                     override fun onEvent(
@@ -171,21 +167,21 @@ class HomeFragment : Fragment() {
     }
 
     private fun retrofit() {
-        Currencies.retrofitService.getRates().enqueue(object : Callback<Rates> {
-            override fun onResponse(call: Call<Rates>, response: Response<Rates>) {
-                val responses = response.body() as Rates
+        CurrenciesRetrofit.retrofitService.getRates().enqueue(object : Callback<CurrenciesJSON> {
+            override fun onResponse(call: Call<CurrenciesJSON>, response: Response<CurrenciesJSON>) {
+                val responses = response.body() as CurrenciesJSON
                 EUR = responses.rates?.EUR
                 BYN = responses.rates?.BYN
             }
 
-            override fun onFailure(call: Call<Rates>, t: Throwable) {
+            override fun onFailure(call: Call<CurrenciesJSON>, t: Throwable) {
                 println(t)
             }
         })
     }
 
     private fun getPrice(string: String) {
-        db.collection(uid()).document(string)
+        db.collection(GetUIDUseCase().execute()).document(string)
             .get()
             .addOnSuccessListener { doc ->
                 if (doc.get("price") != null) {

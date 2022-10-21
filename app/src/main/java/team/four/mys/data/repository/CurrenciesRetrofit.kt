@@ -3,7 +3,7 @@ package team.four.mys.data.repository
 import team.four.mys.data.api.retrofit.RetrofitClient
 import team.four.mys.domain.repository.RetrofitService
 
-object Currencies {
+object CurrenciesRetrofit {
 
     private val BASE_URL = "https://cdn.cur.su/api/"
     val retrofitService: RetrofitService

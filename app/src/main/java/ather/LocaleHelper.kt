@@ -28,12 +28,12 @@ class LocaleHelper {
     }
 
     private fun getPersistedData(context: Context, defaultLanguage: String): String? {
-        val preferences = context.getSharedPreferences("Locale", Context.MODE_PRIVATE)
+        val preferences = context.getSharedPreferences("Settings", Context.MODE_PRIVATE)
         return preferences.getString("Locale", defaultLanguage)
     }
 
     private fun persist(context: Context, language: String) {
-        val preferences = context.getSharedPreferences("Locale", Context.MODE_PRIVATE)
+        val preferences = context.getSharedPreferences("Settings", Context.MODE_PRIVATE)
         val editor = preferences.edit()
 
         editor.putString("Locale", language)
