@@ -1,8 +1,6 @@
 package team.four.mys.presentation
 
 import adapters.CustomRecyclerAdapterCalendar
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -14,11 +12,11 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import team.four.mys.R
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
+import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 import java.time.LocalDate
 import java.time.YearMonth
@@ -111,7 +109,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             if (binding.name.text.trim().toString().isNotEmpty()) {
                 if (binding.price.text?.trim().toString().isNotEmpty()) {
                     if (binding.buttonCalender.text?.trim().toString() != "Write-off date") {
-                        db.collection(uid())
+                        db.collection(GetUIDUseCase().execute())
                             .document(binding.buttonCalender.text?.trim().toString())
                             .collection("date").get()
                             .addOnSuccessListener { document ->
@@ -126,7 +124,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "noDate"
                                     )
-                                    db.collection(uid())
+                                    db.collection(GetUIDUseCase().execute())
                                         .document(binding.priceSpinner.selectedItem.toString())
                                         .get()
                                         .addOnSuccessListener { doc ->
@@ -141,11 +139,11 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             val price = hashMapOf(
                                                 "price" to priceEnd as Number
                                             )
-                                            db.collection(uid())
+                                            db.collection(GetUIDUseCase().execute())
                                                 .document(binding.priceSpinner.selectedItem.toString())
                                                 .set(price)
                                         }
-                                    db.collection(uid())
+                                    db.collection(GetUIDUseCase().execute())
                                         .document(binding.buttonCalender.text?.trim().toString())
                                         .collection("noDate")
                                         .document(binding.name.text.trim().toString()).set(data)
@@ -163,7 +161,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "date"
                                     )
-                                    db.collection(uid())
+                                    db.collection(GetUIDUseCase().execute())
                                         .document(binding.priceSpinner.selectedItem.toString())
                                         .get()
                                         .addOnSuccessListener { doc ->
@@ -178,11 +176,11 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             val price = hashMapOf(
                                                 "price" to priceEnd
                                             )
-                                            db.collection(uid())
+                                            db.collection(GetUIDUseCase().execute())
                                                 .document(binding.priceSpinner.selectedItem.toString())
                                                 .set(price)
                                         }
-                                    db.collection(uid())
+                                    db.collection(GetUIDUseCase().execute())
                                         .document(binding.buttonCalender.text?.trim().toString())
                                         .collection("date")
                                         .document(binding.name.text.trim().toString()).set(data)
@@ -217,13 +215,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             "BYN" -> price = "Br"
         }
         return price
-    }
-
-    private fun uid(): String {
-        // get UID
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid
-        return uid.toString()
     }
 
     //url icons from storage firebase

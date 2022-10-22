@@ -1,4 +1,4 @@
-package fragments
+package team.four.mys.presentation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

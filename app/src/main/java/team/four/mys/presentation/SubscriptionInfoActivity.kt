@@ -1,15 +1,14 @@
 package team.four.mys.presentation
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import team.four.mys.R
 import team.four.mys.databinding.ActivitySubscriptionInfoBinding
+import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 
 class SubscriptionInfoActivity : AppCompatActivity() {
@@ -30,7 +29,7 @@ class SubscriptionInfoActivity : AppCompatActivity() {
 
     private fun deleteSubscription() {
         binding.delete.setOnClickListener {
-            db.collection(uid()).document(intent.getStringExtra("date").toString())
+            db.collection(GetUIDUseCase().execute()).document(intent.getStringExtra("date").toString())
                 .collection(intent.getStringExtra("dateType").toString())
                 .document(intent.getStringExtra("name").toString())
                 .delete()
@@ -39,7 +38,7 @@ class SubscriptionInfoActivity : AppCompatActivity() {
     }
 
     private fun subscriptionInfo() {
-        db.collection(uid()).document(intent.getStringExtra("date").toString())
+        db.collection(GetUIDUseCase().execute()).document(intent.getStringExtra("date").toString())
             .collection(intent.getStringExtra("dateType").toString())
             .document(intent.getStringExtra("name").toString())
             .get()
@@ -56,12 +55,5 @@ class SubscriptionInfoActivity : AppCompatActivity() {
                     document.get("priceSpinner").toString() + document.get("price").toString()
                 binding.description.text = document.get("description").toString()
             }
-    }
-
-    private fun uid(): String {
-        // get UID
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid
-        return uid.toString()
     }
 }

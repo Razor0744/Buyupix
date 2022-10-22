@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import ather.LocaleHelper
-import fragments.HomeFragment
-import fragments.SettingsFragment
-import fragments.StatisticsFragment
+import team.four.mys.presentation.fragments.HomeFragment
+import team.four.mys.presentation.fragments.SettingsFragment
+import team.four.mys.presentation.fragments.StatisticsFragment
 import team.four.mys.R
 import team.four.mys.data.db.Preferences
 import team.four.mys.databinding.ActivityMainBinding

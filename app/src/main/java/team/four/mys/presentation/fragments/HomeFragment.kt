@@ -1,4 +1,4 @@
-package fragments
+package team.four.mys.presentation.fragments
 
 import adapters.CustomRecyclerAdapterSubscriptions
 import android.annotation.SuppressLint
