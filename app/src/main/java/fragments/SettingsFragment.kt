@@ -1,16 +1,17 @@
 package fragments
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import team.four.mys.R
 import team.four.mys.presentation.AlertActivity
 import team.four.mys.presentation.DarkModeActivity
 import team.four.mys.presentation.LanguageActivity
 import team.four.mys.databinding.FragmentSettingsBinding
+import team.four.mys.domain.usecases.SetStatusBarUseCase
 
 class SettingsFragment : Fragment() {
 
@@ -34,6 +35,12 @@ class SettingsFragment : Fragment() {
         binding?.language?.setOnClickListener {
             startActivity(Intent(context, LanguageActivity::class.java))
         }
+
+        SetStatusBarUseCase().execute(
+            requireContext(),
+            requireActivity(),
+            requireContext().getColor(R.color.backgroundMain)
+        )
 
         return binding?.root
     }

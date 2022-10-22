@@ -1,5 +1,6 @@
 package team.four.mys.presentation
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +8,9 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import team.four.mys.R
 import team.four.mys.databinding.ActivitySubscriptionInfoBinding
+import team.four.mys.domain.usecases.SetStatusBarUseCase
 
 class SubscriptionInfoActivity : AppCompatActivity() {
 
@@ -22,6 +25,7 @@ class SubscriptionInfoActivity : AppCompatActivity() {
 
         subscriptionInfo()
         deleteSubscription()
+        SetStatusBarUseCase().execute(this, this, getColor(R.color.backgroundMain))
     }
 
     private fun deleteSubscription() {

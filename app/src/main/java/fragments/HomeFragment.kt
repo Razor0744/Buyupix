@@ -78,7 +78,11 @@ class HomeFragment : Fragment() {
             fullPrice()
         }
 
-        SetStatusBarUseCase().execute(requireContext(), requireActivity())
+        SetStatusBarUseCase().execute(
+            requireContext(),
+            requireActivity(),
+            requireContext().getColor(R.color.backgroundNavBar)
+        )
 
         return binding?.root
     }

@@ -1,6 +1,7 @@
 package team.four.mys.presentation
 
 import adapters.CustomRecyclerAdapterCalendar
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -18,6 +19,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import team.four.mys.R
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
+import team.four.mys.domain.usecases.SetStatusBarUseCase
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
@@ -50,21 +52,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         fireStore()
         calendarVisibility()
         priceSpinner()
-        statusBar()
-    }
-
-    private fun statusBar() {
-        window.statusBarColor =
-            ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
-        val preferences = getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
-        val darkMode = preferences?.getBoolean("DarkMode", false)
-        if (darkMode == true) {
-            window.decorView.systemUiVisibility =
-                (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-        } else {
-            window.decorView.systemUiVisibility =
-                (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
-        }
+        SetStatusBarUseCase().execute(this, this, getColor(R.color.backgroundMain))
     }
 
     private fun priceSpinner() {
@@ -138,7 +126,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "noDate"
                                     )
-                                    db.collection(uid()).document(binding.priceSpinner.selectedItem.toString())
+                                    db.collection(uid())
+                                        .document(binding.priceSpinner.selectedItem.toString())
                                         .get()
                                         .addOnSuccessListener { doc ->
                                             var priceStart = doc.get("price")
@@ -152,7 +141,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             val price = hashMapOf(
                                                 "price" to priceEnd as Number
                                             )
-                                            db.collection(uid()).document(binding.priceSpinner.selectedItem.toString())
+                                            db.collection(uid())
+                                                .document(binding.priceSpinner.selectedItem.toString())
                                                 .set(price)
                                         }
                                     db.collection(uid())
@@ -173,7 +163,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "date"
                                     )
-                                    db.collection(uid()).document(binding.priceSpinner.selectedItem.toString())
+                                    db.collection(uid())
+                                        .document(binding.priceSpinner.selectedItem.toString())
                                         .get()
                                         .addOnSuccessListener { doc ->
                                             var priceStart = doc.get("price")
@@ -187,7 +178,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             val price = hashMapOf(
                                                 "price" to priceEnd
                                             )
-                                            db.collection(uid()).document(binding.priceSpinner.selectedItem.toString())
+                                            db.collection(uid())
+                                                .document(binding.priceSpinner.selectedItem.toString())
                                                 .set(price)
                                         }
                                     db.collection(uid())

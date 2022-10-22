@@ -4,14 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
 import android.view.View
-import team.four.mys.R
 import team.four.mys.data.db.Preferences
 
 class SetStatusBarUseCase {
 
-    fun execute(context: Context, activity: Activity) {
-        activity.window.statusBarColor =
-            context.getColor(R.color.backgroundNavBar)
+    fun execute(context: Context, activity: Activity, color: Int) {
+        activity.window.statusBarColor = color
         when (Preferences.getSettings("DarkMode")) {
             "System Theme" -> {
                 when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {

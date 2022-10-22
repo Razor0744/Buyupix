@@ -6,9 +6,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import team.four.mys.R
 import team.four.mys.data.db.Preferences
 import team.four.mys.domain.models.Alert
 import team.four.mys.databinding.ActivityAlertBinding
+import team.four.mys.domain.usecases.SetStatusBarUseCase
 
 class AlertActivity : AppCompatActivity() {
 
@@ -29,6 +31,7 @@ class AlertActivity : AppCompatActivity() {
         }
 
         adapter()
+        SetStatusBarUseCase().execute(this, this, getColor(R.color.backgroundMain))
     }
 
     private fun adapter() {
