@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import team.four.mys.data.repository.CurrenciesRetrofit
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.ktx.firestore
@@ -27,9 +26,8 @@ import team.four.mys.presentation.CreateSubscriptionActivity
 import team.four.mys.R
 import team.four.mys.presentation.SubscriptionInfoActivity
 import team.four.mys.databinding.FragmentHomeBinding
-import team.four.mys.domain.models.Currencies
-import team.four.mys.domain.usecases.GetCurrenciesUseCase
 import team.four.mys.domain.usecases.GetUIDUseCase
+import team.four.mys.domain.usecases.SetStatusBarUseCase
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -77,9 +75,10 @@ class HomeFragment : Fragment() {
 
         CoroutineScope(Dispatchers.IO).launch {
             fireStore()
-            GetCurrenciesUseCase().execute()
+            fullPrice()
         }
-        statusBar()
+
+        SetStatusBarUseCase().execute(requireContext(), requireActivity())
 
         return binding?.root
     }
@@ -87,20 +86,6 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
-    }
-
-    private fun statusBar() {
-        requireActivity().window.statusBarColor =
-            requireContext().getColor(R.color.backgroundNavBar)
-        val preferences = activity?.getSharedPreferences("DarkMode", Context.MODE_PRIVATE)
-        val darkMode = preferences?.getBoolean("DarkMode", false)
-        if (darkMode == true) {
-            requireActivity().window.decorView.systemUiVisibility =
-                (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-        } else {
-            requireActivity().window.decorView.systemUiVisibility =
-                (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
-        }
     }
 
     private fun fireStore() {
@@ -168,7 +153,10 @@ class HomeFragment : Fragment() {
 
     private fun retrofit() {
         CurrenciesRetrofit.retrofitService.getRates().enqueue(object : Callback<CurrenciesJSON> {
-            override fun onResponse(call: Call<CurrenciesJSON>, response: Response<CurrenciesJSON>) {
+            override fun onResponse(
+                call: Call<CurrenciesJSON>,
+                response: Response<CurrenciesJSON>
+            ) {
                 val responses = response.body() as CurrenciesJSON
                 EUR = responses.rates?.EUR
                 BYN = responses.rates?.BYN
