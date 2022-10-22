@@ -17,12 +17,12 @@ import com.google.firebase.ktx.Firebase
 import team.four.mys.R
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import team.four.mys.domain.usecases.GetUIDUseCase
+import team.four.mys.domain.usecases.GetUrlImageUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.*
-
 
 class CreateSubscriptionActivity : AppCompatActivity() {
 
@@ -119,7 +119,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "price" to binding.price.text?.trim().toString(),
                                         "description" to binding.description.text?.trim()
                                             .toString(),
-                                        "image" to image(),
+                                        "image" to GetUrlImageUseCase().execute(binding.name.toString().trim()),
                                         "priceSpinner" to getPriceSpinner(),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "noDate"
@@ -156,7 +156,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             .toString(),
                                         "writeOffDate" to binding.buttonCalender.text?.trim()
                                             .toString(),
-                                        "image" to image(),
+                                        "image" to GetUrlImageUseCase().execute(binding.name.toString().trim()),
                                         "priceSpinner" to getPriceSpinner(),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "date"
@@ -215,30 +215,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             "BYN" -> price = "Br"
         }
         return price
-    }
-
-    //url icons from storage firebase
-    private fun image(): String {
-        var url = ""
-        when (binding.name.text.trim().toString()) {
-            "Spotify" -> {
-                url =
-                    "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.png?alt=media&token=89cd172f-201d-4a5e-acc6-e0da3344c26e"
-            }
-            "VK Combo" -> {
-                url =
-                    "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/VK%20Kombo.png?alt=media&token=edc2d633-0e2b-4610-9fc0-301552bc679b"
-            }
-            "Netflix" -> {
-                url =
-                    "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Netfix.png?alt=media&token=769f754e-3a71-44c1-ac59-86e59c7ef412"
-            }
-            "Apple Music" -> {
-                url =
-                    "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Apple%20Music.png?alt=media&token=c4b5b8d5-4af6-4095-a332-2375daa55b8d"
-            }
-        }
-        return url
     }
 
     private fun autoCompleteTextView() {

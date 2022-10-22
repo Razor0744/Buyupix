@@ -2,7 +2,6 @@ package team.four.mys.presentation.fragments
 
 import adapters.CustomRecyclerAdapterSubscriptions
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -34,6 +33,7 @@ import java.util.*
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
+
     private lateinit var subscriptions: ArrayList<Subscriptions>
     private lateinit var adapterSubscriptions: CustomRecyclerAdapterSubscriptions
 
@@ -54,21 +54,6 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        subscriptions = arrayListOf()
-        adapterSubscriptions =
-            CustomRecyclerAdapterSubscriptions(
-                requireContext(),
-                subscriptions,
-                date()
-            ) { subscriptionsClick ->
-                val intent = Intent(context, SubscriptionInfoActivity::class.java)
-                intent.putExtra("name", subscriptionsClick.name)
-                intent.putExtra("date", subscriptionsClick.date)
-                intent.putExtra("dateType", subscriptionsClick.dateType)
-                startActivity(intent)
-            }
-        binding?.recyclerView?.adapter = adapterSubscriptions
-
         binding?.createSubscription?.setOnClickListener {
             startActivity(Intent(context, CreateSubscriptionActivity::class.java))
         }
@@ -84,12 +69,31 @@ class HomeFragment : Fragment() {
             requireContext().getColor(R.color.backgroundNavBar)
         )
 
+        adapter()
+
         return binding?.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+    }
+
+    private fun adapter(){
+        subscriptions = arrayListOf()
+        adapterSubscriptions =
+            CustomRecyclerAdapterSubscriptions(
+                requireContext(),
+                subscriptions,
+                date()
+            ) { subscriptionsClick ->
+                val intent = Intent(context, SubscriptionInfoActivity::class.java)
+                intent.putExtra("name", subscriptionsClick.name)
+                intent.putExtra("date", subscriptionsClick.date)
+                intent.putExtra("dateType", subscriptionsClick.dateType)
+                startActivity(intent)
+            }
+        binding?.recyclerView?.adapter = adapterSubscriptions
     }
 
     private fun fireStore() {

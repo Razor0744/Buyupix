@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ather.LocaleHelper
 import team.four.mys.R
 import team.four.mys.data.db.Preferences
-import team.four.mys.domain.models.Language
-import team.four.mys.presentation.DataLanguage.language
+import team.four.mys.data.repository.LanguageData.language
 import team.four.mys.databinding.ActivityLanguageBinding
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 
@@ -49,11 +48,4 @@ class LanguageActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapterLanguage
     }
-}
-
-object DataLanguage {
-    val language = arrayListOf(
-        Language("language_usa", "USA"),
-        Language("language_russia", "Russia")
-    )
 }

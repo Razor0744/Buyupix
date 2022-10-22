@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import team.four.mys.R
 import team.four.mys.data.db.Preferences
-import team.four.mys.domain.models.DarkMode
+import team.four.mys.data.repository.DarkModeData.darkMode
 import team.four.mys.databinding.ActivityDarkModeBinding
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 
@@ -30,7 +30,7 @@ class DarkModeActivity : AppCompatActivity() {
     private fun adapter() {
         adapterDarkMode =
             CustomRecyclerAdapterDarkMode(this,
-                DataDarkMode.darkMode, Preferences.getSettings("DarkMode")) { alertClick ->
+                darkMode, Preferences.getSettings("DarkMode")) { alertClick ->
                 Preferences.setSettings("DarkMode", alertClick.name.toString())
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")
@@ -39,12 +39,4 @@ class DarkModeActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapterDarkMode
     }
-}
-
-object DataDarkMode {
-    val darkMode = arrayListOf(
-        DarkMode("Dark Theme"),
-        DarkMode("Light Theme"),
-        DarkMode("System Theme")
-    )
 }
