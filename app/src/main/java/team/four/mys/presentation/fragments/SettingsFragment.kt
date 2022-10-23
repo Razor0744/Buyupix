@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import team.four.mys.R
-import team.four.mys.presentation.AlertActivity
-import team.four.mys.presentation.DarkModeActivity
-import team.four.mys.presentation.LanguageActivity
+import team.four.mys.presentation.activity.AlertActivity
+import team.four.mys.presentation.activity.DarkModeActivity
+import team.four.mys.presentation.activity.LanguageActivity
 import team.four.mys.databinding.FragmentSettingsBinding
+import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 
 class SettingsFragment : Fragment() {
@@ -37,9 +38,11 @@ class SettingsFragment : Fragment() {
         }
 
         SetStatusBarUseCase().execute(
-            requireContext(),
-            requireActivity(),
-            requireContext().getColor(R.color.backgroundMain)
+            SetStatusBarParam(
+                requireContext(),
+                requireActivity(),
+                requireContext().getColor(R.color.backgroundMain)
+            )
         )
 
         return binding?.root

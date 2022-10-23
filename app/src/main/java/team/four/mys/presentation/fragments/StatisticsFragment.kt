@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import team.four.mys.R
 import team.four.mys.databinding.FragmentStatisticsBinding
+import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 
 class StatisticsFragment : Fragment() {
@@ -21,9 +22,11 @@ class StatisticsFragment : Fragment() {
         binding = FragmentStatisticsBinding.inflate(inflater, container, false)
 
         SetStatusBarUseCase().execute(
-            requireContext(),
-            requireActivity(),
-            requireContext().getColor(R.color.backgroundMain)
+            SetStatusBarParam(
+                requireContext(),
+                requireActivity(),
+                requireContext().getColor(R.color.backgroundMain)
+            )
         )
 
         return binding?.root
@@ -32,5 +35,5 @@ class StatisticsFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
-    }   
+    }
 }

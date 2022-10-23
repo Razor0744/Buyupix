@@ -1,4 +1,4 @@
-package ather
+package team.four.mys.domain.ather
 
 import android.annotation.TargetApi
 import android.content.Context

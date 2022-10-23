@@ -1,6 +1,6 @@
-package team.four.mys.presentation
+package team.four.mys.presentation.activity
 
-import adapters.CustomRecyclerAdapterDarkMode
+import team.four.mys.domain.adapters.CustomRecyclerAdapterDarkMode
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +9,7 @@ import team.four.mys.R
 import team.four.mys.data.db.Preferences
 import team.four.mys.data.repository.DarkModeData.darkMode
 import team.four.mys.databinding.ActivityDarkModeBinding
+import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 
 class DarkModeActivity : AppCompatActivity() {
@@ -24,13 +25,21 @@ class DarkModeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter()
-        SetStatusBarUseCase().execute(this, this, getColor(R.color.backgroundMain))
+        SetStatusBarUseCase().execute(
+            SetStatusBarParam(
+                this,
+                this,
+                getColor(R.color.backgroundMain)
+            )
+        )
     }
 
     private fun adapter() {
         adapterDarkMode =
-            CustomRecyclerAdapterDarkMode(this,
-                darkMode, Preferences.getSettings("DarkMode")) { alertClick ->
+            CustomRecyclerAdapterDarkMode(
+                this,
+                darkMode, Preferences.getSettings("DarkMode")
+            ) { alertClick ->
                 Preferences.setSettings("DarkMode", alertClick.name.toString())
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")

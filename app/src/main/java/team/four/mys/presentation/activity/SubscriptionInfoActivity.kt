@@ -1,4 +1,4 @@
-package team.four.mys.presentation
+package team.four.mys.presentation.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import team.four.mys.R
 import team.four.mys.databinding.ActivitySubscriptionInfoBinding
+import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 
@@ -24,12 +25,19 @@ class SubscriptionInfoActivity : AppCompatActivity() {
 
         subscriptionInfo()
         deleteSubscription()
-        SetStatusBarUseCase().execute(this, this, getColor(R.color.backgroundMain))
+        SetStatusBarUseCase().execute(
+            SetStatusBarParam(
+                this,
+                this,
+                getColor(R.color.backgroundMain)
+            )
+        )
     }
 
     private fun deleteSubscription() {
         binding.delete.setOnClickListener {
-            db.collection(GetUIDUseCase().execute()).document(intent.getStringExtra("date").toString())
+            db.collection(GetUIDUseCase().execute())
+                .document(intent.getStringExtra("date").toString())
                 .collection(intent.getStringExtra("dateType").toString())
                 .document(intent.getStringExtra("name").toString())
                 .delete()

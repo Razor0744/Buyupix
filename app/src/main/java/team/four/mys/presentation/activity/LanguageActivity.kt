@@ -1,15 +1,16 @@
-package team.four.mys.presentation
+package team.four.mys.presentation.activity
 
-import adapters.CustomRecyclerAdapterLanguage
+import team.four.mys.domain.adapters.CustomRecyclerAdapterLanguage
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import ather.LocaleHelper
+import team.four.mys.domain.ather.LocaleHelper
 import team.four.mys.R
 import team.four.mys.data.db.Preferences
 import team.four.mys.data.repository.LanguageData.language
 import team.four.mys.databinding.ActivityLanguageBinding
+import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 
 class LanguageActivity : AppCompatActivity() {
@@ -31,12 +32,22 @@ class LanguageActivity : AppCompatActivity() {
         }
 
         adapter()
-        SetStatusBarUseCase().execute(this, this, getColor(R.color.backgroundMain))
+        SetStatusBarUseCase().execute(
+            SetStatusBarParam(
+                this,
+                this,
+                getColor(R.color.backgroundMain)
+            )
+        )
     }
 
     private fun adapter() {
         adapterLanguage =
-            CustomRecyclerAdapterLanguage(this, language, Preferences.getSettings("Locale")) { language ->
+            CustomRecyclerAdapterLanguage(
+                this,
+                language,
+                Preferences.getSettings("Locale")
+            ) { language ->
                 when (language.name) {
                     "USA" -> LocaleHelper().setLocale(this, "en")
                     "Russia" -> LocaleHelper().setLocale(this, "ru")

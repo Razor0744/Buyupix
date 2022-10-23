@@ -1,7 +1,7 @@
-package adapters
+package team.four.mys.domain.adapters
 
-import adapters.Const.HASWRITEOFFDATE
-import adapters.Const.NOWRITEOFFDATE
+import team.four.mys.domain.adapters.Const.HASWRITEOFFDATE
+import team.four.mys.domain.adapters.Const.NOWRITEOFFDATE
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup

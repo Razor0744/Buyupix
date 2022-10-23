@@ -1,6 +1,6 @@
-package team.four.mys.presentation
+package team.four.mys.presentation.activity
 
-import adapters.CustomRecyclerAdapterCalendar
+import team.four.mys.domain.adapters.CustomRecyclerAdapterCalendar
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -16,6 +16,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import team.four.mys.R
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
+import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.GetUrlImageUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
@@ -50,7 +51,13 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         fireStore()
         calendarVisibility()
         priceSpinner()
-        SetStatusBarUseCase().execute(this, this, getColor(R.color.backgroundMain))
+        SetStatusBarUseCase().execute(
+            SetStatusBarParam(
+                this,
+                this,
+                getColor(R.color.backgroundMain)
+            )
+        )
     }
 
     private fun priceSpinner() {
@@ -119,7 +126,9 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "price" to binding.price.text?.trim().toString(),
                                         "description" to binding.description.text?.trim()
                                             .toString(),
-                                        "image" to GetUrlImageUseCase().execute(binding.name.toString().trim()),
+                                        "image" to GetUrlImageUseCase().execute(
+                                            binding.name.toString().trim()
+                                        ),
                                         "priceSpinner" to getPriceSpinner(),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "noDate"
@@ -156,7 +165,9 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             .toString(),
                                         "writeOffDate" to binding.buttonCalender.text?.trim()
                                             .toString(),
-                                        "image" to GetUrlImageUseCase().execute(binding.name.toString().trim()),
+                                        "image" to GetUrlImageUseCase().execute(
+                                            binding.name.toString().trim()
+                                        ),
                                         "priceSpinner" to getPriceSpinner(),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "date"

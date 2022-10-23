@@ -1,6 +1,6 @@
 package team.four.mys.presentation.fragments
 
-import adapters.CustomRecyclerAdapterSubscriptions
+import team.four.mys.domain.adapters.CustomRecyclerAdapterSubscriptions
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -21,10 +21,11 @@ import team.four.mys.domain.models.Subscriptions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import team.four.mys.presentation.CreateSubscriptionActivity
+import team.four.mys.presentation.activity.CreateSubscriptionActivity
 import team.four.mys.R
-import team.four.mys.presentation.SubscriptionInfoActivity
+import team.four.mys.presentation.activity.SubscriptionInfoActivity
 import team.four.mys.databinding.FragmentHomeBinding
+import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 import java.text.SimpleDateFormat
@@ -64,9 +65,11 @@ class HomeFragment : Fragment() {
         }
 
         SetStatusBarUseCase().execute(
-            requireContext(),
-            requireActivity(),
-            requireContext().getColor(R.color.backgroundNavBar)
+            SetStatusBarParam(
+                requireContext(),
+                requireActivity(),
+                requireContext().getColor(R.color.backgroundNavBar)
+            )
         )
 
         adapter()
@@ -79,7 +82,7 @@ class HomeFragment : Fragment() {
         binding = null
     }
 
-    private fun adapter(){
+    private fun adapter() {
         subscriptions = arrayListOf()
         adapterSubscriptions =
             CustomRecyclerAdapterSubscriptions(

@@ -1,11 +1,11 @@
-package team.four.mys.presentation
+package team.four.mys.presentation.activity
 
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import ather.LocaleHelper
+import team.four.mys.domain.ather.LocaleHelper
 import team.four.mys.presentation.fragments.HomeFragment
 import team.four.mys.presentation.fragments.SettingsFragment
 import team.four.mys.presentation.fragments.StatisticsFragment

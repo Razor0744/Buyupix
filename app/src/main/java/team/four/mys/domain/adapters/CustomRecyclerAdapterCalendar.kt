@@ -1,4 +1,4 @@
-package adapters
+package team.four.mys.domain.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

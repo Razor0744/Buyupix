@@ -12,38 +12,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
         <activity
-            android:name=".presentation.DarkModeActivity"
+            android:name=".presentation.activity.DarkModeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.SubscriptionInfoActivity"
+            android:name=".presentation.activity.SubscriptionInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.AlertActivity"
+            android:name=".presentation.activity.AlertActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.LanguageActivity"
+            android:name=".presentation.activity.LanguageActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.CodeSendActivity"
+            android:name=".presentation.activity.CodeSendActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.FirstActivity"
+            android:name=".presentation.activity.FirstActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.LoginActivity"
+            android:name=".presentation.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.CreateSubscriptionActivity"
+            android:name=".presentation.activity.CreateSubscriptionActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.SplashScreenActivity"
+            android:name=".presentation.activity.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/SplashScreen">
             <intent-filter>

@@ -1,6 +1,6 @@
-package team.four.mys.presentation
+package team.four.mys.presentation.activity
 
-import adapters.CustomRecyclerAdapterAlert
+import team.four.mys.domain.adapters.CustomRecyclerAdapterAlert
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,7 @@ import team.four.mys.R
 import team.four.mys.data.db.Preferences
 import team.four.mys.data.repository.AlertData.alert
 import team.four.mys.databinding.ActivityAlertBinding
+import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 
 class AlertActivity : AppCompatActivity() {
@@ -30,12 +31,22 @@ class AlertActivity : AppCompatActivity() {
         }
 
         adapter()
-        SetStatusBarUseCase().execute(this, this, getColor(R.color.backgroundMain))
+        SetStatusBarUseCase().execute(
+            SetStatusBarParam(
+                this,
+                this,
+                getColor(R.color.backgroundMain)
+            )
+        )
     }
 
     private fun adapter() {
         adapterAlert =
-            CustomRecyclerAdapterAlert(this, alert, Preferences.getSettings("Alert")) { alertClick ->
+            CustomRecyclerAdapterAlert(
+                this,
+                alert,
+                Preferences.getSettings("Alert")
+            ) { alertClick ->
                 Preferences.setSettings("Alert", alertClick.name.toString())
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")

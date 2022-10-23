@@ -1,11 +1,11 @@
-package team.four.mys.presentation
+package team.four.mys.presentation.activity
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import ather.LocaleHelper
+import team.four.mys.domain.ather.LocaleHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

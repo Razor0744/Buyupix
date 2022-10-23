@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundMain"
-    tools:context=".presentation.SubscriptionInfoActivity">
+    tools:context=".presentation.activity.SubscriptionInfoActivity">
 
     <ImageView
         android:id="@+id/buttonArrowLeft"
