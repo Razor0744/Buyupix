@@ -5,13 +5,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import team.four.mys.R
+import team.four.mys.data.db.Preferences
+import team.four.mys.databinding.ActivityMainBinding
 import team.four.mys.domain.ather.LocaleHelper
 import team.four.mys.presentation.fragments.HomeFragment
 import team.four.mys.presentation.fragments.SettingsFragment
 import team.four.mys.presentation.fragments.StatisticsFragment
-import team.four.mys.R
-import team.four.mys.data.db.Preferences
-import team.four.mys.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Preferences.init(this)
-        when(Preferences.getSettings("DarkMode")){
+        when (Preferences.getSettings("DarkMode")) {
             "System Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
             "Dark Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             "Light Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

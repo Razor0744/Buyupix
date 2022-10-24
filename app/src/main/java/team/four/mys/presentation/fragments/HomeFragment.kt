@@ -1,6 +1,5 @@
 package team.four.mys.presentation.fragments
 
-import team.four.mys.domain.adapters.CustomRecyclerAdapterSubscriptions
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import team.four.mys.data.repository.CurrenciesRetrofit
+import androidx.fragment.app.viewModels
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.ktx.firestore
@@ -16,37 +15,28 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import team.four.mys.domain.models.CurrenciesJSON
-import team.four.mys.domain.models.Subscriptions
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import team.four.mys.presentation.activity.CreateSubscriptionActivity
 import team.four.mys.R
-import team.four.mys.presentation.activity.SubscriptionInfoActivity
 import team.four.mys.databinding.FragmentHomeBinding
+import team.four.mys.domain.adapters.CustomRecyclerAdapterSubscriptions
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.domain.models.Subscriptions
 import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
-import java.text.SimpleDateFormat
+import team.four.mys.presentation.activity.CreateSubscriptionActivity
+import team.four.mys.presentation.activity.SubscriptionInfoActivity
+import team.four.mys.presentation.viewmodels.HomeViewModelFragment
 import java.util.*
 
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
 
+    private val viewModel: HomeViewModelFragment by viewModels()
+
     private lateinit var subscriptions: ArrayList<Subscriptions>
     private lateinit var adapterSubscriptions: CustomRecyclerAdapterSubscriptions
 
     private var db = Firebase.firestore
-
-    //Price
-    private var EUR: Float? = null
-    private var BYN: Float? = null
-    private var priceUSD: Int? = null
-    private var priceBYN: Int? = null
-    private var priceEUR: Int? = null
-    private var fullPrice: Float? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,9 +49,16 @@ class HomeFragment : Fragment() {
             startActivity(Intent(context, CreateSubscriptionActivity::class.java))
         }
 
+        binding?.month?.text = viewModel.date()
+
+        viewModel.fullPrice.observe(requireActivity()) { fullPrice ->
+            binding?.price?.text = fullPrice.toString()
+        }
+
         CoroutineScope(Dispatchers.IO).launch {
             fireStore()
-            fullPrice()
+            viewModel.fullPrice()
+
         }
 
         SetStatusBarUseCase().execute(
@@ -88,7 +85,7 @@ class HomeFragment : Fragment() {
             CustomRecyclerAdapterSubscriptions(
                 requireContext(),
                 subscriptions,
-                date()
+                viewModel.date()
             ) { subscriptionsClick ->
                 val intent = Intent(context, SubscriptionInfoActivity::class.java)
                 intent.putExtra("name", subscriptionsClick.name)
@@ -144,64 +141,5 @@ class HomeFragment : Fragment() {
                 })
             i++
         }
-    }
-
-    private fun fullPrice() {
-        getPrice("USD")
-        getPrice("BYN")
-        getPrice("EUR")
-        retrofit()
-        while (true) {
-            if (EUR != null && BYN != null && priceBYN != null && priceUSD != null && priceEUR != null) {
-                activity?.runOnUiThread {
-                    fullPrice = priceUSD!! + (priceBYN!! / BYN!!) + (priceEUR!! / EUR!!)
-                    binding?.price?.text = fullPrice.toString()
-                }
-                break
-            }
-        }
-    }
-
-    private fun retrofit() {
-        CurrenciesRetrofit.retrofitService.getRates().enqueue(object : Callback<CurrenciesJSON> {
-            override fun onResponse(
-                call: Call<CurrenciesJSON>,
-                response: Response<CurrenciesJSON>
-            ) {
-                val responses = response.body() as CurrenciesJSON
-                EUR = responses.rates?.EUR
-                BYN = responses.rates?.BYN
-            }
-
-            override fun onFailure(call: Call<CurrenciesJSON>, t: Throwable) {
-                println(t)
-            }
-        })
-    }
-
-    private fun getPrice(string: String) {
-        db.collection(GetUIDUseCase().execute()).document(string)
-            .get()
-            .addOnSuccessListener { doc ->
-                if (doc.get("price") != null) {
-                    when (string) {
-                        "USD" -> priceUSD = Integer.parseInt(doc.get("price").toString())
-                        "BYN" -> priceBYN = Integer.parseInt(doc.get("price").toString())
-                        "EUR" -> priceEUR = Integer.parseInt(doc.get("price").toString())
-                    }
-                } else {
-                    when (string) {
-                        "USD" -> priceUSD = 0
-                        "BYN" -> priceBYN = 0
-                        "EUR" -> priceEUR = 0
-                    }
-                }
-            }
-    }
-
-    private fun date(): String {
-        val month: String = SimpleDateFormat("LLLL", Locale.getDefault()).format(Date())
-        binding?.month?.text = month
-        return month
     }
 }
