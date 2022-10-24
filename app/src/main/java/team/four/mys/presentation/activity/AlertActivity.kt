@@ -1,6 +1,6 @@
 package team.four.mys.presentation.activity
 
-import team.four.mys.domain.adapters.CustomRecyclerAdapterAlert
+import team.four.mys.presentation.adapters.CustomRecyclerAdapterAlert
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

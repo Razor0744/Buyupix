@@ -1,6 +1,5 @@
 package team.four.mys.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.ktx.firestore
@@ -14,7 +13,7 @@ import team.four.mys.domain.usecases.GetUIDUseCase
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeViewModelFragment : ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private var db = Firebase.firestore
 
@@ -28,15 +27,6 @@ class HomeViewModelFragment : ViewModel() {
 
     fun date(): String {
         return SimpleDateFormat("LLLL", Locale.getDefault()).format(Date())
-    }
-
-    init {
-        Log.i("AAA", "VM Created")
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        Log.i("AAA", "VM Cleared")
     }
 
     fun fullPrice() {

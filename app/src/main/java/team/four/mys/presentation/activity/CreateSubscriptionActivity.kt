@@ -1,6 +1,6 @@
 package team.four.mys.presentation.activity
 
-import team.four.mys.domain.adapters.CustomRecyclerAdapterCalendar
+import team.four.mys.presentation.adapters.CustomRecyclerAdapterCalendar
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle

@@ -17,21 +17,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import team.four.mys.R
 import team.four.mys.databinding.FragmentHomeBinding
-import team.four.mys.domain.adapters.CustomRecyclerAdapterSubscriptions
+import team.four.mys.presentation.adapters.CustomRecyclerAdapterSubscriptions
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscriptions
 import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.activity.CreateSubscriptionActivity
 import team.four.mys.presentation.activity.SubscriptionInfoActivity
-import team.four.mys.presentation.viewmodels.HomeViewModelFragment
+import team.four.mys.presentation.viewmodels.HomeViewModel
 import java.util.*
 
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
 
-    private val viewModel: HomeViewModelFragment by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     private lateinit var subscriptions: ArrayList<Subscriptions>
     private lateinit var adapterSubscriptions: CustomRecyclerAdapterSubscriptions
@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
 
         binding?.month?.text = viewModel.date()
 
-        viewModel.fullPrice.observe(requireActivity()) { fullPrice ->
+        viewModel.fullPrice.observe(viewLifecycleOwner) { fullPrice ->
             binding?.price?.text = fullPrice.toString()
         }
 

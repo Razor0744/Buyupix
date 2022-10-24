@@ -1,6 +1,6 @@
 package team.four.mys.presentation.activity
 
-import team.four.mys.domain.adapters.CustomRecyclerAdapterDarkMode
+import team.four.mys.presentation.adapters.CustomRecyclerAdapterDarkMode
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
