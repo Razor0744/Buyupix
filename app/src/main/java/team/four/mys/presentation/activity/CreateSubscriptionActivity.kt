@@ -20,6 +20,7 @@ import team.four.mys.R
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscriptions
+import team.four.mys.domain.usecases.GetPriceSpinnerUseCase
 import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.GetUrlImageUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
@@ -51,10 +52,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("fragment", "HomeFragment")
             startActivity(intent)
-        }
-
-        binding.create.setOnClickListener{
-
         }
 
         setMonthView()
@@ -140,7 +137,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "image" to GetUrlImageUseCase().execute(
                                             binding.name.toString().trim()
                                         ),
-                                        "priceSpinner" to viewModel.getPriceSpinner(binding.priceSpinner.selectedItem.toString()),
+                                        "priceSpinner" to GetPriceSpinnerUseCase().execute(binding.priceSpinner.selectedItem.toString()),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "noDate"
                                     )
@@ -179,7 +176,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "image" to GetUrlImageUseCase().execute(
                                             binding.name.toString().trim()
                                         ),
-                                        "priceSpinner" to viewModel.getPriceSpinner(binding.priceSpinner.selectedItem.toString()),
+                                        "priceSpinner" to GetPriceSpinnerUseCase().execute(binding.priceSpinner.selectedItem.toString()),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "date"
                                     )

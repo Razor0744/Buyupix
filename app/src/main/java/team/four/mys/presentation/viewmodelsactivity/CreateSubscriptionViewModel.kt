@@ -10,16 +10,6 @@ import java.util.*
 
 class CreateSubscriptionViewModel : ViewModel() {
 
-     fun getPriceSpinner(item: String): String {
-        var price = ""
-        when (item) {
-            "USD" -> price = "$"
-            "EUR" -> price = "€"
-            "BYN" -> price = "Br"
-        }
-        return price
-    }
-
     @RequiresApi(Build.VERSION_CODES.O)
      fun monthYearFromDate(date: LocalDate): String {
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("LLLL")
