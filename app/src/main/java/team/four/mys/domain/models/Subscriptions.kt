@@ -1,9 +1,10 @@
 package team.four.mys.domain.models
 
-class Subscriptions(
+data class Subscriptions(
     var image: String? = null,
     var name: String? = null,
     var price: String? = null,
+    var description: String? = null,
     var writeOffDate: String? = null,
     var priceSpinner: String? = null,
     var date: String? = null,

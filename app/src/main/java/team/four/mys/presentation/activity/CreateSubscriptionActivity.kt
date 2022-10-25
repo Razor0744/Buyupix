@@ -1,5 +1,6 @@
 package team.four.mys.presentation.activity
 
+import android.annotation.SuppressLint
 import team.four.mys.presentation.adapters.CustomRecyclerAdapterCalendar
 import android.content.Intent
 import android.os.Build
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
@@ -17,9 +19,11 @@ import com.google.firebase.ktx.Firebase
 import team.four.mys.R
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.domain.models.Subscriptions
 import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.GetUrlImageUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
+import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
@@ -30,8 +34,12 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     private val db = Firebase.firestore
     private lateinit var binding: ActivityCreatSubscriptionBinding
 
+    private val viewModel: CreateSubscriptionViewModel by viewModels()
+
     private lateinit var adapterCalendar: CustomRecyclerAdapterCalendar
-    private lateinit var selectedDate: LocalDate
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private var selectedDate: LocalDate = LocalDate.now()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +53,10 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        selectedDate = LocalDate.now()
+        binding.create.setOnClickListener{
+
+        }
+
         setMonthView()
         autoCompleteTextView()
         fireStore()
@@ -129,7 +140,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "image" to GetUrlImageUseCase().execute(
                                             binding.name.toString().trim()
                                         ),
-                                        "priceSpinner" to getPriceSpinner(),
+                                        "priceSpinner" to viewModel.getPriceSpinner(binding.priceSpinner.selectedItem.toString()),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "noDate"
                                     )
@@ -168,7 +179,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "image" to GetUrlImageUseCase().execute(
                                             binding.name.toString().trim()
                                         ),
-                                        "priceSpinner" to getPriceSpinner(),
+                                        "priceSpinner" to viewModel.getPriceSpinner(binding.priceSpinner.selectedItem.toString()),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "date"
                                     )
@@ -218,16 +229,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         }
     }
 
-    private fun getPriceSpinner(): String {
-        var price = ""
-        when (binding.priceSpinner.selectedItem) {
-            "USD" -> price = "$"
-            "EUR" -> price = "€"
-            "BYN" -> price = "Br"
-        }
-        return price
-    }
-
     private fun autoCompleteTextView() {
         val names = resources.getStringArray(R.array.names)
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, names)
@@ -237,8 +238,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setMonthView() {
-        binding.monthYearTV.text = monthYearFromDate(selectedDate)
-        val daysInMonth = daysInMonthArray(selectedDate)
+        binding.monthYearTV.text = viewModel.monthYearFromDate(selectedDate)
+        val daysInMonth = viewModel.daysInMonthArray(selectedDate)
         adapterCalendar = CustomRecyclerAdapterCalendar(daysInMonth) { calendarClick ->
             onItemClick(daysInMonth[calendarClick])
         }
@@ -247,47 +248,13 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         binding.recyclerView.suppressLayout(true)
 
         binding.buttonLeftCalendar.setOnClickListener {
-            nextMonthAction()
+            selectedDate = selectedDate.minusMonths(1)
+            setMonthView()
         }
         binding.buttonRightCalendar.setOnClickListener {
-            previousMonthAction()
+            selectedDate = selectedDate.plusMonths(1)
+            setMonthView()
         }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun daysInMonthArray(date: LocalDate): ArrayList<String> {
-        val daysInMonthArray = ArrayList<String>()
-        val yearMonth: YearMonth = YearMonth.from(date)
-        val daysInMonth: Int = yearMonth.lengthOfMonth()
-        val firstOfMonth = selectedDate.withDayOfMonth(1)
-        val dayOfWeek = firstOfMonth.dayOfWeek.value
-        for (i in 1..42) {
-            if (i <= dayOfWeek || i > daysInMonth + dayOfWeek) {
-                daysInMonthArray.add("")
-            } else {
-                daysInMonthArray.add((i - dayOfWeek).toString())
-            }
-        }
-        return daysInMonthArray
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun monthYearFromDate(date: LocalDate): String {
-        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("LLLL")
-        return date.format(formatter)
-            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun previousMonthAction() {
-        selectedDate = selectedDate.minusMonths(1)
-        setMonthView()
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun nextMonthAction() {
-        selectedDate = selectedDate.plusMonths(1)
-        setMonthView()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

@@ -1,4 +1,4 @@
-package team.four.mys.presentation.viewmodels
+package team.four.mys.presentation.viewmodelsfragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

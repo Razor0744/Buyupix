@@ -24,7 +24,7 @@ import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.activity.CreateSubscriptionActivity
 import team.four.mys.presentation.activity.SubscriptionInfoActivity
-import team.four.mys.presentation.viewmodels.HomeViewModel
+import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
 import java.util.*
 
 class HomeFragment : Fragment() {
