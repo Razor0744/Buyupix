@@ -8,5 +8,6 @@ data class Subscriptions(
     var writeOffDate: String? = null,
     var priceSpinner: String? = null,
     var date: String? = null,
-    var dateType: String? = null
+    var dateType: String? = null,
+    val category: String? = null
 )

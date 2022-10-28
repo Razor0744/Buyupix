@@ -91,4 +91,7 @@ dependencies {
     def viewModel = '2.5.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModel"
+
+    //Statistic
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

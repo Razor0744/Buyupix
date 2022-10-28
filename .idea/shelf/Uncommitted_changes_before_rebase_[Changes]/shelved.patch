@@ -1,0 +1,19 @@
+Index: app/src/main/java/team/four/mys/domain/models/Subscriptions.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package team.four.mys.domain.models\n\ndata class Subscriptions(\n    var image: String? = null,\n    var name: String? = null,\n    var price: String? = null,\n    var description: String? = null,\n    var writeOffDate: String? = null,\n    var priceSpinner: String? = null,\n    var date: String? = null,\n    var dateType: String? = null\n)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/team/four/mys/domain/models/Subscriptions.kt b/app/src/main/java/team/four/mys/domain/models/Subscriptions.kt
+--- a/app/src/main/java/team/four/mys/domain/models/Subscriptions.kt	(revision 7642a104e216f431af7c3331c7e988f1903b08ca)
++++ b/app/src/main/java/team/four/mys/domain/models/Subscriptions.kt	(date 1666714460185)
+@@ -8,5 +8,6 @@
+     var writeOffDate: String? = null,
+     var priceSpinner: String? = null,
+     var date: String? = null,
+-    var dateType: String? = null
++    var dateType: String? = null,
++    val category: String? = null
+ )
+\ No newline at end of file
