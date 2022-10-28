@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.renderer.PieChartRenderer
 import team.four.mys.R
 import team.four.mys.databinding.FragmentStatisticsBinding
 import team.four.mys.domain.models.SetStatusBarParam
@@ -67,8 +68,6 @@ class StatisticsFragment : Fragment() {
         binding?.pieChart?.holeRadius = 92f
         //радиус покраски около отверстия
         binding?.pieChart?.transparentCircleRadius = 0f
-        //закругленные края
-        binding?.pieChart?.setDrawRoundedSlices(true)
 
         //текст в центре
         binding?.pieChart?.centerText = "Pie chart"
@@ -95,6 +94,7 @@ class StatisticsFragment : Fragment() {
         //уменьшение всей диограммы
         dataSet.selectionShift = 30f
 
+
         //цвета
         val colors: ArrayList<Int> = ArrayList()
         colors.add(resources.getColor(R.color.grey_100))
@@ -109,6 +109,10 @@ class StatisticsFragment : Fragment() {
 
         // undo all highlights
         binding?.pieChart?.highlightValues(null)
+
+        //кстомный рендер
+        binding?.pieChart?.setDrawRoundedSlices(true)
+        binding?.pieChart?.setDrawSlicesUnderHole(false)
 
         // loading chart
         binding?.pieChart?.invalidate()
