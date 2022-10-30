@@ -12,8 +12,8 @@ android {
         applicationId "team.four.mys"
         minSdk 23
         targetSdk 33
-        versionCode 15
-        versionName "1.4.3"
+        versionCode 16
+        versionName "1.4.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -93,5 +93,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModel"
 
     //Statistic
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:-SNAPSHOT'
 }
