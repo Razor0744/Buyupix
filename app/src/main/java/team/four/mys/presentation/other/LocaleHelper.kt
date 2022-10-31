@@ -1,4 +1,4 @@
-package team.four.mys.presentation.ather
+package team.four.mys.presentation.other
 
 import android.annotation.TargetApi
 import android.content.Context

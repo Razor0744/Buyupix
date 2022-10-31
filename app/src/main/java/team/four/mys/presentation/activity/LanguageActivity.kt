@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import team.four.mys.presentation.ather.LocaleHelper
+import team.four.mys.presentation.other.LocaleHelper
 import team.four.mys.R
 import team.four.mys.data.db.Preferences
 import team.four.mys.data.repository.LanguageData.language
