@@ -8,7 +8,7 @@ class DeleteSubscriptionUseCase {
 
     private val db = Firebase.firestore
 
-    fun execute(subscription: Subscription){
+    fun delete(subscription: Subscription){
         db.collection(subscription.uid)
             .document(subscription.date)
             .collection(subscription.dateType)

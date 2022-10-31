@@ -2,7 +2,7 @@ package team.four.mys.domain.usecases
 
 class GetUrlImageUseCase {
 
-    fun execute(name: String): String {
+    fun getUrlImage(name: String): String {
         var url = ""
         when (name) {
             "Spotify" -> {

@@ -40,7 +40,7 @@ class StatisticsFragment : Fragment() {
     ): View? {
         binding = FragmentStatisticsBinding.inflate(inflater, container, false)
 
-        SetStatusBarUseCase().execute(
+        SetStatusBarUseCase().setStatusBar(
             SetStatusBarParam(
                 requireContext(),
                 requireActivity(),
@@ -126,13 +126,13 @@ class StatisticsFragment : Fragment() {
             PieChart(requireContext()).animator,
             PieChart(requireContext()).viewPortHandler
         )
-        binding?.pieChart?.setDrawRoundedSlices(true)
-
-        // undo all highlights
-        binding?.pieChart?.highlightValues(null)
-
-        // loading chart
-        binding?.pieChart?.invalidate()
+//        binding?.pieChart?.setDrawRoundedSlices(true)
+//
+//        // undo all highlights
+//        binding?.pieChart?.highlightValues(null)
+//
+//        // loading chart
+//        binding?.pieChart?.invalidate()
     }
 }
 

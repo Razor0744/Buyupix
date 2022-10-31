@@ -2,7 +2,7 @@ package team.four.mys.domain.usecases
 
 class GetPriceSpinnerUseCase {
 
-    fun execute(item: String): String {
+    fun getPriceSpinner(item: String): String {
         var price = ""
         when (item) {
             "USD" -> price = "$"

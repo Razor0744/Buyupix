@@ -31,7 +31,7 @@ class AlertActivity : AppCompatActivity() {
         }
 
         adapter()
-        SetStatusBarUseCase().execute(
+        SetStatusBarUseCase().setStatusBar(
             SetStatusBarParam(
                 this,
                 this,

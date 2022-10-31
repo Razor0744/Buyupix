@@ -37,7 +37,7 @@ class SettingsFragment : Fragment() {
             startActivity(Intent(context, LanguageActivity::class.java))
         }
 
-        SetStatusBarUseCase().execute(
+        SetStatusBarUseCase().setStatusBar(
             SetStatusBarParam(
                 requireContext(),
                 requireActivity(),

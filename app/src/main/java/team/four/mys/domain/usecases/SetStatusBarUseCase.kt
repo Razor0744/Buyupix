@@ -7,7 +7,7 @@ import team.four.mys.domain.models.SetStatusBarParam
 
 class SetStatusBarUseCase {
 
-    fun execute(param: SetStatusBarParam) {
+    fun setStatusBar(param: SetStatusBarParam) {
         param.activity.window.statusBarColor = param.color
         when (Preferences.getSettings("DarkMode")) {
             "System Theme" -> {

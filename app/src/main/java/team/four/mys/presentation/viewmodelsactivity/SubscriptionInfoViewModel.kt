@@ -14,7 +14,7 @@ class SubscriptionInfoViewModel : ViewModel() {
     val documentLiveData = MutableLiveData<DocumentSnapshot>()
 
     fun deleteSubscription(subscription: Subscription) {
-        DeleteSubscriptionUseCase().execute(subscription)
+        DeleteSubscriptionUseCase().delete(subscription)
     }
 
     fun subscriptionInfo(subscription: Subscription) {

@@ -25,7 +25,7 @@ class DarkModeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter()
-        SetStatusBarUseCase().execute(
+        SetStatusBarUseCase().setStatusBar(
             SetStatusBarParam(
                 this,
                 this,

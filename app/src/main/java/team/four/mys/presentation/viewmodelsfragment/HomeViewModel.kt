@@ -26,9 +26,9 @@ class HomeViewModel : ViewModel() {
     }
 
     suspend fun fullPrice() {
-        priceBYN = GetPriceFireBaseUseCase().execute("BYN")
-        priceUSD = GetPriceFireBaseUseCase().execute("USD")
-        priceEUR = GetPriceFireBaseUseCase().execute("EUR")
+        priceBYN = GetPriceFireBaseUseCase().getPriceFireBase("BYN")
+        priceUSD = GetPriceFireBaseUseCase().getPriceFireBase("USD")
+        priceEUR = GetPriceFireBaseUseCase().getPriceFireBase("EUR")
         retrofit()
     }
 
