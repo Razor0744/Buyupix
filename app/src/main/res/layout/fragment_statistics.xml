@@ -29,6 +29,31 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text" />
 
+    <TextView
+        android:id="@+id/month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-30dp"
+        android:fontFamily="@font/roboto"
+        android:text="June"
+        android:textColor="@color/textSecondary"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/pieChart"
+        app:layout_constraintLeft_toLeftOf="@id/pieChart"
+        app:layout_constraintRight_toRightOf="@id/pieChart"
+        app:layout_constraintTop_toTopOf="@id/pieChart" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="753 USD"
+        android:textColor="@color/textMain"
+        android:textSize="22sp"
+        app:layout_constraintLeft_toLeftOf="@id/pieChart"
+        app:layout_constraintRight_toRightOf="@id/pieChart"
+        app:layout_constraintTop_toBottomOf="@id/month" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/gamingCategory"
         android:layout_width="0dp"

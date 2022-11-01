@@ -75,16 +75,16 @@ class StatisticsFragment : Fragment() {
         binding?.pieChart?.transparentCircleRadius = 0f
 
         //текст в центре
-        binding?.pieChart?.centerText = "Pie chart"
+//        binding?.pieChart?.centerText = "Pie chart"
         //размер этого текста
-        binding?.pieChart?.setCenterTextSize(24f)
-        binding?.pieChart?.setCenterTextColor(
-            ResourcesCompat.getColor(
-                resources,
-                R.color.textMain,
-                null
-            )
-        )
+//        binding?.pieChart?.setCenterTextSize(24f)
+//        binding?.pieChart?.setCenterTextColor(
+//            ResourcesCompat.getColor(
+//                resources,
+//                R.color.textMain,
+//                null
+//            )
+//        )
 
         //отключить текст слева внизу
         binding?.pieChart?.legend?.isEnabled = false
@@ -103,9 +103,12 @@ class StatisticsFragment : Fragment() {
         dataSet.setDrawIcons(false)
 
         //расстояние между
-        dataSet.sliceSpace = 12f
+        dataSet.sliceSpace = 0f//12f
         //уменьшение всей диограммы
         dataSet.selectionShift = 30f
+
+        binding?.pieChart?.setDrawRoundedSlices(true)
+        binding?.pieChart?.setTouchEnabled(false)
 
         //цвета
         val colors: ArrayList<Int> = ArrayList()

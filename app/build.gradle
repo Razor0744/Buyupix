@@ -93,5 +93,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModel"
 
     //Statistic
-    implementation 'com.github.PhilJay:MPAndroidChart:-SNAPSHOT'
+    implementation 'com.github.PhilJay:MPAndroidChart:3.1.0'
 }
