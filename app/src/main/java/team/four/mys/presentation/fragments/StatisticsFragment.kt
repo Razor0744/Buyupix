@@ -7,18 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import team.four.mys.R
 import team.four.mys.databinding.FragmentStatisticsBinding
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetStatusBarUseCase
-
+import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
 class StatisticsFragment : Fragment() {
 
     private var binding: FragmentStatisticsBinding? = null
+
+    private val viewModel: StatisticsViewModel by viewModels()
 
     private var gamingPrice = 20f
     private var musicPrice = 199f
@@ -31,6 +37,16 @@ class StatisticsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentStatisticsBinding.inflate(inflater, container, false)
+
+        binding?.month?.text = viewModel.date()
+
+        viewModel.fullPrice.observe(viewLifecycleOwner) { fullPrice ->
+            binding?.price?.text = getString(R.string.fullPrice, String.format("%.2f", fullPrice))
+        }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.fullPrice()
+        }
 
         SetStatusBarUseCase().setStatusBar(
             SetStatusBarParam(
@@ -73,18 +89,6 @@ class StatisticsFragment : Fragment() {
         binding?.pieChart?.holeRadius = 92f
         //радиус покраски около отверстия
         binding?.pieChart?.transparentCircleRadius = 0f
-
-        //текст в центре
-//        binding?.pieChart?.centerText = "Pie chart"
-        //размер этого текста
-//        binding?.pieChart?.setCenterTextSize(24f)
-//        binding?.pieChart?.setCenterTextColor(
-//            ResourcesCompat.getColor(
-//                resources,
-//                R.color.textMain,
-//                null
-//            )
-//        )
 
         //отключить текст слева внизу
         binding?.pieChart?.legend?.isEnabled = false

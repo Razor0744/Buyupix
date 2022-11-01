@@ -66,5 +66,8 @@
         <item>Netflix</item>
         <item>Apple Music</item>
     </string-array>
+    
+    <!--StatisticFragment-->
+    <string name="fullPrice">%1$s USD</string>
 
 </resources>

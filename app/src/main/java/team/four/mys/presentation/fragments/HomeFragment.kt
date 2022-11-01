@@ -52,13 +52,12 @@ class HomeFragment : Fragment() {
         binding?.month?.text = viewModel.date()
 
         viewModel.fullPrice.observe(viewLifecycleOwner) { fullPrice ->
-            binding?.price?.text = fullPrice.toString()
+            binding?.price?.text = getString(R.string.fullPrice, String.format("%.2f", fullPrice))
         }
 
         CoroutineScope(Dispatchers.IO).launch {
             fireStore()
             viewModel.fullPrice()
-
         }
 
         SetStatusBarUseCase().setStatusBar(
