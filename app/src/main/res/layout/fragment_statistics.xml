@@ -77,17 +77,19 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/otherCategory"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="28dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/background_statistic_blue"
+        android:layout_marginEnd="11dp"
+        android:background="@drawable/background_statistic_turquoise"
         android:fontFamily="@font/roboto"
-        android:text="Лол · $20"
+        android:text="Лол · $12.99"
         android:textAllCaps="false"
         android:textColor="@color/textMain2"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/musicCategory"
         app:layout_constraintTop_toBottomOf="@id/gamingCategory" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

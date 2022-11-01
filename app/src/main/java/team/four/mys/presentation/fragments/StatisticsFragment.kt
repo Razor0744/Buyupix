@@ -20,6 +20,11 @@ class StatisticsFragment : Fragment() {
 
     private var binding: FragmentStatisticsBinding? = null
 
+    private var gamingPrice = 20f
+    private var musicPrice = 199f
+    private var cloudPrice = 230f
+    private var otherPrice = 12.99f
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -88,34 +93,32 @@ class StatisticsFragment : Fragment() {
 
         //список массивов
         val entries: ArrayList<PieEntry> = ArrayList()
-        entries.add(PieEntry(70f))
-        entries.add(PieEntry(20f))
-        entries.add(PieEntry(100f))
-        entries.add(PieEntry(100f))
+        entries.add(PieEntry(gamingPrice))
+        entries.add(PieEntry(musicPrice))
+        entries.add(PieEntry(cloudPrice))
+        entries.add(PieEntry(otherPrice))
         //данные
         val dataSet = PieDataSet(entries, "Mobile OS")
         //иконки
         dataSet.setDrawIcons(false)
 
         //расстояние между
-        dataSet.sliceSpace = 0f  //12f
+        dataSet.sliceSpace = 12f
         //уменьшение всей диограммы
         dataSet.selectionShift = 30f
 
         //цвета
         val colors: ArrayList<Int> = ArrayList()
         colors.add(ResourcesCompat.getColor(resources, R.color.blue, null))
-        colors.add(ResourcesCompat.getColor(resources, R.color.blueMain, null))
-        colors.add(ResourcesCompat.getColor(resources, R.color.violet, null))
         colors.add(ResourcesCompat.getColor(resources, R.color.yellow, null))
+        colors.add(ResourcesCompat.getColor(resources, R.color.blueMain, null))
+        colors.add(ResourcesCompat.getColor(resources, R.color.turquoise, null))
         dataSet.colors = colors
 
         val data = PieData(dataSet)
         //размер текста
         data.setValueTextSize(0f)
         binding?.pieChart?.data = data
-
-        binding?.pieChart?.setDrawRoundedSlices(true)
 
         // undo all highlights
         binding?.pieChart?.highlightValues(null)
