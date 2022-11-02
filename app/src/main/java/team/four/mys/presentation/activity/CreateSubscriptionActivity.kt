@@ -31,7 +31,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     private val db = Firebase.firestore
     private lateinit var binding: ActivityCreatSubscriptionBinding
 
-    private val viewModel: CreateSubscriptionViewModel by viewModels()
+    private val viewModel by viewModels<CreateSubscriptionViewModel>()
 
     private lateinit var adapterCalendar: CustomRecyclerAdapterCalendar
 

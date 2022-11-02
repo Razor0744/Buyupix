@@ -24,7 +24,7 @@ class StatisticsFragment : Fragment() {
 
     private var binding: FragmentStatisticsBinding? = null
 
-    private val viewModel: StatisticsViewModel by viewModels()
+    private val viewModel by viewModels<StatisticsViewModel>()
 
     private var gamingPrice = 20f
     private var musicPrice = 199f

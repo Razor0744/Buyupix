@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel by viewModels<HomeViewModel>()
 
     private lateinit var subscriptions: ArrayList<Subscriptions>
     private lateinit var adapterSubscriptions: CustomRecyclerAdapterSubscriptions

@@ -17,7 +17,7 @@ class SubscriptionInfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySubscriptionInfoBinding
 
-    private val viewModel: SubscriptionInfoViewModel by viewModels()
+    private val viewModel by viewModels<SubscriptionInfoViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
