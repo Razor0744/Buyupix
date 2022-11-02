@@ -1,16 +1,14 @@
 package team.four.mys.presentation.adapters
 
-import team.four.mys.presentation.adapters.Const.HASWRITEOFFDATE
-import team.four.mys.presentation.adapters.Const.NOWRITEOFFDATE
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import team.four.mys.R
-import team.four.mys.domain.models.Subscriptions
 import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithDateBinding
 import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithoutDateBinding
+import team.four.mys.domain.models.Subscriptions
 
 class CustomRecyclerAdapterSubscriptions(
     private val context: Context,
@@ -106,9 +104,9 @@ class CustomRecyclerAdapterSubscriptions(
     override fun getItemViewType(position: Int): Int {
         return if (subscriptions[position].writeOffDate != null) HASWRITEOFFDATE else NOWRITEOFFDATE
     }
-}
 
-private object Const {
-    const val HASWRITEOFFDATE = 0
-    const val NOWRITEOFFDATE = 1
+    companion object Const {
+        const val HASWRITEOFFDATE = 0
+        const val NOWRITEOFFDATE = 1
+    }
 }
