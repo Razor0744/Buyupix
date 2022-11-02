@@ -47,6 +47,7 @@
     <string name="subscriptionInfo">Subs info</string>
     <string name="name">Name</string>
     <string name="category">Category</string>
+    <string name="priceInfo">%1$s%2$s</string>
 
     <!--Navigation-->
     <string name="home">Home</string>

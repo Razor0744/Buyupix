@@ -45,9 +45,9 @@ class SubscriptionInfoActivity : AppCompatActivity() {
             binding.name2.text = it.get("name").toString()
             binding.name.text = it.get("name").toString()
             binding.price2.text =
-                it.get("priceSpinner").toString() + it.get("price").toString()
+                getString(R.string.priceInfo, it.get("priceSpinner"), it.get("price"))
             binding.price.text =
-                it.get("priceSpinner").toString() + it.get("price").toString()
+                getString(R.string.priceInfo, it.get("priceSpinner"), it.get("price"))
             binding.description.text = it.get("description").toString()
         }
 
