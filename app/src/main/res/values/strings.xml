@@ -71,4 +71,8 @@
     <!--StatisticFragment-->
     <string name="fullPrice">%1$s USD</string>
 
+    <!--CustomRecyclerAdapterSubscriptions-->
+    <string name="priceAdapterSubscriptions">%1$s%2$s</string>
+    <string name="dateAdapterSubscriptions">%1$s %2$s</string>
+
 </resources>

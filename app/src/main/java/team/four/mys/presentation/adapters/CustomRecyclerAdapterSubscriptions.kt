@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import team.four.mys.R
 import team.four.mys.domain.models.Subscriptions
 import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithDateBinding
 import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithoutDateBinding
@@ -33,8 +34,16 @@ class CustomRecyclerAdapterSubscriptions(
                 .into(binding.imageSubscription)
 
             binding.nameSubscription.text = subscriptions.name
-            binding.priceSubscription.text = subscriptions.priceSpinner + subscriptions.price
-            binding.writeOffDateSubscription.text = subscriptions.writeOffDate + " $month"
+            binding.priceSubscription.text = context.getString(
+                R.string.priceAdapterSubscriptions,
+                subscriptions.priceSpinner,
+                subscriptions.price
+            )
+            binding.writeOffDateSubscription.text = context.getString(
+                R.string.dateAdapterSubscriptions,
+                subscriptions.writeOffDate,
+                month
+            )
 
             itemView.setOnClickListener {
                 itemClick(subscriptions)
@@ -56,7 +65,11 @@ class CustomRecyclerAdapterSubscriptions(
                 .into(binding.imageSubscription)
 
             binding.nameSubscription.text = subscriptions.name
-            binding.priceSubscription.text = subscriptions.priceSpinner + subscriptions.price
+            binding.priceSubscription.text = context.getString(
+                R.string.priceAdapterSubscriptions,
+                subscriptions.priceSpinner,
+                subscriptions.price
+            )
 
             itemView.setOnClickListener {
                 itemClick(subscriptions)
