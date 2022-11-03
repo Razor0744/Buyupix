@@ -3,10 +3,7 @@ package team.four.mys.presentation.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-
-
 import team.four.mys.databinding.RecyclerviewItemCalendarBinding
-
 
 class CustomRecyclerAdapterCalendar(
     private val days: List<String>,

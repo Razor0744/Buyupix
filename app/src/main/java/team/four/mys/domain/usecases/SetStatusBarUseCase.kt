@@ -17,13 +17,20 @@ class SetStatusBarUseCase {
                     Configuration.UI_MODE_NIGHT_NO -> param.activity.window.decorView.systemUiVisibility =
                         (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
                 }
-
             }
             "Dark Theme"
             -> param.activity.window.decorView.systemUiVisibility =
                 (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
             "Light Theme" -> param.activity.window.decorView.systemUiVisibility =
                 (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+            else -> {
+                when (param.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                    Configuration.UI_MODE_NIGHT_YES -> param.activity.window.decorView.systemUiVisibility =
+                        (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+                    Configuration.UI_MODE_NIGHT_NO -> param.activity.window.decorView.systemUiVisibility =
+                        (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+                }
+            }
         }
     }
 }
