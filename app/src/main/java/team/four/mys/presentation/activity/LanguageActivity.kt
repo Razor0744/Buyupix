@@ -4,13 +4,16 @@ import team.four.mys.presentation.adapters.CustomRecyclerAdapterLanguage
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import team.four.mys.presentation.other.LocaleHelper
 import team.four.mys.R
 import team.four.mys.data.db.Preferences
 import team.four.mys.data.repository.LanguageData.language
 import team.four.mys.databinding.ActivityLanguageBinding
+import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.domain.usecases.SetNavigationBarUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 
 class LanguageActivity : AppCompatActivity() {
@@ -36,7 +39,14 @@ class LanguageActivity : AppCompatActivity() {
             SetStatusBarParam(
                 this,
                 this,
-                getColor(R.color.backgroundMain)
+                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+            )
+        )
+
+        SetNavigationBarUseCase().setNavigationBar(
+            SetNavigationBarParam(
+                this,
+                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
     }

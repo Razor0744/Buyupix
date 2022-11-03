@@ -5,13 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import team.four.mys.R
 import team.four.mys.presentation.activity.AlertActivity
 import team.four.mys.presentation.activity.DarkModeActivity
 import team.four.mys.presentation.activity.LanguageActivity
 import team.four.mys.databinding.FragmentSettingsBinding
+import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.domain.usecases.SetNavigationBarUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 
 class SettingsFragment : Fragment() {
@@ -41,7 +44,14 @@ class SettingsFragment : Fragment() {
             SetStatusBarParam(
                 requireContext(),
                 requireActivity(),
-                requireContext().getColor(R.color.backgroundMain)
+                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+            )
+        )
+
+        SetNavigationBarUseCase().setNavigationBar(
+            SetNavigationBarParam(
+                requireActivity(),
+                ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
             )
         )
 

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.firebase.firestore.*
@@ -17,10 +18,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import team.four.mys.R
 import team.four.mys.databinding.FragmentHomeBinding
+import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.presentation.adapters.CustomRecyclerAdapterSubscriptions
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscriptions
 import team.four.mys.domain.usecases.GetUIDUseCase
+import team.four.mys.domain.usecases.SetNavigationBarUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.activity.CreateSubscriptionActivity
 import team.four.mys.presentation.activity.SubscriptionInfoActivity
@@ -64,7 +67,14 @@ class HomeFragment : Fragment() {
             SetStatusBarParam(
                 requireContext(),
                 requireActivity(),
-                requireContext().getColor(R.color.backgroundNavBar)
+                ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
+            )
+        )
+
+        SetNavigationBarUseCase().setNavigationBar(
+            SetNavigationBarParam(
+                requireActivity(),
+                ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
             )
         )
 

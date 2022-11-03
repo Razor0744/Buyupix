@@ -16,7 +16,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import team.four.mys.R
 import team.four.mys.databinding.FragmentStatisticsBinding
+import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.domain.usecases.SetNavigationBarUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
@@ -52,7 +54,14 @@ class StatisticsFragment : Fragment() {
             SetStatusBarParam(
                 requireContext(),
                 requireActivity(),
-                requireContext().getColor(R.color.backgroundMain)
+                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+            )
+        )
+
+        SetNavigationBarUseCase().setNavigationBar(
+            SetNavigationBarParam(
+                requireActivity(),
+                ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
             )
         )
 
