@@ -1,9 +1,6 @@
 package team.four.mys.presentation.activity
 
 import android.content.Intent
-import android.graphics.Canvas
-import android.graphics.Rect
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -15,9 +12,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import team.four.mys.R
@@ -30,6 +24,7 @@ import team.four.mys.domain.usecases.GetUrlImageUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.adapters.CalendarAdapter
 import team.four.mys.presentation.adapters.CurrenciesAdapter
+import team.four.mys.presentation.other.CustomPositionItemDecoration
 import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
 import java.time.LocalDate
 import java.util.*
@@ -115,6 +110,12 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         val adapter = CurrenciesAdapter(currencies = CurrenciesData.currencies) {
             binding.priceButton.text = it.name
             binding.groupCurrencies.visibility = View.INVISIBLE
+            binding.priceButton.background =
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.item_background_create_subscription,
+                    null
+                )
             binding.priceButton.setTextColor(
                 ResourcesCompat.getColor(
                     resources,
@@ -328,64 +329,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar, null),
                 null
             )
-        }
-    }
-}
-
-class CustomPositionItemDecoration(private val mDivider: Drawable) :
-    ItemDecoration() {
-    private var mOrientation = 0
-    override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        if (mOrientation == LinearLayoutManager.HORIZONTAL) {
-            drawHorizontalDividers(canvas, parent)
-        } else if (mOrientation == LinearLayoutManager.VERTICAL) {
-            drawVerticalDividers(canvas, parent)
-        }
-    }
-
-    override fun getItemOffsets(
-        outRect: Rect,
-        view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State
-    ) {
-        super.getItemOffsets(outRect, view, parent, state)
-        if (parent.getChildAdapterPosition(view) == 0) {
-            return
-        }
-        mOrientation = (parent.layoutManager as LinearLayoutManager?)!!.orientation
-        if (mOrientation == LinearLayoutManager.HORIZONTAL) {
-            outRect.left = mDivider.intrinsicWidth
-        } else if (mOrientation == LinearLayoutManager.VERTICAL) {
-            outRect.top = mDivider.intrinsicHeight
-        }
-    }
-
-    private fun drawHorizontalDividers(canvas: Canvas, parent: RecyclerView) {
-        val parentTop = parent.paddingTop
-        val parentBottom = parent.height - parent.paddingBottom
-        val childCount = parent.childCount
-        for (i in 0 until childCount - 1) {
-            val child = parent.getChildAt(i)
-            val params = child.layoutParams as RecyclerView.LayoutParams
-            val parentLeft = child.right + params.rightMargin
-            val parentRight = parentLeft + mDivider.intrinsicWidth
-            mDivider.setBounds(parentLeft, parentTop, parentRight, parentBottom)
-            mDivider.draw(canvas)
-        }
-    }
-
-    private fun drawVerticalDividers(canvas: Canvas, parent: RecyclerView) {
-        val parentLeft = parent.paddingStart
-        val parentRight = parent.width - parentLeft
-        val childCount = parent.childCount
-        for (i in 0 until childCount - 1) {
-            val child = parent.getChildAt(i)
-            val params = child.layoutParams as RecyclerView.LayoutParams
-            val parentTop = child.bottom + params.bottomMargin
-            val parentBottom = parentTop + mDivider.intrinsicHeight
-            mDivider.setBounds(parentLeft, parentTop, parentRight, parentBottom)
-            mDivider.draw(canvas)
         }
     }
 }
