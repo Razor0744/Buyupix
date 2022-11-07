@@ -1,6 +1,6 @@
 package team.four.mys.presentation.activity
 
-import team.four.mys.presentation.adapters.CustomRecyclerAdapterDarkMode
+import team.four.mys.presentation.adapters.DarkModeAdapter
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,7 +19,7 @@ class DarkModeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDarkModeBinding
 
-    private lateinit var adapterDarkMode: CustomRecyclerAdapterDarkMode
+    private lateinit var adapterDarkMode: DarkModeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class DarkModeActivity : AppCompatActivity() {
 
     private fun adapter() {
         adapterDarkMode =
-            CustomRecyclerAdapterDarkMode(
+            DarkModeAdapter(
                 this,
                 darkMode, Preferences.getSettings("DarkMode")
             ) { alertClick ->

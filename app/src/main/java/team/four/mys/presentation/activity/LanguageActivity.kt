@@ -1,6 +1,6 @@
 package team.four.mys.presentation.activity
 
-import team.four.mys.presentation.adapters.CustomRecyclerAdapterLanguage
+import team.four.mys.presentation.adapters.LanguageAdapter
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +20,7 @@ class LanguageActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLanguageBinding
 
-    private lateinit var adapterLanguage: CustomRecyclerAdapterLanguage
+    private lateinit var adapterLanguage: LanguageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class LanguageActivity : AppCompatActivity() {
 
     private fun adapter() {
         adapterLanguage =
-            CustomRecyclerAdapterLanguage(
+            LanguageAdapter(
                 this,
                 language,
                 Preferences.getSettings("Locale")

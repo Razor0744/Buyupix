@@ -104,7 +104,7 @@
         app:boxStrokeWidthFocused="2dp"
         app:hintTextColor="@color/blueMain"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/priceSpinner"
+        app:layout_constraintRight_toLeftOf="@id/priceButton"
         app:layout_constraintTop_toBottomOf="@id/nameLayout">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -120,17 +120,23 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/priceSpinner"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/priceButton"
         android:layout_width="0dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/item_background_create_subscription"
-        android:entries="@array/spinner"
-        android:popupBackground="@drawable/background_spinner_drop_down"
-        android:spinnerMode="dropdown"
+        android:fontFamily="@font/roboto"
+        android:gravity="start|center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="11dp"
+        android:text="USD"
+        android:textAllCaps="false"
+        android:textColor="@color/textPlaceholder"
+        android:textSize="16sp"
+        app:drawableEndCompat="@drawable/arrow_down"
         app:layout_constraintLeft_toRightOf="@id/priceLayout"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameLayout"
@@ -440,6 +446,30 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/groupCurrencies"
+        android:layout_width="0dp"
+        android:layout_height="187dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/background_recycler_view_price"
+        app:layout_constraintLeft_toRightOf="@id/priceLayout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/priceButton">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCurrencies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="16dp"
+            android:scrollbarSize="6dp"
+            android:scrollbarThumbVertical="@drawable/thumb_scroll_bar"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:ignore="RtlSymmetry" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

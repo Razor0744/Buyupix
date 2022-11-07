@@ -1,7 +1,9 @@
 package team.four.mys.presentation.activity
 
-import team.four.mys.presentation.adapters.CustomRecyclerAdapterCalendar
 import android.content.Intent
+import android.graphics.Canvas
+import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -13,18 +15,25 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import team.four.mys.R
+import team.four.mys.data.repository.CurrenciesData
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.GetPriceSpinnerUseCase
 import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.GetUrlImageUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
+import team.four.mys.presentation.adapters.CalendarAdapter
+import team.four.mys.presentation.adapters.CurrenciesAdapter
 import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
 import java.time.LocalDate
 import java.util.*
+
 
 class CreateSubscriptionActivity : AppCompatActivity() {
 
@@ -33,7 +42,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<CreateSubscriptionViewModel>()
 
-    private lateinit var adapterCalendar: CustomRecyclerAdapterCalendar
+    private lateinit var adapterCalendar: CalendarAdapter
 
     @RequiresApi(Build.VERSION_CODES.O)
     private var selectedDate: LocalDate = LocalDate.now()
@@ -51,10 +60,11 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         }
 
         setMonthView()
+        priceButtonClick()
         autoCompleteTextView()
         fireStore()
         calendarVisibility()
-        priceSpinner()
+        recyclerViewCurrenciesAdapter()
         SetStatusBarUseCase().setStatusBar(
             SetStatusBarParam(
                 this,
@@ -64,13 +74,66 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         )
     }
 
-    private fun priceSpinner() {
-        val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.spinner, R.layout.spinner_item
-        )
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-        binding.priceSpinner.adapter = adapter
+    private fun priceButtonClick() {
+        binding.groupCurrencies.visibility = View.INVISIBLE
+        binding.priceButton.setOnClickListener {
+            if (binding.groupCurrencies.visibility == View.INVISIBLE) {
+                binding.priceButton.background =
+                    ResourcesCompat.getDrawable(
+                        resources,
+                        R.drawable.background_price_button_click,
+                        null
+                    )
+                binding.priceButton.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources,
+                        R.color.textMain,
+                        null
+                    )
+                )
+                binding.groupCurrencies.visibility = View.VISIBLE
+            } else {
+                binding.priceButton.background =
+                    ResourcesCompat.getDrawable(
+                        resources,
+                        R.drawable.item_background_create_subscription,
+                        null
+                    )
+                binding.priceButton.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources,
+                        R.color.textPlaceholder,
+                        null
+                    )
+                )
+                binding.groupCurrencies.visibility = View.INVISIBLE
+            }
+        }
+    }
+
+    private fun recyclerViewCurrenciesAdapter() {
+        val adapter = CurrenciesAdapter(currencies = CurrenciesData.currencies) {
+            binding.priceButton.text = it.name
+            binding.groupCurrencies.visibility = View.INVISIBLE
+            binding.priceButton.setTextColor(
+                ResourcesCompat.getColor(
+                    resources,
+                    R.color.textPlaceholder,
+                    null
+                )
+            )
+        }
+        val itemDecorator = ResourcesCompat.getDrawable(
+            resources,
+            R.drawable.item_decoration_price,
+            null
+        )?.let {
+            CustomPositionItemDecoration(
+                it
+            )
+        }
+        binding.recyclerViewCurrencies.addItemDecoration(itemDecorator!!)
+        binding.recyclerViewCurrencies.adapter = adapter
     }
 
     private fun calendarVisibility() {
@@ -133,12 +196,14 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "image" to GetUrlImageUseCase().getUrlImage(
                                             binding.name.toString().trim()
                                         ),
-                                        "priceSpinner" to GetPriceSpinnerUseCase().getPriceSpinner(binding.priceSpinner.selectedItem.toString()),
+                                        "priceSpinner" to GetPriceSpinnerUseCase().getPriceSpinner(
+                                            binding.priceButton.text.toString()
+                                        ),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "noDate"
                                     )
                                     db.collection(GetUIDUseCase().getUID())
-                                        .document(binding.priceSpinner.selectedItem.toString())
+                                        .document(binding.priceButton.text.toString())
                                         .get()
                                         .addOnSuccessListener { doc ->
                                             var priceStart = doc.get("price")
@@ -153,7 +218,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                                 "price" to priceEnd as Number
                                             )
                                             db.collection(GetUIDUseCase().getUID())
-                                                .document(binding.priceSpinner.selectedItem.toString())
+                                                .document(binding.priceButton.text.toString())
                                                 .set(price)
                                         }
                                     db.collection(GetUIDUseCase().getUID())
@@ -172,12 +237,14 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "image" to GetUrlImageUseCase().getUrlImage(
                                             binding.name.toString().trim()
                                         ),
-                                        "priceSpinner" to GetPriceSpinnerUseCase().getPriceSpinner(binding.priceSpinner.selectedItem.toString()),
+                                        "priceSpinner" to GetPriceSpinnerUseCase().getPriceSpinner(
+                                            binding.priceButton.text.toString()
+                                        ),
                                         "date" to binding.buttonCalender.text.toString(),
                                         "dateType" to "date"
                                     )
                                     db.collection(GetUIDUseCase().getUID())
-                                        .document(binding.priceSpinner.selectedItem.toString())
+                                        .document(binding.priceButton.text.toString())
                                         .get()
                                         .addOnSuccessListener { doc ->
                                             var priceStart = doc.get("price")
@@ -192,7 +259,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                                 "price" to priceEnd
                                             )
                                             db.collection(GetUIDUseCase().getUID())
-                                                .document(binding.priceSpinner.selectedItem.toString())
+                                                .document(binding.priceButton.text.toString())
                                                 .set(price)
                                         }
                                     db.collection(GetUIDUseCase().getUID())
@@ -233,7 +300,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     private fun setMonthView() {
         binding.monthYearTV.text = viewModel.monthYearFromDate(selectedDate)
         val daysInMonth = viewModel.daysInMonthArray(selectedDate)
-        adapterCalendar = CustomRecyclerAdapterCalendar(daysInMonth) { calendarClick ->
+        adapterCalendar = CalendarAdapter(daysInMonth) { calendarClick ->
             onItemClick(daysInMonth[calendarClick])
         }
         binding.recyclerView.layoutManager = GridLayoutManager(this, 7)
@@ -261,6 +328,64 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar, null),
                 null
             )
+        }
+    }
+}
+
+class CustomPositionItemDecoration(private val mDivider: Drawable) :
+    ItemDecoration() {
+    private var mOrientation = 0
+    override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+        if (mOrientation == LinearLayoutManager.HORIZONTAL) {
+            drawHorizontalDividers(canvas, parent)
+        } else if (mOrientation == LinearLayoutManager.VERTICAL) {
+            drawVerticalDividers(canvas, parent)
+        }
+    }
+
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        super.getItemOffsets(outRect, view, parent, state)
+        if (parent.getChildAdapterPosition(view) == 0) {
+            return
+        }
+        mOrientation = (parent.layoutManager as LinearLayoutManager?)!!.orientation
+        if (mOrientation == LinearLayoutManager.HORIZONTAL) {
+            outRect.left = mDivider.intrinsicWidth
+        } else if (mOrientation == LinearLayoutManager.VERTICAL) {
+            outRect.top = mDivider.intrinsicHeight
+        }
+    }
+
+    private fun drawHorizontalDividers(canvas: Canvas, parent: RecyclerView) {
+        val parentTop = parent.paddingTop
+        val parentBottom = parent.height - parent.paddingBottom
+        val childCount = parent.childCount
+        for (i in 0 until childCount - 1) {
+            val child = parent.getChildAt(i)
+            val params = child.layoutParams as RecyclerView.LayoutParams
+            val parentLeft = child.right + params.rightMargin
+            val parentRight = parentLeft + mDivider.intrinsicWidth
+            mDivider.setBounds(parentLeft, parentTop, parentRight, parentBottom)
+            mDivider.draw(canvas)
+        }
+    }
+
+    private fun drawVerticalDividers(canvas: Canvas, parent: RecyclerView) {
+        val parentLeft = parent.paddingStart
+        val parentRight = parent.width - parentLeft
+        val childCount = parent.childCount
+        for (i in 0 until childCount - 1) {
+            val child = parent.getChildAt(i)
+            val params = child.layoutParams as RecyclerView.LayoutParams
+            val parentTop = child.bottom + params.bottomMargin
+            val parentBottom = parentTop + mDivider.intrinsicHeight
+            mDivider.setBounds(parentLeft, parentTop, parentRight, parentBottom)
+            mDivider.draw(canvas)
         }
     }
 }

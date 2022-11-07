@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import team.four.mys.domain.models.Language
 import team.four.mys.databinding.RecyclerviewItemLanguageBinding
 
-class CustomRecyclerAdapterLanguage(
+class LanguageAdapter(
     private val context: Context,
     private val language: List<Language>,
     private val locale: String,

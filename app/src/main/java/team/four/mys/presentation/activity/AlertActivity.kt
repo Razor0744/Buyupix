@@ -1,6 +1,6 @@
 package team.four.mys.presentation.activity
 
-import team.four.mys.presentation.adapters.CustomRecyclerAdapterAlert
+import team.four.mys.presentation.adapters.AlertAdapter
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +19,7 @@ class AlertActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAlertBinding
 
-    private lateinit var adapterAlert: CustomRecyclerAdapterAlert
+    private lateinit var adapterAlert: AlertAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +52,7 @@ class AlertActivity : AppCompatActivity() {
 
     private fun adapter() {
         adapterAlert =
-            CustomRecyclerAdapterAlert(
+            AlertAdapter(
                 this,
                 alert,
                 Preferences.getSettings("Alert")

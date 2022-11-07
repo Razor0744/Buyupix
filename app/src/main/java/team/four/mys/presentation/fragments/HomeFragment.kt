@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 import team.four.mys.R
 import team.four.mys.databinding.FragmentHomeBinding
 import team.four.mys.domain.models.SetNavigationBarParam
-import team.four.mys.presentation.adapters.CustomRecyclerAdapterSubscriptions
+import team.four.mys.presentation.adapters.SubscriptionsAdapter
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscriptions
 import team.four.mys.domain.usecases.GetUIDUseCase
@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
     private val viewModel by viewModels<HomeViewModel>()
 
     private lateinit var subscriptions: ArrayList<Subscriptions>
-    private lateinit var adapterSubscriptions: CustomRecyclerAdapterSubscriptions
+    private lateinit var adapterSubscriptions: SubscriptionsAdapter
 
     private var db = Firebase.firestore
 
@@ -91,7 +91,7 @@ class HomeFragment : Fragment() {
     private fun adapter() {
         subscriptions = arrayListOf()
         adapterSubscriptions =
-            CustomRecyclerAdapterSubscriptions(
+            SubscriptionsAdapter(
                 requireContext(),
                 subscriptions,
                 viewModel.date()

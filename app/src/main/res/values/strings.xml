@@ -36,13 +36,6 @@
     <string name="saturday">Sat</string>
     <string name="sunday">Sun</string>
 
-    <!--Spinner-->
-    <string-array name="spinner">
-        <item>USD</item>
-        <item>EUR</item>
-        <item>BYN</item>
-    </string-array>
-
     <!--SubscriptionInfoActivity-->
     <string name="subscriptionInfo">Subs info</string>
     <string name="name">Name</string>

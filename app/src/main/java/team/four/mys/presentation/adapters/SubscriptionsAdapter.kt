@@ -10,7 +10,7 @@ import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithDateBinding
 import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithoutDateBinding
 import team.four.mys.domain.models.Subscriptions
 
-class CustomRecyclerAdapterSubscriptions(
+class SubscriptionsAdapter(
     private val context: Context,
     private val subscriptions: List<Subscriptions>,
     private val month: String,

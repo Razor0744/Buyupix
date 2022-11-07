@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import team.four.mys.databinding.RecyclerviewItemCalendarBinding
 
-class CustomRecyclerAdapterCalendar(
+class CalendarAdapter(
     private val days: List<String>,
     private val itemClick: (Int) -> Unit
 ) :

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import team.four.mys.domain.models.DarkMode
 import team.four.mys.databinding.RecyclerviewItemDarkModeBinding
 
-class CustomRecyclerAdapterDarkMode(
+class DarkModeAdapter(
     private val context: Context,
     private val darkMode: List<DarkMode>,
     private val darkModeTheme: String,
