@@ -24,7 +24,7 @@
         android:id="@+id/buttonArrowLeft"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/marginStart"
         android:layout_marginTop="10dp"
         android:background="@drawable/click_on_arrow_left"
         android:src="@drawable/ic_arrow_left"
@@ -36,9 +36,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textLanguage" />

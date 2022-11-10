@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Height-->
+    <dimen name="heightMain">46dp</dimen>
+    <dimen name="heightRecyclerViewSubscriptions">52dp</dimen>
+    <dimen name="heightSecondary">56dp</dimen>
+
+    <!--Margin-->
+    <dimen name="marginTop">16dp</dimen>
+    <dimen name="marginStart">20dp</dimen>
+    <dimen name="marginEnd">20dp</dimen>
+
+    <!--Padding-->
+    <dimen name="paddingStart">16dp</dimen>
+    <dimen name="paddingEnd">12dp</dimen>
+
+    <!--Size-->
+    <dimen name="sizeMain">16sp</dimen>
+    <dimen name="sizeSecondary">14sp</dimen>
+
+    <!--TextInputLayout-->
+    <dimen name="heightInputLayout">51dp</dimen>
+    <dimen name="marginTopInputLayout">11dp</dimen>
+</resources>

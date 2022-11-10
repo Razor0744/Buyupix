@@ -11,7 +11,7 @@
         android:id="@+id/buttonArrowLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="@dimen/marginStart"
         android:layout_marginTop="16dp"
         android:src="@drawable/ic_arrow_left"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="@dimen/marginEnd"
         android:background="@drawable/click_on_delete"
         android:src="@drawable/ic_delete"
         app:layout_constraintRight_toRightOf="parent"
@@ -73,7 +73,7 @@
         android:fontFamily="@font/roboto"
         android:text="$2,29"
         android:textColor="@color/textSecondary"
-        android:textSize="14sp"
+        android:textSize="@dimen/sizeSecondary"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name2" />
@@ -82,12 +82,12 @@
         android:id="@+id/nameInLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/marginStart"
         android:layout_marginTop="38.5dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/name"
         android:textColor="@color/textMain"
-        android:textSize="16sp"
+        android:textSize="@dimen/sizeMain"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/price2" />
 
@@ -101,7 +101,7 @@
         android:gravity="center"
         android:text="Spotify"
         android:textColor="@color/textSecondary"
-        android:textSize="14sp"
+        android:textSize="@dimen/sizeSecondary"
         app:drawableRightCompat="@drawable/ic_arrow_right"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/price2" />
@@ -110,12 +110,12 @@
         android:id="@+id/priceInLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/marginStart"
         android:layout_marginTop="37dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/price"
         android:textColor="@color/textMain"
-        android:textSize="16sp"
+        android:textSize="@dimen/sizeMain"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameInLayout" />
 
@@ -129,7 +129,7 @@
         android:gravity="center"
         android:text="$2,29"
         android:textColor="@color/textSecondary"
-        android:textSize="14sp"
+        android:textSize="@dimen/sizeSecondary"
         app:drawableRightCompat="@drawable/ic_arrow_right"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name" />
@@ -138,12 +138,12 @@
         android:id="@+id/descriptionInLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/marginStart"
         android:layout_marginTop="37dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/description"
         android:textColor="@color/textMain"
-        android:textSize="16sp"
+        android:textSize="@dimen/sizeMain"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/priceInLayout" />
 
@@ -157,7 +157,7 @@
         android:gravity="center"
         android:text="My music"
         android:textColor="@color/textSecondary"
-        android:textSize="14sp"
+        android:textSize="@dimen/sizeSecondary"
         app:drawableRightCompat="@drawable/ic_arrow_right"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/price" />
@@ -166,12 +166,12 @@
         android:id="@+id/categoryInLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/marginStart"
         android:layout_marginTop="34.5dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/category"
         android:textColor="@color/textMain"
-        android:textSize="16sp"
+        android:textSize="@dimen/sizeMain"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/descriptionInLayout" />
 
@@ -185,7 +185,7 @@
         android:gravity="center"
         android:text="Music"
         android:textColor="@color/textSecondary"
-        android:textSize="14sp"
+        android:textSize="@dimen/sizeSecondary"
         app:drawableRightCompat="@drawable/ic_arrow_right"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/description" />
@@ -194,12 +194,12 @@
         android:id="@+id/reminderInLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/marginStart"
         android:layout_marginTop="32.5dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/reminder"
         android:textColor="@color/textMain"
-        android:textSize="16sp"
+        android:textSize="@dimen/sizeMain"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/categoryInLayout" />
 
