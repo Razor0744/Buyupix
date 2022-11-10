@@ -10,6 +10,9 @@
     <dimen name="marginTop">16dp</dimen>
     <dimen name="marginStart">20dp</dimen>
     <dimen name="marginEnd">20dp</dimen>
+    <dimen name="marginStartRecyclerSettings">12dp</dimen>
+    <dimen name="marginEndRecyclerSettings">12dp</dimen>
+    <dimen name="marginForBackgroundItems">8dp</dimen>
 
     <!--Padding-->
     <dimen name="paddingStart">16dp</dimen>

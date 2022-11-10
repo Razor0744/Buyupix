@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/heightSecondary"
+    android:layout_marginStart="@dimen/marginForBackgroundItems"
+    android:layout_marginEnd="@dimen/marginForBackgroundItems"
     android:background="@drawable/click_on_items">
 
     <TextView
         android:id="@+id/textAlert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginStart="@dimen/marginStartRecyclerSettings"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/textMain"
         android:textSize="@dimen/sizeMain"
@@ -23,7 +25,7 @@
         android:id="@+id/imageAlert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/marginEnd"
+        android:layout_marginEnd="@dimen/marginEndRecyclerSettings"
         android:src="@drawable/ic_radio_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"

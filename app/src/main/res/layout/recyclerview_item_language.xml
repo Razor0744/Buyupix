@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/heightSecondary"
+    android:layout_marginStart="@dimen/marginForBackgroundItems"
+    android:layout_marginEnd="@dimen/marginForBackgroundItems"
     android:background="@drawable/click_on_items">
 
     <ImageView
         android:id="@+id/iconLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginStart="@dimen/marginStartRecyclerSettings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,7 +35,7 @@
         android:id="@+id/imageLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/marginEnd"
+        android:layout_marginEnd="@dimen/marginEndRecyclerSettings"
         android:src="@drawable/ic_radio_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
