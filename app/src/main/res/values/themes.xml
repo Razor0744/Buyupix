@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.MyS" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -18,10 +18,11 @@
 
     <style name="SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/black</item>
-        <!--<item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>-->
+        <item name="colorPrimary">@color/backgroundMain</item>
+        <item name="colorPrimaryDark">@color/backgroundMain</item>
+        <item name="colorAccent">@color/backgroundMain</item>
+        <item name="android:statusBarColor">@color/backgroundMain</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="BottomNavigationViewTextStyleClick">
