@@ -16,8 +16,8 @@
     <string name="textC">Enter code from sms</string>
     <string name="codeSendAgain">Resend code via</string>
 
-    <string name="app_name">My Subscriptions</string>
-    <string name="name_app">My Subscriptions</string>
+    <string name="app_name">Buyupix</string>
+    <string name="name_app">Buyupix</string>
 
     <!--CreateSubscriptionActivity-->
     <string name="createNameSubscription">Name</string>

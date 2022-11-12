@@ -8,32 +8,15 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:594022083059:android:425db5f421f30d05a9ca86",
+        "mobilesdk_app_id": "1:594022083059:android:c58b85540547949ca9ca86",
         "android_client_info": {
-          "package_name": "team.four.mys"
+          "package_name": "team.four.buyupix"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "594022083059-mcfaouf2k95emor62eeghra8o2ukklmd.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "team.four.mys",
-            "certificate_hash": "56e0d98e278368b8b18ad12c7f3ade00572af397"
-          }
-        },
-        {
-          "client_id": "594022083059-s9bac2hgjcgek42dj3ued9sluptj23dn.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "team.four.mys",
-            "certificate_hash": "b27e6226ed14becfbe717b39f408d3eeb1f56058"
-          }
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDECmrc39uqVsWFCDTERY8OX8DHBH9HoHE"
+          "current_key": "AIzaSyCT62W1YSMR46HhFJkld_DwVb-uq7FeE3U"
         }
       ],
       "services": {

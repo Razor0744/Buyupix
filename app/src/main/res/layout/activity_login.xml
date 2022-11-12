@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundMain"
-    tools:context="team.four.mys.presentation.activity.LoginActivity">
+    tools:context="team.four.buyupix.presentation.activity.LoginActivity">
 
     <TextView
         android:id="@+id/authorization"
