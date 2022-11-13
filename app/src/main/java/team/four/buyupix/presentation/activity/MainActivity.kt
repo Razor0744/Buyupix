@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import team.four.buyupix.R
 import team.four.buyupix.data.db.Preferences
 import team.four.buyupix.databinding.ActivityMainBinding
+import team.four.buyupix.domain.usecases.SetThemeUseCase
 import team.four.buyupix.presentation.other.LocaleHelper
 import team.four.buyupix.presentation.fragments.HomeFragment
 import team.four.buyupix.presentation.fragments.SettingsFragment
@@ -24,11 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Preferences.init(this)
-        when (Preferences.getSettings("DarkMode")) {
-            "System Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            "Dark Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            "Light Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+        SetThemeUseCase().setDarkMode()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

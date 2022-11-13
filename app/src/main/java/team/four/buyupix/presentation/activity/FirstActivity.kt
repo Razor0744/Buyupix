@@ -4,26 +4,26 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import team.four.buyupix.presentation.other.LocaleHelper
+import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import team.four.buyupix.R
 import team.four.buyupix.data.db.Preferences
 import team.four.buyupix.databinding.ActivityFirstBinding
+import team.four.buyupix.domain.models.SetStatusBarParam
+import team.four.buyupix.domain.usecases.SetStatusBarUseCase
+import team.four.buyupix.domain.usecases.SetThemeUseCase
+import team.four.buyupix.presentation.other.LocaleHelper
 
 class FirstActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var binding : ActivityFirstBinding
+    private lateinit var binding: ActivityFirstBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Preferences.init(this)
-        when(Preferences.getSettings("DarkMode")){
-            "System Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            "Dark Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            "Light Theme" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+        SetThemeUseCase().setDarkMode()
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -31,6 +31,14 @@ class FirstActivity : AppCompatActivity() {
         binding.logIn.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
+
+        SetStatusBarUseCase().setStatusBar(
+            SetStatusBarParam(
+                this,
+                this,
+                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+            )
+        )
     }
 
     public override fun onStart() {
@@ -39,7 +47,7 @@ class FirstActivity : AppCompatActivity() {
         auth = Firebase.auth
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        if (currentUser == null) {
+        if (currentUser != null) {
             reload()
         }
     }
