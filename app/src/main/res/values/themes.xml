@@ -33,4 +33,26 @@
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
+    <style name="LayoutLoginActivity">
+        <item name="android:background">@drawable/item_background_button_login</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
+
+    <style name="Text1LoginActivity">
+        <item name="android:layout_marginStart">21dp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/textMain</item>
+    </style>
+
+    <style name="Text2LoginActivity">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginStart">31dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
 </resources>

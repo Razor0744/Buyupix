@@ -10,6 +10,8 @@
     <string name="continueButton">Continue</string>
     <string name="google">Continue With Google</string>
     <string name="facebook">Continue With Facebook</string>
+    <string name="languageCode">Страна</string>
+    <string name="phoneNumber">Номер телефона</string>
 
     <!--CodeSendActivity-->
     <string name="textC">Enter code from sms</string>

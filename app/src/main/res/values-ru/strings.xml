@@ -5,12 +5,10 @@
     <string name="description">Управляйте подписками, снижайте свои счета и оставайтесь на вершине своей финансовой жизни.</string>
 
     <!--LoginActivity-->
-    <string name="authorization">Authorization</string>
-    <string name="textL">Enter phone number in international format</string>
-    <string name="number" tools:ignore="TypographyDashes">+ 7 (111) 111–11-11</string>
-    <string name="continueButton">Продолжить</string>
-    <string name="google">Continue With Google</string>
-    <string name="facebook">Continue With Facebook</string>
+    <string name="authorization">Авторизация</string>
+    <string name="textL">Проверьте код страны и введите номер телефона</string>
+    <string name="languageCode">Страна</string>
+    <string name="phoneNumber">Номер телефона</string>
 
     <!--CodeSendActivity-->
     <string name="textC">Enter code from sms</string>

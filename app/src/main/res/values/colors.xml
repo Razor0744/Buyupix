@@ -11,6 +11,7 @@
     <color name="grey_200">#F5F5F5</color>
     <color name="grey_300">#7E8899</color>
     <color name="grey_500">#BFC8D8</color>
+
     <!--Background-->
     <color name="backgroundMain">#F9F9F9</color>
     <color name="backgroundMainDark">#191A1F</color>
@@ -41,6 +42,7 @@
     <color name="buttonClickWhite">#EBEBEB</color>
     <color name="buttonLiner">#E56A6F</color>
     <color name="buttonLinerClick">#F9E4E5</color>
+    <color name="buttonGray">#F0F0F0</color>
 
     <!--Accent-->
     <color name="blueMain">#2D8DD8</color>

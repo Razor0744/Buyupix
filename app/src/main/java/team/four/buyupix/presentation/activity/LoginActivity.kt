@@ -1,25 +1,21 @@
 package team.four.buyupix.presentation.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
-import android.widget.Toast
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import team.four.buyupix.databinding.ActivityLoginBinding
 import java.util.concurrent.TimeUnit
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-
-    // google
-    private lateinit var googleSignInClient: GoogleSignInClient
 
     // firebase
     private lateinit var auth: FirebaseAuth
@@ -32,7 +28,6 @@ class LoginActivity : AppCompatActivity() {
     private var storedVerificationId: String? = ""
 
     private companion object {
-        private const val RC_SIGN_IN = 1001
         private const val TAG = "PhoneAuthActivity"
     }
 
@@ -45,27 +40,67 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         // Configure Phone Sign In
-        binding.continueButton.setOnClickListener {
-            val phoneNumber = binding.phoneNumber.text.toString().trim()
-            if (phoneNumber.isNotEmpty()) {
-                startPhoneNumberVerification(phoneNumber)
-            } else {
-                Toast.makeText(applicationContext, "Please enter your phone", Toast.LENGTH_LONG)
-                    .show()
+//        binding.continueButton.setOnClickListener {
+//            val phoneNumber = binding.phoneNumber.text.toString().trim()
+//            if (phoneNumber.isNotEmpty()) {
+//                startPhoneNumberVerification(phoneNumber)
+//            } else {
+//                Toast.makeText(this, "Please enter your phone", Toast.LENGTH_LONG)
+//                    .show()
+//            }
+//        }
+
+        binding.phoneNumber.requestFocus()
+
+        binding.button1.setOnClickListener {
+            val text = binding.phoneNumber.text.toString().trim() + 1
+            binding.phoneNumber.setText(text)
+        }
+        binding.button2.setOnClickListener {
+            val text = binding.phoneNumber.text.toString().trim() + 2
+            binding.phoneNumber.setText(text)
+        }
+        binding.button3.setOnClickListener {
+            val text = binding.phoneNumber.text.toString().trim() + 3
+            binding.phoneNumber.setText(text)
+        }
+        binding.button4.setOnClickListener {
+            val text = binding.phoneNumber.text.toString().trim() + 4
+            binding.phoneNumber.setText(text)
+        }
+        binding.button5.setOnClickListener {
+            val text = binding.phoneNumber.text.toString().trim() + 5
+            binding.phoneNumber.setText(text)
+        }
+        binding.button6.setOnClickListener {
+            val text = binding.phoneNumber.text.toString().trim() + 6
+            binding.phoneNumber.setText(text)
+        }
+        binding.button7.setOnClickListener {
+            val text = binding.phoneNumber.text.toString().trim() + 7
+            binding.phoneNumber.setText(text)
+        }
+        binding.button8.setOnClickListener {
+            val text = binding.phoneNumber.text.toString().trim() + 8
+            binding.phoneNumber.setText(text)
+        }
+        binding.button9.setOnClickListener {
+            val text = binding.phoneNumber.text.toString().trim() + 9
+            binding.phoneNumber.setText(text)
+        }
+        binding.button0.setOnClickListener {
+            val text = binding.phoneNumber.text.toString().trim() + 0
+            binding.phoneNumber.setText(text)
+        }
+        binding.button11.setOnClickListener {
+            if (binding.phoneNumber.text?.isEmpty() == false) {
+                val text = binding.phoneNumber.text.toString().trim()
+                    .substring(0, binding.phoneNumber.text.toString().trim().length - 1)
+                binding.phoneNumber.setText(text)
             }
         }
 
-        // Configure Google Sign In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("594022083059-s9bac2hgjcgek42dj3ued9sluptj23dn.apps.googleusercontent.com")
-            .requestEmail()
-            .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-        binding.google.setOnClickListener {
-            //begin Google SignIn
-            val signInIntent = googleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
-        }
+        keyboardFalse()
 
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -103,40 +138,9 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)!!
-                println(account.id)
-                firebaseAuthWithGoogle(account.idToken!!)
-            } catch (e: ApiException) {
-                // Google Sign In failed, update UI appropriately
-                println("fail")
-                println(e)
-            }
-        }
-    }
-
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = auth.currentUser
-                    println("good")
-                    updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    updateUI(null)
-                    println("false")
-                }
-            }
+    private fun keyboardFalse() {
+        binding.phoneNumber.setRawInputType(InputType.TYPE_NULL)
+        binding.phoneNumber.isFocusable = true
     }
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
@@ -149,19 +153,5 @@ class LoginActivity : AppCompatActivity() {
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
         // [END start_phone_auth]
-    }
-
-    override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        updateUI(currentUser)
-    }
-
-    private fun updateUI(user: FirebaseUser?) {
-        if (user != null) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
     }
 }
