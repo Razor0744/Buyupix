@@ -140,7 +140,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun keyboardFalse() {
         binding.phoneNumber.setRawInputType(InputType.TYPE_NULL)
-        binding.phoneNumber.isFocusable = true
     }
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
