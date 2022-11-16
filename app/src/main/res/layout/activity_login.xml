@@ -79,6 +79,7 @@
         tools:ignore="RtlSymmetry" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneNumberLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="@dimen/heightInputLayout"
@@ -104,11 +105,21 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/roboto"
             android:gravity="start|center"
-            android:inputType="number"
-            android:paddingStart="@dimen/paddingStart"
-            tools:ignore="RtlSymmetry" />
+            android:text="+"
+            tools:ignore="HardcodedText,RtlSymmetry" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLinear"
+        android:layout_width="1dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/backgroundStroke"
+        app:layout_constraintBottom_toBottomOf="@id/phoneNumberLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/phoneNumberLayout" />
 
     <LinearLayout
         android:id="@+id/button1"
@@ -119,8 +130,8 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@id/button6"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/button2">
+        app:layout_constraintEnd_toStartOf="@id/button2"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             style="@style/Text1LoginActivity"

@@ -2,7 +2,9 @@ package team.four.buyupix.presentation.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseException
@@ -50,50 +52,49 @@ class LoginActivity : AppCompatActivity() {
 //            }
 //        }
 
-        binding.phoneNumber.requestFocus()
-
         binding.button1.setOnClickListener {
-            val text = binding.phoneNumber.text.toString().trim() + 1
+
+            val text = binding.phoneNumber.text.toString() + 1
             binding.phoneNumber.setText(text)
         }
         binding.button2.setOnClickListener {
-            val text = binding.phoneNumber.text.toString().trim() + 2
+            val text = binding.phoneNumber.text.toString() + 2
             binding.phoneNumber.setText(text)
         }
         binding.button3.setOnClickListener {
-            val text = binding.phoneNumber.text.toString().trim() + 3
+            val text = binding.phoneNumber.text.toString() + 3
             binding.phoneNumber.setText(text)
         }
         binding.button4.setOnClickListener {
-            val text = binding.phoneNumber.text.toString().trim() + 4
+            val text = binding.phoneNumber.text.toString() + 4
             binding.phoneNumber.setText(text)
         }
         binding.button5.setOnClickListener {
-            val text = binding.phoneNumber.text.toString().trim() + 5
+            val text = binding.phoneNumber.text.toString() + 5
             binding.phoneNumber.setText(text)
         }
         binding.button6.setOnClickListener {
-            val text = binding.phoneNumber.text.toString().trim() + 6
+            val text = binding.phoneNumber.text.toString() + 6
             binding.phoneNumber.setText(text)
         }
         binding.button7.setOnClickListener {
-            val text = binding.phoneNumber.text.toString().trim() + 7
+            val text = binding.phoneNumber.text.toString() + 7
             binding.phoneNumber.setText(text)
         }
         binding.button8.setOnClickListener {
-            val text = binding.phoneNumber.text.toString().trim() + 8
+            val text = binding.phoneNumber.text.toString() + 8
             binding.phoneNumber.setText(text)
         }
         binding.button9.setOnClickListener {
-            val text = binding.phoneNumber.text.toString().trim() + 9
+            val text = binding.phoneNumber.text.toString() + 9
             binding.phoneNumber.setText(text)
         }
         binding.button0.setOnClickListener {
-            val text = binding.phoneNumber.text.toString().trim() + 0
+            val text = binding.phoneNumber.text.toString() + 0
             binding.phoneNumber.setText(text)
         }
         binding.button11.setOnClickListener {
-            if (binding.phoneNumber.text?.isEmpty() == false) {
+            if (binding.phoneNumber.text.toString().trim().length > 1) {
                 val text = binding.phoneNumber.text.toString().trim()
                     .substring(0, binding.phoneNumber.text.toString().trim().length - 1)
                 binding.phoneNumber.setText(text)
@@ -115,6 +116,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
+                println(e)
             }
 
             override fun onCodeSent(
@@ -140,6 +142,27 @@ class LoginActivity : AppCompatActivity() {
 
     private fun keyboardFalse() {
         binding.phoneNumber.setRawInputType(InputType.TYPE_NULL)
+        binding.phoneNumber.requestFocus()
+        textInput()
+    }
+
+    private fun textInput() {
+        binding.phoneNumber.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s?.length == 5) {
+                    var str = s.toString()
+                    str += "  "
+                    binding.phoneNumber.setText(str)
+                    binding.phoneNumber.setSelection(str.length)
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
     }
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
