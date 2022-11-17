@@ -12,12 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
         <activity
+            android:name="team.four.buyupix.presentation.activity.CountryCodeActivity"
+            android:exported="false" />
+        <activity
             android:name="team.four.buyupix.presentation.activity.DarkModeActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:exported="false" />
         <activity
             android:name="team.four.buyupix.presentation.activity.SubscriptionInfoActivity"
             android:exported="false" />

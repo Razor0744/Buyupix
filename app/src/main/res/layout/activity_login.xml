@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@id/content" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/languageCode"
+        android:id="@+id/countryCode"
         android:layout_width="match_parent"
         android:layout_height="@dimen/heightMain"
         android:layout_marginStart="@dimen/marginStart"
@@ -87,6 +87,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="@dimen/marginEnd"
         android:hint="@string/phoneNumber"
+        android:orientation="horizontal"
         android:textColor="@color/textMain"
         android:textSize="@dimen/sizeMain"
         app:boxCornerRadiusBottomEnd="8dp"
@@ -97,7 +98,7 @@
         app:boxStrokeWidth="1dp"
         app:boxStrokeWidthFocused="2dp"
         app:hintTextColor="@color/blueMain"
-        app:layout_constraintTop_toBottomOf="@id/languageCode">
+        app:layout_constraintTop_toBottomOf="@id/countryCode">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/phoneNumber"
@@ -110,7 +111,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <FrameLayout
+    <View
         android:id="@+id/frameLinear"
         android:layout_width="1dp"
         android:layout_height="22dp"

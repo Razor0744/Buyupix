@@ -1,5 +1,6 @@
 package team.four.buyupix.presentation.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -33,6 +34,8 @@ class LoginActivity : AppCompatActivity() {
         private const val TAG = "PhoneAuthActivity"
     }
 
+    val countryCodes = arrayListOf("+7", "+11", "+375")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -52,8 +55,11 @@ class LoginActivity : AppCompatActivity() {
 //            }
 //        }
 
-        binding.button1.setOnClickListener {
+        binding.countryCode.setOnClickListener {
+            startActivity(Intent(this, CountryCodeActivity::class.java))
+        }
 
+        binding.button1.setOnClickListener {
             val text = binding.phoneNumber.text.toString() + 1
             binding.phoneNumber.setText(text)
         }
@@ -140,20 +146,38 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun keyboardFalse() {
         binding.phoneNumber.setRawInputType(InputType.TYPE_NULL)
         binding.phoneNumber.requestFocus()
-        textInput()
+        textInputType()
+        val number = intent.getStringExtra("number")
+        if (number != null) {
+            binding.phoneNumber.setText("$number")
+        }
     }
 
-    private fun textInput() {
+    private fun textInputType() {
         binding.phoneNumber.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (s?.length == 5) {
-                    var str = s.toString()
-                    str += "  "
-                    binding.phoneNumber.setText(str)
-                    binding.phoneNumber.setSelection(str.length)
+                var i = 0
+                while (i <= 2) {
+                    if (s.toString() == countryCodes[i]) {
+                        var str = s.toString()
+                        when (s?.length) {
+                            4 -> str += "     "
+                            3 -> str += "       "
+                            2 -> str += "         "
+                        }
+                        binding.phoneNumber.setText(str)
+                        binding.phoneNumber.setSelection(str.length)
+                    } else if (s?.length == 5) {
+                        var str = s.toString()
+                        str += "   "
+                        binding.phoneNumber.setText(str)
+                        binding.phoneNumber.setSelection(str.length)
+                    }
+                    i++
                 }
             }
 
