@@ -91,7 +91,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 binding.priceButton.background =
                     ResourcesCompat.getDrawable(
                         resources,
-                        R.drawable.item_background_create_subscription,
+                        R.drawable.item_background_stroke,
                         null
                     )
                 binding.priceButton.setTextColor(
@@ -113,7 +113,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             binding.priceButton.background =
                 ResourcesCompat.getDrawable(
                     resources,
-                    R.drawable.item_background_create_subscription,
+                    R.drawable.item_background_stroke,
                     null
                 )
             binding.priceButton.setTextColor(

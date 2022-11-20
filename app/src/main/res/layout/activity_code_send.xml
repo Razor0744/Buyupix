@@ -41,7 +41,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/item_background_create_subscription"
+        android:background="@drawable/item_background_stroke"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:inputType="number"
