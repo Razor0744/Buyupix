@@ -7,12 +7,15 @@ import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import team.four.buyupix.R
 import team.four.buyupix.databinding.ActivityLoginBinding
 import java.util.concurrent.TimeUnit
 
@@ -34,7 +37,13 @@ class LoginActivity : AppCompatActivity() {
         private const val TAG = "PhoneAuthActivity"
     }
 
-    val countryCodes = arrayListOf("+7", "+11", "+375")
+    private val countryCodes = arrayListOf("+7", "+1", "+375")
+    private val countryName = arrayListOf("Russian Federation", "USA", "Belarus")
+    private val countryIcon = arrayListOf(
+        R.drawable.language_russia,
+        R.drawable.language_usa,
+        R.drawable.language_russia
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,15 +54,15 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         // Configure Phone Sign In
-//        binding.continueButton.setOnClickListener {
-//            val phoneNumber = binding.phoneNumber.text.toString().trim()
-//            if (phoneNumber.isNotEmpty()) {
-//                startPhoneNumberVerification(phoneNumber)
-//            } else {
-//                Toast.makeText(this, "Please enter your phone", Toast.LENGTH_LONG)
-//                    .show()
-//            }
-//        }
+        binding.loginCodeSent.setOnClickListener {
+            val phoneNumber = binding.phoneNumber.text.toString().trim()
+            if (phoneNumber.isNotEmpty()) {
+                startPhoneNumberVerification(phoneNumber)
+            } else {
+                Toast.makeText(this, "Please enter your phone", Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
 
         binding.countryCode.setOnClickListener {
             startActivity(Intent(this, CountryCodeActivity::class.java))
@@ -171,11 +180,14 @@ class LoginActivity : AppCompatActivity() {
                         }
                         binding.phoneNumber.setText(str)
                         binding.phoneNumber.setSelection(str.length)
+                        setCountry(i)
                     } else if (s?.length == 5) {
                         var str = s.toString()
                         str += "   "
                         binding.phoneNumber.setText(str)
                         binding.phoneNumber.setSelection(str.length)
+                    } else {
+                        binding.countryCodeText.setText("")
                     }
                     i++
                 }
@@ -187,6 +199,12 @@ class LoginActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
+    }
+
+    private fun setCountry(i: Int) {
+        binding.countryCodeText.setText(countryName[i])
+        val icon = ResourcesCompat.getDrawable(resources, countryIcon[i], null)
+        binding.countryCode.setCompoundDrawables(icon, null, null, null)
     }
 
     private fun startPhoneNumberVerification(phoneNumber: String) {

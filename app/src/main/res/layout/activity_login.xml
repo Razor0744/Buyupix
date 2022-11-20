@@ -56,6 +56,42 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/content" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/countryCodeLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/heightInputLayout"
+        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/marginEnd"
+        android:gravity="center_vertical"
+        android:hint="@string/languageCode"
+        android:textColor="@color/textMain"
+        android:textColorHint="@color/textPlaceholder"
+        android:textSize="@dimen/sizeMain"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="@drawable/text_input_box_stroke_color"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/textMain"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        tools:ignore="RtlSymmetry">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/countryCodeText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:fontFamily="@font/roboto"
+            android:paddingStart="@dimen/paddingStart"
+            android:paddingEnd="@dimen/paddingEnd"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/countryCode"
         android:layout_width="match_parent"
@@ -63,20 +99,10 @@
         android:layout_marginStart="@dimen/marginStart"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="@dimen/marginEnd"
-        android:background="@drawable/item_background_stroke"
-        android:drawableEnd="@drawable/ic_arrow_right"
-        android:fontFamily="@font/roboto"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/paddingStart"
-        android:paddingEnd="@dimen/paddingEnd"
-        android:text="@string/languageCode"
-        android:textAllCaps="false"
-        android:textColor="@color/textPlaceholder"
-        android:textSize="@dimen/sizeMain"
+        android:background="@null"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text"
-        tools:ignore="RtlSymmetry" />
+        app:layout_constraintTop_toBottomOf="@id/text" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/phoneNumberLayout"
@@ -87,7 +113,6 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="@dimen/marginEnd"
         android:hint="@string/phoneNumber"
-        android:orientation="horizontal"
         android:textColor="@color/textMain"
         android:textSize="@dimen/sizeMain"
         app:boxCornerRadiusBottomEnd="8dp"
@@ -98,7 +123,7 @@
         app:boxStrokeWidth="1dp"
         app:boxStrokeWidthFocused="2dp"
         app:hintTextColor="@color/blueMain"
-        app:layout_constraintTop_toBottomOf="@id/countryCode">
+        app:layout_constraintTop_toBottomOf="@id/countryCodeLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/phoneNumber"
@@ -121,6 +146,18 @@
         app:layout_constraintBottom_toBottomOf="@id/phoneNumberLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/phoneNumberLayout" />
+
+    <ImageButton
+        android:id="@+id/login_code_sent"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="@dimen/marginEnd"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/background_login_next"
+        android:src="@drawable/ic_arrow_right_long"
+        app:layout_constraintBottom_toTopOf="@id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:id="@+id/button1"
