@@ -29,10 +29,7 @@ class HomeViewModel : ViewModel() {
         USD = RetrofitCurrenciesUseCase().execute(valute = "USD")?.toFloat()
         EUR = RetrofitCurrenciesUseCase().execute(valute = "EUR")?.toFloat()
         BYN = RetrofitCurrenciesUseCase().execute(valute = "BYN")?.toFloat()
-        println(priceBYN)
-        println(EUR)
-        println(BYN)
-        fullPrice.postValue(priceUSD!! + (priceBYN!! / BYN!!) + (priceEUR!! / EUR!!))
+        fullPrice.postValue(priceUSD!! + (priceBYN!! * BYN!! / USD!!) + (priceEUR!! * EUR!! / USD!!))
     }
 
 //    private suspend fun retrofit() {
