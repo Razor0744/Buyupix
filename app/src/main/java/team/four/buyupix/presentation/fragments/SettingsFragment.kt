@@ -40,7 +40,7 @@ class SettingsFragment : Fragment() {
             startActivity(Intent(context, LanguageActivity::class.java))
         }
 
-        SetStatusBarUseCase().setStatusBar(
+        SetStatusBarUseCase().execute(
             SetStatusBarParam(
                 requireContext(),
                 requireActivity(),
@@ -48,7 +48,7 @@ class SettingsFragment : Fragment() {
             )
         )
 
-        SetNavigationBarUseCase().setNavigationBar(
+        SetNavigationBarUseCase().execute(
             SetNavigationBarParam(
                 requireActivity(),
                 ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)

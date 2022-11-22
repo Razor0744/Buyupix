@@ -28,7 +28,7 @@ class DarkModeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter()
-        SetStatusBarUseCase().setStatusBar(
+        SetStatusBarUseCase().execute(
             SetStatusBarParam(
                 this,
                 this,
@@ -36,7 +36,7 @@ class DarkModeActivity : AppCompatActivity() {
             )
         )
 
-        SetNavigationBarUseCase().setNavigationBar(
+        SetNavigationBarUseCase().execute(
             SetNavigationBarParam(
                 this,
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)

@@ -27,7 +27,7 @@ class SubscriptionInfoActivity : AppCompatActivity() {
         binding.delete.setOnClickListener {
             viewModel.deleteSubscription(
                 Subscription(
-                    GetUIDUseCase().getUID(),
+                    GetUIDUseCase().execute(),
                     intent.getStringExtra("date").toString(),
                     intent.getStringExtra("dateType").toString(),
                     intent.getStringExtra("name").toString()
@@ -53,14 +53,14 @@ class SubscriptionInfoActivity : AppCompatActivity() {
 
         viewModel.subscriptionInfo(
             Subscription(
-                GetUIDUseCase().getUID(),
+                GetUIDUseCase().execute(),
                 intent.getStringExtra("date").toString(),
                 intent.getStringExtra("dateType").toString(),
                 intent.getStringExtra("name").toString()
             )
         )
 
-        SetStatusBarUseCase().setStatusBar(
+        SetStatusBarUseCase().execute(
             SetStatusBarParam(
                 this,
                 this,

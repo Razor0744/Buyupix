@@ -7,7 +7,7 @@ import team.four.buyupix.domain.models.SetStatusBarParam
 
 class SetStatusBarUseCase {
 
-    fun setStatusBar(param: SetStatusBarParam) {
+    fun execute(param: SetStatusBarParam) {
         param.activity.window.statusBarColor = param.color
         when (Preferences.getSettings("DarkMode")) {
             "System Theme" -> {

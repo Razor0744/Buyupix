@@ -50,7 +50,7 @@ class StatisticsFragment : Fragment() {
             viewModel.fullPrice()
         }
 
-        SetStatusBarUseCase().setStatusBar(
+        SetStatusBarUseCase().execute(
             SetStatusBarParam(
                 requireContext(),
                 requireActivity(),
@@ -58,7 +58,7 @@ class StatisticsFragment : Fragment() {
             )
         )
 
-        SetNavigationBarUseCase().setNavigationBar(
+        SetNavigationBarUseCase().execute(
             SetNavigationBarParam(
                 requireActivity(),
                 ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)

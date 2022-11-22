@@ -2,7 +2,7 @@ package team.four.buyupix.domain.usecases
 
 class GetPriceSpinnerUseCase {
 
-    fun getPriceSpinner(item: String): String {
+    fun execute(item: String): String {
         var price = ""
         when (item) {
             "USD" -> price = "$"

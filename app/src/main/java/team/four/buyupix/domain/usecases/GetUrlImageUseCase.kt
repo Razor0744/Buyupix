@@ -2,7 +2,7 @@ package team.four.buyupix.domain.usecases
 
 class GetUrlImageUseCase {
 
-    fun getUrlImage(name: String): String {
+    fun execute(name: String): String {
         var url = ""
         when (name) {
             "Spotify" -> {

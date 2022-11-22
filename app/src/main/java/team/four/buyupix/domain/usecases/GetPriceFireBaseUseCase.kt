@@ -9,13 +9,19 @@ class GetPriceFireBaseUseCase {
 
     private val db = Firebase.firestore
 
-    suspend fun getPriceFireBase(string: String): Int = suspendCoroutine {
-        db.collection(GetUIDUseCase().getUID()).document(string)
+    suspend fun execute(string: String): Int = suspendCoroutine {
+        db.collection(GetUIDUseCase().execute()).document(string)
             .get()
             .addOnSuccessListener { doc ->
                 if (doc.get("price") != null) {
                     it.resume(Integer.parseInt(doc.get("price").toString()))
+                } else {
+                    it.resume(0)
                 }
+            }
+            .addOnFailureListener { e ->
+                println(e)
+                it.resume(0)
             }
     }
 }

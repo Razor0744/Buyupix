@@ -2,12 +2,8 @@ package team.four.buyupix.presentation.viewmodelsfragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import team.four.buyupix.data.repository.CurrenciesRetrofit
-import team.four.buyupix.domain.models.CurrenciesJSON
 import team.four.buyupix.domain.usecases.GetPriceFireBaseUseCase
+import team.four.buyupix.domain.usecases.RetrofitCurrenciesUseCase
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,6 +12,7 @@ class HomeViewModel : ViewModel() {
     //Price
     private var EUR: Float? = null
     private var BYN: Float? = null
+    private var USD: Float? = null
     private var priceUSD: Int? = null
     private var priceBYN: Int? = null
     private var priceEUR: Int? = null
@@ -26,27 +23,19 @@ class HomeViewModel : ViewModel() {
     }
 
     suspend fun fullPrice() {
-        priceBYN = GetPriceFireBaseUseCase().getPriceFireBase("BYN")
-        priceUSD = GetPriceFireBaseUseCase().getPriceFireBase("USD")
-        priceEUR = GetPriceFireBaseUseCase().getPriceFireBase("EUR")
-        retrofit()
+        priceBYN = GetPriceFireBaseUseCase().execute("BYN")
+        priceUSD = GetPriceFireBaseUseCase().execute("USD")
+        priceEUR = GetPriceFireBaseUseCase().execute("EUR")
+        USD = RetrofitCurrenciesUseCase().execute(valute = "USD")?.toFloat()
+        EUR = RetrofitCurrenciesUseCase().execute(valute = "EUR")?.toFloat()
+        BYN = RetrofitCurrenciesUseCase().execute(valute = "BYN")?.toFloat()
+        println(priceBYN)
+        println(EUR)
+        println(BYN)
+        fullPrice.postValue(priceUSD!! + (priceBYN!! / BYN!!) + (priceEUR!! / EUR!!))
     }
 
-    private fun retrofit() {
-        CurrenciesRetrofit.retrofitService.getRates().enqueue(object : Callback<CurrenciesJSON> {
-            override fun onResponse(
-                call: Call<CurrenciesJSON>,
-                response: Response<CurrenciesJSON>
-            ) {
-                val responses = response.body() as CurrenciesJSON
-                EUR = responses.rates?.EUR
-                BYN = responses.rates?.BYN
-                fullPrice.postValue(priceUSD!! + (priceBYN!! / BYN!!) + (priceEUR!! / EUR!!))
-            }
-
-            override fun onFailure(call: Call<CurrenciesJSON>, t: Throwable) {
-                println(t)
-            }
-        })
-    }
+//    private suspend fun retrofit() {
+//        RetrofitCurrenciesUseCase().execute()
+//    }
 }

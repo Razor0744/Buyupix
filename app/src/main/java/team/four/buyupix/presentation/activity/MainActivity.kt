@@ -3,7 +3,6 @@ package team.four.buyupix.presentation.activity
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import team.four.buyupix.R
 import team.four.buyupix.data.db.Preferences
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Preferences.init(this)
-        SetThemeUseCase().setDarkMode()
+        SetThemeUseCase().execute()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

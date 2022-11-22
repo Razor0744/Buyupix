@@ -1,11 +1,12 @@
 package team.four.buyupix.domain.repository
 
-import team.four.buyupix.domain.models.CurrenciesJSON
 import retrofit2.Call
 import retrofit2.http.GET
+import team.four.buyupix.domain.models.CurrenciesJSON
 
 interface RetrofitService {
 
-    @GET("cbr.json")
+    @GET("daily_json.js")
     fun getRates(): Call<CurrenciesJSON>
+
 }

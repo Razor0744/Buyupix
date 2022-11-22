@@ -34,7 +34,7 @@ class AlertActivity : AppCompatActivity() {
         }
 
         adapter()
-        SetStatusBarUseCase().setStatusBar(
+        SetStatusBarUseCase().execute(
             SetStatusBarParam(
                 this,
                 this,
@@ -42,7 +42,7 @@ class AlertActivity : AppCompatActivity() {
             )
         )
 
-        SetNavigationBarUseCase().setNavigationBar(
+        SetNavigationBarUseCase().execute(
             SetNavigationBarParam(
                 this,
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)

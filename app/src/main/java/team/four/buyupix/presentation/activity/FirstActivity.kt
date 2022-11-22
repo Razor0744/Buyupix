@@ -23,7 +23,7 @@ class FirstActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Preferences.init(this)
-        SetThemeUseCase().setDarkMode()
+        SetThemeUseCase().execute()
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -32,7 +32,7 @@ class FirstActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
 
-        SetStatusBarUseCase().setStatusBar(
+        SetStatusBarUseCase().execute(
             SetStatusBarParam(
                 this,
                 this,
@@ -47,7 +47,7 @@ class FirstActivity : AppCompatActivity() {
         auth = Firebase.auth
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        if (currentUser != null) {
+        if (currentUser == null) {
             reload()
         }
     }

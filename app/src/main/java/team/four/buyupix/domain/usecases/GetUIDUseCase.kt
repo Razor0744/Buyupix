@@ -4,7 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class GetUIDUseCase {
 
-     fun getUID(): String {
+     fun execute(): String {
         // get UID
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid

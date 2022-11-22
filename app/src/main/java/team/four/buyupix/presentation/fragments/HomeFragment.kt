@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
             viewModel.fullPrice()
         }
 
-        SetStatusBarUseCase().setStatusBar(
+        SetStatusBarUseCase().execute(
             SetStatusBarParam(
                 requireContext(),
                 requireActivity(),
@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
             )
         )
 
-        SetNavigationBarUseCase().setNavigationBar(
+        SetNavigationBarUseCase().execute(
             SetNavigationBarParam(
                 requireActivity(),
                 ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
@@ -107,7 +107,7 @@ class HomeFragment : Fragment() {
     private fun fireStore() {
         var i = 1
         while (i <= 31) {
-            db.collection(GetUIDUseCase().getUID()).document(i.toString()).collection("date")
+            db.collection(GetUIDUseCase().execute()).document(i.toString()).collection("date")
                 .addSnapshotListener(object : EventListener<QuerySnapshot> {
                     @SuppressLint("NotifyDataSetChanged")
                     override fun onEvent(
@@ -128,7 +128,7 @@ class HomeFragment : Fragment() {
 
                 })
 
-            db.collection(GetUIDUseCase().getUID()).document(i.toString()).collection("noDate")
+            db.collection(GetUIDUseCase().execute()).document(i.toString()).collection("noDate")
                 .addSnapshotListener(object : EventListener<QuerySnapshot> {
                     @SuppressLint("NotifyDataSetChanged")
                     override fun onEvent(

@@ -4,7 +4,7 @@ import team.four.buyupix.domain.models.SetNavigationBarParam
 
 class SetNavigationBarUseCase {
 
-    fun setNavigationBar(param: SetNavigationBarParam) {
+    fun execute(param: SetNavigationBarParam) {
         param.activity.window.navigationBarColor = param.color
     }
 }
