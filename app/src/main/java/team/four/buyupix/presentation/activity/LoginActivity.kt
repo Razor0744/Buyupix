@@ -37,8 +37,8 @@ class LoginActivity : AppCompatActivity() {
         private const val TAG = "PhoneAuthActivity"
     }
 
-    private val countryCodes = arrayListOf("+7", "+1", "+375")
-    private val countryName = arrayListOf("Russian Federation", "USA", "Belarus")
+    private val countryCodes = arrayListOf("+7", "+375", "+1")
+    private val countryName = arrayListOf("Russian Federation", "Belarus", "USA")
     private var lengthCountryCode = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -186,6 +186,7 @@ class LoginActivity : AppCompatActivity() {
                         binding.phoneNumber.setText(str)
                         binding.phoneNumber.setSelection(str.length)
                         setCountry(i)
+                        break
                     } else if (s?.length == 5) {
                         var str = s.toString()
                         str += "   "
