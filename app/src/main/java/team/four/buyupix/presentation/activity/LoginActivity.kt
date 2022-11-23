@@ -39,11 +39,7 @@ class LoginActivity : AppCompatActivity() {
 
     private val countryCodes = arrayListOf("+7", "+1", "+375")
     private val countryName = arrayListOf("Russian Federation", "USA", "Belarus")
-    private val countryIcon = arrayListOf(
-        R.drawable.language_russia,
-        R.drawable.language_usa,
-        R.drawable.language_russia
-    )
+    private var lengthCountryCode = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -174,9 +170,18 @@ class LoginActivity : AppCompatActivity() {
                     if (s.toString() == countryCodes[i]) {
                         var str = s.toString()
                         when (s?.length) {
-                            4 -> str += "     "
-                            3 -> str += "       "
-                            2 -> str += "         "
+                            4 -> {
+                                str += "     "
+                                lengthCountryCode = 4
+                            }
+                            3 -> {
+                                str += "       "
+                                lengthCountryCode = 3
+                            }
+                            2 -> {
+                                str += "         "
+                                lengthCountryCode = 2
+                            }
                         }
                         binding.phoneNumber.setText(str)
                         binding.phoneNumber.setSelection(str.length)
@@ -186,8 +191,13 @@ class LoginActivity : AppCompatActivity() {
                         str += "   "
                         binding.phoneNumber.setText(str)
                         binding.phoneNumber.setSelection(str.length)
-                    } else {
-                        binding.countryCodeText.setText("")
+                    } else if (s?.length!! < 6) {
+                        if (lengthCountryCode >= s.length) {
+                            lengthCountryCode = s.length
+                        }
+                        if (s.toString().subSequence(0, lengthCountryCode) != countryCodes[i]) {
+                            binding.countryCodeText.setText("")
+                        }
                     }
                     i++
                 }
@@ -203,8 +213,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setCountry(i: Int) {
         binding.countryCodeText.setText(countryName[i])
-        val icon = ResourcesCompat.getDrawable(resources, countryIcon[i], null)
-        binding.countryCode.setCompoundDrawables(icon, null, null, null)
     }
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
