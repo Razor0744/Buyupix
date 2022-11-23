@@ -187,8 +187,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                         db.collection(GetUIDUseCase().execute())
                             .document(binding.buttonCalender.text?.trim().toString())
                             .collection("date").get()
-                            .addOnSuccessListener { document ->
-                                if (document.documents.isNotEmpty()) {
+                            .addOnSuccessListener {
+                                if (it.documents.isNotEmpty()) {
                                     val data = hashMapOf(
                                         "name" to binding.name.text.trim().toString(),
                                         "price" to binding.price.text?.trim().toString(),
