@@ -2,12 +2,9 @@ package team.four.buyupix.presentation.viewmodelsfragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import team.four.buyupix.data.repository.CurrenciesRetrofit
-import team.four.buyupix.domain.models.CurrenciesJSON
+import team.four.buyupix.domain.models.Valute
 import team.four.buyupix.domain.usecases.GetPriceFireBaseUseCase
+import team.four.buyupix.domain.usecases.GetCurrenciesUseCase
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,9 +13,11 @@ class StatisticsViewModel : ViewModel() {
     //Price
     private var EUR: Float? = null
     private var BYN: Float? = null
+    private var USD: Float? = null
     private var priceUSD: Int? = null
     private var priceBYN: Int? = null
     private var priceEUR: Int? = null
+    private var valute: Valute? = null
     var fullPrice = MutableLiveData<Float>()
 
     fun date(): String {
@@ -29,24 +28,10 @@ class StatisticsViewModel : ViewModel() {
         priceBYN = GetPriceFireBaseUseCase().execute("BYN")
         priceUSD = GetPriceFireBaseUseCase().execute("USD")
         priceEUR = GetPriceFireBaseUseCase().execute("EUR")
-//        retrofit()
+        valute = GetCurrenciesUseCase().execute()
+        BYN = valute?.BYN?.Value?.toFloat()
+        USD = valute?.USD?.Value?.toFloat()
+        EUR = valute?.EUR?.Value?.toFloat()
+        fullPrice.postValue(priceUSD!! + (priceBYN!! * BYN!! / USD!!) + (priceEUR!! * EUR!! / USD!!))
     }
-
-//    private suspend fun retrofit() {
-//        CurrenciesRetrofit.retrofitService.getRates().enqueue(object : Callback<CurrenciesJSON> {
-//            override fun onResponse(
-//                call: Call<CurrenciesJSON>,
-//                response: Response<CurrenciesJSON>
-//            ) {
-//                val responses = response.body() as CurrenciesJSON
-//                EUR = responses.rates?.EUR
-//                BYN = responses.rates?.BYN
-//                fullPrice.postValue(priceUSD!! + (priceBYN!! / BYN!!) + (priceEUR!! / EUR!!))
-//            }
-//
-//            override fun onFailure(call: Call<CurrenciesJSON>, t: Throwable) {
-//                println(t)
-//            }
-//        })
-//    }
 }

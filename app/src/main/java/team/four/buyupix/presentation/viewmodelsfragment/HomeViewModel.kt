@@ -2,8 +2,9 @@ package team.four.buyupix.presentation.viewmodelsfragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import team.four.buyupix.domain.models.Valute
 import team.four.buyupix.domain.usecases.GetPriceFireBaseUseCase
-import team.four.buyupix.domain.usecases.RetrofitCurrenciesUseCase
+import team.four.buyupix.domain.usecases.GetCurrenciesUseCase
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,6 +17,7 @@ class HomeViewModel : ViewModel() {
     private var priceUSD: Int? = null
     private var priceBYN: Int? = null
     private var priceEUR: Int? = null
+    private var valute: Valute? = null
     var fullPrice = MutableLiveData<Float>()
 
     fun date(): String {
@@ -26,13 +28,10 @@ class HomeViewModel : ViewModel() {
         priceBYN = GetPriceFireBaseUseCase().execute("BYN")
         priceUSD = GetPriceFireBaseUseCase().execute("USD")
         priceEUR = GetPriceFireBaseUseCase().execute("EUR")
-        USD = RetrofitCurrenciesUseCase().execute(valute = "USD")?.toFloat()
-        EUR = RetrofitCurrenciesUseCase().execute(valute = "EUR")?.toFloat()
-        BYN = RetrofitCurrenciesUseCase().execute(valute = "BYN")?.toFloat()
+        valute = GetCurrenciesUseCase().execute()
+        BYN = valute?.BYN?.Value?.toFloat()
+        USD = valute?.USD?.Value?.toFloat()
+        EUR = valute?.EUR?.Value?.toFloat()
         fullPrice.postValue(priceUSD!! + (priceBYN!! * BYN!! / USD!!) + (priceEUR!! * EUR!! / USD!!))
     }
-
-//    private suspend fun retrofit() {
-//        RetrofitCurrenciesUseCase().execute()
-//    }
 }
