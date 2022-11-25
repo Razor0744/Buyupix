@@ -55,4 +55,16 @@
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
+    <style name="StyleItemCodeSendActivity">
+        <item name="android:textSize">18sp</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:textColor">@color/textMain</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">37dp</item>
+        <item name="android:background">@drawable/focused_code_send</item>
+        <item name="android:layout_marginTop">32dp</item>
+    </style>
+
 </resources>

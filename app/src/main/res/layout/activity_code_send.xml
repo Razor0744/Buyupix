@@ -7,152 +7,438 @@
     android:background="@color/backgroundMain"
     tools:context=".presentation.activity.CodeSendActivity">
 
-    <TextView
-        android:id="@+id/authorization"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/authorization"
-        android:textColor="@color/grey_200"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/buttonArrowLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginStart"
+            android:background="@drawable/click_on_arrow_left"
+            android:src="@drawable/ic_arrow_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/language"
+            android:textColor="@color/textMain"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="37dp"
         android:fontFamily="@font/roboto"
         android:text="@string/textC"
-        android:textColor="@color/grey_300"
-        android:textSize="16sp"
+        android:textColor="@color/textSecondary"
+        android:textSize="@dimen/sizeSecondary"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/authorization" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content" />
+
+    <View
+        android:id="@+id/centerView"
+        android:layout_width="2dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/backgroundMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text" />
 
     <EditText
         android:id="@+id/code1"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
+        style="@style/StyleItemCodeSendActivity"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/item_background_stroke"
-        android:fontFamily="@font/roboto_medium"
-        android:gravity="center"
-        android:inputType="number"
-        android:textColor="@color/grey_200"
-        android:textSize="18sp"
-        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/code2"
         app:layout_constraintTop_toBottomOf="@id/text"
-        tools:ignore="Autofill,LabelFor" />
+        tools:ignore="Autofill,LabelFor,TextFields" />
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/code2"-->
-    <!--        android:layout_width="30dp"-->
-    <!--        android:layout_height="40dp"-->
-    <!--        android:layout_marginTop="24dp"-->
-    <!--        android:layout_marginEnd="8dp"-->
-    <!--        android:background="@drawable/item_background_create_subscription"-->
-    <!--        android:fontFamily="@font/roboto_medium"-->
-    <!--        android:gravity="center"-->
-    <!--        android:inputType="number"-->
-    <!--        android:textColor="@color/grey_200"-->
-    <!--        android:textSize="18sp"-->
-    <!--        app:layout_constraintRight_toLeftOf="@id/code3"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/text"-->
-    <!--        tools:ignore="Autofill,LabelFor" />-->
+    <EditText
+        android:id="@+id/code2"
+        style="@style/StyleItemCodeSendActivity"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@id/code3"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        tools:ignore="Autofill,LabelFor,TextFields" />
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/code3"-->
-    <!--        android:layout_width="30dp"-->
-    <!--        android:layout_height="40dp"-->
-    <!--        android:layout_marginTop="24dp"-->
-    <!--        android:background="@drawable/item_background_create_subscription"-->
-    <!--        android:fontFamily="@font/roboto_medium"-->
-    <!--        android:gravity="center"-->
-    <!--        android:inputType="number"-->
-    <!--        android:textColor="@color/grey_200"-->
-    <!--        android:textSize="18sp"-->
-    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-    <!--        app:layout_constraintRight_toRightOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/text"-->
-    <!--        tools:ignore="Autofill,LabelFor" />-->
+    <EditText
+        android:id="@+id/code3"
+        style="@style/StyleItemCodeSendActivity"
+        android:layout_marginEnd="3dp"
+        app:layout_constraintEnd_toStartOf="@id/centerView"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        tools:ignore="Autofill,LabelFor,TextFields" />
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/code4"-->
-    <!--        android:layout_width="30dp"-->
-    <!--        android:layout_height="40dp"-->
-    <!--        android:layout_marginStart="8dp"-->
-    <!--        android:layout_marginTop="24dp"-->
-    <!--        android:background="@drawable/item_background_create_subscription"-->
-    <!--        android:fontFamily="@font/roboto_medium"-->
-    <!--        android:gravity="center"-->
-    <!--        android:inputType="number"-->
-    <!--        android:textColor="@color/grey_200"-->
-    <!--        android:textSize="18sp"-->
-    <!--        app:layout_constraintLeft_toRightOf="@id/code3"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/text"-->
-    <!--        tools:ignore="Autofill,LabelFor" />-->
+    <EditText
+        android:id="@+id/code4"
+        style="@style/StyleItemCodeSendActivity"
+        android:layout_marginStart="3dp"
+        app:layout_constraintStart_toEndOf="@id/centerView"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        tools:ignore="Autofill,LabelFor,TextFields" />
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/code5"-->
-    <!--        android:layout_width="30dp"-->
-    <!--        android:layout_height="40dp"-->
-    <!--        android:layout_marginStart="8dp"-->
-    <!--        android:layout_marginTop="24dp"-->
-    <!--        android:background="@drawable/item_background_create_subscription"-->
-    <!--        android:fontFamily="@font/roboto_medium"-->
-    <!--        android:gravity="center"-->
-    <!--        android:inputType="number"-->
-    <!--        android:textColor="@color/grey_200"-->
-    <!--        android:textSize="18sp"-->
-    <!--        app:layout_constraintLeft_toRightOf="@id/code4"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/text"-->
-    <!--        tools:ignore="Autofill,LabelFor" />-->
+    <EditText
+        android:id="@+id/code5"
+        style="@style/StyleItemCodeSendActivity"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/code4"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        tools:ignore="Autofill,LabelFor,TextFields" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/continueButton"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/code6"
+        style="@style/StyleItemCodeSendActivity"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/code5"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        tools:ignore="Autofill,LabelFor,TextFields" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/code2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="Повторно отправить код через "
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/sizeSecondary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="0:30"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/sizeSecondary" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button1"
+        style="@style/LayoutLoginActivity"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button6"
+        app:layout_constraintEnd_toStartOf="@id/button2"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            style="@style/Text1LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="1"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button2"
+        style="@style/LayoutLoginActivity"
+        android:layout_marginBottom="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button6"
+        app:layout_constraintLeft_toRightOf="@id/button1"
+        app:layout_constraintRight_toLeftOf="@id/button3">
+
+        <TextView
+            style="@style/Text1LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="2"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/Text2LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="ABC"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button3"
+        style="@style/LayoutLoginActivity"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button6"
+        app:layout_constraintLeft_toRightOf="@id/button2"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            style="@style/Text1LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="3"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/Text2LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="DEF"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button4"
+        style="@style/LayoutLoginActivity"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/button2">
+
+        <TextView
+            style="@style/Text1LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="4"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/Text2LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="GHI"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button5"
+        style="@style/LayoutLoginActivity"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button9"
+        app:layout_constraintLeft_toRightOf="@id/button1"
+        app:layout_constraintRight_toLeftOf="@id/button3">
+
+        <TextView
+            style="@style/Text1LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="5"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/Text2LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="JKL"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button6"
+        style="@style/LayoutLoginActivity"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button9"
+        app:layout_constraintLeft_toRightOf="@id/button2"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            style="@style/Text1LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="6"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/Text2LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="MNO"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button7"
+        style="@style/LayoutLoginActivity"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button11"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/button2">
+
+        <TextView
+            style="@style/Text1LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="7"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/Text2LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="PQRS"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button8"
+        style="@style/LayoutLoginActivity"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button11"
+        app:layout_constraintLeft_toRightOf="@id/button1"
+        app:layout_constraintRight_toLeftOf="@id/button3">
+
+        <TextView
+            style="@style/Text1LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="8"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/Text2LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="TUV"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button9"
+        style="@style/LayoutLoginActivity"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/button11"
+        app:layout_constraintLeft_toRightOf="@id/button2"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            style="@style/Text1LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="9"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/Text2LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="WXYZ"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button0"
+        style="@style/LayoutLoginActivity"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/button1"
+        app:layout_constraintRight_toLeftOf="@id/button3">
+
+        <TextView
+            style="@style/Text1LoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="0"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/button11"
+        android:layout_width="0dp"
         android:layout_height="42dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/item_background_button_create_subscription"
-        android:fontFamily="@font/roboto_medium"
-        android:stateListAnimator="@null"
-        android:text="@string/continueButton"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/code1" />
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/item_background_button_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/button2"
+        app:layout_constraintRight_toRightOf="parent">
 
-    <TextView
-        android:id="@+id/codeSendAgain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/codeSendAgain"
-        android:textSize="13sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/continueButton" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_delete_1"
+            tools:ignore="ContentDescription" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="23.5dp"
-        android:text="0:30"
-        android:textColor="@color/blue_200"
-        app:layout_constraintLeft_toRightOf="@id/codeSendAgain"
-        app:layout_constraintTop_toBottomOf="@id/continueButton" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

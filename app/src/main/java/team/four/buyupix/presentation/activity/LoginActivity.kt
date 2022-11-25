@@ -17,6 +17,10 @@ import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import team.four.buyupix.R
 import team.four.buyupix.databinding.ActivityLoginBinding
+import team.four.buyupix.domain.models.SetNavigationBarParam
+import team.four.buyupix.domain.models.SetStatusBarParam
+import team.four.buyupix.domain.usecases.SetNavigationBarUseCase
+import team.four.buyupix.domain.usecases.SetStatusBarUseCase
 import java.util.concurrent.TimeUnit
 
 class LoginActivity : AppCompatActivity() {
@@ -113,6 +117,20 @@ class LoginActivity : AppCompatActivity() {
         }
 
         keyboardFalse()
+        SetStatusBarUseCase().execute(
+            SetStatusBarParam(
+                this,
+                this,
+                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+            )
+        )
+
+        SetNavigationBarUseCase().execute(
+            SetNavigationBarParam(
+                this,
+                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+            )
+        )
 
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -193,7 +211,7 @@ class LoginActivity : AppCompatActivity() {
                         binding.phoneNumber.setText(str)
                         binding.phoneNumber.setSelection(str.length)
                     } else if (s?.length!! < 6) {
-                        if (lengthCountryCode >= s.length) {
+                        if (lengthCountryCode > s.length) {
                             lengthCountryCode = s.length
                         }
                         if (s.toString().subSequence(0, lengthCountryCode) != countryCodes[i]) {
@@ -220,7 +238,7 @@ class LoginActivity : AppCompatActivity() {
         // [START start_phone_auth]
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(phoneNumber)       // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(this)                 // Activity (for callback binding)
             .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
             .build()

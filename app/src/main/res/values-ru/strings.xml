@@ -11,7 +11,7 @@
     <string name="phoneNumber">Номер телефона</string>
 
     <!--CodeSendActivity-->
-    <string name="textC">Enter code from sms</string>
+    <string name="textC">Введите код из СМС</string>
     <string name="codeSendAgain">Resend code via</string>
 
     <string name="app_name">Buyupix</string>

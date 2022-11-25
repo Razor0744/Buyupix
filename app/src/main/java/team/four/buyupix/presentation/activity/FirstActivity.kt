@@ -1,5 +1,6 @@
 package team.four.buyupix.presentation.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +12,9 @@ import com.google.firebase.ktx.Firebase
 import team.four.buyupix.R
 import team.four.buyupix.data.db.Preferences
 import team.four.buyupix.databinding.ActivityFirstBinding
+import team.four.buyupix.domain.models.SetNavigationBarParam
 import team.four.buyupix.domain.models.SetStatusBarParam
+import team.four.buyupix.domain.usecases.SetNavigationBarUseCase
 import team.four.buyupix.domain.usecases.SetStatusBarUseCase
 import team.four.buyupix.domain.usecases.SetThemeUseCase
 import team.four.buyupix.presentation.other.LocaleHelper
@@ -35,6 +38,13 @@ class FirstActivity : AppCompatActivity() {
         SetStatusBarUseCase().execute(
             SetStatusBarParam(
                 this,
+                this,
+                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+            )
+        )
+
+        SetNavigationBarUseCase().execute(
+            SetNavigationBarParam(
                 this,
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
