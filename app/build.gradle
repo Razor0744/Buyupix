@@ -9,11 +9,11 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "team.four.buyupix"
+        applicationId "team.four.mys"
         minSdk 23
         targetSdk 33
-        versionCode 20
-        versionName "1.4.4.2"
+        versionCode 23
+        versionName "1.4.4.3.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -66,10 +66,10 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.0.2')
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.1'
 
     //Google
-    implementation 'com.google.android.gms:play-services-auth:20.3.0'
+    implementation 'com.google.android.gms:play-services-auth:20.4.0'
 
     //Kotlin Coroutines
     def coroutines = '1.6.4'

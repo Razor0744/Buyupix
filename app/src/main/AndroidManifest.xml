@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="team.four.buyupix">
+    package="team.four.mys">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,37 +12,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
         <activity
-            android:name="team.four.buyupix.presentation.activity.CountryCodeActivity"
+            android:name="team.four.mys.presentation.activity.CountryCodeActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.buyupix.presentation.activity.DarkModeActivity"
+            android:name="team.four.mys.presentation.activity.DarkModeActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.buyupix.presentation.activity.SubscriptionInfoActivity"
+            android:name="team.four.mys.presentation.activity.SubscriptionInfoActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.buyupix.presentation.activity.MainActivity"
+            android:name="team.four.mys.presentation.activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.buyupix.presentation.activity.AlertActivity"
+            android:name="team.four.mys.presentation.activity.AlertActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.buyupix.presentation.activity.LanguageActivity"
+            android:name="team.four.mys.presentation.activity.LanguageActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.buyupix.presentation.activity.CodeSendActivity"
+            android:name="team.four.mys.presentation.activity.CodeSendActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.buyupix.presentation.activity.FirstActivity"
+            android:name="team.four.mys.presentation.activity.FirstActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.buyupix.presentation.activity.LoginActivity"
+            android:name="team.four.mys.presentation.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.buyupix.presentation.activity.CreateSubscriptionActivity"
+            android:name="team.four.mys.presentation.activity.CreateSubscriptionActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.buyupix.presentation.activity.SplashScreenActivity"
+            android:name="team.four.mys.presentation.activity.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/SplashScreen">
             <intent-filter>

@@ -8,12 +8,45 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:594022083059:android:c58b85540547949ca9ca86",
+        "mobilesdk_app_id": "1:594022083059:android:5ff11c70601e0f04a9ca86",
         "android_client_info": {
-          "package_name": "team.four.buyupix"
+          "package_name": "team.four.mys"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "594022083059-2vgnk561s4e06lc8ap25qqno4pt5kem8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "team.four.mys",
+            "certificate_hash": "eea545031e5365d4cfe72e735d648275cb100421"
+          }
+        },
+        {
+          "client_id": "594022083059-7v2ibjjji1iq3abdm3rvu045e7734o1p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "team.four.mys",
+            "certificate_hash": "f3cf0868d019cf27d3f627a045795b93ff05175c"
+          }
+        },
+        {
+          "client_id": "594022083059-mcfaouf2k95emor62eeghra8o2ukklmd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "team.four.mys",
+            "certificate_hash": "56e0d98e278368b8b18ad12c7f3ade00572af397"
+          }
+        },
+        {
+          "client_id": "594022083059-vs599cdpbkm3lok87128n10i2mb1v6vb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "team.four.mys",
+            "certificate_hash": "81bc0174d8f57adfc4b7a9154044038ffa22a8ab"
+          }
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCT62W1YSMR46HhFJkld_DwVb-uq7FeE3U"
