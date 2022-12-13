@@ -1,14 +1,12 @@
 package team.four.mys.presentation.activity
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,7 +25,6 @@ import team.four.mys.presentation.adapters.CurrenciesAdapter
 import team.four.mys.presentation.other.CustomPositionItemDecoration
 import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
 import java.time.LocalDate
-import java.util.*
 
 
 class CreateSubscriptionActivity : AppCompatActivity() {
@@ -39,10 +36,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
 
     private lateinit var adapterCalendar: CalendarAdapter
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private var selectedDate: LocalDate = LocalDate.now()
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreatSubscriptionBinding.inflate(layoutInflater)
@@ -297,7 +292,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun setMonthView() {
         binding.monthYearTV.text = viewModel.monthYearFromDate(selectedDate)
         val daysInMonth = viewModel.daysInMonthArray(selectedDate)
@@ -318,8 +312,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun onItemClick(dayText: String) {
+    private fun onItemClick(dayText: String) {
         if (dayText != "") {
             binding.buttonCalender.setText(dayText)
             binding.groupCalendar.visibility = View.INVISIBLE

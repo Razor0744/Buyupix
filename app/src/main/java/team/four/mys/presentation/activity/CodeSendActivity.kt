@@ -1,5 +1,6 @@
 package team.four.mys.presentation.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
@@ -208,6 +209,7 @@ class CodeSendActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }

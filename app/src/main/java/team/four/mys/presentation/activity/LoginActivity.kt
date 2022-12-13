@@ -142,6 +142,10 @@ class LoginActivity : AppCompatActivity() {
                 //     detect the incoming verification SMS and perform verification without
                 //     user action.
                 Log.d(TAG, "onVerificationCompleted:$credential")
+                println("completed")
+                val intent = Intent(applicationContext, MainActivity::class.java)
+                startActivity(intent)
+                finish()
             }
 
             override fun onVerificationFailed(e: FirebaseException) {

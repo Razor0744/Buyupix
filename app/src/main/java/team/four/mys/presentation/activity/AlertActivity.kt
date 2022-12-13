@@ -1,9 +1,14 @@
 package team.four.mys.presentation.activity
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import team.four.mys.presentation.adapters.AlertAdapter
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import team.four.mys.R
@@ -21,6 +26,10 @@ class AlertActivity : AppCompatActivity() {
 
     private lateinit var adapterAlert: AlertAdapter
 
+    val CHANNEL_ID = "425"
+    val CHANNEL_NAME = "Buyupix"
+    val NOTIF_ID = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Preferences.init(this)
@@ -33,6 +42,7 @@ class AlertActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        notification()
         adapter()
         SetStatusBarUseCase().execute(
             SetStatusBarParam(
@@ -64,5 +74,30 @@ class AlertActivity : AppCompatActivity() {
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapterAlert
+    }
+
+    private fun notification() {
+        val channel = NotificationChannel(
+            CHANNEL_ID,
+            CHANNEL_NAME,
+            NotificationManager.IMPORTANCE_DEFAULT
+        ).apply {
+            lightColor = Color.BLUE
+            enableLights(true)
+        }
+        val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        manager.createNotificationChannel(channel)
+
+        val notify = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentTitle("Для Юры")
+            .setContentText("Если ты это читаешь значет ты лох который не сделал мне правки")
+            .setSmallIcon(R.drawable.splash_screen)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(""))
+            .build()
+
+        val notifyManger = NotificationManagerCompat.from(this)
+
+        binding.good.setOnClickListener { notifyManger.notify(NOTIF_ID, notify) }
     }
 }

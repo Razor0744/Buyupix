@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import team.four.mys.R
 import team.four.mys.presentation.activity.AlertActivity
 import team.four.mys.presentation.activity.DarkModeActivity
@@ -16,10 +19,13 @@ import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
+import team.four.mys.presentation.activity.FirstActivity
 
 class SettingsFragment : Fragment() {
 
     private var binding: FragmentSettingsBinding? = null
+
+    private val auth: FirebaseAuth = Firebase.auth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +44,11 @@ class SettingsFragment : Fragment() {
 
         binding?.language?.setOnClickListener {
             startActivity(Intent(context, LanguageActivity::class.java))
+        }
+
+        binding?.signOut?.setOnClickListener {
+            auth.signOut()
+            startActivity(Intent(context, FirstActivity::class.java))
         }
 
         SetStatusBarUseCase().execute(

@@ -8,10 +8,10 @@ import team.four.mys.R
 import team.four.mys.data.db.Preferences
 import team.four.mys.databinding.ActivityMainBinding
 import team.four.mys.domain.usecases.SetThemeUseCase
-import team.four.mys.presentation.other.LocaleHelper
 import team.four.mys.presentation.fragments.HomeFragment
 import team.four.mys.presentation.fragments.SettingsFragment
 import team.four.mys.presentation.fragments.StatisticsFragment
+import team.four.mys.presentation.other.LocaleHelper
 
 class MainActivity : AppCompatActivity() {
 

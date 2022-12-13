@@ -10,10 +10,10 @@ android {
 
     defaultConfig {
         applicationId "team.four.mys"
-        minSdk 23
+        minSdk 26
         targetSdk 33
-        versionCode 23
-        versionName "1.4.4.3.2"
+        versionCode 24
+        versionName "1.4.4.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
