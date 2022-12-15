@@ -1,21 +1,31 @@
 package team.four.mys.presentation.activity
 
-import team.four.mys.presentation.adapters.DarkModeAdapter
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import team.four.mys.R
 import team.four.mys.data.db.Preferences
 import team.four.mys.data.repository.DarkModeData.darkMode
+import team.four.mys.data.repository.SettingsRepositoryImpl
+import team.four.mys.data.storage.SettingsPreferences
 import team.four.mys.databinding.ActivityDarkModeBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.domain.models.SettingsPreferencesParam
+import team.four.mys.domain.usecases.GetSettingsUseCase
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
+import team.four.mys.domain.usecases.SetSettingsUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
+import team.four.mys.presentation.adapters.DarkModeAdapter
 
 class DarkModeActivity : AppCompatActivity() {
+
+    private val settingsStorage by lazy { SettingsPreferences(context = applicationContext) }
+    private val settingsRepository by lazy { SettingsRepositoryImpl(settingsStorage) }
+    private val getSettingsUseCase by lazy { GetSettingsUseCase(settingsRepository) }
+    private val setSettingsUseCase by lazy { SetSettingsUseCase(settingsRepository) }
 
     private lateinit var binding: ActivityDarkModeBinding
 
@@ -23,7 +33,6 @@ class DarkModeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Preferences.init(this)
         binding = ActivityDarkModeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -48,9 +57,15 @@ class DarkModeActivity : AppCompatActivity() {
         adapterDarkMode =
             DarkModeAdapter(
                 this,
-                darkMode, Preferences.getSettings("DarkMode")
-            ) { alertClick ->
-                Preferences.setSettings("DarkMode", alertClick.name.toString())
+                darkMode,
+                getSettingsUseCase.execute(SettingsPreferencesParam(key = "DarkMode")).value
+            ) { darkModeClick ->
+                setSettingsUseCase.execute(
+                    SettingsPreferencesParam(
+                        key = "DarkMode",
+                        value = darkModeClick.name
+                    )
+                )
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")
                 startActivity(intent)

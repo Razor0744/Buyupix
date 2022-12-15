@@ -2,7 +2,6 @@ package team.four.mys.presentation.activity
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import team.four.mys.presentation.adapters.AlertAdapter
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -12,15 +11,25 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import team.four.mys.R
-import team.four.mys.data.db.Preferences
 import team.four.mys.data.repository.AlertData.alert
+import team.four.mys.data.repository.SettingsRepositoryImpl
+import team.four.mys.data.storage.SettingsPreferences
 import team.four.mys.databinding.ActivityAlertBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.domain.models.SettingsPreferencesParam
+import team.four.mys.domain.usecases.GetSettingsUseCase
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
+import team.four.mys.domain.usecases.SetSettingsUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
+import team.four.mys.presentation.adapters.AlertAdapter
 
 class AlertActivity : AppCompatActivity() {
+
+    private val settingsStorage by lazy { SettingsPreferences(context = applicationContext) }
+    private val settingsRepository by lazy { SettingsRepositoryImpl(settingsStorage) }
+    private val getSettingsUseCase by lazy { GetSettingsUseCase(settingsRepository) }
+    private val setSettingsUseCase by lazy { SetSettingsUseCase(settingsRepository) }
 
     private lateinit var binding: ActivityAlertBinding
 
@@ -32,7 +41,6 @@ class AlertActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Preferences.init(this)
         binding = ActivityAlertBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -65,9 +73,14 @@ class AlertActivity : AppCompatActivity() {
             AlertAdapter(
                 this,
                 alert,
-                Preferences.getSettings("Alert")
+                getSettingsUseCase.execute(SettingsPreferencesParam(key = "Alert")).value
             ) { alertClick ->
-                Preferences.setSettings("Alert", alertClick.name.toString())
+                setSettingsUseCase.execute(
+                    SettingsPreferencesParam(
+                        key = "Alert",
+                        value = alertClick.name
+                    )
+                )
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")
                 startActivity(intent)

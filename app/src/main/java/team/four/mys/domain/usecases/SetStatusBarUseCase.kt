@@ -3,6 +3,7 @@ package team.four.mys.domain.usecases
 import android.content.res.Configuration
 import android.view.View
 import team.four.mys.data.db.Preferences
+import team.four.mys.data.storage.SettingsPreferences
 import team.four.mys.domain.models.SetStatusBarParam
 
 class SetStatusBarUseCase {

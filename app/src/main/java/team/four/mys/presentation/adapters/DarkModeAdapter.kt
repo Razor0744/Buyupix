@@ -10,7 +10,7 @@ import team.four.mys.databinding.RecyclerviewItemDarkModeBinding
 class DarkModeAdapter(
     private val context: Context,
     private val darkMode: List<DarkMode>,
-    private val darkModeTheme: String,
+    private val darkModeTheme: String?,
     private val itemClick: (DarkMode) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -58,7 +58,7 @@ class DarkModeAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolderDarkMode).bindSubscription(darkMode[position], context, darkModeTheme)
+        (holder as ViewHolderDarkMode).bindSubscription(darkMode[position], context, darkModeTheme ?: "")
     }
 
     override fun getItemCount() = darkMode.size

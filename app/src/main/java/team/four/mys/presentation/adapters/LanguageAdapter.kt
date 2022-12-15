@@ -10,12 +10,15 @@ import team.four.mys.databinding.RecyclerviewItemLanguageBinding
 class LanguageAdapter(
     private val context: Context,
     private val language: List<Language>,
-    private val locale: String,
+    private val locale: String?,
     private val itemClick: (Language) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    class ViewHolderLanguage(private val binding: RecyclerviewItemLanguageBinding, private val itemClick: (Language) -> Unit) :
+    class ViewHolderLanguage(
+        private val binding: RecyclerviewItemLanguageBinding,
+        private val itemClick: (Language) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindSubscription(language: Language, context: Context, locale: String) {
@@ -59,7 +62,7 @@ class LanguageAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolderLanguage).bindSubscription(language[position], context, locale)
+        (holder as ViewHolderLanguage).bindSubscription(language[position], context, locale ?: "")
     }
 
     override fun getItemCount() = language.size

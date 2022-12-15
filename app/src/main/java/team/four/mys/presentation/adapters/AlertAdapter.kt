@@ -10,12 +10,15 @@ import team.four.mys.databinding.RecyclerviewItemAlertBinding
 class AlertAdapter(
     private val context: Context,
     private val alert: List<Alert>,
-    private val alertDay: String,
+    private val alertDay: String?,
     private val itemClick: (Alert) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    inner class ViewHolderAlert(private val binding: RecyclerviewItemAlertBinding, private val itemClick: (Alert) -> Unit) :
+    inner class ViewHolderAlert(
+        private val binding: RecyclerviewItemAlertBinding,
+        private val itemClick: (Alert) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindSubscription(alert: Alert, context: Context, alertDay: String) {
@@ -58,7 +61,7 @@ class AlertAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolderAlert).bindSubscription(alert[position], context, alertDay)
+        (holder as ViewHolderAlert).bindSubscription(alert[position], context, alertDay ?: "")
     }
 
     override fun getItemCount() = alert.size
