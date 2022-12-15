@@ -64,6 +64,10 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        binding.buttonArrowLeft.setOnClickListener {
+            startActivity(Intent(this, FirstActivity::class.java))
+        }
+
         binding.countryCode.setOnClickListener {
             startActivity(Intent(this, CountryCodeActivity::class.java))
         }
@@ -176,7 +180,7 @@ class LoginActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun keyboardFalse() {
-        binding.phoneNumber.setRawInputType(InputType.TYPE_NULL)
+//        binding.phoneNumber.setRawInputType(InputType.TYPE_NULL)
         binding.phoneNumber.requestFocus()
         textInputType()
         val number = intent.getStringExtra("number")
