@@ -50,7 +50,7 @@ class StatisticsFragment : Fragment() {
             viewModel.fullPrice()
         }
 
-        SetStatusBarUseCase().execute(
+        SetStatusBarUseCase(context = requireContext()).execute(
             SetStatusBarParam(
                 requireContext(),
                 requireActivity(),

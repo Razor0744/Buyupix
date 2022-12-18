@@ -9,7 +9,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import team.four.mys.R
-import team.four.mys.data.db.Preferences
 import team.four.mys.databinding.ActivityFirstBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
@@ -24,8 +23,7 @@ class FirstActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFirstBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Preferences.init(this)
-        SetThemeUseCase().execute()
+        SetThemeUseCase(context = applicationContext).execute()
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -34,7 +32,7 @@ class FirstActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
 
-        SetStatusBarUseCase().execute(
+        SetStatusBarUseCase(context = applicationContext).execute(
             SetStatusBarParam(
                 this,
                 this,

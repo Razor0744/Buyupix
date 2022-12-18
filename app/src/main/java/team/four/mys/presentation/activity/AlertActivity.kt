@@ -10,28 +10,22 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.data.repository.AlertData.alert
-import team.four.mys.data.repository.SettingsRepositoryImpl
-import team.four.mys.data.storage.SettingsPreferences
 import team.four.mys.databinding.ActivityAlertBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.domain.models.SettingsPreferencesParam
-import team.four.mys.domain.usecases.GetSettingsUseCase
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
-import team.four.mys.domain.usecases.SetSettingsUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.adapters.AlertAdapter
+import team.four.mys.presentation.viewmodelsactivity.AlertViewModel
 
 class AlertActivity : AppCompatActivity() {
 
-    private val settingsStorage by lazy { SettingsPreferences(context = applicationContext) }
-    private val settingsRepository by lazy { SettingsRepositoryImpl(settingsStorage) }
-    private val getSettingsUseCase by lazy { GetSettingsUseCase(settingsRepository) }
-    private val setSettingsUseCase by lazy { SetSettingsUseCase(settingsRepository) }
-
     private lateinit var binding: ActivityAlertBinding
+
+    private val viewModel by viewModel<AlertViewModel>()
 
     private lateinit var adapterAlert: AlertAdapter
 
@@ -52,7 +46,7 @@ class AlertActivity : AppCompatActivity() {
 
         notification()
         adapter()
-        SetStatusBarUseCase().execute(
+        SetStatusBarUseCase(context = applicationContext).execute(
             SetStatusBarParam(
                 this,
                 this,
@@ -73,14 +67,9 @@ class AlertActivity : AppCompatActivity() {
             AlertAdapter(
                 this,
                 alert,
-                getSettingsUseCase.execute(SettingsPreferencesParam(key = "Alert")).value
+                viewModel.getSettings()
             ) { alertClick ->
-                setSettingsUseCase.execute(
-                    SettingsPreferencesParam(
-                        key = "Alert",
-                        value = alertClick.name
-                    )
-                )
+                viewModel.setSettings(value = alertClick.name)
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")
                 startActivity(intent)

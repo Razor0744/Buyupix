@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import team.four.mys.R
-import team.four.mys.data.db.Preferences
 import team.four.mys.data.repository.DarkModeData.darkMode
 import team.four.mys.data.repository.SettingsRepositoryImpl
 import team.four.mys.data.storage.SettingsPreferences
@@ -37,7 +36,7 @@ class DarkModeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter()
-        SetStatusBarUseCase().execute(
+        SetStatusBarUseCase(context = applicationContext).execute(
             SetStatusBarParam(
                 this,
                 this,

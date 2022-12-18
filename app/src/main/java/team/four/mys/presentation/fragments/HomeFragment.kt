@@ -64,7 +64,7 @@ class HomeFragment : Fragment() {
             viewModel.fullPrice()
         }
 
-        SetStatusBarUseCase().execute(
+        SetStatusBarUseCase(context = requireContext()).execute(
             SetStatusBarParam(
                 requireContext(),
                 requireActivity(),

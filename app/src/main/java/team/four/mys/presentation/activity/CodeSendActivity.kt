@@ -80,7 +80,7 @@ class CodeSendActivity : AppCompatActivity() {
             }
         }
 
-        SetStatusBarUseCase().execute(
+        SetStatusBarUseCase(context = applicationContext).execute(
             SetStatusBarParam(
                 this,
                 this,

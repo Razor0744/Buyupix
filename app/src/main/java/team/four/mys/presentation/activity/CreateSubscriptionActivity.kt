@@ -55,7 +55,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         fireStore()
         calendarVisibility()
         recyclerViewCurrenciesAdapter()
-        SetStatusBarUseCase().execute(
+        SetStatusBarUseCase(context = applicationContext).execute(
             SetStatusBarParam(
                 this,
                 this,
