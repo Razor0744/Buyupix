@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
@@ -15,17 +14,21 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.ActivityLoginBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
-import team.four.mys.domain.usecases.SetStatusBarUseCase
+import team.four.mys.presentation.other.SetStatusBarColor
+import team.four.mys.presentation.viewmodelsactivity.LoginViewModel
 import java.util.concurrent.TimeUnit
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+
+    private val viewModel by viewModel<LoginViewModel>()
 
     // firebase
     private lateinit var auth: FirebaseAuth
@@ -121,11 +124,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
         keyboardFalse()
-        SetStatusBarUseCase(context = applicationContext).execute(
+        viewModel.setStatusBarColor(
             SetStatusBarParam(
-                this,
-                this,
-                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+                activity = this,
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
 

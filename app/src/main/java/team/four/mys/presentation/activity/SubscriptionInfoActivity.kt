@@ -3,6 +3,7 @@ package team.four.mys.presentation.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,6 @@ import team.four.mys.databinding.ActivitySubscriptionInfoBinding
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SubscriptionInfoParam
 import team.four.mys.domain.usecases.GetUIDUseCase
-import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.viewmodelsactivity.SubscriptionInfoViewModel
 
 class SubscriptionInfoActivity : AppCompatActivity() {
@@ -39,11 +39,10 @@ class SubscriptionInfoActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
-        SetStatusBarUseCase(context = applicationContext).execute(
+        viewModel.setStatusBarColor(
             SetStatusBarParam(
-                this,
-                this,
-                getColor(R.color.backgroundMain)
+                activity = this,
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
 

@@ -6,12 +6,12 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.data.repository.CurrenciesData
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
@@ -19,7 +19,6 @@ import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.GetPriceSpinnerUseCase
 import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.GetUrlImageUseCase
-import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.adapters.CalendarAdapter
 import team.four.mys.presentation.adapters.CurrenciesAdapter
 import team.four.mys.presentation.other.CustomPositionItemDecoration
@@ -30,9 +29,10 @@ import java.time.LocalDate
 class CreateSubscriptionActivity : AppCompatActivity() {
 
     private val db = Firebase.firestore
+
     private lateinit var binding: ActivityCreatSubscriptionBinding
 
-    private val viewModel by viewModels<CreateSubscriptionViewModel>()
+    private val viewModel by viewModel<CreateSubscriptionViewModel>()
 
     private lateinit var adapterCalendar: CalendarAdapter
 
@@ -55,11 +55,11 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         fireStore()
         calendarVisibility()
         recyclerViewCurrenciesAdapter()
-        SetStatusBarUseCase(context = applicationContext).execute(
+
+        viewModel.setStatusBarColor(
             SetStatusBarParam(
-                this,
-                this,
-                getColor(R.color.backgroundMain)
+                activity = this,
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
     }

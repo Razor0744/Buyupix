@@ -2,13 +2,15 @@ package team.four.mys.presentation.viewmodelsfragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Valute
 import team.four.mys.domain.usecases.GetPriceFireBaseUseCase
 import team.four.mys.domain.usecases.GetCurrenciesUseCase
+import team.four.mys.presentation.other.SetStatusBarColor
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val setStatusBarColor: SetStatusBarColor) : ViewModel() {
 
     //Price
     private var EUR: Float? = null
@@ -33,5 +35,9 @@ class HomeViewModel : ViewModel() {
         USD = valute?.USD?.Value?.toFloat()
         EUR = valute?.EUR?.Value?.toFloat()
         fullPrice.postValue(priceUSD!! + (priceBYN!! * BYN!! / USD!!) + (priceEUR!! * EUR!! / USD!!))
+    }
+
+    fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
+        setStatusBarColor.execute(setStatusBarParam)
     }
 }

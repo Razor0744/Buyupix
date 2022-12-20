@@ -1,23 +1,25 @@
 package team.four.mys.presentation.viewmodelsactivity
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
+import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.presentation.other.SetStatusBarColor
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class CreateSubscriptionViewModel : ViewModel() {
+class CreateSubscriptionViewModel(private val setStatusBarColor: SetStatusBarColor) : ViewModel() {
 
-    @RequiresApi(Build.VERSION_CODES.O)
-     fun monthYearFromDate(date: LocalDate): String {
+    fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
+        setStatusBarColor.execute(setStatusBarParam)
+    }
+
+    fun monthYearFromDate(date: LocalDate): String {
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("LLLL")
         return date.format(formatter)
             .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun daysInMonthArray(date: LocalDate): ArrayList<String> {
         val daysInMonthArray = ArrayList<String>()
         val yearMonth: YearMonth = YearMonth.from(date)

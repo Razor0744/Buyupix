@@ -8,19 +8,22 @@ import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.ActivityFirstBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
-import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.domain.usecases.SetThemeUseCase
 import team.four.mys.presentation.other.LocaleHelper
+import team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel
 
 class FirstActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityFirstBinding
+
+    private val viewModel by viewModel<FirstActivityViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         SetThemeUseCase(context = applicationContext).execute()
@@ -32,11 +35,10 @@ class FirstActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
 
-        SetStatusBarUseCase(context = applicationContext).execute(
+        viewModel.setStatusBarColor(
             SetStatusBarParam(
-                this,
-                this,
-                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+                activity = this,
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
 
@@ -48,13 +50,13 @@ class FirstActivity : AppCompatActivity() {
         )
     }
 
-    public override fun onStart() {
+    override fun onStart() {
         super.onStart()
         // Initialize Firebase Auth
         auth = Firebase.auth
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        if (currentUser != null) {
+        if (currentUser == null) {
             reload()
         }
     }

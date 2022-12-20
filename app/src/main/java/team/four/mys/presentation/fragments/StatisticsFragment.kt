@@ -7,26 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentStatisticsBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
-import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
 class StatisticsFragment : Fragment() {
 
     private var binding: FragmentStatisticsBinding? = null
 
-    private val viewModel by viewModels<StatisticsViewModel>()
+    private val viewModel by viewModel<StatisticsViewModel>()
 
     private var gamingPrice = 20f
     private var musicPrice = 199f
@@ -50,11 +49,10 @@ class StatisticsFragment : Fragment() {
             viewModel.fullPrice()
         }
 
-        SetStatusBarUseCase(context = requireContext()).execute(
+        viewModel.setStatusBarColor(
             SetStatusBarParam(
-                requireContext(),
-                requireActivity(),
-                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+                activity = requireActivity(),
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
 

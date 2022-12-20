@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -18,24 +17,24 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentHomeBinding
 import team.four.mys.domain.models.SetNavigationBarParam
-import team.four.mys.presentation.adapters.SubscriptionsAdapter
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscriptions
 import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
-import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.activity.CreateSubscriptionActivity
 import team.four.mys.presentation.activity.SubscriptionInfoActivity
+import team.four.mys.presentation.adapters.SubscriptionsAdapter
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
 
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
 
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModel<HomeViewModel>()
 
     private lateinit var subscriptions: ArrayList<Subscriptions>
     private lateinit var adapterSubscriptions: SubscriptionsAdapter
@@ -64,11 +63,10 @@ class HomeFragment : Fragment() {
             viewModel.fullPrice()
         }
 
-        SetStatusBarUseCase(context = requireContext()).execute(
+        viewModel.setStatusBarColor(
             SetStatusBarParam(
-                requireContext(),
-                requireActivity(),
-                ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
+                activity = requireActivity(),
+                color = ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
             )
         )
 

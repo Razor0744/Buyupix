@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.data.repository.DarkModeData.darkMode
 import team.four.mys.data.repository.SettingsRepositoryImpl
@@ -16,8 +17,9 @@ import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.domain.usecases.GetSettingsUseCase
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
 import team.four.mys.domain.usecases.SetSettingsUseCase
-import team.four.mys.domain.usecases.SetStatusBarUseCase
+import team.four.mys.presentation.other.SetStatusBarColor
 import team.four.mys.presentation.adapters.DarkModeAdapter
+import team.four.mys.presentation.viewmodelsactivity.DarkModeViewModel
 
 class DarkModeActivity : AppCompatActivity() {
 
@@ -28,6 +30,8 @@ class DarkModeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDarkModeBinding
 
+    private val viewModel by viewModel<DarkModeViewModel>()
+
     private lateinit var adapterDarkMode: DarkModeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +40,11 @@ class DarkModeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter()
-        SetStatusBarUseCase(context = applicationContext).execute(
+
+        viewModel.setStatusBarColor(
             SetStatusBarParam(
-                this,
-                this,
-                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+                activity = this,
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
 

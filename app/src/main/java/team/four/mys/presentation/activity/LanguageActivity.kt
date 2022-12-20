@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.data.repository.LanguageData.language
 import team.four.mys.data.repository.SettingsRepositoryImpl
@@ -15,19 +16,19 @@ import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.domain.usecases.GetSettingsUseCase
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
-import team.four.mys.domain.usecases.SetSettingsUseCase
-import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.adapters.LanguageAdapter
 import team.four.mys.presentation.other.LocaleHelper
+import team.four.mys.presentation.viewmodelsactivity.LanguageViewModel
 
 class LanguageActivity : AppCompatActivity() {
 
     private val settingsStorage by lazy { SettingsPreferences(context = applicationContext) }
     private val settingsRepository by lazy { SettingsRepositoryImpl(settingsStorage) }
     private val getSettingsUseCase by lazy { GetSettingsUseCase(settingsRepository) }
-    private val setSettingsUseCase by lazy { SetSettingsUseCase(settingsRepository) }
 
     private lateinit var binding: ActivityLanguageBinding
+
+    private val viewModel by viewModel<LanguageViewModel>()
 
     private lateinit var adapterLanguage: LanguageAdapter
 
@@ -43,11 +44,11 @@ class LanguageActivity : AppCompatActivity() {
         }
 
         adapter()
-        SetStatusBarUseCase(context = applicationContext).execute(
+
+        viewModel.setStatusBarColor(
             SetStatusBarParam(
-                this,
-                this,
-                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+                activity = this,
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
 

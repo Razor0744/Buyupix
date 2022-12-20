@@ -1,22 +1,25 @@
 package team.four.mys.presentation.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
 import com.google.firebase.auth.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.ActivityCodeSendBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
-import team.four.mys.domain.usecases.SetStatusBarUseCase
+import team.four.mys.presentation.viewmodelsactivity.CodeSendActivityViewModel
 
 class CodeSendActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCodeSendBinding
+
+    private val viewModel by viewModel<CodeSendActivityViewModel>()
 
     // firebase
     private lateinit var auth: FirebaseAuth
@@ -80,11 +83,10 @@ class CodeSendActivity : AppCompatActivity() {
             }
         }
 
-        SetStatusBarUseCase(context = applicationContext).execute(
+        viewModel.setStatusBarColor(
             SetStatusBarParam(
-                this,
-                this,
-                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+                activity = this,
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
 
