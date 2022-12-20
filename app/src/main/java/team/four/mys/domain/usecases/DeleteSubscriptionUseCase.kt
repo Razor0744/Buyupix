@@ -2,17 +2,17 @@ package team.four.mys.domain.usecases
 
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import team.four.mys.domain.models.Subscription
+import team.four.mys.domain.models.SubscriptionInfoParam
 
 class DeleteSubscriptionUseCase {
 
     private val db = Firebase.firestore
 
-    fun execute(subscription: Subscription){
-        db.collection(subscription.uid)
-            .document(subscription.date)
-            .collection(subscription.dateType)
-            .document(subscription.name)
+    fun execute(subscriptionInfoParam: SubscriptionInfoParam){
+        db.collection(subscriptionInfoParam.uid)
+            .document(subscriptionInfoParam.date)
+            .collection(subscriptionInfoParam.dateType)
+            .document(subscriptionInfoParam.name)
             .delete()
     }
 }

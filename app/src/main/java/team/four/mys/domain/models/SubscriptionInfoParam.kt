@@ -1,6 +1,6 @@
 package team.four.mys.domain.models
 
-data class Subscription(
+data class SubscriptionInfoParam(
     val uid: String,
     val date: String,
     val dateType: String,

@@ -2,13 +2,16 @@ package team.four.mys.presentation.activity
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.ActivitySubscriptionInfoBinding
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.domain.models.Subscription
+import team.four.mys.domain.models.SubscriptionInfoParam
 import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.SetStatusBarUseCase
 import team.four.mys.presentation.viewmodelsactivity.SubscriptionInfoViewModel
@@ -17,7 +20,7 @@ class SubscriptionInfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySubscriptionInfoBinding
 
-    private val viewModel by viewModels<SubscriptionInfoViewModel>()
+    private val viewModel by viewModel<SubscriptionInfoViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +29,7 @@ class SubscriptionInfoActivity : AppCompatActivity() {
 
         binding.delete.setOnClickListener {
             viewModel.deleteSubscription(
-                Subscription(
+                SubscriptionInfoParam(
                     GetUIDUseCase().execute(),
                     intent.getStringExtra("date").toString(),
                     intent.getStringExtra("dateType").toString(),
@@ -36,6 +39,32 @@ class SubscriptionInfoActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
+        SetStatusBarUseCase(context = applicationContext).execute(
+            SetStatusBarParam(
+                this,
+                this,
+                getColor(R.color.backgroundMain)
+            )
+        )
+
+        getSubscriptionInfo()
+        setTextFromInfo()
+    }
+
+    private fun getSubscriptionInfo() {
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.getSubscriptionInfo(
+                SubscriptionInfoParam(
+                    GetUIDUseCase().execute(),
+                    intent.getStringExtra("date").toString(),
+                    intent.getStringExtra("dateType").toString(),
+                    intent.getStringExtra("name").toString()
+                )
+            )
+        }
+    }
+
+    private fun setTextFromInfo() {
         viewModel.documentLiveData.observe(this) {
             println("nice")
             Glide
@@ -50,22 +79,5 @@ class SubscriptionInfoActivity : AppCompatActivity() {
                 getString(R.string.priceInfo, it.get("priceSpinner"), it.get("price"))
             binding.description.text = it.get("description").toString()
         }
-
-        viewModel.subscriptionInfo(
-            Subscription(
-                GetUIDUseCase().execute(),
-                intent.getStringExtra("date").toString(),
-                intent.getStringExtra("dateType").toString(),
-                intent.getStringExtra("name").toString()
-            )
-        )
-
-        SetStatusBarUseCase(context = applicationContext).execute(
-            SetStatusBarParam(
-                this,
-                this,
-                getColor(R.color.backgroundMain)
-            )
-        )
     }
 }
