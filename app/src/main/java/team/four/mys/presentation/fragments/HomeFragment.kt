@@ -23,11 +23,10 @@ import team.four.mys.databinding.FragmentHomeBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscriptions
-import team.four.mys.domain.usecases.GetUIDUseCase
-import team.four.mys.presentation.other.SetNavigationColor
 import team.four.mys.presentation.activity.CreateSubscriptionActivity
 import team.four.mys.presentation.activity.SubscriptionInfoActivity
 import team.four.mys.presentation.adapters.SubscriptionsAdapter
+import team.four.mys.presentation.other.SetNavigationColor
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -107,7 +106,7 @@ class HomeFragment : Fragment() {
     private fun fireStore() {
         var i = 1
         while (i <= 31) {
-            db.collection(GetUIDUseCase().execute()).document(i.toString()).collection("date")
+            db.collection(viewModel.getUID()).document(i.toString()).collection("date")
                 .addSnapshotListener(object : EventListener<QuerySnapshot> {
                     @SuppressLint("NotifyDataSetChanged")
                     override fun onEvent(
@@ -128,7 +127,7 @@ class HomeFragment : Fragment() {
 
                 })
 
-            db.collection(GetUIDUseCase().execute()).document(i.toString()).collection("noDate")
+            db.collection(viewModel.getUID()).document(i.toString()).collection("noDate")
                 .addSnapshotListener(object : EventListener<QuerySnapshot> {
                     @SuppressLint("NotifyDataSetChanged")
                     override fun onEvent(

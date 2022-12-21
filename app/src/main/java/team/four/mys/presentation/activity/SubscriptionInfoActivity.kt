@@ -14,7 +14,6 @@ import team.four.mys.databinding.ActivitySubscriptionInfoBinding
 import team.four.mys.domain.models.DeleteSubscriptionParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SubscriptionInfoParam
-import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.presentation.viewmodelsactivity.SubscriptionInfoViewModel
 
 class SubscriptionInfoActivity : AppCompatActivity() {
@@ -31,7 +30,6 @@ class SubscriptionInfoActivity : AppCompatActivity() {
         binding.delete.setOnClickListener {
             viewModel.deleteSubscription(
                 DeleteSubscriptionParam(
-                    GetUIDUseCase().execute(),
                     intent.getStringExtra("date").toString(),
                     intent.getStringExtra("dateType").toString(),
                     intent.getStringExtra("name").toString()
@@ -55,7 +53,6 @@ class SubscriptionInfoActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.getSubscriptionInfo(
                 SubscriptionInfoParam(
-                    GetUIDUseCase().execute(),
                     intent.getStringExtra("date").toString(),
                     intent.getStringExtra("dateType").toString(),
                     intent.getStringExtra("name").toString()

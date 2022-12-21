@@ -1,13 +1,10 @@
 package team.four.mys.domain.usecases
 
-import com.google.firebase.auth.FirebaseAuth
+import team.four.mys.domain.repository.FirebaseRepository
 
-class GetUIDUseCase {
+class GetUIDUseCase(private val firebaseRepository: FirebaseRepository) {
 
-     fun execute(): String {
-        // get UID
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid
-        return uid.toString()
+    fun execute(): String {
+        return firebaseRepository.getUID()
     }
 }

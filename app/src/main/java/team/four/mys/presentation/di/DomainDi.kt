@@ -25,4 +25,8 @@ val domainModule = module {
         GetPriceFireBaseUseCase(firebaseRepository = get())
     }
 
+    factory<GetUIDUseCase> {
+        GetUIDUseCase(firebaseRepository = get())
+    }
+
 }

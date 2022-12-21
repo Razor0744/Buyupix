@@ -20,4 +20,8 @@ class FirebaseRepositoryImpl(private val firebaseDatabase: FirebaseDatabase) : F
         return firebaseDatabase.getPriceFirebase(string = string)
     }
 
+    override fun getUID(): String {
+        return firebaseDatabase.getUID()
+    }
+
 }

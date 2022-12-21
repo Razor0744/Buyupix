@@ -11,4 +11,6 @@ interface FirebaseRepository {
     fun deleteSubscription(deleteSubscriptionParam: DeleteSubscriptionParam)
 
     suspend fun getPriceFirebase(string: String): Int
+
+    fun getUID(): String
 }

@@ -33,35 +33,49 @@ val appModule = module {
     }
 
     viewModel<CodeSendActivityViewModel> {
-        CodeSendActivityViewModel(setStatusBarColor = get())
+        CodeSendActivityViewModel(
+            setStatusBarColor = get()
+        )
     }
 
     viewModel<CreateSubscriptionViewModel> {
-        CreateSubscriptionViewModel(setStatusBarColor = get())
+        CreateSubscriptionViewModel(
+            setStatusBarColor = get(),
+            getUIDUseCase = get()
+        )
     }
 
     viewModel<DarkModeViewModel> {
-        DarkModeViewModel(setStatusBarColor = get())
+        DarkModeViewModel(
+            setStatusBarColor = get()
+        )
     }
 
     viewModel<LanguageViewModel> {
-        LanguageViewModel(setStatusBarColor = get())
+        LanguageViewModel(
+            setStatusBarColor = get()
+        )
     }
 
     viewModel<LoginViewModel> {
-        LoginViewModel(setStatusBarColor = get())
+        LoginViewModel(
+            setStatusBarColor = get()
+        )
     }
 
     viewModel<HomeViewModel> {
         HomeViewModel(
             setStatusBarColor = get(),
             retrofit = get(),
-            getPriceFireBaseUseCase = get()
+            getPriceFireBaseUseCase = get(),
+            getUIDUseCase = get()
         )
     }
 
     viewModel<SettingsViewModel> {
-        SettingsViewModel(setStatusBarColor = get())
+        SettingsViewModel(
+            setStatusBarColor = get()
+        )
     }
 
     viewModel<StatisticsViewModel> {

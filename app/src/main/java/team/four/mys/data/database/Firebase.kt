@@ -1,21 +1,22 @@
 package team.four.mys.data.database
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import team.four.mys.domain.models.DeleteSubscriptionParam
 import team.four.mys.domain.models.SubscriptionInfoParam
-import team.four.mys.domain.usecases.GetUIDUseCase
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 class Firebase : FirebaseDatabase {
 
     private val db = Firebase.firestore
+    private val user = FirebaseAuth.getInstance().currentUser
 
     override suspend fun getSubscriptionInfo(subscriptionInfoParam: SubscriptionInfoParam): DocumentSnapshot =
         suspendCoroutine {
-            db.collection(subscriptionInfoParam.uid).document(subscriptionInfoParam.date)
+            db.collection(getUID()).document(subscriptionInfoParam.date)
                 .collection(subscriptionInfoParam.dateType)
                 .document(subscriptionInfoParam.name)
                 .get()
@@ -25,7 +26,7 @@ class Firebase : FirebaseDatabase {
         }
 
     override fun deleteSubscription(deleteSubscriptionParam: DeleteSubscriptionParam) {
-        db.collection(deleteSubscriptionParam.uid)
+        db.collection(getUID())
             .document(deleteSubscriptionParam.date)
             .collection(deleteSubscriptionParam.dateType)
             .document(deleteSubscriptionParam.name)
@@ -33,7 +34,7 @@ class Firebase : FirebaseDatabase {
     }
 
     override suspend fun getPriceFirebase(string: String): Int = suspendCoroutine {
-        db.collection(GetUIDUseCase().execute()).document(string)
+        db.collection(getUID()).document(string)
             .get()
             .addOnSuccessListener { doc ->
                 if (doc.get("price") != null) {
@@ -46,5 +47,9 @@ class Firebase : FirebaseDatabase {
                 println(e)
                 it.resume(0)
             }
+    }
+
+    override fun getUID(): String {
+        return user?.uid.toString()
     }
 }
