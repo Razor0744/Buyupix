@@ -14,7 +14,7 @@ import team.four.mys.databinding.ActivityFirstBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetNavigationBarUseCase
-import team.four.mys.domain.usecases.SetThemeUseCase
+import team.four.mys.presentation.other.SetTheme
 import team.four.mys.presentation.other.LocaleHelper
 import team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel
 
@@ -26,7 +26,7 @@ class FirstActivity : AppCompatActivity() {
     private val viewModel by viewModel<FirstActivityViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        SetThemeUseCase(context = applicationContext).execute()
+        SetTheme(context = applicationContext).execute()
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding.root)

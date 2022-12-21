@@ -1,12 +1,13 @@
-package team.four.mys.domain.usecases
+package team.four.mys.presentation.other
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import team.four.mys.data.repository.SettingsRepositoryImpl
 import team.four.mys.data.storage.SettingsPreferences
 import team.four.mys.domain.models.SettingsPreferencesParam
+import team.four.mys.domain.usecases.GetSettingsUseCase
 
-class SetThemeUseCase(context: Context) {
+class SetTheme(context: Context) {
 
     private val settingsStorage by lazy { SettingsPreferences(context = context) }
     private val settingsRepository by lazy { SettingsRepositoryImpl(settingsStorage) }

@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import team.four.mys.R
 import team.four.mys.databinding.ActivityMainBinding
-import team.four.mys.domain.usecases.SetThemeUseCase
+import team.four.mys.presentation.other.SetTheme
 import team.four.mys.presentation.fragments.HomeFragment
 import team.four.mys.presentation.fragments.SettingsFragment
 import team.four.mys.presentation.fragments.StatisticsFragment
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private val settingsFragment = SettingsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        SetThemeUseCase(context = applicationContext).execute()
+        SetTheme(context = applicationContext).execute()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
