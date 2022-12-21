@@ -18,7 +18,7 @@ import team.four.mys.R
 import team.four.mys.databinding.FragmentStatisticsBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.domain.usecases.SetNavigationBarUseCase
+import team.four.mys.presentation.other.SetNavigationColor
 import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
 class StatisticsFragment : Fragment() {
@@ -56,7 +56,7 @@ class StatisticsFragment : Fragment() {
             )
         )
 
-        SetNavigationBarUseCase().execute(
+        SetNavigationColor().execute(
             SetNavigationBarParam(
                 requireActivity(),
                 ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)

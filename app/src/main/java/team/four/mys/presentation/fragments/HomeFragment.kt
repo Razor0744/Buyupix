@@ -24,7 +24,7 @@ import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscriptions
 import team.four.mys.domain.usecases.GetUIDUseCase
-import team.four.mys.domain.usecases.SetNavigationBarUseCase
+import team.four.mys.presentation.other.SetNavigationColor
 import team.four.mys.presentation.activity.CreateSubscriptionActivity
 import team.four.mys.presentation.activity.SubscriptionInfoActivity
 import team.four.mys.presentation.adapters.SubscriptionsAdapter
@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
             )
         )
 
-        SetNavigationBarUseCase().execute(
+        SetNavigationColor().execute(
             SetNavigationBarParam(
                 requireActivity(),
                 ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)

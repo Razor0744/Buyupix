@@ -12,7 +12,7 @@ import team.four.mys.R
 import team.four.mys.databinding.ActivityCodeSendBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.domain.usecases.SetNavigationBarUseCase
+import team.four.mys.presentation.other.SetNavigationColor
 import team.four.mys.presentation.viewmodelsactivity.CodeSendActivityViewModel
 
 class CodeSendActivity : AppCompatActivity() {
@@ -90,7 +90,7 @@ class CodeSendActivity : AppCompatActivity() {
             )
         )
 
-        SetNavigationBarUseCase().execute(
+        SetNavigationColor().execute(
             SetNavigationBarParam(
                 this,
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)

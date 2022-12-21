@@ -11,7 +11,7 @@ import team.four.mys.data.repository.AlertData.alert
 import team.four.mys.databinding.ActivityAlertBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.domain.usecases.SetNavigationBarUseCase
+import team.four.mys.presentation.other.SetNavigationColor
 import team.four.mys.presentation.adapters.AlertAdapter
 import team.four.mys.presentation.viewmodelsactivity.AlertViewModel
 
@@ -46,7 +46,7 @@ class AlertActivity : AppCompatActivity() {
             )
         )
 
-        SetNavigationBarUseCase().execute(
+        SetNavigationColor().execute(
             SetNavigationBarParam(
                 this,
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)

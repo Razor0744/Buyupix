@@ -13,7 +13,7 @@ import team.four.mys.R
 import team.four.mys.databinding.ActivityFirstBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.domain.usecases.SetNavigationBarUseCase
+import team.four.mys.presentation.other.SetNavigationColor
 import team.four.mys.presentation.other.SetTheme
 import team.four.mys.presentation.other.LocaleHelper
 import team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel
@@ -42,7 +42,7 @@ class FirstActivity : AppCompatActivity() {
             )
         )
 
-        SetNavigationBarUseCase().execute(
+        SetNavigationColor().execute(
             SetNavigationBarParam(
                 this,
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
