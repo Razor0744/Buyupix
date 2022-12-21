@@ -1,10 +1,7 @@
 package team.four.mys.presentation.di
 
 import org.koin.dsl.module
-import team.four.mys.domain.usecases.DeleteSubscriptionUseCase
-import team.four.mys.domain.usecases.GetSettingsUseCase
-import team.four.mys.domain.usecases.GetSubscriptionInfoUseCase
-import team.four.mys.domain.usecases.SetSettingsUseCase
+import team.four.mys.domain.usecases.*
 
 val domainModule = module {
 
@@ -22,6 +19,10 @@ val domainModule = module {
 
     factory<DeleteSubscriptionUseCase> {
         DeleteSubscriptionUseCase(firebaseRepository = get())
+    }
+
+    factory<GetPriceFireBaseUseCase> {
+        GetPriceFireBaseUseCase(firebaseRepository = get())
     }
 
 }

@@ -12,7 +12,8 @@ import java.util.*
 
 class StatisticsViewModel(
     private val setStatusBarColor: SetStatusBarColor,
-    private val retrofit: Retrofit
+    private val retrofit: Retrofit,
+    private val getPriceFireBaseUseCase: GetPriceFireBaseUseCase
 ) :
     ViewModel() {
 
@@ -31,9 +32,9 @@ class StatisticsViewModel(
     }
 
     suspend fun fullPrice() {
-        priceBYN = GetPriceFireBaseUseCase().execute("BYN")
-        priceUSD = GetPriceFireBaseUseCase().execute("USD")
-        priceEUR = GetPriceFireBaseUseCase().execute("EUR")
+        priceBYN = getPriceFireBaseUseCase.execute(string = "BYN")
+        priceUSD = getPriceFireBaseUseCase.execute(string = "USD")
+        priceEUR = getPriceFireBaseUseCase.execute(string = "EUR")
         valute = retrofit.getCurrencies()
         BYN = valute?.BYN?.Value?.toFloat()
         USD = valute?.USD?.Value?.toFloat()

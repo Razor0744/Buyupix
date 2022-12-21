@@ -22,11 +22,11 @@ val dataModule = module {
         SettingsRepositoryImpl(settingsStorage = get())
     }
 
-    factory<FirebaseDatabase> {
+    single<FirebaseDatabase> {
         Firebase()
     }
 
-    factory<FirebaseRepository> {
+    single<FirebaseRepository> {
         FirebaseRepositoryImpl(firebaseDatabase = get())
     }
 

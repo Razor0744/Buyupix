@@ -1,27 +1,10 @@
 package team.four.mys.domain.usecases
 
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
+import team.four.mys.domain.repository.FirebaseRepository
 
-class GetPriceFireBaseUseCase {
+class GetPriceFireBaseUseCase(private val firebaseRepository: FirebaseRepository) {
 
-    private val db = Firebase.firestore
-
-    suspend fun execute(string: String): Int = suspendCoroutine {
-        db.collection(GetUIDUseCase().execute()).document(string)
-            .get()
-            .addOnSuccessListener { doc ->
-                if (doc.get("price") != null) {
-                    it.resume(Integer.parseInt(doc.get("price").toString()))
-                } else {
-                    it.resume(0)
-                }
-            }
-            .addOnFailureListener { e ->
-                println(e)
-                it.resume(0)
-            }
+    suspend fun execute(string: String): Int {
+        return firebaseRepository.getPriceFirebase(string = string)
     }
 }

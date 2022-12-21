@@ -5,6 +5,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import team.four.mys.domain.models.DeleteSubscriptionParam
 import team.four.mys.domain.models.SubscriptionInfoParam
+import team.four.mys.domain.usecases.GetUIDUseCase
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -29,5 +30,21 @@ class Firebase : FirebaseDatabase {
             .collection(deleteSubscriptionParam.dateType)
             .document(deleteSubscriptionParam.name)
             .delete()
+    }
+
+    override suspend fun getPriceFirebase(string: String): Int = suspendCoroutine {
+        db.collection(GetUIDUseCase().execute()).document(string)
+            .get()
+            .addOnSuccessListener { doc ->
+                if (doc.get("price") != null) {
+                    it.resume(Integer.parseInt(doc.get("price").toString()))
+                } else {
+                    it.resume(0)
+                }
+            }
+            .addOnFailureListener { e ->
+                println(e)
+                it.resume(0)
+            }
     }
 }

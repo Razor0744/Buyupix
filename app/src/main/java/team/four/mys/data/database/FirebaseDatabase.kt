@@ -9,4 +9,6 @@ interface FirebaseDatabase {
     suspend fun getSubscriptionInfo(subscriptionInfoParam: SubscriptionInfoParam): DocumentSnapshot
 
     fun deleteSubscription(deleteSubscriptionParam: DeleteSubscriptionParam)
+
+    suspend fun getPriceFirebase(string: String): Int
 }

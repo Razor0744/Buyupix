@@ -16,4 +16,8 @@ class FirebaseRepositoryImpl(private val firebaseDatabase: FirebaseDatabase) : F
         firebaseDatabase.deleteSubscription(deleteSubscriptionParam = deleteSubscriptionParam)
     }
 
+    override suspend fun getPriceFirebase(string: String): Int {
+        return firebaseDatabase.getPriceFirebase(string = string)
+    }
+
 }

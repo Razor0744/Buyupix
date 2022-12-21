@@ -55,7 +55,8 @@ val appModule = module {
     viewModel<HomeViewModel> {
         HomeViewModel(
             setStatusBarColor = get(),
-            retrofit = get()
+            retrofit = get(),
+            getPriceFireBaseUseCase = get()
         )
     }
 
@@ -66,7 +67,8 @@ val appModule = module {
     viewModel<StatisticsViewModel> {
         StatisticsViewModel(
             setStatusBarColor = get(),
-            retrofit = get()
+            retrofit = get(),
+            getPriceFireBaseUseCase = get()
         )
     }
 
