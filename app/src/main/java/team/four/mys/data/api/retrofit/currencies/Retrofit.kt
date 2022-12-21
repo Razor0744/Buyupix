@@ -1,18 +1,18 @@
-package team.four.mys.domain.usecases
+package team.four.mys.data.api.retrofit.currencies
 
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import team.four.mys.data.api.retrofit.CurrenciesRetrofit
+import team.four.mys.data.api.retrofit.RetrofitClient
 import team.four.mys.domain.models.CurrenciesJSON
 import team.four.mys.domain.models.Valute
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class GetCurrenciesUseCase {
+class Retrofit(private val retrofitClient: RetrofitClient) {
 
-    suspend fun execute(): Valute? = suspendCoroutine {
-        CurrenciesRetrofit.retrofitService.getRates().enqueue(object : Callback<CurrenciesJSON> {
+    suspend fun getCurrencies(): Valute? = suspendCoroutine {
+        retrofitClient.currenciesService.getCurrencies().enqueue(object : Callback<CurrenciesJSON> {
             override fun onResponse(
                 call: Call<CurrenciesJSON>,
                 response: Response<CurrenciesJSON>

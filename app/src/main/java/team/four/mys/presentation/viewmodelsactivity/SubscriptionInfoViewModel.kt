@@ -3,6 +3,7 @@ package team.four.mys.presentation.viewmodelsactivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.DocumentSnapshot
+import team.four.mys.domain.models.DeleteSubscriptionParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SubscriptionInfoParam
 import team.four.mys.domain.usecases.DeleteSubscriptionUseCase
@@ -18,8 +19,8 @@ class SubscriptionInfoViewModel(
 
     val documentLiveData = MutableLiveData<DocumentSnapshot>()
 
-    fun deleteSubscription(subscriptionInfoParam: SubscriptionInfoParam) {
-        deleteSubscriptionUseCase.execute(subscriptionInfoParam)
+    fun deleteSubscription(deleteSubscriptionParam: DeleteSubscriptionParam) {
+        deleteSubscriptionUseCase.execute(deleteSubscriptionParam = deleteSubscriptionParam)
     }
 
     suspend fun getSubscriptionInfo(subscriptionInfoParam: SubscriptionInfoParam) {
@@ -29,6 +30,6 @@ class SubscriptionInfoViewModel(
     }
 
     fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
-        setStatusBarColor.execute(setStatusBarParam)
+        setStatusBarColor.execute(setStatusBarParam = setStatusBarParam)
     }
 }

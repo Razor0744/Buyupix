@@ -5,12 +5,15 @@ import androidx.lifecycle.ViewModel
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Valute
 import team.four.mys.domain.usecases.GetPriceFireBaseUseCase
-import team.four.mys.domain.usecases.GetCurrenciesUseCase
+import team.four.mys.data.api.retrofit.currencies.Retrofit
 import team.four.mys.presentation.other.SetStatusBarColor
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeViewModel(private val setStatusBarColor: SetStatusBarColor) : ViewModel() {
+class HomeViewModel(
+    private val setStatusBarColor: SetStatusBarColor,
+    private val retrofit: Retrofit
+) : ViewModel() {
 
     //Price
     private var EUR: Float? = null
@@ -30,7 +33,7 @@ class HomeViewModel(private val setStatusBarColor: SetStatusBarColor) : ViewMode
         priceBYN = GetPriceFireBaseUseCase().execute("BYN")
         priceUSD = GetPriceFireBaseUseCase().execute("USD")
         priceEUR = GetPriceFireBaseUseCase().execute("EUR")
-        valute = GetCurrenciesUseCase().execute()
+        valute = retrofit.getCurrencies()
         BYN = valute?.BYN?.Value?.toFloat()
         USD = valute?.USD?.Value?.toFloat()
         EUR = valute?.EUR?.Value?.toFloat()

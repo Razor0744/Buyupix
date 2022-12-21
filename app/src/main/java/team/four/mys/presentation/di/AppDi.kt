@@ -53,7 +53,10 @@ val appModule = module {
     }
 
     viewModel<HomeViewModel> {
-        HomeViewModel(setStatusBarColor = get())
+        HomeViewModel(
+            setStatusBarColor = get(),
+            retrofit = get()
+        )
     }
 
     viewModel<SettingsViewModel> {
@@ -61,7 +64,10 @@ val appModule = module {
     }
 
     viewModel<StatisticsViewModel> {
-        StatisticsViewModel(setStatusBarColor = get())
+        StatisticsViewModel(
+            setStatusBarColor = get(),
+            retrofit = get()
+        )
     }
 
     factory<SetStatusBarColor> {

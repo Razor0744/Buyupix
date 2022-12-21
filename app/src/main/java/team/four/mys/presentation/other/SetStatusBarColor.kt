@@ -10,27 +10,27 @@ class SetStatusBarColor(
     private val getSettingsUseCase: GetSettingsUseCase
 ) {
 
-    fun execute(param: SetStatusBarParam) {
-        param.activity.window.statusBarColor = param.color
+    fun execute(setStatusBarParam: SetStatusBarParam) {
+        setStatusBarParam.activity.window.statusBarColor = setStatusBarParam.color
         when (getSettingsUseCase.execute(SettingsPreferencesParam(key = "DarkMode")).value) {
             "System Theme" -> {
-                when (param.activity.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-                    Configuration.UI_MODE_NIGHT_YES -> param.activity.window.decorView.systemUiVisibility =
+                when (setStatusBarParam.activity.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                    Configuration.UI_MODE_NIGHT_YES -> setStatusBarParam.activity.window.decorView.systemUiVisibility =
                         (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-                    Configuration.UI_MODE_NIGHT_NO -> param.activity.window.decorView.systemUiVisibility =
+                    Configuration.UI_MODE_NIGHT_NO -> setStatusBarParam.activity.window.decorView.systemUiVisibility =
                         (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
                 }
             }
             "Dark Theme"
-            -> param.activity.window.decorView.systemUiVisibility =
+            -> setStatusBarParam.activity.window.decorView.systemUiVisibility =
                 (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-            "Light Theme" -> param.activity.window.decorView.systemUiVisibility =
+            "Light Theme" -> setStatusBarParam.activity.window.decorView.systemUiVisibility =
                 (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
             else -> {
-                when (param.activity.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-                    Configuration.UI_MODE_NIGHT_YES -> param.activity.window.decorView.systemUiVisibility =
+                when (setStatusBarParam.activity.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                    Configuration.UI_MODE_NIGHT_YES -> setStatusBarParam.activity.window.decorView.systemUiVisibility =
                         (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-                    Configuration.UI_MODE_NIGHT_NO -> param.activity.window.decorView.systemUiVisibility =
+                    Configuration.UI_MODE_NIGHT_NO -> setStatusBarParam.activity.window.decorView.systemUiVisibility =
                         (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
                 }
             }

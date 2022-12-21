@@ -1,12 +1,12 @@
-package team.four.mys.domain.repository
+package team.four.mys.data.api.retrofit.currencies
 
 import retrofit2.Call
 import retrofit2.http.GET
 import team.four.mys.domain.models.CurrenciesJSON
 
-interface RetrofitService {
+interface CurrenciesService {
 
     @GET("daily_json.js")
-    fun getRates(): Call<CurrenciesJSON>
+    fun getCurrencies(): Call<CurrenciesJSON>
 
 }
