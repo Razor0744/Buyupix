@@ -3,7 +3,7 @@ package team.four.mys.domain.usecases
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import team.four.mys.data.repository.CurrenciesRetrofit
+import team.four.mys.data.api.retrofit.CurrenciesRetrofit
 import team.four.mys.domain.models.CurrenciesJSON
 import team.four.mys.domain.models.Valute
 import kotlin.coroutines.resume

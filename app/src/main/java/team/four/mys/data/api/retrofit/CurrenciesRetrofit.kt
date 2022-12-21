@@ -1,6 +1,5 @@
-package team.four.mys.data.repository
+package team.four.mys.data.api.retrofit
 
-import team.four.mys.data.api.retrofit.RetrofitClient
 import team.four.mys.domain.repository.RetrofitService
 
 object CurrenciesRetrofit {

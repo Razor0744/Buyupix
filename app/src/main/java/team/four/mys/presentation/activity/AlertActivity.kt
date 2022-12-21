@@ -7,7 +7,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
-import team.four.mys.data.repository.AlertData.alert
+import team.four.mys.data.objects.ObjectsData.alert
 import team.four.mys.databinding.ActivityAlertBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam

@@ -7,7 +7,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
-import team.four.mys.data.repository.LanguageData.language
+import team.four.mys.data.objects.ObjectsData.language
 import team.four.mys.data.repository.SettingsRepositoryImpl
 import team.four.mys.data.storage.SettingsPreferences
 import team.four.mys.databinding.ActivityLanguageBinding

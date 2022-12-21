@@ -13,7 +13,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
-import team.four.mys.data.repository.CurrenciesData
+import team.four.mys.data.objects.ObjectsData.currencies
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.GetPriceSpinnerUseCase
@@ -102,7 +102,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     }
 
     private fun recyclerViewCurrenciesAdapter() {
-        val adapter = CurrenciesAdapter(currencies = CurrenciesData.currencies) {
+        val adapter = CurrenciesAdapter(currencies = currencies) {
             binding.priceButton.text = it.name
             binding.groupCurrencies.visibility = View.INVISIBLE
             binding.priceButton.background =

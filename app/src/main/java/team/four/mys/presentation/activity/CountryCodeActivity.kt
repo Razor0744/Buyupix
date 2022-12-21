@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import team.four.mys.data.repository.CountryData
+import team.four.mys.data.objects.ObjectsData.country
 import team.four.mys.databinding.ActivityCountryCodeBinding
 import team.four.mys.presentation.adapters.CountryAdapter
 
@@ -23,7 +23,7 @@ class CountryCodeActivity : AppCompatActivity() {
     private fun adapter() {
         val adapterAlert =
             CountryAdapter(
-                CountryData.country
+                country
             ) { alertClick ->
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.putExtra("icon", alertClick.icon)
