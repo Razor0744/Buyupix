@@ -21,7 +21,7 @@ val domainModule = module {
     }
 
     factory<DeleteSubscriptionUseCase> {
-        DeleteSubscriptionUseCase()
+        DeleteSubscriptionUseCase(firebaseRepository = get())
     }
 
 }
