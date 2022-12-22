@@ -17,7 +17,6 @@ import team.four.mys.data.objects.ObjectsData.currencies
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.GetPriceSpinnerUseCase
-import team.four.mys.domain.usecases.GetUIDUseCase
 import team.four.mys.domain.usecases.GetUrlImageUseCase
 import team.four.mys.presentation.adapters.CalendarAdapter
 import team.four.mys.presentation.adapters.CurrenciesAdapter
@@ -190,7 +189,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "description" to binding.description.text?.trim()
                                             .toString(),
                                         "image" to GetUrlImageUseCase().execute(
-                                            binding.name.toString().trim()
+                                            binding.name.text.trim().toString()
                                         ),
                                         "priceSpinner" to GetPriceSpinnerUseCase().execute(
                                             binding.priceButton.text.toString()
@@ -231,7 +230,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         "writeOffDate" to binding.buttonCalender.text?.trim()
                                             .toString(),
                                         "image" to GetUrlImageUseCase().execute(
-                                            binding.name.toString().trim()
+                                            binding.name.text.trim().toString()
                                         ),
                                         "priceSpinner" to GetPriceSpinnerUseCase().execute(
                                             binding.priceButton.text.toString()
