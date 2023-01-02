@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
@@ -181,7 +182,7 @@ class LoginActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun keyboardFalse() {
-//        binding.phoneNumber.setRawInputType(InputType.TYPE_NULL)
+        binding.phoneNumber.setRawInputType(InputType.TYPE_NULL)
         binding.phoneNumber.requestFocus()
         textInputType()
         val number = intent.getStringExtra("number")
