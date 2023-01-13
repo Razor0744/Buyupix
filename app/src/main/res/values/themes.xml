@@ -67,4 +67,12 @@
         <item name="android:layout_marginTop">32dp</item>
     </style>
 
+    <style name="ArrowLeft">
+        <item name="android:layout_marginStart">14dp</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/click_on_arrow_left</item>
+        <item name="android:src">@drawable/ic_arrow_left</item>
+    </style>
+
 </resources>

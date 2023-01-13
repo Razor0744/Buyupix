@@ -7,30 +7,35 @@
     android:background="@color/backgroundMain"
     tools:context=".presentation.activity.DarkModeActivity">
 
-    <TextView
-        android:id="@+id/textDarkMode"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/darkMode"
-        android:textColor="@color/textMain"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/buttonArrowLeft"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="@dimen/marginStart"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/click_on_arrow_left"
-        android:src="@drawable/ic_arrow_left"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        <ImageButton
+            android:id="@+id/buttonArrowLeft"
+            style="@style/ArrowLeft"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/darkMode"
+            android:textColor="@color/textMain"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -39,6 +44,6 @@
         android:layout_marginTop="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textDarkMode" />
+        app:layout_constraintTop_toBottomOf="@id/content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

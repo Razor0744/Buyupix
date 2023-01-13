@@ -16,11 +16,7 @@
 
         <ImageButton
             android:id="@+id/buttonArrowLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginStart"
-            android:background="@drawable/click_on_arrow_left"
-            android:src="@drawable/ic_arrow_left"
+            style="@style/ArrowLeft"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"

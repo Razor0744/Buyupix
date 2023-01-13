@@ -8,30 +8,35 @@
     android:background="@color/backgroundMain"
     tools:context="team.four.mys.presentation.activity.CreateSubscriptionActivity">
 
-    <ImageButton
-        android:id="@+id/buttonArrowLeft"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="@dimen/marginStart"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/click_on_arrow_left"
-        android:src="@drawable/ic_arrow_left"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
-
-    <TextView
-        android:id="@+id/nameActivity"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/createSubscription"
-        android:textColor="@color/textMain"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/buttonArrowLeft"
+            style="@style/ArrowLeft"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/createSubscription"
+            android:textColor="@color/textMain"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/imageOfSubscription"
@@ -41,7 +46,7 @@
         android:background="@drawable/background_image_create_subscription"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameActivity"
+        app:layout_constraintTop_toBottomOf="@id/content"
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.textfield.TextInputLayout

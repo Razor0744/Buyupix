@@ -23,7 +23,7 @@ class GetUrlImageUseCase {
                     "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Apple%20Music.png?alt=media&token=c4b5b8d5-4af6-4095-a332-2375daa55b8d"
             }
             else -> {
-                url = "notGood"
+                url = "notImage"
             }
         }
         return url
