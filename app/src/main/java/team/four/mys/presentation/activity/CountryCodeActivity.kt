@@ -17,6 +17,15 @@ class CountryCodeActivity : AppCompatActivity() {
         binding = ActivityCountryCodeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.buttonArrowLeft.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    LoginActivity::class.java
+                )
+            )
+        }
+
         adapter()
     }
 

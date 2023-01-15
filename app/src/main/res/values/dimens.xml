@@ -25,4 +25,7 @@
     <!--TextInputLayout-->
     <dimen name="heightInputLayout">51dp</dimen>
     <dimen name="marginTopInputLayout">11dp</dimen>
+
+    <!--ButtonArrowLeft-->
+    <dimen name="heightAndWidthButtonArrowLeft">40dp</dimen>
 </resources>
