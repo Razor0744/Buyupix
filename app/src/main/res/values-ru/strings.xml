@@ -3,6 +3,7 @@
     <!--FirstActivity-->
     <string name="welcome">Добро пожаловать</string>
     <string name="description">Управляйте подписками, снижайте свои счета и оставайтесь на вершине своей финансовой жизни.</string>
+    <string name="continueButton">Продолжить</string>
 
     <!--LoginActivity-->
     <string name="authorization">Авторизация</string>

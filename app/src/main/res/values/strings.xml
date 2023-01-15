@@ -2,12 +2,12 @@
 
     <!--FirstActivity-->
     <string name="welcome">Welcome</string>
+    <string name="continueButton">Continue</string>
 
     <!--LoginActivity-->
     <string name="authorization">Authorization</string>
     <string name="textL">Enter phone number in international format</string>
     <string name="number" tools:ignore="TypographyDashes">+ 7 (111) 111–11-11</string>
-    <string name="continueButton">Continue</string>
     <string name="google">Continue With Google</string>
     <string name="facebook">Continue With Facebook</string>
     <string name="languageCode">Страна</string>
