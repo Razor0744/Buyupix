@@ -1,5 +1,6 @@
 package team.four.mys.presentation.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -54,6 +55,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         fireStore()
         calendarVisibility()
         recyclerViewCurrenciesAdapter()
+        focusOnEditView()
 
         viewModel.setStatusBarColor(
             SetStatusBarParam(
@@ -152,15 +154,20 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 )
             }
         }
+    }
+
+    private fun focusOnEditView() {
         binding.constrainParent.setOnClickListener {
+            if (binding.name.isFocused || binding.price.isFocused || binding.description.isFocused || binding.buttonCalender.isFocused) {
+                val imm = getSystemService(
+                    INPUT_METHOD_SERVICE
+                ) as InputMethodManager
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+            }
             binding.name.clearFocus()
             binding.price.clearFocus()
             binding.description.clearFocus()
             binding.buttonCalender.clearFocus()
-            val imm = getSystemService(
-                INPUT_METHOD_SERVICE
-            ) as InputMethodManager
-            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
             if (binding.groupCalendar.visibility == View.VISIBLE) {
                 binding.groupCalendar.visibility = View.INVISIBLE
                 binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(
