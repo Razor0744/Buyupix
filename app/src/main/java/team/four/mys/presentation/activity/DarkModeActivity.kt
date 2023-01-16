@@ -38,6 +38,12 @@ class DarkModeActivity : AppCompatActivity() {
         binding = ActivityDarkModeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.buttonArrowLeft.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("fragment", "SettingsFragment")
+            startActivity(intent)
+        }
+
         adapter()
 
         viewModel.setStatusBarColor(
@@ -49,8 +55,8 @@ class DarkModeActivity : AppCompatActivity() {
 
         SetNavigationColor().execute(
             SetNavigationBarParam(
-                this,
-                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+                activity = this,
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
     }
