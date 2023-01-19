@@ -54,7 +54,7 @@
     <string name="darkMode">Dark Mode</string>
     <string name="language">Language</string>
     <string name="about">About</string>
-    <string name="signOut">SignOut</string>
+    <string name="signOut">Exit</string>
 
     <!--HomeFragment-->
     <string-array name="names">

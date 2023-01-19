@@ -49,7 +49,7 @@ class SettingsFragment : Fragment() {
             startActivity(Intent(context, LanguageActivity::class.java))
         }
 
-        binding?.signOut?.setOnClickListener {
+        binding?.logOut?.setOnClickListener {
             auth.signOut()
             startActivity(Intent(context, FirstActivity::class.java))
         }
