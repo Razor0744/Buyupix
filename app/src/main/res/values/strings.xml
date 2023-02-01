@@ -56,12 +56,36 @@
     <string name="about">About</string>
     <string name="signOut">Exit</string>
 
-    <!--HomeFragment-->
+    <!--AutoCompleteText-->
+    <!--27-->
     <string-array name="names">
-        <item>Spotify</item>
-        <item>VK Combo</item>
+        <item>Apple One</item>
+        <item>Discord Nitro</item>
+        <item>Dr.Web</item>
+        <item>Dropbox</item>
+        <item>Flo</item>
+        <item>Google Drive</item>
+        <item>Kaspersky</item>
+        <item>Kion</item>
+        <item>MTC Premium</item>
+        <item>IVI</item>
+        <item>Megogo</item>
+        <item>Microsoft 365</item>
+        <item>MyBook</item>
         <item>Netflix</item>
-        <item>Apple Music</item>
+        <item>NordVpn</item>
+        <item>Ozon Premium</item>
+        <item>PornHub</item>
+        <item>Premier One</item>
+        <item>Pure</item>
+        <item>Spotify</item>
+        <item>Start</item>
+        <item>Tinkoff Pro</item>
+        <item>Vk Combo</item>
+        <item>YouTube</item>
+        <item>Амедиотека</item>
+        <item>ЛитРес</item>
+        <item>СберПрайм</item>
     </string-array>
 
     <!--StatisticFragment-->
