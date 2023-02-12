@@ -2,6 +2,7 @@ package team.four.mys.presentation.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
@@ -214,5 +215,23 @@ class CodeSendActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+    }
+
+    private fun timer() {
+        var counter = 60
+        object : CountDownTimer(60000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                binding.timer.text = counter.toString()
+                counter--
+            }
+
+            override fun onFinish() {
+                binding.textTimer.text = "Для повторной отправки нажмите "
+                binding.timer.text = "здесь"
+                binding.timer.setOnClickListener {
+                    // here is button for resend token
+                }
+            }
+        }.start()
     }
 }
