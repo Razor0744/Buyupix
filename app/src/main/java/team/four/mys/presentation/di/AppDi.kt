@@ -4,9 +4,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import team.four.mys.presentation.other.SetStatusBarColor
 import team.four.mys.presentation.viewmodelsactivity.*
-import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
-import team.four.mys.presentation.viewmodelsfragment.SettingsViewModel
-import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
+import team.four.mys.presentation.viewmodelsfragment.*
 
 val appModule = module {
 
@@ -32,8 +30,8 @@ val appModule = module {
         )
     }
 
-    viewModel<CodeSendActivityViewModel> {
-        CodeSendActivityViewModel(
+    viewModel<CodeSendViewModel> {
+        CodeSendViewModel(
             setStatusBarColor = get()
         )
     }
@@ -57,10 +55,8 @@ val appModule = module {
         )
     }
 
-    viewModel<LoginViewModel> {
-        LoginViewModel(
-            setStatusBarColor = get()
-        )
+    viewModel<AuthenticationViewModel> {
+        AuthenticationViewModel()
     }
 
     viewModel<HomeViewModel> {
@@ -89,6 +85,12 @@ val appModule = module {
     factory<SetStatusBarColor> {
         SetStatusBarColor(
             getSettingsUseCase = get()
+        )
+    }
+
+    viewModel<LoginViewModel> {
+        LoginViewModel(
+            setStatusBarColor = get()
         )
     }
 

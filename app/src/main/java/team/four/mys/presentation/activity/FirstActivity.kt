@@ -32,7 +32,7 @@ class FirstActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.logIn.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, AuthenticationActivity::class.java))
         }
 
         viewModel.setStatusBarColor(

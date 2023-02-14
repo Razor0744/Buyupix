@@ -39,7 +39,7 @@
             android:name="team.four.mys.presentation.activity.FirstActivity"
             android:exported="false" />
         <activity
-            android:name="team.four.mys.presentation.activity.LoginActivity"
+            android:name="team.four.mys.presentation.activity.AuthenticationActivity"
             android:exported="false" />
         <activity
             android:name="team.four.mys.presentation.activity.CreateSubscriptionActivity"

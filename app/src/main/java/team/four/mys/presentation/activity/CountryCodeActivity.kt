@@ -21,7 +21,7 @@ class CountryCodeActivity : AppCompatActivity() {
             startActivity(
                 Intent(
                     this,
-                    LoginActivity::class.java
+                    AuthenticationActivity::class.java
                 )
             )
         }
@@ -34,7 +34,7 @@ class CountryCodeActivity : AppCompatActivity() {
             CountryAdapter(
                 country
             ) { alertClick ->
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, AuthenticationActivity::class.java)
                 intent.putExtra("icon", alertClick.icon)
                 intent.putExtra("name", alertClick.name)
                 intent.putExtra("number", alertClick.number)
