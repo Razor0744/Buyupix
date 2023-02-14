@@ -47,7 +47,7 @@ class AuthenticationActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //MainFragment
-        replaceFragment(loginFragment)
+        replaceFragment(loginFragment, key = null, value = null)
 
         // firebase auth
         auth = FirebaseAuth.getInstance()
@@ -86,7 +86,7 @@ class AuthenticationActivity : AppCompatActivity() {
                 storedVerificationId = verificationId
                 resendToken = token
 
-                replaceFragment(codeSendFragment)
+                replaceFragment(codeSendFragment, key = null, value = null)
             }
         }
     }
@@ -148,7 +148,10 @@ class AuthenticationActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment, key: String?, value: String?) {
+        val bundle = Bundle()
+        bundle.putString(key, value)
+        fragment.arguments = bundle
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame, fragment)
         transaction.commit()

@@ -17,7 +17,6 @@ import team.four.mys.databinding.FragmentLoginBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.presentation.activity.AuthenticationActivity
-import team.four.mys.presentation.activity.CountryCodeActivity
 import team.four.mys.presentation.activity.FirstActivity
 import team.four.mys.presentation.other.SetNavigationColor
 import team.four.mys.presentation.viewmodelsfragment.LoginViewModel
@@ -56,7 +55,11 @@ class LoginFragment : Fragment() {
         }
 
         binding?.countryCode?.setOnClickListener {
-            startActivity(Intent(requireContext(), CountryCodeActivity::class.java))
+            (activity as AuthenticationActivity).replaceFragment(
+                CountryCodeFragment(),
+                key = null,
+                value = null
+            )
         }
 
         binding?.button1?.setOnClickListener {
