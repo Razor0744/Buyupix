@@ -32,7 +32,9 @@ class SubscriptionInfoActivity : AppCompatActivity() {
                 DeleteSubscriptionParam(
                     intent.getStringExtra("date").toString(),
                     intent.getStringExtra("dateType").toString(),
-                    intent.getStringExtra("name").toString()
+                    intent.getStringExtra("name").toString(),
+                    intent.getStringExtra("price").toString(),
+                    intent.getStringExtra("priceName").toString()
                 )
             )
             startActivity(Intent(this, MainActivity::class.java))

@@ -202,6 +202,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             binding.priceButton.text.toString()
                                         ),
                                         "date" to binding.buttonCalender.text.toString(),
+                                        "priceName" to binding.priceButton.text.toString(),
                                         "dateType" to "noDate"
                                     )
                                     db.collection(viewModel.getUID())
@@ -243,6 +244,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             binding.priceButton.text.toString()
                                         ),
                                         "date" to binding.buttonCalender.text.toString(),
+                                        "priceName" to binding.priceButton.text.toString(),
                                         "dateType" to "date"
                                     )
                                     db.collection(viewModel.getUID())

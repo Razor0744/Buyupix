@@ -31,6 +31,22 @@ class Firebase : FirebaseDatabase {
             .collection(deleteSubscriptionParam.dateType)
             .document(deleteSubscriptionParam.name)
             .delete()
+        db.collection(getUID())
+            .document(deleteSubscriptionParam.priceName)
+            .get()
+            .addOnSuccessListener { doc ->
+                val priceStart = doc.get("price")
+                val priceEnd =
+                    Integer.parseInt(priceStart.toString()) - Integer.parseInt(
+                        deleteSubscriptionParam.price
+                    )
+                val price = hashMapOf(
+                    "price" to priceEnd as Number
+                )
+                db.collection(getUID())
+                    .document(deleteSubscriptionParam.priceName)
+                    .set(price)
+            }
     }
 
     override suspend fun getPriceFirebase(string: String): Int = suspendCoroutine {

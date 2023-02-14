@@ -54,12 +54,15 @@ class HomeFragment : Fragment() {
         binding?.month?.text = viewModel.date()
 
         viewModel.fullPrice.observe(viewLifecycleOwner) { fullPrice ->
+            if (fullPrice == 0f) {
+                visibilityFirstApp()
+            }
             binding?.price?.text = getString(R.string.fullPrice, String.format("%.2f", fullPrice))
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            fireStore()
             viewModel.fullPrice()
+            fireStore()
         }
 
         viewModel.setStatusBarColor(
@@ -98,6 +101,10 @@ class HomeFragment : Fragment() {
                 intent.putExtra("name", subscriptionsClick.name)
                 intent.putExtra("date", subscriptionsClick.date)
                 intent.putExtra("dateType", subscriptionsClick.dateType)
+                intent.putExtra("priceName", subscriptionsClick.priceName)
+                intent.putExtra("price", subscriptionsClick.price)
+                println(subscriptionsClick.priceSpinner)
+                println(subscriptionsClick.price)
                 startActivity(intent)
             }
         binding?.recyclerView?.adapter = adapterSubscriptions
@@ -148,5 +155,10 @@ class HomeFragment : Fragment() {
                 })
             i++
         }
+    }
+
+    private fun visibilityFirstApp() {
+        binding?.textView?.visibility = View.VISIBLE
+        binding?.line3?.visibility = View.VISIBLE
     }
 }

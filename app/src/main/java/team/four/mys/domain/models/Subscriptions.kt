@@ -9,5 +9,6 @@ data class Subscriptions(
     var priceSpinner: String? = null,
     var date: String? = null,
     var dateType: String? = null,
-    val category: String? = null
+    val category: String? = null,
+    val priceName: String? = null
 )
