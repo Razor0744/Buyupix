@@ -40,6 +40,14 @@ class CodeSendFragment : Fragment() {
 
         binding?.code1?.requestFocus()
 
+        binding?.buttonArrowLeft?.setOnClickListener {
+            (activity as AuthenticationActivity).replaceFragment(
+                fragment = LoginFragment(),
+                key = null,
+                value = null
+            )
+        }
+
         binding?.button1?.setOnClickListener {
             setPhoneNumber("1")
             focused("1")
@@ -137,7 +145,7 @@ class CodeSendFragment : Fragment() {
                 binding?.code6 -> {
                     binding?.code6?.setText(number)
                     println(codeNumber)
-                    (activity as AuthenticationActivity).verifyPhoneNumberWithCode(codeNumber)
+                    (activity as AuthenticationActivity).verifyPhoneNumberWithCode(code = codeNumber)
                 }
             }
         } else {

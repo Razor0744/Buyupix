@@ -152,6 +152,7 @@
         android:text="0000-0000-0000"
         android:textColor="@color/textPlaceholder"
         android:textSize="@dimen/sizeMain"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/phoneNumberLayout"
         app:layout_constraintStart_toStartOf="@id/frameLinear"
         app:layout_constraintTop_toTopOf="@id/phoneNumberLayout" />
