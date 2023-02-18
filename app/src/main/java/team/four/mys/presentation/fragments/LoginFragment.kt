@@ -1,11 +1,14 @@
 package team.four.mys.presentation.fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -32,6 +35,10 @@ class LoginFragment : Fragment() {
     private val countryName = arrayListOf("Russian Federation", "Belarus", "USA")
     private var lengthCountryCode = 0
 
+    // Timer
+    private lateinit var mTimer: CountDownTimer
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -102,15 +109,23 @@ class LoginFragment : Fragment() {
             val text = binding?.phoneNumber?.text.toString() + 0
             binding?.phoneNumber?.setText(text)
         }
-        binding?.button11?.setOnClickListener {
-            if (binding?.phoneNumber?.text.toString().trim().length > 1) {
-                val text = binding?.phoneNumber?.text.toString().trim()
-                    .substring(0, binding?.phoneNumber?.text.toString().trim().length - 1)
-                binding?.phoneNumber?.setText(text)
+        binding?.button11?.setOnTouchListener { v, event ->
+            when (event?.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    mTimer.start()
+                    return@setOnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+                    println("up")
+                    mTimer.cancel()
+                }
             }
+
+            v?.onTouchEvent(event) ?: true
         }
 
         keyboardFalse()
+        deleteChar()
 
         viewModel.setStatusBarColor(
             SetStatusBarParam(
@@ -195,5 +210,20 @@ class LoginFragment : Fragment() {
 
     private fun setCountry(i: Int) {
         binding?.countryCodeText?.setText(countryName[i])
+    }
+
+    private fun deleteChar() {
+        mTimer = object : CountDownTimer(99999999999, 200) {
+            override fun onTick(millisUntilFinished: Long) {
+                if (binding?.phoneNumber?.text.toString().trim().length > 1) {
+                    val text = binding?.phoneNumber?.text.toString().trim()
+                        .substring(0, binding?.phoneNumber?.text.toString().trim().length - 1)
+                    binding?.phoneNumber?.setText(text)
+                }
+            }
+
+            override fun onFinish() {
+            }
+        }
     }
 }
