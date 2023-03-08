@@ -33,6 +33,7 @@ class LoginFragment : Fragment() {
 
     private val countryCodes = arrayListOf("+7", "+375", "+1")
     private val countryName = arrayListOf("Russian Federation", "Belarus", "USA")
+    private val countryNumberFormat = arrayListOf("000 000 0000", "00 000 0000", "000 000 0000")
     private var lengthCountryCode = 0
 
     // Timer
@@ -182,6 +183,7 @@ class LoginFragment : Fragment() {
                         binding?.phoneNumber?.setText(str)
                         binding?.phoneNumber?.setSelection(str.length)
                         setCountry(i)
+                        setNumberFormat(i)
                         break
                     } else if (s?.length == 5) {
                         var str = s.toString()
@@ -210,6 +212,11 @@ class LoginFragment : Fragment() {
 
     private fun setCountry(i: Int) {
         binding?.countryCodeText?.setText(countryName[i])
+    }
+
+    private fun setNumberFormat(i: Int) {
+        binding?.numberFormat?.text = countryNumberFormat[i]
+        binding?.numberFormat?.visibility = View.VISIBLE
     }
 
     private fun deleteChar() {
