@@ -27,6 +27,10 @@ class SubscriptionInfoActivity : AppCompatActivity() {
         binding = ActivitySubscriptionInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.buttonArrowLeft.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+
         binding.delete.setOnClickListener {
             viewModel.deleteSubscription(
                 DeleteSubscriptionParam(

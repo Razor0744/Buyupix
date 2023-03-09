@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
 
     private val viewModel by viewModel<HomeViewModel>()
 
-    private lateinit var subscriptions: ArrayList<Subscriptions>
+    private val subscriptions: ArrayList<Subscriptions> = arrayListOf()
     private lateinit var adapterSubscriptions: SubscriptionsAdapter
 
     private var db = Firebase.firestore
@@ -90,7 +90,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun adapter() {
-        subscriptions = arrayListOf()
         adapterSubscriptions =
             SubscriptionsAdapter(
                 requireContext(),
