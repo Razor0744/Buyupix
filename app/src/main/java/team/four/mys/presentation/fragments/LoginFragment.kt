@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
 
     private val countryCodes = arrayListOf("+7", "+375", "+1")
     private val countryName = arrayListOf("Russian Federation", "Belarus", "USA")
-    private val countryNumberFormat = arrayListOf("000 000 0000", "00 000 0000", "000 000 0000")
+    private val countryNumberFormat = arrayListOf("0000000000", "000000000", "0000000000")
     private var lengthCountryCode = 0
 
     // Timer
@@ -113,11 +113,12 @@ class LoginFragment : Fragment() {
         binding?.button11?.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> {
+                    v.isPressed = true
                     mTimer.start()
                     return@setOnTouchListener true
                 }
                 MotionEvent.ACTION_UP -> {
-                    println("up")
+                   v.isPressed = false
                     mTimer.cancel()
                 }
             }
@@ -163,6 +164,8 @@ class LoginFragment : Fragment() {
         binding?.phoneNumber?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 var i = 0
+                val string = s.toString()
+                binding?.phoneNumber?.setSelection(string.length)
                 while (i <= 2) {
                     if (s.toString() == countryCodes[i]) {
                         var str = s.toString()
