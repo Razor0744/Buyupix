@@ -39,6 +39,8 @@ class LoginFragment : Fragment() {
     // Timer
     private lateinit var mTimer: CountDownTimer
 
+    private var textType = true
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,44 +73,94 @@ class LoginFragment : Fragment() {
         }
 
         binding?.button1?.setOnClickListener {
-            val text = binding?.phoneNumber?.text.toString() + 1
-            binding?.phoneNumber?.setText(text)
+            if (textType == true) {
+                val text = binding?.phoneNumber1?.text.toString() + 1
+                binding?.phoneNumber1?.text = text
+            } else {
+                val text = binding?.phoneNumber2?.text.toString() + 1
+                binding?.phoneNumber2?.text = text
+            }
         }
         binding?.button2?.setOnClickListener {
-            val text = binding?.phoneNumber?.text.toString() + 2
-            binding?.phoneNumber?.setText(text)
+            if (textType == true) {
+                val text = binding?.phoneNumber1?.text.toString() + 2
+                binding?.phoneNumber1?.text = text
+            } else {
+                val text = binding?.phoneNumber2?.text.toString() + 2
+                binding?.phoneNumber2?.text = text
+            }
         }
         binding?.button3?.setOnClickListener {
-            val text = binding?.phoneNumber?.text.toString() + 3
-            binding?.phoneNumber?.setText(text)
+            if (textType == true) {
+                val text = binding?.phoneNumber1?.text.toString() + 3
+                binding?.phoneNumber1?.text = text
+            } else {
+                val text = binding?.phoneNumber2?.text.toString() + 3
+                binding?.phoneNumber2?.text = text
+            }
         }
         binding?.button4?.setOnClickListener {
-            val text = binding?.phoneNumber?.text.toString() + 4
-            binding?.phoneNumber?.setText(text)
+            if (textType == true) {
+                val text = binding?.phoneNumber1?.text.toString() + 4
+                binding?.phoneNumber1?.text = text
+            } else {
+                val text = binding?.phoneNumber2?.text.toString() + 4
+                binding?.phoneNumber2?.text = text
+            }
         }
         binding?.button5?.setOnClickListener {
-            val text = binding?.phoneNumber?.text.toString() + 5
-            binding?.phoneNumber?.setText(text)
+            if (textType == true) {
+                val text = binding?.phoneNumber1?.text.toString() + 5
+                binding?.phoneNumber1?.text = text
+            } else {
+                val text = binding?.phoneNumber2?.text.toString() + 5
+                binding?.phoneNumber2?.text = text
+            }
         }
         binding?.button6?.setOnClickListener {
-            val text = binding?.phoneNumber?.text.toString() + 6
-            binding?.phoneNumber?.setText(text)
+            if (textType == true) {
+                val text = binding?.phoneNumber1?.text.toString() + 6
+                binding?.phoneNumber1?.text = text
+            } else {
+                val text = binding?.phoneNumber2?.text.toString() + 6
+                binding?.phoneNumber2?.text = text
+            }
         }
         binding?.button7?.setOnClickListener {
-            val text = binding?.phoneNumber?.text.toString() + 7
-            binding?.phoneNumber?.setText(text)
+            if (textType == true) {
+                val text = binding?.phoneNumber1?.text.toString() + 7
+                binding?.phoneNumber1?.text = text
+            } else {
+                val text = binding?.phoneNumber2?.text.toString() + 7
+                binding?.phoneNumber2?.text = text
+            }
         }
         binding?.button8?.setOnClickListener {
-            val text = binding?.phoneNumber?.text.toString() + 8
-            binding?.phoneNumber?.setText(text)
+            if (textType == true) {
+                val text = binding?.phoneNumber1?.text.toString() + 8
+                binding?.phoneNumber1?.text = text
+            } else {
+                val text = binding?.phoneNumber2?.text.toString() + 8
+                binding?.phoneNumber2?.text = text
+            }
         }
         binding?.button9?.setOnClickListener {
-            val text = binding?.phoneNumber?.text.toString() + 9
-            binding?.phoneNumber?.setText(text)
+            if (textType == true) {
+                val text = binding?.phoneNumber1?.text.toString() + 9
+                binding?.phoneNumber1?.text = text
+            } else {
+                val text = binding?.phoneNumber2?.text.toString() + 9
+                binding?.phoneNumber2?.text = text
+            }
         }
         binding?.button0?.setOnClickListener {
-            val text = binding?.phoneNumber?.text.toString() + 0
-            binding?.phoneNumber?.setText(text)
+            if (textType == true) {
+                val text = binding?.phoneNumber1?.text.toString() + 0
+                binding?.phoneNumber1?.text = text
+            } else {
+                val text = binding?.phoneNumber2?.text.toString() + 0
+                binding?.phoneNumber2?.text = text
+            }
         }
         binding?.button11?.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -118,7 +170,7 @@ class LoginFragment : Fragment() {
                     return@setOnTouchListener true
                 }
                 MotionEvent.ACTION_UP -> {
-                   v.isPressed = false
+                    v.isPressed = false
                     mTimer.cancel()
                 }
             }
@@ -156,43 +208,23 @@ class LoginFragment : Fragment() {
         textInputType()
         val number = arguments?.getString("number", null)
         if (number != null) {
-            binding?.phoneNumber?.setText("$number")
+            binding?.phoneNumber1?.text = number
         }
     }
 
     private fun textInputType() {
-        binding?.phoneNumber?.addTextChangedListener(object : TextWatcher {
+        binding?.phoneNumber1?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 var i = 0
-                val string = s.toString()
-                binding?.phoneNumber?.setSelection(string.length)
                 while (i <= 2) {
                     if (s.toString() == countryCodes[i]) {
-                        var str = s.toString()
-                        when (s?.length) {
-                            4 -> {
-                                str += "     "
-                                lengthCountryCode = 4
-                            }
-                            3 -> {
-                                str += "       "
-                                lengthCountryCode = 3
-                            }
-                            2 -> {
-                                str += "         "
-                                lengthCountryCode = 2
-                            }
-                        }
-                        binding?.phoneNumber?.setText(str)
-                        binding?.phoneNumber?.setSelection(str.length)
+                        textType = false
                         setCountry(i)
                         setNumberFormat(i)
                         break
                     } else if (s?.length == 5) {
-                        var str = s.toString()
-                        str += "   "
-                        binding?.phoneNumber?.setText(str)
-                        binding?.phoneNumber?.setSelection(str.length)
+                        textType = false
+                        break
                     } else if (s?.length!! < 6) {
                         if (lengthCountryCode > s.length) {
                             lengthCountryCode = s.length
@@ -225,10 +257,15 @@ class LoginFragment : Fragment() {
     private fun deleteChar() {
         mTimer = object : CountDownTimer(99999999999, 200) {
             override fun onTick(millisUntilFinished: Long) {
-                if (binding?.phoneNumber?.text.toString().trim().length > 1) {
-                    val text = binding?.phoneNumber?.text.toString().trim()
-                        .substring(0, binding?.phoneNumber?.text.toString().trim().length - 1)
-                    binding?.phoneNumber?.setText(text)
+                if (binding?.phoneNumber2?.text.toString().trim().isNotEmpty()) {
+                    val text = binding?.phoneNumber2?.text.toString().trim()
+                        .substring(0, binding?.phoneNumber2?.text.toString().trim().length - 1)
+                    binding?.phoneNumber2?.text = text
+                } else if (binding?.phoneNumber1?.text.toString().trim().length > 1) {
+                    textType = true
+                    val text = binding?.phoneNumber1?.text.toString().trim()
+                        .substring(0, binding?.phoneNumber1?.text.toString().trim().length - 1)
+                    binding?.phoneNumber1?.text = text
                 }
             }
 
