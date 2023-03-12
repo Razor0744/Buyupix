@@ -4,9 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.Editable
-import android.text.InputType
-import android.text.TextWatcher
+import android.text.*
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -34,6 +33,7 @@ class LoginFragment : Fragment() {
     private val countryCodes = arrayListOf("+7", "+375", "+1")
     private val countryName = arrayListOf("Russian Federation", "Belarus", "USA")
     private val countryNumberFormat = arrayListOf("0000000000", "000000000", "0000000000")
+    private lateinit var countryNumberFormat2: String
     private var lengthCountryCode = 0
 
     // Timer
@@ -180,6 +180,7 @@ class LoginFragment : Fragment() {
 
         keyboardFalse()
         deleteChar()
+        textChangeCountryNumberFormat()
 
         viewModel.setStatusBarColor(
             SetStatusBarParam(
@@ -205,14 +206,14 @@ class LoginFragment : Fragment() {
     private fun keyboardFalse() {
         binding?.phoneNumber?.setRawInputType(InputType.TYPE_NULL)
         binding?.phoneNumber?.requestFocus()
-        textInputType()
+        textChangeCountryCode()
         val number = arguments?.getString("number", null)
         if (number != null) {
             binding?.phoneNumber1?.text = number
         }
     }
 
-    private fun textInputType() {
+    private fun textChangeCountryCode() {
         binding?.phoneNumber1?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 var i = 0
@@ -245,13 +246,38 @@ class LoginFragment : Fragment() {
         })
     }
 
+    private fun textChangeCountryNumberFormat() {
+        binding?.phoneNumber2?.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val text = SpannableString(countryNumberFormat2).apply {
+                    setSpan(
+                        ForegroundColorSpan(
+                            ResourcesCompat.getColor(
+                                resources,
+                                R.color.backgroundMain,
+                                null
+                            )
+                        ), 0, s.toString().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+                binding?.numberFormat?.text = text
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+    }
+
     private fun setCountry(i: Int) {
         binding?.countryCodeText?.setText(countryName[i])
     }
 
     private fun setNumberFormat(i: Int) {
         binding?.numberFormat?.text = countryNumberFormat[i]
-        binding?.numberFormat?.visibility = View.VISIBLE
+        countryNumberFormat2 = countryNumberFormat[i]
     }
 
     private fun deleteChar() {
