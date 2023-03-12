@@ -49,19 +49,19 @@ class Firebase : FirebaseDatabase {
             }
     }
 
-    override suspend fun getPriceFirebase(string: String): Int = suspendCoroutine {
+    override suspend fun getPriceFirebase(string: String): Float = suspendCoroutine {
         db.collection(getUID()).document(string)
             .get()
             .addOnSuccessListener { doc ->
                 if (doc.get("price") != null) {
-                    it.resume(Integer.parseInt(doc.get("price").toString()))
+                    it.resume(doc.get("price").toString().toFloat())
                 } else {
-                    it.resume(0)
+                    it.resume(0.toFloat())
                 }
             }
             .addOnFailureListener { e ->
                 println(e)
-                it.resume(0)
+                it.resume(0.toFloat())
             }
     }
 

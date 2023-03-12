@@ -212,10 +212,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             if (priceStart == null) {
                                                 priceStart = 0
                                             }
-                                            val priceEnd =
-                                                Integer.parseInt(priceStart.toString()) + Integer.parseInt(
-                                                    binding.price.text.toString().trim()
-                                                )
+                                            val priceEnd = priceStart.toString().toFloat() +
+                                                    binding.price.text.toString().trim().toDouble()
                                             val price = hashMapOf(
                                                 "price" to priceEnd as Number
                                             )
@@ -254,10 +252,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                             if (priceStart == null) {
                                                 priceStart = 0
                                             }
-                                            val priceEnd =
-                                                Integer.parseInt(priceStart.toString()) + Integer.parseInt(
-                                                    binding.price.text.toString().trim()
-                                                )
+                                            val priceEnd = priceStart.toString().toFloat() +
+                                                    binding.price.text.toString().trim().toDouble()
                                             val price = hashMapOf(
                                                 "price" to priceEnd
                                             )

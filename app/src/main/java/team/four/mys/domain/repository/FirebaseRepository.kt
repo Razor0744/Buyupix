@@ -10,7 +10,7 @@ interface FirebaseRepository {
 
     fun deleteSubscription(deleteSubscriptionParam: DeleteSubscriptionParam)
 
-    suspend fun getPriceFirebase(string: String): Int
+    suspend fun getPriceFirebase(string: String): Float
 
     fun getUID(): String
 }

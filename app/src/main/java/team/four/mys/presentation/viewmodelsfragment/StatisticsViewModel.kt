@@ -21,9 +21,9 @@ class StatisticsViewModel(
     private var EUR: Float? = null
     private var BYN: Float? = null
     private var USD: Float? = null
-    private var priceUSD: Int? = null
-    private var priceBYN: Int? = null
-    private var priceEUR: Int? = null
+    private var priceUSD: Float? = null
+    private var priceBYN: Float? = null
+    private var priceEUR: Float? = null
     private var valute: Valute? = null
     var fullPrice = MutableLiveData<Float>()
 

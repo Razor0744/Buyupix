@@ -50,7 +50,7 @@ class LoginFragment : Fragment() {
 
         // Configure Phone Sign In
         binding?.loginCodeSent?.setOnClickListener {
-            val phoneNumber = binding?.phoneNumber?.text.toString().trim()
+            val phoneNumber = binding?.phoneNumber1?.text.toString().trim() + binding?.phoneNumber2?.text.toString().trim()
             if (phoneNumber.isNotEmpty()) {
                 (activity as AuthenticationActivity).setPhone(phoneNumber)
                 (activity as AuthenticationActivity).startPhoneNumberVerification(phoneNumber)
@@ -73,7 +73,7 @@ class LoginFragment : Fragment() {
         }
 
         binding?.button1?.setOnClickListener {
-            if (textType == true) {
+            if (textType) {
                 val text = binding?.phoneNumber1?.text.toString() + 1
                 binding?.phoneNumber1?.text = text
             } else {
@@ -82,7 +82,7 @@ class LoginFragment : Fragment() {
             }
         }
         binding?.button2?.setOnClickListener {
-            if (textType == true) {
+            if (textType) {
                 val text = binding?.phoneNumber1?.text.toString() + 2
                 binding?.phoneNumber1?.text = text
             } else {
@@ -91,7 +91,7 @@ class LoginFragment : Fragment() {
             }
         }
         binding?.button3?.setOnClickListener {
-            if (textType == true) {
+            if (textType) {
                 val text = binding?.phoneNumber1?.text.toString() + 3
                 binding?.phoneNumber1?.text = text
             } else {
@@ -100,7 +100,7 @@ class LoginFragment : Fragment() {
             }
         }
         binding?.button4?.setOnClickListener {
-            if (textType == true) {
+            if (textType) {
                 val text = binding?.phoneNumber1?.text.toString() + 4
                 binding?.phoneNumber1?.text = text
             } else {
@@ -109,7 +109,7 @@ class LoginFragment : Fragment() {
             }
         }
         binding?.button5?.setOnClickListener {
-            if (textType == true) {
+            if (textType) {
                 val text = binding?.phoneNumber1?.text.toString() + 5
                 binding?.phoneNumber1?.text = text
             } else {
@@ -118,7 +118,7 @@ class LoginFragment : Fragment() {
             }
         }
         binding?.button6?.setOnClickListener {
-            if (textType == true) {
+            if (textType) {
                 val text = binding?.phoneNumber1?.text.toString() + 6
                 binding?.phoneNumber1?.text = text
             } else {
@@ -127,7 +127,7 @@ class LoginFragment : Fragment() {
             }
         }
         binding?.button7?.setOnClickListener {
-            if (textType == true) {
+            if (textType) {
                 val text = binding?.phoneNumber1?.text.toString() + 7
                 binding?.phoneNumber1?.text = text
             } else {
@@ -136,7 +136,7 @@ class LoginFragment : Fragment() {
             }
         }
         binding?.button8?.setOnClickListener {
-            if (textType == true) {
+            if (textType) {
                 val text = binding?.phoneNumber1?.text.toString() + 8
                 binding?.phoneNumber1?.text = text
             } else {
@@ -145,7 +145,7 @@ class LoginFragment : Fragment() {
             }
         }
         binding?.button9?.setOnClickListener {
-            if (textType == true) {
+            if (textType) {
                 val text = binding?.phoneNumber1?.text.toString() + 9
                 binding?.phoneNumber1?.text = text
             } else {
@@ -154,7 +154,7 @@ class LoginFragment : Fragment() {
             }
         }
         binding?.button0?.setOnClickListener {
-            if (textType == true) {
+            if (textType) {
                 val text = binding?.phoneNumber1?.text.toString() + 0
                 binding?.phoneNumber1?.text = text
             } else {
