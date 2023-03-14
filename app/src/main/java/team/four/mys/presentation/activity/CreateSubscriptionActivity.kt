@@ -176,6 +176,22 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                     null
                 )
             }
+            if (binding.groupCurrencies.visibility == View.VISIBLE) {
+                binding.priceButton.background =
+                    ResourcesCompat.getDrawable(
+                        resources,
+                        R.drawable.item_background_stroke,
+                        null
+                    )
+                binding.priceButton.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources,
+                        R.color.textPlaceholder,
+                        null
+                    )
+                )
+                binding.groupCurrencies.visibility = View.INVISIBLE
+            }
         }
     }
 

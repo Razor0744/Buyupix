@@ -37,9 +37,8 @@ class Firebase : FirebaseDatabase {
             .addOnSuccessListener { doc ->
                 val priceStart = doc.get("price")
                 val priceEnd =
-                    Integer.parseInt(priceStart.toString()) - Integer.parseInt(
-                        deleteSubscriptionParam.price
-                    )
+                    priceStart.toString().toFloat() -
+                            deleteSubscriptionParam.price.trim().toFloat()
                 val price = hashMapOf(
                     "price" to priceEnd as Number
                 )
