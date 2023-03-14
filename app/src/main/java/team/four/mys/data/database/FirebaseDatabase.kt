@@ -12,5 +12,9 @@ interface FirebaseDatabase {
 
     suspend fun getPriceFirebase(string: String): Float
 
+    fun setNumberOfSubscriptions()
+
+    suspend fun getNumberOfSubscriptions(): Number
+
     fun getUID(): String
 }

@@ -46,6 +46,22 @@ class Firebase : FirebaseDatabase {
                     .document(deleteSubscriptionParam.priceName)
                     .set(price)
             }
+        db.collection(getUID())
+            .document("numberOfSubscription")
+            .get()
+            .addOnSuccessListener { doc ->
+                if (doc.get("number") != null) {
+                    val priceStart = doc.get("number")
+                    val priceEnd =
+                        priceStart.toString().toInt() - 1
+                    val price = hashMapOf(
+                        "number" to priceEnd as Number
+                    )
+                    db.collection(getUID())
+                        .document("numberOfSubscription")
+                        .set(price)
+                }
+            }
     }
 
     override suspend fun getPriceFirebase(string: String): Float = suspendCoroutine {
@@ -61,6 +77,47 @@ class Firebase : FirebaseDatabase {
             .addOnFailureListener { e ->
                 println(e)
                 it.resume(0.toFloat())
+            }
+    }
+
+    override fun setNumberOfSubscriptions() {
+        db.collection(getUID())
+            .document("numberOfSubscription")
+            .get()
+            .addOnSuccessListener { doc ->
+                if (doc.get("number") != null) {
+                    val priceStart = doc.get("number")
+                    val priceEnd =
+                        priceStart.toString().toInt() + 1
+                    val price = hashMapOf(
+                        "number" to priceEnd as Number
+                    )
+                    db.collection(getUID())
+                        .document("numberOfSubscription")
+                        .set(price)
+                } else {
+                    val price = hashMapOf(
+                        "number" to 1 as Number
+                    )
+                    db.collection(getUID())
+                        .document("numberOfSubscription")
+                        .set(price)
+                }
+            }
+            .addOnFailureListener { e ->
+                println(e)
+            }
+    }
+
+    override suspend fun getNumberOfSubscriptions(): Number = suspendCoroutine {
+        db.collection(getUID())
+            .document("numberOfSubscription")
+            .get()
+            .addOnSuccessListener { doc ->
+                if (doc.get("number") != null) {
+                    val number = doc.get("number")
+                    it.resume(number as Number)
+                }
             }
     }
 

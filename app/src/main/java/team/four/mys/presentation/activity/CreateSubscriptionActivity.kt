@@ -241,6 +241,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         .document(binding.buttonCalender.text?.trim().toString())
                                         .collection("noDate")
                                         .document(binding.name.text.trim().toString()).set(data)
+                                    viewModel.setNumberOfSubscriptions()
                                     startActivity(Intent(this, MainActivity::class.java))
                                 } else {
                                     val data = hashMapOf(
@@ -281,6 +282,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         .document(binding.buttonCalender.text?.trim().toString())
                                         .collection("date")
                                         .document(binding.name.text.trim().toString()).set(data)
+                                    viewModel.setNumberOfSubscriptions()
                                     startActivity(Intent(this, MainActivity::class.java))
                                 }
                             }

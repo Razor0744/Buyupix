@@ -39,7 +39,8 @@ val appModule = module {
     viewModel<CreateSubscriptionViewModel> {
         CreateSubscriptionViewModel(
             setStatusBarColor = get(),
-            getUIDUseCase = get()
+            getUIDUseCase = get(),
+            setNumberOfSubscriptionsUseCase = get()
         )
     }
 
@@ -78,7 +79,8 @@ val appModule = module {
         StatisticsViewModel(
             setStatusBarColor = get(),
             retrofit = get(),
-            getPriceFireBaseUseCase = get()
+            getPriceFireBaseUseCase = get(),
+            getNumberOfSubscriptionsUseCase = get()
         )
     }
 

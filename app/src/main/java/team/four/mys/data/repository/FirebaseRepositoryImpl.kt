@@ -24,4 +24,12 @@ class FirebaseRepositoryImpl(private val firebaseDatabase: FirebaseDatabase) : F
         return firebaseDatabase.getUID()
     }
 
+    override fun setNumberOfSubscriptions() {
+        firebaseDatabase.setNumberOfSubscriptions()
+    }
+
+    override suspend fun getNumberOfSubscriptions(): Number {
+        return firebaseDatabase.getNumberOfSubscriptions()
+    }
+
 }

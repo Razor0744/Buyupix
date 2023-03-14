@@ -29,4 +29,12 @@ val domainModule = module {
         GetUIDUseCase(firebaseRepository = get())
     }
 
+    factory<GetNumberOfSubscriptionsUseCase> {
+        GetNumberOfSubscriptionsUseCase(firebaseRepository = get())
+    }
+
+    factory<SetNumberOfSubscriptionsUseCase> {
+        SetNumberOfSubscriptionsUseCase(firebaseRepository = get())
+    }
+
 }

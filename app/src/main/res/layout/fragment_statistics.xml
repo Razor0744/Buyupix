@@ -48,7 +48,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="753 USD"
         android:textColor="@color/textMain"
         android:textSize="22sp"
         app:layout_constraintLeft_toLeftOf="@id/pieChart"
@@ -153,10 +152,8 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="top"
-            android:text="124"
             android:textColor="@color/textMain"
             android:textSize="16sp"
-
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textSubscriptions" />

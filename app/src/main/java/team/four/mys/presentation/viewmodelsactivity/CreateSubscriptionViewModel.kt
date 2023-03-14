@@ -3,6 +3,7 @@ package team.four.mys.presentation.viewmodelsactivity
 import androidx.lifecycle.ViewModel
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.GetUIDUseCase
+import team.four.mys.domain.usecases.SetNumberOfSubscriptionsUseCase
 import team.four.mys.presentation.other.SetStatusBarColor
 import java.time.LocalDate
 import java.time.YearMonth
@@ -11,7 +12,8 @@ import java.util.*
 
 class CreateSubscriptionViewModel(
     private val setStatusBarColor: SetStatusBarColor,
-    private val getUIDUseCase: GetUIDUseCase
+    private val getUIDUseCase: GetUIDUseCase,
+    private val setNumberOfSubscriptionsUseCase: SetNumberOfSubscriptionsUseCase
 ) : ViewModel() {
 
     fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
@@ -38,6 +40,10 @@ class CreateSubscriptionViewModel(
             }
         }
         return daysInMonthArray
+    }
+
+    fun setNumberOfSubscriptions(){
+        setNumberOfSubscriptionsUseCase.execute()
     }
 
     fun getUID(): String {

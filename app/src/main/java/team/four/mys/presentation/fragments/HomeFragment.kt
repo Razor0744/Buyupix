@@ -102,8 +102,6 @@ class HomeFragment : Fragment() {
                 intent.putExtra("dateType", subscriptionsClick.dateType)
                 intent.putExtra("priceName", subscriptionsClick.priceName)
                 intent.putExtra("price", subscriptionsClick.price)
-                println(subscriptionsClick.priceSpinner)
-                println(subscriptionsClick.price)
                 startActivity(intent)
             }
         binding?.recyclerView?.adapter = adapterSubscriptions

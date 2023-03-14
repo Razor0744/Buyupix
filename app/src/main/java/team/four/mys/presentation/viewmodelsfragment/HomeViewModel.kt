@@ -40,7 +40,6 @@ class HomeViewModel(
         BYN = valute?.BYN?.Value?.toFloat()
         USD = valute?.USD?.Value?.toFloat()
         EUR = valute?.EUR?.Value?.toFloat()
-        println(BYN)
         fullPrice.postValue(priceUSD!! + (priceBYN!! * BYN!! / USD!!) + (priceEUR!! * EUR!! / USD!!))
     }
 

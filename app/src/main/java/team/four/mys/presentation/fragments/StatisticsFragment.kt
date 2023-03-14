@@ -45,8 +45,13 @@ class StatisticsFragment : Fragment() {
             binding?.price?.text = getString(R.string.fullPrice, String.format("%.2f", fullPrice))
         }
 
+        viewModel.numberOfSubscriptions.observe(viewLifecycleOwner) { number ->
+            binding?.textSubscriptions2?.text = number.toString()
+        }
+
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.fullPrice()
+            viewModel.getNumberOfSubscriptions()
         }
 
         viewModel.setStatusBarColor(
