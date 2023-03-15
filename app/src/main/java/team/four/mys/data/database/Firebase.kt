@@ -104,9 +104,6 @@ class Firebase : FirebaseDatabase {
                         .set(price)
                 }
             }
-            .addOnFailureListener { e ->
-                println(e)
-            }
     }
 
     override suspend fun getNumberOfSubscriptions(): Number = suspendCoroutine {
@@ -123,5 +120,41 @@ class Firebase : FirebaseDatabase {
 
     override fun getUID(): String {
         return user?.uid.toString()
+    }
+
+    override fun setCategory(category: String, price: Double) {
+        db.collection(getUID())
+            .document("categories")
+            .get()
+            .addOnSuccessListener { doc ->
+                if (doc.get(category) != null) {
+                    val priceStart = doc.get(category)
+                    val priceEnd =
+                        priceStart.toString().toFloat() + price
+                    val data = hashMapOf(
+                        category to priceEnd as Number
+                    )
+                    db.collection(getUID())
+                        .document("categories")
+                        .set(data)
+                } else {
+                    val data = hashMapOf(
+                        category to price as Number
+                    )
+                    db.collection(getUID())
+                        .document("categories")
+                        .set(data)
+                }
+            }
+
+    }
+
+    override suspend fun getCategory(): DocumentSnapshot = suspendCoroutine {
+        db.collection(getUID())
+            .document("categories")
+            .get()
+            .addOnSuccessListener { document ->
+                it.resume(document)
+            }
     }
 }

@@ -40,7 +40,9 @@ val appModule = module {
         CreateSubscriptionViewModel(
             setStatusBarColor = get(),
             getUIDUseCase = get(),
-            setNumberOfSubscriptionsUseCase = get()
+            setNumberOfSubscriptionsUseCase = get(),
+            setCategoryUseCase = get(),
+            categoryOfSubscriptionUseCase = get()
         )
     }
 

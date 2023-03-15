@@ -17,4 +17,8 @@ interface FirebaseDatabase {
     suspend fun getNumberOfSubscriptions(): Number
 
     fun getUID(): String
+
+    suspend fun getCategory(): DocumentSnapshot
+
+    fun setCategory(category: String, price: Double)
 }

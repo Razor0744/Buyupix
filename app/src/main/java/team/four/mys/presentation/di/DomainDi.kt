@@ -37,4 +37,16 @@ val domainModule = module {
         SetNumberOfSubscriptionsUseCase(firebaseRepository = get())
     }
 
+    factory<SetCategoryUseCase> {
+        SetCategoryUseCase(firebaseRepository = get())
+    }
+
+    factory<GetCategoryUseCase> {
+        GetCategoryUseCase(firebaseRepository = get())
+    }
+
+    factory<CategoryOfSubscriptionUseCase> {
+        CategoryOfSubscriptionUseCase()
+    }
+
 }

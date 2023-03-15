@@ -240,7 +240,14 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                     db.collection(viewModel.getUID())
                                         .document(binding.buttonCalender.text?.trim().toString())
                                         .collection("noDate")
-                                        .document(binding.name.text.trim().toString()).set(data)
+                                        .document(binding.name.text.trim().toString())
+                                        .set(data)
+                                    viewModel.setCategory(
+                                        category = viewModel.categoryOfSubscriptions(
+                                            binding.name.text.trim().toString(),
+                                        ),
+                                        price = binding.price.text?.trim().toString().toDouble()
+                                    )
                                     viewModel.setNumberOfSubscriptions()
                                     startActivity(Intent(this, MainActivity::class.java))
                                 } else {
@@ -282,6 +289,12 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         .document(binding.buttonCalender.text?.trim().toString())
                                         .collection("date")
                                         .document(binding.name.text.trim().toString()).set(data)
+                                    viewModel.setCategory(
+                                        category = viewModel.categoryOfSubscriptions(
+                                            binding.name.text.trim().toString(),
+                                        ),
+                                        price = binding.price.text?.trim().toString().toDouble()
+                                    )
                                     viewModel.setNumberOfSubscriptions()
                                     startActivity(Intent(this, MainActivity::class.java))
                                 }

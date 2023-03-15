@@ -170,6 +170,7 @@
         android:background="@drawable/item_background_statistic_info"
         android:elevation="2dp"
         android:orientation="vertical"
+        android:visibility="invisible"
         app:layout_constraintLeft_toRightOf="@id/subscriptions"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/otherCategory">
@@ -213,6 +214,7 @@
         android:background="@drawable/item_background_statistic_info"
         android:elevation="2dp"
         android:orientation="vertical"
+        android:visibility="invisible"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/maxCost"
         app:layout_constraintTop_toBottomOf="@id/subscriptions">

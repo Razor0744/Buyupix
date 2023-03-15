@@ -2,7 +2,9 @@ package team.four.mys.presentation.viewmodelsactivity
 
 import androidx.lifecycle.ViewModel
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.domain.usecases.CategoryOfSubscriptionUseCase
 import team.four.mys.domain.usecases.GetUIDUseCase
+import team.four.mys.domain.usecases.SetCategoryUseCase
 import team.four.mys.domain.usecases.SetNumberOfSubscriptionsUseCase
 import team.four.mys.presentation.other.SetStatusBarColor
 import java.time.LocalDate
@@ -13,7 +15,9 @@ import java.util.*
 class CreateSubscriptionViewModel(
     private val setStatusBarColor: SetStatusBarColor,
     private val getUIDUseCase: GetUIDUseCase,
-    private val setNumberOfSubscriptionsUseCase: SetNumberOfSubscriptionsUseCase
+    private val setNumberOfSubscriptionsUseCase: SetNumberOfSubscriptionsUseCase,
+    private val setCategoryUseCase: SetCategoryUseCase,
+    private val categoryOfSubscriptionUseCase: CategoryOfSubscriptionUseCase
 ) : ViewModel() {
 
     fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
@@ -42,12 +46,20 @@ class CreateSubscriptionViewModel(
         return daysInMonthArray
     }
 
-    fun setNumberOfSubscriptions(){
+    fun setNumberOfSubscriptions() {
         setNumberOfSubscriptionsUseCase.execute()
     }
 
     fun getUID(): String {
         return getUIDUseCase.execute()
+    }
+
+    fun setCategory(category: String, price: Double) {
+        setCategoryUseCase.execute(category = category, price = price)
+    }
+
+    fun categoryOfSubscriptions(name: String): String {
+        return categoryOfSubscriptionUseCase.execute(name)
     }
 
 }

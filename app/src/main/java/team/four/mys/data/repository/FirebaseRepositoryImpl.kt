@@ -32,4 +32,12 @@ class FirebaseRepositoryImpl(private val firebaseDatabase: FirebaseDatabase) : F
         return firebaseDatabase.getNumberOfSubscriptions()
     }
 
+    override suspend fun getCategory(): DocumentSnapshot {
+        return firebaseDatabase.getCategory()
+    }
+
+    override fun setCategory(category: String, price: Double) {
+        firebaseDatabase.setCategory(category = category, price = price)
+    }
+
 }
