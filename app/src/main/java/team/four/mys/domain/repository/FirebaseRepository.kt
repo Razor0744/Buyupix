@@ -18,7 +18,7 @@ interface FirebaseRepository {
 
     suspend fun getNumberOfSubscriptions(): Number
 
-    suspend fun getCategory(): DocumentSnapshot
+    suspend fun getCategory(category: String): DocumentSnapshot
 
     fun setCategory(category: String, price: Double)
 }

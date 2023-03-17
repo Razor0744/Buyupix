@@ -1,11 +1,10 @@
 package team.four.mys.presentation.viewmodelsactivity
 
 import androidx.lifecycle.ViewModel
+import team.four.mys.data.api.retrofit.currencies.Retrofit
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.domain.usecases.CategoryOfSubscriptionUseCase
-import team.four.mys.domain.usecases.GetUIDUseCase
-import team.four.mys.domain.usecases.SetCategoryUseCase
-import team.four.mys.domain.usecases.SetNumberOfSubscriptionsUseCase
+import team.four.mys.domain.models.Valute
+import team.four.mys.domain.usecases.*
 import team.four.mys.presentation.other.SetStatusBarColor
 import java.time.LocalDate
 import java.time.YearMonth
@@ -17,8 +16,12 @@ class CreateSubscriptionViewModel(
     private val getUIDUseCase: GetUIDUseCase,
     private val setNumberOfSubscriptionsUseCase: SetNumberOfSubscriptionsUseCase,
     private val setCategoryUseCase: SetCategoryUseCase,
-    private val categoryOfSubscriptionUseCase: CategoryOfSubscriptionUseCase
+    private val categoryOfSubscriptionUseCase: CategoryOfSubscriptionUseCase,
+    private val retrofit: Retrofit,
+    private val setCategoryTotalPriceUseCase: SetCategoryTotalPriceUseCase
 ) : ViewModel() {
+
+    private var valute: Valute? = null
 
     fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
         setStatusBarColor.execute(setStatusBarParam)
@@ -60,6 +63,18 @@ class CreateSubscriptionViewModel(
 
     fun categoryOfSubscriptions(name: String): String {
         return categoryOfSubscriptionUseCase.execute(name)
+    }
+
+    suspend fun getCurrencies() {
+        valute = retrofit.getCurrencies()
+    }
+
+    fun setCategoryTotalPrice(price: Double, priceSpinner: String): Double {
+        return setCategoryTotalPriceUseCase.execute(
+            price = price,
+            priceSpinner = priceSpinner,
+            valute = valute
+        )
     }
 
 }

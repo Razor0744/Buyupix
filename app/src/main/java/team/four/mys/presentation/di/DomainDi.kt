@@ -49,4 +49,8 @@ val domainModule = module {
         CategoryOfSubscriptionUseCase()
     }
 
+    factory<SetCategoryTotalPriceUseCase> {
+        SetCategoryTotalPriceUseCase()
+    }
+
 }

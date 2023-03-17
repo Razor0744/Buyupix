@@ -124,7 +124,7 @@ class Firebase : FirebaseDatabase {
 
     override fun setCategory(category: String, price: Double) {
         db.collection(getUID())
-            .document("categories")
+            .document(category)
             .get()
             .addOnSuccessListener { doc ->
                 if (doc.get(category) != null) {
@@ -135,23 +135,23 @@ class Firebase : FirebaseDatabase {
                         category to priceEnd as Number
                     )
                     db.collection(getUID())
-                        .document("categories")
+                        .document(category)
                         .set(data)
                 } else {
                     val data = hashMapOf(
                         category to price as Number
                     )
                     db.collection(getUID())
-                        .document("categories")
+                        .document(category)
                         .set(data)
                 }
             }
 
     }
 
-    override suspend fun getCategory(): DocumentSnapshot = suspendCoroutine {
+    override suspend fun getCategory(category: String): DocumentSnapshot = suspendCoroutine {
         db.collection(getUID())
-            .document("categories")
+            .document(category)
             .get()
             .addOnSuccessListener { document ->
                 it.resume(document)

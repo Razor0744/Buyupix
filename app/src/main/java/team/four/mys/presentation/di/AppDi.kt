@@ -42,7 +42,9 @@ val appModule = module {
             getUIDUseCase = get(),
             setNumberOfSubscriptionsUseCase = get(),
             setCategoryUseCase = get(),
-            categoryOfSubscriptionUseCase = get()
+            categoryOfSubscriptionUseCase = get(),
+            setCategoryTotalPriceUseCase = get(),
+            retrofit = get()
         )
     }
 

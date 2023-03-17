@@ -11,6 +11,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.data.objects.ObjectsData.currencies
@@ -62,6 +65,10 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
+
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.getCurrencies()
+        }
     }
 
     private fun priceButtonClick() {
@@ -246,7 +253,12 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         category = viewModel.categoryOfSubscriptions(
                                             binding.name.text.trim().toString(),
                                         ),
-                                        price = binding.price.text?.trim().toString().toDouble()
+                                        price = viewModel.setCategoryTotalPrice(
+                                            price = binding.price.text?.trim().toString()
+                                                .toDouble(),
+                                            priceSpinner = binding.priceButton.text.trim()
+                                                .toString()
+                                        )
                                     )
                                     viewModel.setNumberOfSubscriptions()
                                     startActivity(Intent(this, MainActivity::class.java))
@@ -293,7 +305,12 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                         category = viewModel.categoryOfSubscriptions(
                                             binding.name.text.trim().toString(),
                                         ),
-                                        price = binding.price.text?.trim().toString().toDouble()
+                                        price = viewModel.setCategoryTotalPrice(
+                                            price = binding.price.text?.trim().toString()
+                                                .toDouble(),
+                                            priceSpinner = binding.priceButton.text.trim()
+                                                .toString()
+                                        )
                                     )
                                     viewModel.setNumberOfSubscriptions()
                                     startActivity(Intent(this, MainActivity::class.java))
