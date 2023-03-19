@@ -2,12 +2,11 @@ package team.four.mys.presentation.viewmodelsfragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import team.four.mys.data.api.retrofit.currencies.Retrofit
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Valute
-import team.four.mys.domain.usecases.GetPriceFireBaseUseCase
-import team.four.mys.data.api.retrofit.currencies.Retrofit
-import team.four.mys.domain.usecases.GetCategoryUseCase
 import team.four.mys.domain.usecases.GetNumberOfSubscriptionsUseCase
+import team.four.mys.domain.usecases.GetPriceFireBaseUseCase
 import team.four.mys.presentation.other.SetStatusBarColor
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,8 +15,7 @@ class StatisticsViewModel(
     private val setStatusBarColor: SetStatusBarColor,
     private val retrofit: Retrofit,
     private val getPriceFireBaseUseCase: GetPriceFireBaseUseCase,
-    private val getNumberOfSubscriptionsUseCase: GetNumberOfSubscriptionsUseCase,
-    private val getCategoryUseCase: GetCategoryUseCase
+    private val getNumberOfSubscriptionsUseCase: GetNumberOfSubscriptionsUseCase
 ) :
     ViewModel() {
 
@@ -54,9 +52,5 @@ class StatisticsViewModel(
 
     suspend fun getNumberOfSubscriptions() {
         numberOfSubscriptions.postValue(getNumberOfSubscriptionsUseCase.execute())
-    }
-
-    suspend fun getCategory(category: String): Float {
-        return getCategoryUseCase.execute(category = category).toFloat()
     }
 }

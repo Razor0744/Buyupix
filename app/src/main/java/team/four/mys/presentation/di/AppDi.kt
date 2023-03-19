@@ -84,8 +84,7 @@ val appModule = module {
             setStatusBarColor = get(),
             retrofit = get(),
             getPriceFireBaseUseCase = get(),
-            getNumberOfSubscriptionsUseCase = get(),
-            getCategoryUseCase = get()
+            getNumberOfSubscriptionsUseCase = get()
         )
     }
 
@@ -98,6 +97,12 @@ val appModule = module {
     viewModel<LoginViewModel> {
         LoginViewModel(
             setStatusBarColor = get()
+        )
+    }
+
+    viewModel<MainViewModel> {
+        MainViewModel(
+            getCategoryUseCase = get()
         )
     }
 

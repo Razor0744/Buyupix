@@ -18,6 +18,7 @@ import team.four.mys.R
 import team.four.mys.databinding.FragmentStatisticsBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.presentation.activity.MainActivity
 import team.four.mys.presentation.other.SetNavigationColor
 import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
@@ -26,14 +27,6 @@ class StatisticsFragment : Fragment() {
     private var binding: FragmentStatisticsBinding? = null
 
     private val viewModel by viewModel<StatisticsViewModel>()
-
-    private var gamingPrice = 20f
-    private var defencePrice = 20f
-    private var cloudPrice = 230f
-    private var moviesPrice = 230f
-    private var booksPrice = 230f
-    private var musicPrice = 199f
-    private var otherPrice = 12.99f
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,14 +48,6 @@ class StatisticsFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.fullPrice()
             viewModel.getNumberOfSubscriptions()
-            gamingPrice = viewModel.getCategory("Gaming")
-            defencePrice = viewModel.getCategory("Defence")
-            cloudPrice = viewModel.getCategory("Cloud")
-            moviesPrice = viewModel.getCategory("Movies")
-            booksPrice = viewModel.getCategory("Books")
-            musicPrice = viewModel.getCategory("Music")
-            otherPrice = viewModel.getCategory("Other")
-            pieChart()
         }
 
         viewModel.setStatusBarColor(
@@ -78,6 +63,8 @@ class StatisticsFragment : Fragment() {
                 ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
             )
         )
+
+        pieChart()
 
         return binding?.root
     }
@@ -115,6 +102,14 @@ class StatisticsFragment : Fragment() {
         binding?.pieChart?.legend?.isEnabled = false
         binding?.pieChart?.setEntryLabelColor(Color.BLACK)
         binding?.pieChart?.setEntryLabelTextSize(12f)
+
+        val gamingPrice = (activity as MainActivity).gamingPrice
+        val defencePrice = (activity as MainActivity).defencePrice
+        val cloudPrice = (activity as MainActivity).cloudPrice
+        val moviesPrice = (activity as MainActivity).moviesPrice
+        val booksPrice = (activity as MainActivity).booksPrice
+        val musicPrice = (activity as MainActivity).musicPrice
+        val otherPrice = (activity as MainActivity).otherPrice
 
         //список массивов
         val entries: ArrayList<PieEntry> = ArrayList()
