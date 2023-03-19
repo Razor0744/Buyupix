@@ -5,7 +5,7 @@ import team.four.mys.domain.repository.FirebaseRepository
 
 class GetCategoryUseCase(private val firebaseRepository: FirebaseRepository) {
 
-    suspend fun execute(): DocumentSnapshot {
-        return firebaseRepository.getCategory()
+    suspend fun execute(category: String): Number {
+        return firebaseRepository.getCategory(category = category)
     }
 }

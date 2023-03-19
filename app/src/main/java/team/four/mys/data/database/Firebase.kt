@@ -146,15 +146,21 @@ class Firebase : FirebaseDatabase {
                         .set(data)
                 }
             }
-
     }
 
-    override suspend fun getCategory(category: String): DocumentSnapshot = suspendCoroutine {
+    override suspend fun getCategory(category: String): Number = suspendCoroutine {
         db.collection(getUID())
             .document(category)
             .get()
-            .addOnSuccessListener { document ->
-                it.resume(document)
+            .addOnSuccessListener { doc ->
+                if (doc.get(category) != null) {
+                    it.resume(doc.get(category) as Number)
+                } else {
+                    it.resume(0 as Number)
+                }
+            }
+            .addOnFailureListener { _ ->
+                it.resume(0 as Number)
             }
     }
 }

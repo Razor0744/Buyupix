@@ -84,7 +84,8 @@ val appModule = module {
             setStatusBarColor = get(),
             retrofit = get(),
             getPriceFireBaseUseCase = get(),
-            getNumberOfSubscriptionsUseCase = get()
+            getNumberOfSubscriptionsUseCase = get(),
+            getCategoryUseCase = get()
         )
     }
 

@@ -28,8 +28,11 @@ class StatisticsFragment : Fragment() {
     private val viewModel by viewModel<StatisticsViewModel>()
 
     private var gamingPrice = 20f
-    private var musicPrice = 199f
+    private var defencePrice = 20f
     private var cloudPrice = 230f
+    private var moviesPrice = 230f
+    private var booksPrice = 230f
+    private var musicPrice = 199f
     private var otherPrice = 12.99f
 
     override fun onCreateView(
@@ -52,6 +55,14 @@ class StatisticsFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.fullPrice()
             viewModel.getNumberOfSubscriptions()
+            gamingPrice = viewModel.getCategory("Gaming")
+            defencePrice = viewModel.getCategory("Defence")
+            cloudPrice = viewModel.getCategory("Cloud")
+            moviesPrice = viewModel.getCategory("Movies")
+            booksPrice = viewModel.getCategory("Books")
+            musicPrice = viewModel.getCategory("Music")
+            otherPrice = viewModel.getCategory("Other")
+            pieChart()
         }
 
         viewModel.setStatusBarColor(
@@ -67,8 +78,6 @@ class StatisticsFragment : Fragment() {
                 ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
             )
         )
-
-        pieChart()
 
         return binding?.root
     }
@@ -110,8 +119,11 @@ class StatisticsFragment : Fragment() {
         //список массивов
         val entries: ArrayList<PieEntry> = ArrayList()
         entries.add(PieEntry(gamingPrice))
-        entries.add(PieEntry(musicPrice))
+        entries.add(PieEntry(defencePrice))
         entries.add(PieEntry(cloudPrice))
+        entries.add(PieEntry(moviesPrice))
+        entries.add(PieEntry(booksPrice))
+        entries.add(PieEntry(musicPrice))
         entries.add(PieEntry(otherPrice))
         //данные
         val dataSet = PieDataSet(entries, "Mobile OS")
@@ -131,6 +143,9 @@ class StatisticsFragment : Fragment() {
         colors.add(ResourcesCompat.getColor(resources, R.color.blue, null))
         colors.add(ResourcesCompat.getColor(resources, R.color.yellow, null))
         colors.add(ResourcesCompat.getColor(resources, R.color.blueMain, null))
+        colors.add(ResourcesCompat.getColor(resources, R.color.red, null))
+        colors.add(ResourcesCompat.getColor(resources, R.color.blueLight, null))
+        colors.add(ResourcesCompat.getColor(resources, R.color.violet, null))
         colors.add(ResourcesCompat.getColor(resources, R.color.turquoise, null))
         dataSet.colors = colors
 

@@ -67,16 +67,16 @@
         android:textColor="@color/textMain2"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/musicCategory"
+        app:layout_constraintRight_toLeftOf="@id/defenceCategory"
         app:layout_constraintTop_toBottomOf="@id/pieChart" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/musicCategory"
+        android:id="@+id/defenceCategory"
         android:layout_width="0dp"
         android:layout_height="28dp"
         android:background="@drawable/background_statistic_yellow"
         android:fontFamily="@font/roboto"
-        android:text="Music · $199"
+        android:text="Defence · $199"
         android:textAllCaps="false"
         android:textColor="@color/textMain2"
         android:textSize="14sp"
@@ -96,9 +96,58 @@
         android:textAllCaps="false"
         android:textColor="@color/textMain2"
         android:textSize="14sp"
-        app:layout_constraintLeft_toRightOf="@id/musicCategory"
+        app:layout_constraintLeft_toRightOf="@id/defenceCategory"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pieChart" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/moviesCategory"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="11dp"
+        android:background="@drawable/background_statistic_red"
+        android:fontFamily="@font/roboto"
+        android:text="Movies · $12.99"
+        android:textAllCaps="false"
+        android:textColor="@color/textMain2"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/booksCategory"
+        app:layout_constraintTop_toBottomOf="@id/gamingCategory" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/booksCategory"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/background_statistic_blue_light"
+        android:fontFamily="@font/roboto"
+        android:text="Books · $12.99"
+        android:textAllCaps="false"
+        android:textColor="@color/textMain2"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@id/moviesCategory"
+        app:layout_constraintRight_toLeftOf="@id/musicCategory"
+        app:layout_constraintTop_toBottomOf="@id/gamingCategory" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/musicCategory"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/background_statistic_violet"
+        android:fontFamily="@font/roboto"
+        android:text="Music · $12.99"
+        android:textAllCaps="false"
+        android:textColor="@color/textMain2"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@id/booksCategory"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gamingCategory" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/otherCategory"
@@ -109,13 +158,13 @@
         android:layout_marginEnd="11dp"
         android:background="@drawable/background_statistic_turquoise"
         android:fontFamily="@font/roboto"
-        android:text="Лол · $12.99"
+        android:text="Other · $12.99"
         android:textAllCaps="false"
         android:textColor="@color/textMain2"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/musicCategory"
-        app:layout_constraintTop_toBottomOf="@id/gamingCategory" />
+        app:layout_constraintRight_toLeftOf="@id/defenceCategory"
+        app:layout_constraintTop_toBottomOf="@id/musicCategory" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/subscriptions"
