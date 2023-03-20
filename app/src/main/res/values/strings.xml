@@ -90,6 +90,14 @@
 
     <!--StatisticFragment-->
     <string name="fullPrice">%1$s USD</string>
+    <string name="gamingCategory">Gaming · $%1$s</string>
+    <string name="defenceCategory">Defence · $%1$s</string>
+    <string name="cloudCategory">Cloud · $%1$s</string>
+    <string name="moviesCategory">Movies · $%1$s</string>
+    <string name="booksCategory">Books · $%1$s</string>
+    <string name="musicCategory">Music · $%1$s</string>
+    <string name="otherCategory">Other · $%1$s</string>
+
 
     <!--CustomRecyclerAdapterSubscriptions-->
     <string name="priceAdapterSubscriptions">%1$s%2$s</string>

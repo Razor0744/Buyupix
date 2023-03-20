@@ -37,6 +37,35 @@ class StatisticsFragment : Fragment() {
 
         binding?.month?.text = viewModel.date()
 
+        binding?.gamingCategory?.text = getString(
+            R.string.gamingCategory,
+            String.format("%.2f", (activity as MainActivity).gamingPrice)
+        )
+        binding?.defenceCategory?.text = getString(
+            R.string.defenceCategory,
+            String.format("%.2f", (activity as MainActivity).defencePrice)
+        )
+        binding?.cloudCategory?.text = getString(
+            R.string.cloudCategory,
+            String.format("%.2f", (activity as MainActivity).cloudPrice)
+        )
+        binding?.moviesCategory?.text = getString(
+            R.string.moviesCategory,
+            String.format("%.2f", (activity as MainActivity).moviesPrice)
+        )
+        binding?.booksCategory?.text = getString(
+            R.string.booksCategory,
+            String.format("%.2f", (activity as MainActivity).booksPrice)
+        )
+        binding?.musicCategory?.text = getString(
+            R.string.musicCategory,
+            String.format("%.2f", (activity as MainActivity).musicPrice)
+        )
+        binding?.otherCategory?.text = getString(
+            R.string.otherCategory,
+            String.format("%.2f", (activity as MainActivity).otherPrice)
+        )
+
         viewModel.fullPrice.observe(viewLifecycleOwner) { fullPrice ->
             binding?.price?.text = getString(R.string.fullPrice, String.format("%.2f", fullPrice))
         }
