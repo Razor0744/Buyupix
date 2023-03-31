@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">#F9F9F9</color>
+    <color name="other">#FF000000</color>
     <color name="grey_100">#3E3D48</color>
     <color name="blue_100">#3E82F9</color>
     <color name="blue_200">#2D8DD8</color>
@@ -11,13 +11,13 @@
     <color name="grey_200">#F5F5F5</color>
     <color name="grey_300">#7E8899</color>
     <color name="grey_500">#BFC8D8</color>
+
     <!--Background-->
     <color name="backgroundMain">#191A1F</color>
     <color name="backgroundSecondary">#6B6B78</color>
     <color name="backgroundInactive">#2F2F3A</color>
     <color name="backgroundNavBar">#24242D</color>
     <color name="backgroundStroke">#6B6B78</color>
-    <color name="backgroundCalendar">#474747</color>
 
     <!--Text-->
     <color name="textMain">#F2F2F2</color>
@@ -28,7 +28,7 @@
     <!--Button-->
     <color name="buttonClick">#15161C</color>
     <color name="buttonLiner">#E56A6F</color>
-    <color name="buttonLinerClick">#1AB499</color>
+    <color name="buttonGray">#24242D</color>
 
     <!--Accent-->
     <color name="blueMain">#52ACF1</color>

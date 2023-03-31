@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="#D4D4D4"
+    android:color="@color/backgroundSecondary"
     android:exitFadeDuration="@android:integer/config_longAnimTime">
     <item>
         <shape android:shape="rectangle">

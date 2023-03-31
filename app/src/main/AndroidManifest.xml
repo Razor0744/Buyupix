@@ -15,9 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyS">
         <activity
-            android:name="team.four.mys.presentation.activity.CountryCodeActivity"
-            android:exported="false" />
-        <activity
             android:name="team.four.mys.presentation.activity.DarkModeActivity"
             android:exported="false" />
         <activity
@@ -31,9 +28,6 @@
             android:exported="false" />
         <activity
             android:name="team.four.mys.presentation.activity.LanguageActivity"
-            android:exported="false" />
-        <activity
-            android:name="team.four.mys.presentation.activity.CodeSendActivity"
             android:exported="false" />
         <activity
             android:name="team.four.mys.presentation.activity.FirstActivity"

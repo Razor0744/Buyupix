@@ -319,19 +319,19 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(
                             this,
-                            "Не, ну деньги я полагаю у тебя каждый день списывают",
+                            "Необходимо поставить дату, нажмите на иконку календаря",
                             Toast.LENGTH_LONG
                         ).show()
                     }
                 } else {
                     Toast.makeText(
                         this,
-                        "Бля, ты конечно приколист, а цену я выдумывать должен?",
+                        "Введите цену?",
                         Toast.LENGTH_LONG
                     ).show()
                 }
             } else {
-                Toast.makeText(this, "Ты ебаны рот название напиши", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Напишите название", Toast.LENGTH_LONG).show()
             }
         }
     }

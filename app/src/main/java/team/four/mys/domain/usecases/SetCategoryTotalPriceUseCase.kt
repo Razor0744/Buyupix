@@ -9,6 +9,7 @@ class SetCategoryTotalPriceUseCase {
         when (priceSpinner) {
             "BYN" -> totalPrice = price * valute?.BYN?.Value!! / valute.USD?.Value!!
             "EUR" -> totalPrice = price * valute?.EUR?.Value!! / valute.USD?.Value!!
+            else -> totalPrice = price
         }
         return totalPrice
     }

@@ -1,26 +1,27 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-    <!--FirstActivity-->
+    <!--First-->
     <string name="welcome">Welcome</string>
+    <string name="descriptionFirst">Manage your subscriptions, lower your bills and stay on top of your financial life.</string>
     <string name="continueButton">Continue</string>
 
-    <!--LoginActivity-->
+    <!--Login-->
     <string name="authorization">Authorization</string>
     <string name="textL">Enter phone number in international format</string>
-    <string name="number" tools:ignore="TypographyDashes">+ 7 (111) 111–11-11</string>
-    <string name="google">Continue With Google</string>
-    <string name="facebook">Continue With Facebook</string>
-    <string name="languageCode">Страна</string>
-    <string name="phoneNumber">Номер телефона</string>
+    <string name="languageCode">Country</string>
+    <string name="phoneNumber">Phone Number</string>
 
-    <!--CodeSendActivity-->
+    <!--CountryCode-->
+    <string name="countryCode">Country</string>
+
+    <!--CodeSend-->
     <string name="textC">Enter code from sms</string>
-    <string name="codeSendAgain">Resend code via</string>
+    <string name="codeSendAgain">Resend code via </string>
 
     <string name="app_name">Buyupix</string>
     <string name="name_app">Buyupix</string>
 
-    <!--CreateSubscriptionActivity-->
+    <!--CreateSubscription-->
     <string name="createSubscription">Create Sub</string>
     <string name="createNameSubscription">Name</string>
     <string name="price">Price</string>
@@ -38,7 +39,7 @@
     <string name="saturday">Sat</string>
     <string name="sunday">Sun</string>
 
-    <!--SubscriptionInfoActivity-->
+    <!--SubscriptionInfo-->
     <string name="subscriptionInfo">Subs info</string>
     <string name="name">Name</string>
     <string name="category">Category</string>
@@ -46,15 +47,18 @@
 
     <!--Navigation-->
     <string name="home">Home</string>
-    <string name="statistics">Statistics</string>
+    <string name="statistics">Statistic</string>
     <string name="settings">Settings</string>
 
-    <!--SettingsFragment-->
+    <!--Settings-->
     <string name="alert">Alert</string>
     <string name="darkMode">Dark Mode</string>
     <string name="language">Language</string>
     <string name="about">About</string>
     <string name="signOut">Exit</string>
+
+    <!--Home-->
+    <string name="firstSubscription">You have not created any subscription yet. Let is do it right now</string>
 
     <!--AutoCompleteText-->
     <!--27-->
@@ -88,7 +92,7 @@
         <item>СберПрайм</item>
     </string-array>
 
-    <!--StatisticFragment-->
+    <!--Statistic-->
     <string name="fullPrice">%1$s USD</string>
     <string name="gamingCategory">Gaming · $%1$s</string>
     <string name="defenceCategory">Defence · $%1$s</string>
@@ -97,12 +101,11 @@
     <string name="booksCategory">Books · $%1$s</string>
     <string name="musicCategory">Music · $%1$s</string>
     <string name="otherCategory">Other · $%1$s</string>
+    <string name="subscriptions">Subscriptions</string>
 
 
     <!--CustomRecyclerAdapterSubscriptions-->
     <string name="priceAdapterSubscriptions">%1$s%2$s</string>
     <string name="dateAdapterSubscriptions">%1$s %2$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

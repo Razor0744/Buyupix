@@ -108,7 +108,7 @@
         android:layout_marginStart="@dimen/marginStart"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="@dimen/marginEnd"
-        android:hint="Номер телефона"
+        android:hint="@string/phoneNumber"
         android:textColor="@color/textMain"
         android:textSize="@dimen/sizeMain"
         app:boxCornerRadiusBottomEnd="8dp"

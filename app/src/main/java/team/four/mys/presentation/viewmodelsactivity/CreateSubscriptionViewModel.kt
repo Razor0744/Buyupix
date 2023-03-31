@@ -70,6 +70,13 @@ class CreateSubscriptionViewModel(
     }
 
     fun setCategoryTotalPrice(price: Double, priceSpinner: String): Double {
+        println(
+            setCategoryTotalPriceUseCase.execute(
+                price = price,
+                priceSpinner = priceSpinner,
+                valute = valute
+            )
+        )
         return setCategoryTotalPriceUseCase.execute(
             price = price,
             priceSpinner = priceSpinner,

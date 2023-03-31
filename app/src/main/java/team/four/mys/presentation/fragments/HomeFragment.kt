@@ -108,49 +108,51 @@ class HomeFragment : Fragment() {
     }
 
     private fun fireStore() {
-        var i = 1
-        while (i <= 31) {
-            db.collection(viewModel.getUID()).document(i.toString()).collection("date")
-                .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                    @SuppressLint("NotifyDataSetChanged")
-                    override fun onEvent(
-                        value: QuerySnapshot?,
-                        error: FirebaseFirestoreException?
-                    ) {
-                        if (error != null) {
-                            return
-                        }
-
-                        for (dc: DocumentChange in value?.documentChanges!!) {
-                            if (dc.type == DocumentChange.Type.ADDED) {
-                                subscriptions.add(dc.document.toObject(Subscriptions::class.java))
+        if (subscriptions.isEmpty()) {
+            var i = 1
+            while (i <= 31) {
+                db.collection(viewModel.getUID()).document(i.toString()).collection("date")
+                    .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                        @SuppressLint("NotifyDataSetChanged")
+                        override fun onEvent(
+                            value: QuerySnapshot?,
+                            error: FirebaseFirestoreException?
+                        ) {
+                            if (error != null) {
+                                return
                             }
-                        }
-                        adapterSubscriptions.notifyDataSetChanged()
-                    }
 
-                })
-
-            db.collection(viewModel.getUID()).document(i.toString()).collection("noDate")
-                .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                    @SuppressLint("NotifyDataSetChanged")
-                    override fun onEvent(
-                        value: QuerySnapshot?,
-                        error: FirebaseFirestoreException?
-                    ) {
-                        if (error != null) {
-                            return
-                        }
-
-                        for (dc: DocumentChange in value?.documentChanges!!) {
-                            if (dc.type == DocumentChange.Type.ADDED) {
-                                subscriptions.add(dc.document.toObject(Subscriptions::class.java))
+                            for (dc: DocumentChange in value?.documentChanges!!) {
+                                if (dc.type == DocumentChange.Type.ADDED) {
+                                    subscriptions.add(dc.document.toObject(Subscriptions::class.java))
+                                }
                             }
+                            adapterSubscriptions.notifyDataSetChanged()
                         }
-                        adapterSubscriptions.notifyDataSetChanged()
-                    }
-                })
-            i++
+
+                    })
+
+                db.collection(viewModel.getUID()).document(i.toString()).collection("noDate")
+                    .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                        @SuppressLint("NotifyDataSetChanged")
+                        override fun onEvent(
+                            value: QuerySnapshot?,
+                            error: FirebaseFirestoreException?
+                        ) {
+                            if (error != null) {
+                                return
+                            }
+
+                            for (dc: DocumentChange in value?.documentChanges!!) {
+                                if (dc.type == DocumentChange.Type.ADDED) {
+                                    subscriptions.add(dc.document.toObject(Subscriptions::class.java))
+                                }
+                            }
+                            adapterSubscriptions.notifyDataSetChanged()
+                        }
+                    })
+                i++
+            }
         }
     }
 

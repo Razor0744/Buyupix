@@ -41,7 +41,7 @@
         android:layout_marginTop="@dimen/marginTop"
         android:layout_marginEnd="@dimen/marginEnd"
         android:fontFamily="@font/roboto"
-        android:text="@string/description"
+        android:text="@string/descriptionFirst"
         android:textColor="@color/textSecondary"
         android:textSize="@dimen/sizeMain"
         app:layout_constraintLeft_toLeftOf="parent"
