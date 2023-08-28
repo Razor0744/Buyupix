@@ -1,10 +1,20 @@
-package team.four.mys.presentation.di
+package team.four.mys.di
 
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import team.four.mys.presentation.other.SetStatusBarColor
-import team.four.mys.presentation.viewmodelsactivity.*
-import team.four.mys.presentation.viewmodelsfragment.*
+import team.four.mys.presentation.viewmodelsactivity.AlertViewModel
+import team.four.mys.presentation.viewmodelsactivity.AuthenticationViewModel
+import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
+import team.four.mys.presentation.viewmodelsactivity.DarkModeViewModel
+import team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel
+import team.four.mys.presentation.viewmodelsactivity.LanguageViewModel
+import team.four.mys.presentation.viewmodelsactivity.MainViewModel
+import team.four.mys.presentation.viewmodelsactivity.SubscriptionInfoViewModel
+import team.four.mys.presentation.viewmodelsfragment.CodeSendViewModel
+import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
+import team.four.mys.presentation.viewmodelsfragment.LoginViewModel
+import team.four.mys.presentation.viewmodelsfragment.SettingsViewModel
+import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
 val appModule = module {
 
@@ -12,7 +22,7 @@ val appModule = module {
         AlertViewModel(
             getSettingsUseCase = get(),
             setSettingsUseCase = get(),
-            setStatusBarColor = get()
+            setStatusBarColorUseCase = get()
         )
     }
 
@@ -20,25 +30,26 @@ val appModule = module {
         SubscriptionInfoViewModel(
             deleteSubscriptionUseCase = get(),
             getSubscriptionInfoUseCase = get(),
-            setStatusBarColor = get()
+            setStatusBarColorUseCase = get()
         )
     }
 
     viewModel<FirstActivityViewModel> {
         FirstActivityViewModel(
-            setStatusBarColor = get()
+            setStatusBarColorUseCase = get(),
+            setThemeUseCase = get()
         )
     }
 
     viewModel<CodeSendViewModel> {
         CodeSendViewModel(
-            setStatusBarColor = get()
+            setStatusBarColorUseCase = get()
         )
     }
 
     viewModel<CreateSubscriptionViewModel> {
         CreateSubscriptionViewModel(
-            setStatusBarColor = get(),
+            setStatusBarColorUseCase = get(),
             getUIDUseCase = get(),
             setNumberOfSubscriptionsUseCase = get(),
             setCategoryUseCase = get(),
@@ -50,13 +61,13 @@ val appModule = module {
 
     viewModel<DarkModeViewModel> {
         DarkModeViewModel(
-            setStatusBarColor = get()
+            setStatusBarColorUseCase = get()
         )
     }
 
     viewModel<LanguageViewModel> {
         LanguageViewModel(
-            setStatusBarColor = get()
+            setStatusBarColorUseCase = get()
         )
     }
 
@@ -66,7 +77,7 @@ val appModule = module {
 
     viewModel<HomeViewModel> {
         HomeViewModel(
-            setStatusBarColor = get(),
+            setStatusBarColorUseCase = get(),
             retrofit = get(),
             getPriceFireBaseUseCase = get(),
             getUIDUseCase = get()
@@ -75,34 +86,29 @@ val appModule = module {
 
     viewModel<SettingsViewModel> {
         SettingsViewModel(
-            setStatusBarColor = get()
+            setStatusBarColorUseCase = get()
         )
     }
 
     viewModel<StatisticsViewModel> {
         StatisticsViewModel(
-            setStatusBarColor = get(),
+            setStatusBarColorUseCase = get(),
             retrofit = get(),
             getPriceFireBaseUseCase = get(),
             getNumberOfSubscriptionsUseCase = get()
         )
     }
 
-    factory<SetStatusBarColor> {
-        SetStatusBarColor(
-            getSettingsUseCase = get()
-        )
-    }
-
     viewModel<LoginViewModel> {
         LoginViewModel(
-            setStatusBarColor = get()
+            setStatusBarColorUseCase = get()
         )
     }
 
     viewModel<MainViewModel> {
         MainViewModel(
-            getCategoryUseCase = get()
+            getCategoryUseCase = get(),
+            setThemeUseCase = get()
         )
     }
 

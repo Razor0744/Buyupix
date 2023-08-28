@@ -26,7 +26,7 @@ import team.four.mys.domain.models.Subscriptions
 import team.four.mys.presentation.activity.CreateSubscriptionActivity
 import team.four.mys.presentation.activity.SubscriptionInfoActivity
 import team.four.mys.presentation.adapters.SubscriptionsAdapter
-import team.four.mys.presentation.other.SetNavigationColor
+import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
             )
         )
 
-        SetNavigationColor().execute(
+        SetNavigationColorUseCase().execute(
             SetNavigationBarParam(
                 requireActivity(),
                 ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)

@@ -8,13 +8,12 @@ import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SubscriptionInfoParam
 import team.four.mys.domain.usecases.DeleteSubscriptionUseCase
 import team.four.mys.domain.usecases.GetSubscriptionInfoUseCase
-import team.four.mys.domain.usecases.GetUIDUseCase
-import team.four.mys.presentation.other.SetStatusBarColor
+import team.four.mys.domain.usecases.SetStatusBarColorUseCase
 
 class SubscriptionInfoViewModel(
     private val deleteSubscriptionUseCase: DeleteSubscriptionUseCase,
     private val getSubscriptionInfoUseCase: GetSubscriptionInfoUseCase,
-    private val setStatusBarColor: SetStatusBarColor,
+    private val setStatusBarColorUseCase: SetStatusBarColorUseCase,
 ) :
     ViewModel() {
 
@@ -31,6 +30,6 @@ class SubscriptionInfoViewModel(
     }
 
     fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
-        setStatusBarColor.execute(setStatusBarParam = setStatusBarParam)
+        setStatusBarColorUseCase.execute(setStatusBarParam = setStatusBarParam)
     }
 }

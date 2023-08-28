@@ -1,4 +1,4 @@
-package team.four.mys.presentation.other
+package team.four.mys.domain.usecases
 
 import android.graphics.Canvas
 import android.graphics.Rect
@@ -7,7 +7,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class CustomPositionItemDecoration(private val mDivider: Drawable) :
+class CustomPositionItemDecorationUseCase(private val mDivider: Drawable) :
     RecyclerView.ItemDecoration() {
     private var mOrientation = 0
     override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {

@@ -1,13 +1,13 @@
-package team.four.mys.presentation.app
+package team.four.mys.app
 
 import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
-import team.four.mys.presentation.di.appModule
-import team.four.mys.presentation.di.dataModule
-import team.four.mys.presentation.di.domainModule
+import team.four.mys.di.appModule
+import team.four.mys.di.dataModule
+import team.four.mys.di.domainModule
 
 class App : Application() {
 

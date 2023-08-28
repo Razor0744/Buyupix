@@ -20,7 +20,7 @@ import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.presentation.activity.AuthenticationActivity
 import team.four.mys.presentation.activity.FirstActivity
-import team.four.mys.presentation.other.SetNavigationColor
+import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.presentation.viewmodelsfragment.LoginViewModel
 
 
@@ -188,7 +188,7 @@ class LoginFragment : Fragment() {
                 color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
-        SetNavigationColor().execute(
+        SetNavigationColorUseCase().execute(
             SetNavigationBarParam(
                 requireActivity(),
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)

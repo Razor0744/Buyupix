@@ -1,4 +1,4 @@
-package team.four.mys.presentation.di
+package team.four.mys.di
 
 import org.koin.dsl.module
 import team.four.mys.domain.usecases.*
@@ -53,4 +53,13 @@ val domainModule = module {
         SetCategoryTotalPriceUseCase()
     }
 
+    factory<SetStatusBarColorUseCase> {
+        SetStatusBarColorUseCase(
+            getSettingsUseCase = get()
+        )
+    }
+
+    factory<SetThemeUseCase> {
+        SetThemeUseCase(getSettingsUseCase = get())
+    }
 }

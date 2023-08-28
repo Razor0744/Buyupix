@@ -15,9 +15,9 @@ import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.domain.usecases.GetSettingsUseCase
-import team.four.mys.presentation.other.SetNavigationColor
+import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.presentation.adapters.LanguageAdapter
-import team.four.mys.presentation.other.LocaleHelper
+import team.four.mys.domain.usecases.LocaleHelperUseCase
 import team.four.mys.presentation.viewmodelsactivity.LanguageViewModel
 
 class LanguageActivity : AppCompatActivity() {
@@ -52,7 +52,7 @@ class LanguageActivity : AppCompatActivity() {
             )
         )
 
-        SetNavigationColor().execute(
+        SetNavigationColorUseCase().execute(
             SetNavigationBarParam(
                 this,
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
@@ -68,8 +68,8 @@ class LanguageActivity : AppCompatActivity() {
                 getSettingsUseCase.execute(SettingsPreferencesParam(key = "Locale")).value
             ) { language ->
                 when (language.name) {
-                    "USA" -> LocaleHelper().setLocale(this, "en")
-                    "Russia" -> LocaleHelper().setLocale(this, "ru")
+                    "USA" -> LocaleHelperUseCase().setLocale(this, "en")
+                    "Russia" -> LocaleHelperUseCase().setLocale(this, "ru")
                 }
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")

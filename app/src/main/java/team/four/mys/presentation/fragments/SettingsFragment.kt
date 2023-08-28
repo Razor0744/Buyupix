@@ -15,7 +15,7 @@ import team.four.mys.R
 import team.four.mys.databinding.FragmentSettingsBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.presentation.other.SetNavigationColor
+import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.presentation.activity.AlertActivity
 import team.four.mys.presentation.activity.DarkModeActivity
 import team.four.mys.presentation.activity.FirstActivity
@@ -61,7 +61,7 @@ class SettingsFragment : Fragment() {
             )
         )
 
-        SetNavigationColor().execute(
+        SetNavigationColorUseCase().execute(
             SetNavigationBarParam(
                 requireActivity(),
                 ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)

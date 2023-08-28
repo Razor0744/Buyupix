@@ -11,7 +11,7 @@ import team.four.mys.data.objects.ObjectsData.alert
 import team.four.mys.databinding.ActivityAlertBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.presentation.other.SetNavigationColor
+import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.presentation.adapters.AlertAdapter
 import team.four.mys.presentation.viewmodelsactivity.AlertViewModel
 
@@ -22,10 +22,6 @@ class AlertActivity : AppCompatActivity() {
     private val viewModel by viewModel<AlertViewModel>()
 
     private lateinit var adapterAlert: AlertAdapter
-
-    val CHANNEL_ID = "425"
-    val CHANNEL_NAME = "Buyupix"
-    val NOTIF_ID = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +42,7 @@ class AlertActivity : AppCompatActivity() {
             )
         )
 
-        SetNavigationColor().execute(
+        SetNavigationColorUseCase().execute(
             SetNavigationBarParam(
                 this,
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)

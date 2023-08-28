@@ -5,14 +5,14 @@ import team.four.mys.data.api.retrofit.currencies.Retrofit
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Valute
 import team.four.mys.domain.usecases.*
-import team.four.mys.presentation.other.SetStatusBarColor
+import team.four.mys.domain.usecases.SetStatusBarColorUseCase
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 class CreateSubscriptionViewModel(
-    private val setStatusBarColor: SetStatusBarColor,
+    private val setStatusBarColorUseCase: SetStatusBarColorUseCase,
     private val getUIDUseCase: GetUIDUseCase,
     private val setNumberOfSubscriptionsUseCase: SetNumberOfSubscriptionsUseCase,
     private val setCategoryUseCase: SetCategoryUseCase,
@@ -24,7 +24,7 @@ class CreateSubscriptionViewModel(
     private var valute: Valute? = null
 
     fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
-        setStatusBarColor.execute(setStatusBarParam)
+        setStatusBarColorUseCase.execute(setStatusBarParam)
     }
 
     fun monthYearFromDate(date: LocalDate): String {

@@ -15,7 +15,7 @@ import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.domain.usecases.GetSettingsUseCase
-import team.four.mys.presentation.other.SetNavigationColor
+import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.domain.usecases.SetSettingsUseCase
 import team.four.mys.presentation.adapters.DarkModeAdapter
 import team.four.mys.presentation.viewmodelsactivity.DarkModeViewModel
@@ -53,7 +53,7 @@ class DarkModeActivity : AppCompatActivity() {
             )
         )
 
-        SetNavigationColor().execute(
+        SetNavigationColorUseCase().execute(
             SetNavigationBarParam(
                 activity = this,
                 color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)

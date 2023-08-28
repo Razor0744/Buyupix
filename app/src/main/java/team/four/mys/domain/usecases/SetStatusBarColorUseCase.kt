@@ -1,12 +1,11 @@
-package team.four.mys.presentation.other
+package team.four.mys.domain.usecases
 
 import android.content.res.Configuration
 import android.view.View
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SettingsPreferencesParam
-import team.four.mys.domain.usecases.GetSettingsUseCase
 
-class SetStatusBarColor(
+class SetStatusBarColorUseCase(
     private val getSettingsUseCase: GetSettingsUseCase
 ) {
 

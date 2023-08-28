@@ -13,9 +13,8 @@ import team.four.mys.R
 import team.four.mys.databinding.ActivityFirstBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.presentation.other.SetNavigationColor
-import team.four.mys.presentation.other.SetTheme
-import team.four.mys.presentation.other.LocaleHelper
+import team.four.mys.domain.usecases.LocaleHelperUseCase
+import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel
 
 class FirstActivity : AppCompatActivity() {
@@ -26,7 +25,7 @@ class FirstActivity : AppCompatActivity() {
     private val viewModel by viewModel<FirstActivityViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        SetTheme(context = applicationContext).execute()
+        viewModel.setTheme()
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -42,7 +41,7 @@ class FirstActivity : AppCompatActivity() {
             )
         )
 
-        SetNavigationColor().execute(
+        SetNavigationColorUseCase().execute(
             SetNavigationBarParam(
                 this,
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
@@ -67,7 +66,7 @@ class FirstActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(base: Context) {
-        LocaleHelper().setLocale(base, LocaleHelper().getLanguage(base))
-        super.attachBaseContext(LocaleHelper().onAttach(base))
+        LocaleHelperUseCase().setLocale(base, LocaleHelperUseCase().getLanguage(base))
+        super.attachBaseContext(LocaleHelperUseCase().onAttach(base))
     }
 }

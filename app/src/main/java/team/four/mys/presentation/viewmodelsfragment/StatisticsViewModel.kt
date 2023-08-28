@@ -7,12 +7,12 @@ import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Valute
 import team.four.mys.domain.usecases.GetNumberOfSubscriptionsUseCase
 import team.four.mys.domain.usecases.GetPriceFireBaseUseCase
-import team.four.mys.presentation.other.SetStatusBarColor
+import team.four.mys.domain.usecases.SetStatusBarColorUseCase
 import java.text.SimpleDateFormat
 import java.util.*
 
 class StatisticsViewModel(
-    private val setStatusBarColor: SetStatusBarColor,
+    private val setStatusBarColorUseCase: SetStatusBarColorUseCase,
     private val retrofit: Retrofit,
     private val getPriceFireBaseUseCase: GetPriceFireBaseUseCase,
     private val getNumberOfSubscriptionsUseCase: GetNumberOfSubscriptionsUseCase
@@ -47,7 +47,7 @@ class StatisticsViewModel(
     }
 
     fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
-        setStatusBarColor.execute(setStatusBarParam)
+        setStatusBarColorUseCase.execute(setStatusBarParam)
     }
 
     suspend fun getNumberOfSubscriptions() {

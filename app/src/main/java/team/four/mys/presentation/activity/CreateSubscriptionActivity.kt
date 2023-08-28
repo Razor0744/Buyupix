@@ -23,7 +23,7 @@ import team.four.mys.domain.usecases.GetPriceSpinnerUseCase
 import team.four.mys.domain.usecases.GetUrlImageUseCase
 import team.four.mys.presentation.adapters.CalendarAdapter
 import team.four.mys.presentation.adapters.CurrenciesAdapter
-import team.four.mys.presentation.other.CustomPositionItemDecoration
+import team.four.mys.domain.usecases.CustomPositionItemDecorationUseCase
 import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
 import java.time.LocalDate
 
@@ -131,7 +131,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
             R.drawable.item_decoration_price,
             null
         )?.let {
-            CustomPositionItemDecoration(
+            CustomPositionItemDecorationUseCase(
                 it
             )
         }

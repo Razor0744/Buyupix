@@ -16,7 +16,7 @@ import team.four.mys.databinding.FragmentCodeSendBinding
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.presentation.activity.AuthenticationActivity
-import team.four.mys.presentation.other.SetNavigationColor
+import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.presentation.viewmodelsfragment.CodeSendViewModel
 
 class CodeSendFragment : Fragment() {
@@ -103,7 +103,7 @@ class CodeSendFragment : Fragment() {
             )
         )
 
-        SetNavigationColor().execute(
+        SetNavigationColorUseCase().execute(
             SetNavigationBarParam(
                 activity = requireActivity(),
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)

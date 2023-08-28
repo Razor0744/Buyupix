@@ -7,12 +7,12 @@ import team.four.mys.domain.models.Valute
 import team.four.mys.domain.usecases.GetPriceFireBaseUseCase
 import team.four.mys.data.api.retrofit.currencies.Retrofit
 import team.four.mys.domain.usecases.GetUIDUseCase
-import team.four.mys.presentation.other.SetStatusBarColor
+import team.four.mys.domain.usecases.SetStatusBarColorUseCase
 import java.text.SimpleDateFormat
 import java.util.*
 
 class HomeViewModel(
-    private val setStatusBarColor: SetStatusBarColor,
+    private val setStatusBarColorUseCase: SetStatusBarColorUseCase,
     private val retrofit: Retrofit,
     private val getPriceFireBaseUseCase: GetPriceFireBaseUseCase,
     private val getUIDUseCase: GetUIDUseCase
@@ -44,7 +44,7 @@ class HomeViewModel(
     }
 
     fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
-        setStatusBarColor.execute(setStatusBarParam)
+        setStatusBarColorUseCase.execute(setStatusBarParam)
     }
 
     fun getUID(): String {

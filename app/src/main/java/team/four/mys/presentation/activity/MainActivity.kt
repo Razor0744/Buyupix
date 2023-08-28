@@ -10,11 +10,11 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.ActivityMainBinding
-import team.four.mys.presentation.other.SetTheme
+import team.four.mys.domain.usecases.SetThemeUseCase
 import team.four.mys.presentation.fragments.HomeFragment
 import team.four.mys.presentation.fragments.SettingsFragment
 import team.four.mys.presentation.fragments.StatisticsFragment
-import team.four.mys.presentation.other.LocaleHelper
+import team.four.mys.domain.usecases.LocaleHelperUseCase
 import team.four.mys.presentation.viewmodelsactivity.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     var otherPrice = 12.99f
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        SetTheme(context = applicationContext).execute()
+        viewModel.setTheme()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -89,8 +89,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(base: Context) {
-        LocaleHelper().setLocale(base, LocaleHelper().getLanguage(base))
-        super.attachBaseContext(LocaleHelper().onAttach(base))
+        LocaleHelperUseCase().setLocale(base, LocaleHelperUseCase().getLanguage(base))
+        super.attachBaseContext(LocaleHelperUseCase().onAttach(base))
     }
 
     private suspend fun getCategories() {
