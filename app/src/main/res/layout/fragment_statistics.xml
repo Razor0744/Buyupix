@@ -20,14 +20,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
+    <team.four.mys.presentation.customView.PieChart
+        android:id="@+id/pie_chart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_centerHorizontal="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text" />
+        app:layout_constraintTop_toBottomOf="@id/text"
+        app:pieChartCircleSectionSpace="2"
+        app:pieChartCircleStrokeWidth="6dp"
+        app:pieChartColors="@array/pieChartColorArray" />
 
     <TextView
         android:id="@+id/month"
@@ -37,10 +39,10 @@
         android:fontFamily="@font/roboto"
         android:textColor="@color/textSecondary"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/pieChart"
-        app:layout_constraintLeft_toLeftOf="@id/pieChart"
-        app:layout_constraintRight_toRightOf="@id/pieChart"
-        app:layout_constraintTop_toTopOf="@id/pieChart" />
+        app:layout_constraintBottom_toBottomOf="@id/pie_chart"
+        app:layout_constraintLeft_toLeftOf="@id/pie_chart"
+        app:layout_constraintRight_toRightOf="@id/pie_chart"
+        app:layout_constraintTop_toTopOf="@id/pie_chart" />
 
     <TextView
         android:id="@+id/price"
@@ -49,8 +51,8 @@
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/textMain"
         android:textSize="22sp"
-        app:layout_constraintLeft_toLeftOf="@id/pieChart"
-        app:layout_constraintRight_toRightOf="@id/pieChart"
+        app:layout_constraintLeft_toLeftOf="@id/pie_chart"
+        app:layout_constraintRight_toRightOf="@id/pie_chart"
         app:layout_constraintTop_toBottomOf="@id/month" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -66,7 +68,7 @@
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/defenceCategory"
-        app:layout_constraintTop_toBottomOf="@id/pieChart" />
+        app:layout_constraintTop_toBottomOf="@id/pie_chart" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/defenceCategory"
@@ -79,7 +81,7 @@
         android:textSize="14sp"
         app:layout_constraintLeft_toRightOf="@id/gamingCategory"
         app:layout_constraintRight_toLeftOf="@id/cloudCategory"
-        app:layout_constraintTop_toBottomOf="@id/pieChart" />
+        app:layout_constraintTop_toBottomOf="@id/pie_chart" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/cloudCategory"
@@ -94,7 +96,7 @@
         android:textSize="14sp"
         app:layout_constraintLeft_toRightOf="@id/defenceCategory"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pieChart" />
+        app:layout_constraintTop_toBottomOf="@id/pie_chart" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/moviesCategory"
