@@ -5,13 +5,7 @@ import team.four.mys.domain.models.*
 
 object ObjectsData {
 
-    val alert = arrayListOf(
-        Alert("The day before the write-off"),
-        Alert("Two days before cancellation"),
-        Alert("Three days before cancellation")
-    )
-
-    val country = arrayListOf(
+    val country = listOf(
         Country(R.drawable.language_russia, "Russian Federation", "+7"),
         Country(R.drawable.language_usa, "USA", "+1"),
         Country(R.drawable.language_russia, "Belarus", "+375")
