@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import team.four.mys.data.objects.ObjectsData
+import team.four.mys.R
 import team.four.mys.databinding.FragmentCountryCodeBinding
+import team.four.mys.domain.models.Country
 import team.four.mys.presentation.activity.AuthenticationActivity
 import team.four.mys.presentation.adapters.CountryAdapter
 
@@ -42,7 +43,7 @@ class CountryCodeFragment : Fragment() {
     private fun adapter() {
         val adapterAlert =
             CountryAdapter(
-                ObjectsData.country
+                country = country
             ) { alertClick ->
                 (activity as AuthenticationActivity).replaceFragment(
                     LoginFragment(),
@@ -52,5 +53,13 @@ class CountryCodeFragment : Fragment() {
             }
         binding?.recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         binding?.recyclerView?.adapter = adapterAlert
+    }
+
+    companion object {
+        val country = listOf(
+            Country(R.drawable.language_russia, "Russian Federation", "+7"),
+            Country(R.drawable.language_usa, "USA", "+1"),
+            Country(R.drawable.language_russia, "Belarus", "+375")
+        )
     }
 }

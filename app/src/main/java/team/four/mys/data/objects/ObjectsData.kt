@@ -1,15 +1,10 @@
 package team.four.mys.data.objects
 
-import team.four.mys.R
-import team.four.mys.domain.models.*
+import team.four.mys.domain.models.Currencies
+import team.four.mys.domain.models.DarkMode
+import team.four.mys.domain.models.Language
 
 object ObjectsData {
-
-    val country = listOf(
-        Country(R.drawable.language_russia, "Russian Federation", "+7"),
-        Country(R.drawable.language_usa, "USA", "+1"),
-        Country(R.drawable.language_russia, "Belarus", "+375")
-    )
 
     val currencies = arrayListOf(
         Currencies("USD"),
