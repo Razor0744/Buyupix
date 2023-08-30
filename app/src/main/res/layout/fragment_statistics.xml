@@ -28,7 +28,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text"
         app:pieChartCircleSectionSpace="2"
-        app:pieChartCircleStrokeWidth="6dp"
+        app:pieChartCircleStrokeWidth="10dp"
         app:pieChartColors="@array/pieChartColorArray" />
 
     <TextView

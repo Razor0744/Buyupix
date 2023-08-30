@@ -34,8 +34,6 @@ import team.four.mys.extensions.dpToPx
  * @property circlePadding     padding для всех сторон круговой диаграммы.
  * @property circlePaintRoundSize значение округления концов линий объектов круга.
  * @property circleSectionSpace   значение расстояние-процент между линиями круга.
- * @property circleCenterX        значение координаты X центра круговой диаграммы.
- * @property circleCenterY        значение координаты Y центра круговой диаграммы.
  * @property totalAmount          итоговый результат - сумма значений Int в [dataList].
  * @property pieChartColors       список цветов круговой диаграммы в виде текстового представления.
  * @property percentageCircleList список моделей для отрисовки.
@@ -55,8 +53,8 @@ class PieChart @JvmOverloads constructor(
     companion object {
 
         /** Процент ширины для отображения круговой диаграммы от общей ширины View */
-        // 0.97 - 100%
-        private const val CIRCLE_WIDTH_PERCENT = 0.97
+        // 0.95 - 100%
+        private const val CIRCLE_WIDTH_PERCENT = 0.95
 
         /** Базовые значения ширины и высоты View */
         const val DEFAULT_VIEW_SIZE_HEIGHT = 150
@@ -69,8 +67,6 @@ class PieChart @JvmOverloads constructor(
     private var circlePadding: Float = context.dpToPx(0)
     private var circlePaintRoundSize: Boolean = true
     private var circleSectionSpace: Float = 3F
-    private var circleCenterX: Float = 0F
-    private var circleCenterY: Float = 0F
     private var totalAmount: Int = 0
     private var pieChartColors: List<String> = listOf()
     private var percentageCircleList: List<PieChartModel> = listOf()
