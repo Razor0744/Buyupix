@@ -7,10 +7,10 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
-import team.four.mys.data.objects.ObjectsData.darkMode
 import team.four.mys.data.repository.SettingsRepositoryImpl
 import team.four.mys.data.storage.SettingsPreferences
 import team.four.mys.databinding.ActivityDarkModeBinding
+import team.four.mys.domain.models.DarkMode
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SettingsPreferencesParam
@@ -80,5 +80,13 @@ class DarkModeActivity : AppCompatActivity() {
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapterDarkMode
+    }
+
+    companion object {
+        val darkMode = listOf(
+            DarkMode("Dark Theme"),
+            DarkMode("Light Theme"),
+            DarkMode("System Theme")
+        )
     }
 }

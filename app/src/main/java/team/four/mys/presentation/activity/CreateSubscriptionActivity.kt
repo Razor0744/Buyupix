@@ -16,14 +16,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
-import team.four.mys.data.objects.ObjectsData.currencies
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
+import team.four.mys.domain.models.Currencies
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.domain.usecases.CustomPositionItemDecorationUseCase
 import team.four.mys.domain.usecases.GetPriceSpinnerUseCase
 import team.four.mys.domain.usecases.GetUrlImageUseCase
 import team.four.mys.presentation.adapters.CalendarAdapter
 import team.four.mys.presentation.adapters.CurrenciesAdapter
-import team.four.mys.domain.usecases.CustomPositionItemDecorationUseCase
 import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
 import java.time.LocalDate
 
@@ -374,5 +374,20 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 null
             )
         }
+    }
+
+    companion object {
+        val currencies = listOf(
+            Currencies("USD"),
+            Currencies("EUR"),
+            Currencies("BYN"),
+            Currencies("AUD"),
+            Currencies("AZN"),
+            Currencies("ALL"),
+            Currencies("DZD"),
+            Currencies("BGN"),
+            Currencies("BRL"),
+            Currencies("RUB")
+        )
     }
 }
