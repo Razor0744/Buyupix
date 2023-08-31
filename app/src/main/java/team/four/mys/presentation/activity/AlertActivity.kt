@@ -52,7 +52,6 @@ class AlertActivity : AppCompatActivity() {
     private fun adapter() {
         adapterAlert =
             AlertAdapter(
-                this,
                 alert,
                 viewModel.getSettings()
             ) { alertClick ->

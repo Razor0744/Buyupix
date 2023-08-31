@@ -1,14 +1,13 @@
 package team.four.mys.presentation.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import team.four.mys.domain.models.Alert
+import team.four.mys.R
 import team.four.mys.databinding.RecyclerviewItemAlertBinding
+import team.four.mys.domain.models.Alert
 
 class AlertAdapter(
-    private val context: Context,
     private val alert: List<Alert>,
     private val alertDay: String?,
     private val itemClick: (Alert) -> Unit
@@ -21,28 +20,25 @@ class AlertAdapter(
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindSubscription(alert: Alert, context: Context, alertDay: String) {
+        fun bindSubscription(alert: Alert, alertDay: String) {
 
             binding.textAlert.text = alert.name
 
-            val resourceIdImage =
-                context.resources.getIdentifier(
-                    "ic_radio_button_click",
-                    "drawable",
-                    context.packageName
-                )
             when (alertDay) {
                 "The day before the write-off" -> if (alert.name == "The day before the write-off") {
-                    binding.imageAlert.setImageResource(resourceIdImage)
+                    binding.imageAlert.setImageResource(R.drawable.ic_radio_button_click)
                 }
+
                 "Two days before cancellation" -> if (alert.name == "Two days before cancellation") {
-                    binding.imageAlert.setImageResource(resourceIdImage)
+                    binding.imageAlert.setImageResource(R.drawable.ic_radio_button_click)
                 }
+
                 "Three days before cancellation" -> if (alert.name == "Three days before cancellation") {
-                    binding.imageAlert.setImageResource(resourceIdImage)
+                    binding.imageAlert.setImageResource(R.drawable.ic_radio_button_click)
                 }
+
                 else -> if (alert.name == "The day before the write-off") {
-                    binding.imageAlert.setImageResource(resourceIdImage)
+                    binding.imageAlert.setImageResource(R.drawable.ic_radio_button_click)
                 }
             }
 
@@ -61,7 +57,7 @@ class AlertAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolderAlert).bindSubscription(alert[position], context, alertDay ?: "")
+        (holder as ViewHolderAlert).bindSubscription(alert[position], alertDay ?: "")
     }
 
     override fun getItemCount() = alert.size
