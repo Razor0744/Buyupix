@@ -11,7 +11,6 @@ import team.four.mys.databinding.ActivityAlertBinding
 import team.four.mys.domain.models.Alert
 import team.four.mys.domain.models.SetNavigationBarParam
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.presentation.adapters.AlertAdapter
 import team.four.mys.presentation.viewmodelsactivity.AlertViewModel
 
@@ -34,20 +33,20 @@ class AlertActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        adapter()
         viewModel.setStatusBarColor(
             SetStatusBarParam(
                 activity = this,
                 color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
-
-        SetNavigationColorUseCase().execute(
+        viewModel.setNavigationColor(
             SetNavigationBarParam(
-                this,
-                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+                activity = this,
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
+
+        adapter()
     }
 
     private fun adapter() {

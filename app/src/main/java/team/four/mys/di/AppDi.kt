@@ -22,7 +22,8 @@ val appModule = module {
         AlertViewModel(
             getSettingsUseCase = get(),
             setSettingsUseCase = get(),
-            setStatusBarColorUseCase = get()
+            setStatusBarColorUseCase = get(),
+            setNavigationColorUseCase = get()
         )
     }
 
@@ -67,7 +68,8 @@ val appModule = module {
 
     viewModel<LanguageViewModel> {
         LanguageViewModel(
-            setStatusBarColorUseCase = get()
+            setStatusBarColorUseCase = get(),
+            getSettingsUseCase = get()
         )
     }
 

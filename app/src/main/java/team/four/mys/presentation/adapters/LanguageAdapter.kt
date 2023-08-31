@@ -1,14 +1,13 @@
 package team.four.mys.presentation.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import team.four.mys.domain.models.Language
+import team.four.mys.R
 import team.four.mys.databinding.RecyclerviewItemLanguageBinding
+import team.four.mys.domain.models.Language
 
 class LanguageAdapter(
-    private val context: Context,
     private val language: List<Language>,
     private val locale: String?,
     private val itemClick: (Language) -> Unit
@@ -21,29 +20,23 @@ class LanguageAdapter(
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindSubscription(language: Language, context: Context, locale: String) {
+        fun bindSubscription(language: Language, locale: String) {
 
             binding.textLanguage.text = language.name
 
-            val resourceIdIcon =
-                context.resources.getIdentifier(language.icon, "drawable", context.packageName)
-            binding.iconLanguage.setImageResource(resourceIdIcon)
+            binding.iconLanguage.setImageResource(language.icon)
 
-            val resourceIdImage =
-                context.resources.getIdentifier(
-                    "ic_radio_button_click",
-                    "drawable",
-                    context.packageName
-                )
             when (locale) {
                 "ru" -> if (language.name == "Russia") {
-                    binding.imageLanguage.setImageResource(resourceIdImage)
+                    binding.imageLanguage.setImageResource(R.drawable.ic_radio_button_click)
                 }
+
                 "en" -> if (language.name == "USA") {
-                    binding.imageLanguage.setImageResource(resourceIdImage)
+                    binding.imageLanguage.setImageResource(R.drawable.ic_radio_button_click)
                 }
+
                 else -> if (language.name == "USA") {
-                    binding.imageLanguage.setImageResource(resourceIdImage)
+                    binding.imageLanguage.setImageResource(R.drawable.ic_radio_button_click)
                 }
             }
 
@@ -62,7 +55,7 @@ class LanguageAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolderLanguage).bindSubscription(language[position], context, locale ?: "")
+        (holder as ViewHolderLanguage).bindSubscription(language[position], locale ?: "")
     }
 
     override fun getItemCount() = language.size
