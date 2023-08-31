@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentLoginBinding
-import team.four.mys.domain.models.SetNavigationBarParam
+import team.four.mys.domain.models.SetNavigationColorParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.presentation.activity.AuthenticationActivity
 import team.four.mys.presentation.activity.FirstActivity
@@ -30,9 +30,9 @@ class LoginFragment : Fragment() {
 
     private val viewModel by viewModel<LoginViewModel>()
 
-    private val countryCodes = arrayListOf("+7", "+375", "+1")
-    private val countryName = arrayListOf("Russian Federation", "Belarus", "USA")
-    private val countryNumberFormat = arrayListOf("0000000000", "000000000", "0000000000")
+    private val countryCodes = listOf("+7", "+375", "+1")
+    private val countryName = listOf("Russian Federation", "Belarus", "USA")
+    private val countryNumberFormat = listOf("0000000000", "000000000", "0000000000")
     private lateinit var countryNumberFormat2: String
     private var lengthCountryCode = 0
 
@@ -189,7 +189,7 @@ class LoginFragment : Fragment() {
             )
         )
         SetNavigationColorUseCase().execute(
-            SetNavigationBarParam(
+            SetNavigationColorParam(
                 requireActivity(),
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )

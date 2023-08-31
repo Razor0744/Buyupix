@@ -9,7 +9,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.ActivityAlertBinding
 import team.four.mys.domain.models.Alert
-import team.four.mys.domain.models.SetNavigationBarParam
+import team.four.mys.domain.models.SetNavigationColorParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.presentation.adapters.AlertAdapter
 import team.four.mys.presentation.viewmodelsactivity.AlertViewModel
@@ -40,7 +40,7 @@ class AlertActivity : AppCompatActivity() {
             )
         )
         viewModel.setNavigationColor(
-            SetNavigationBarParam(
+            SetNavigationColorParam(
                 activity = this,
                 color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )

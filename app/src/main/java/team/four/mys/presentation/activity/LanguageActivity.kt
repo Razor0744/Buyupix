@@ -9,7 +9,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.ActivityLanguageBinding
 import team.four.mys.domain.models.Language
-import team.four.mys.domain.models.SetNavigationBarParam
+import team.four.mys.domain.models.SetNavigationColorParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.domain.usecases.LocaleHelperUseCase
@@ -46,7 +46,7 @@ class LanguageActivity : AppCompatActivity() {
         )
 
         SetNavigationColorUseCase().execute(
-            SetNavigationBarParam(
+            SetNavigationColorParam(
                 this,
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )

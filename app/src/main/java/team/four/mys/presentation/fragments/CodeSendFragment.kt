@@ -13,7 +13,7 @@ import com.google.firebase.auth.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentCodeSendBinding
-import team.four.mys.domain.models.SetNavigationBarParam
+import team.four.mys.domain.models.SetNavigationColorParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.presentation.activity.AuthenticationActivity
 import team.four.mys.domain.usecases.SetNavigationColorUseCase
@@ -104,7 +104,7 @@ class CodeSendFragment : Fragment() {
         )
 
         SetNavigationColorUseCase().execute(
-            SetNavigationBarParam(
+            SetNavigationColorParam(
                 activity = requireActivity(),
                 ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )

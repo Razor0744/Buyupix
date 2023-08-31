@@ -38,7 +38,8 @@ val appModule = module {
     viewModel<FirstActivityViewModel> {
         FirstActivityViewModel(
             setStatusBarColorUseCase = get(),
-            setThemeUseCase = get()
+            setThemeUseCase = get(),
+            setNavigationColorUseCase = get()
         )
     }
 

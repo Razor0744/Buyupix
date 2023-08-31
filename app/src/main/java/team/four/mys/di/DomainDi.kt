@@ -62,4 +62,8 @@ val domainModule = module {
     factory<SetThemeUseCase> {
         SetThemeUseCase(getSettingsUseCase = get())
     }
+
+    factory<SetNavigationColorUseCase> {
+        SetNavigationColorUseCase()
+    }
 }

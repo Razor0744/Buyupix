@@ -1,10 +1,10 @@
 package team.four.mys.domain.usecases
 
-import team.four.mys.domain.models.SetNavigationBarParam
+import team.four.mys.domain.models.SetNavigationColorParam
 
 class SetNavigationColorUseCase {
 
-    fun execute(param: SetNavigationBarParam) {
-        param.activity.window.navigationBarColor = param.color
+    fun execute(setNavigationColorParam: SetNavigationColorParam) {
+        setNavigationColorParam.activity.window.navigationBarColor = setNavigationColorParam.color
     }
 }

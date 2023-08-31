@@ -11,10 +11,9 @@ import com.google.firebase.ktx.Firebase
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.ActivityFirstBinding
-import team.four.mys.domain.models.SetNavigationBarParam
+import team.four.mys.domain.models.SetNavigationColorParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.LocaleHelperUseCase
-import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel
 
 class FirstActivity : AppCompatActivity() {
@@ -41,10 +40,10 @@ class FirstActivity : AppCompatActivity() {
             )
         )
 
-        SetNavigationColorUseCase().execute(
-            SetNavigationBarParam(
-                this,
-                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+        viewModel.setNavigationColor(
+            SetNavigationColorParam(
+                activity = this,
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
     }

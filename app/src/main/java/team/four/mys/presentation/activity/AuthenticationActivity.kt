@@ -7,13 +7,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import team.four.mys.R
 import team.four.mys.databinding.ActivityAuthenticationBinding
 import team.four.mys.presentation.fragments.CodeSendFragment
 import team.four.mys.presentation.fragments.LoginFragment
-import team.four.mys.presentation.viewmodelsactivity.AuthenticationViewModel
 import java.util.concurrent.TimeUnit
 
 class AuthenticationActivity : AppCompatActivity() {
@@ -23,8 +26,6 @@ class AuthenticationActivity : AppCompatActivity() {
     //Fragments
     private val loginFragment = LoginFragment()
     private val codeSendFragment = CodeSendFragment()
-
-    private val viewModel by viewModel<AuthenticationViewModel>()
 
     // firebase
     private lateinit var auth: FirebaseAuth
@@ -157,7 +158,7 @@ class AuthenticationActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    fun setPhone(phone: String) {
-        phoneNumber = phone
+    fun setPhone(number: String) {
+        phoneNumber = number
     }
 }
