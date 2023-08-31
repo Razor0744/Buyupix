@@ -44,11 +44,11 @@ class CountryCodeFragment : Fragment() {
         val adapterAlert =
             CountryAdapter(
                 country = country
-            ) { alertClick ->
+            ) {
                 (activity as AuthenticationActivity).replaceFragment(
                     LoginFragment(),
                     key = "number",
-                    value = alertClick.number
+                    value = it.number
                 )
             }
         binding?.recyclerView?.layoutManager = LinearLayoutManager(requireContext())

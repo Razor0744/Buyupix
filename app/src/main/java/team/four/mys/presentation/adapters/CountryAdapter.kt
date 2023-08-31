@@ -22,7 +22,7 @@ class CountryAdapter(
 
             binding.text.text = country.name
 
-            country.icon?.let { binding.icon.setImageResource(it) }
+            binding.icon.setImageResource(country.icon)
 
             binding.number.text = country.number
 
