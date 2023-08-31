@@ -41,7 +41,7 @@ class CountryAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolderAlert).bindSubscription(country[position])
+        (holder as ViewHolderAlert).bindSubscription(country = country[position])
     }
 
     override fun getItemCount() = country.size

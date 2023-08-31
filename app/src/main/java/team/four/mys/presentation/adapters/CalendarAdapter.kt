@@ -19,6 +19,7 @@ class CalendarAdapter(
         fun bind(days: String, itemClick: (Int) -> Unit) {
 
             binding.dayOfCalendar.text = days
+
             binding.root.setOnClickListener { itemClick(absoluteAdapterPosition) }
         }
     }
@@ -34,8 +35,7 @@ class CalendarAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
-            (holder as ViewHolder).bind(days[position], itemClick)
+        (holder as ViewHolder).bind(days = days[position], itemClick = itemClick)
     }
 
     override fun getItemCount() = days.size

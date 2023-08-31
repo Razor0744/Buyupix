@@ -64,7 +64,6 @@ class DarkModeActivity : AppCompatActivity() {
     private fun adapter() {
         adapterDarkMode =
             DarkModeAdapter(
-                this,
                 darkMode,
                 getSettingsUseCase.execute(SettingsPreferencesParam(key = "DarkMode")).value
             ) { darkModeClick ->

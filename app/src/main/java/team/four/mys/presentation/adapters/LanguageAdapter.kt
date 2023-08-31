@@ -26,17 +26,18 @@ class LanguageAdapter(
 
             binding.iconLanguage.setImageResource(language.icon)
 
+            val resourceImage = R.drawable.ic_radio_button_click
             when (locale) {
                 "ru" -> if (language.name == "Russia") {
-                    binding.imageLanguage.setImageResource(R.drawable.ic_radio_button_click)
+                    binding.imageLanguage.setImageResource(resourceImage)
                 }
 
                 "en" -> if (language.name == "USA") {
-                    binding.imageLanguage.setImageResource(R.drawable.ic_radio_button_click)
+                    binding.imageLanguage.setImageResource(resourceImage)
                 }
 
                 else -> if (language.name == "USA") {
-                    binding.imageLanguage.setImageResource(R.drawable.ic_radio_button_click)
+                    binding.imageLanguage.setImageResource(resourceImage)
                 }
             }
 
@@ -55,7 +56,10 @@ class LanguageAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolderLanguage).bindSubscription(language[position], locale ?: "")
+        (holder as ViewHolderLanguage).bindSubscription(
+            language = language[position],
+            locale = locale ?: ""
+        )
     }
 
     override fun getItemCount() = language.size

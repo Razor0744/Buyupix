@@ -24,21 +24,22 @@ class AlertAdapter(
 
             binding.textAlert.text = alert.name
 
+            val resourceImage = R.drawable.ic_radio_button_click
             when (alertDay) {
                 "The day before the write-off" -> if (alert.name == "The day before the write-off") {
-                    binding.imageAlert.setImageResource(R.drawable.ic_radio_button_click)
+                    binding.imageAlert.setImageResource(resourceImage)
                 }
 
                 "Two days before cancellation" -> if (alert.name == "Two days before cancellation") {
-                    binding.imageAlert.setImageResource(R.drawable.ic_radio_button_click)
+                    binding.imageAlert.setImageResource(resourceImage)
                 }
 
                 "Three days before cancellation" -> if (alert.name == "Three days before cancellation") {
-                    binding.imageAlert.setImageResource(R.drawable.ic_radio_button_click)
+                    binding.imageAlert.setImageResource(resourceImage)
                 }
 
                 else -> if (alert.name == "The day before the write-off") {
-                    binding.imageAlert.setImageResource(R.drawable.ic_radio_button_click)
+                    binding.imageAlert.setImageResource(resourceImage)
                 }
             }
 
@@ -57,7 +58,10 @@ class AlertAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolderAlert).bindSubscription(alert[position], alertDay ?: "")
+        (holder as ViewHolderAlert).bindSubscription(
+            alert = alert[position],
+            alertDay = alertDay ?: ""
+        )
     }
 
     override fun getItemCount() = alert.size
