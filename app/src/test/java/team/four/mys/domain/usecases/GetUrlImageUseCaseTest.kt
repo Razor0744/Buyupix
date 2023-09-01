@@ -9,7 +9,7 @@ class GetUrlImageUseCaseTest {
     fun shouldReturnUrlImage() {
         val actual = GetUrlImageUseCase().execute(name = "Spotify")
         val expected =
-            "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Spotify.png?alt=media&token=89cd172f-201d-4a5e-acc6-e0da3344c26e"
+            "https://firebasestorage.googleapis.com/v0/b/my-subscriptions-96306.appspot.com/o/Logo%20Sub%2FSpotify.png?alt=media&token=1fd2ee8a-4215-4820-9438-6ced8eacdfd9"
 
         Assert.assertEquals(expected, actual)
     }

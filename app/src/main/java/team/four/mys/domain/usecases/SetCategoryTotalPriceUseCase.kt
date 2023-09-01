@@ -5,11 +5,10 @@ import team.four.mys.domain.models.Valute
 class SetCategoryTotalPriceUseCase {
 
     fun execute(price: Double, priceSpinner: String, valute: Valute?): Double {
-        var totalPrice = 0.0
-        when (priceSpinner) {
-            "BYN" -> totalPrice = price * valute?.BYN?.Value!! / valute.USD?.Value!!
-            "EUR" -> totalPrice = price * valute?.EUR?.Value!! / valute.USD?.Value!!
-            else -> totalPrice = price
+        val totalPrice: Double = when (priceSpinner) {
+            "BYN" -> price * valute?.BYN?.Value!! / valute.USD?.Value!!
+            "EUR" -> price * valute?.EUR?.Value!! / valute.USD?.Value!!
+            else -> price
         }
         return totalPrice
     }
