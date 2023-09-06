@@ -32,5 +32,18 @@ class SubscriptionInfoActivity : AppCompatActivity() {
             )
         )
 
+        viewModel.subscriptionInfo.observe(this){
+            binding.name2.text = it.name
+            binding.name.text = it.name
+            binding.price2.text =
+                getString(R.string.priceInfo, it.currencyIcon, it.price)
+            binding.price.text =
+                getString(R.string.priceInfo, it.currencyIcon, it.price)
+            binding.description.text = it.description
+            binding.category.text = it.category
+            binding.switchReminder.isActivated = it.reminder
+        }
+
+        viewModel.getSubscriptionInfo(id = intent.getLongExtra("id", 1))
     }
 }

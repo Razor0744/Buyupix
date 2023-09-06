@@ -10,6 +10,10 @@ class RoomRepositoryImpl(private val subscriptionDao: SubscriptionDao) : RoomRep
         return subscriptionDao.getSubscriptions()
     }
 
+    override suspend fun getSubscriptionInfo(id: Long): Subscription {
+       return subscriptionDao.getSubscriptionInfo(id = id)
+    }
+
     override suspend fun addSubscription(subscription: Subscription) {
         subscriptionDao.addSubscription(subscription = subscription)
     }

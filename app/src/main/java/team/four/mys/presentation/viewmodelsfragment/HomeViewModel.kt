@@ -22,7 +22,7 @@ class HomeViewModel(
     private val retrofit: Retrofit,
     private val getUIDUseCase: GetUIDUseCase,
     private val getSubscriptionsUseCase: GetSubscriptionsUseCase,
-    private val setNavigationColorUseCase: SetNavigationColorUseCase
+    private val setNavigationColorUseCase: SetNavigationColorUseCase,
 ) : ViewModel() {
 
     //Price

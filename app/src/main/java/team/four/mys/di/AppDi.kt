@@ -28,7 +28,8 @@ val appModule = module {
 
     viewModel<SubscriptionInfoViewModel> {
         SubscriptionInfoViewModel(
-            setStatusBarColorUseCase = get()
+            setStatusBarColorUseCase = get(),
+            getSubscriptionInfoUseCase = get()
         )
     }
 

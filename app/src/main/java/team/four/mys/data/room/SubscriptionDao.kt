@@ -13,6 +13,9 @@ interface SubscriptionDao {
     @Query("SELECT * FROM subscriptions")
     suspend fun getSubscriptions(): List<Subscription>
 
+    @Query("SELECT * FROM subscriptions WHERE id == :id")
+    suspend fun getSubscriptionInfo(id: Long): Subscription
+
     @Insert
     suspend fun addSubscription(subscription: Subscription)
 

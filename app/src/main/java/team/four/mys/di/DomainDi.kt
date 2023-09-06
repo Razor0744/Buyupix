@@ -52,4 +52,8 @@ val domainModule = module {
     factory<GetSubscriptionsUseCase> {
         GetSubscriptionsUseCase(roomRepository = get())
     }
+
+    factory<GetSubscriptionInfoUseCase> {
+        GetSubscriptionInfoUseCase(roomRepository = get())
+    }
 }

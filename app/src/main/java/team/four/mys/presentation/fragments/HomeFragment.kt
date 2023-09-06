@@ -14,6 +14,7 @@ import team.four.mys.domain.models.SetNavigationColorParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscription
 import team.four.mys.presentation.activity.CreateSubscriptionActivity
+import team.four.mys.presentation.activity.SubscriptionInfoActivity
 import team.four.mys.presentation.adapters.SubscriptionsAdapter
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
 
@@ -76,6 +77,9 @@ class HomeFragment : Fragment() {
                 subscriptions,
                 viewModel.date()
             ) {
+                val intent = Intent(requireContext(), SubscriptionInfoActivity::class.java)
+                intent.putExtra("id", it.id)
+                startActivity(intent)
             }
         binding.recyclerView.adapter = adapterSubscriptions
     }
