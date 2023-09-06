@@ -174,7 +174,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 val imm = getSystemService(
                     INPUT_METHOD_SERVICE
                 ) as InputMethodManager
-                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+                imm.hideSoftInputFromWindow(binding.name.windowToken, 0)
             }
             binding.name.clearFocus()
             binding.price.clearFocus()
