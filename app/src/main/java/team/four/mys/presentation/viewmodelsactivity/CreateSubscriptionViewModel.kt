@@ -1,24 +1,23 @@
 package team.four.mys.presentation.viewmodelsactivity
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import team.four.mys.data.api.retrofit.currencies.Retrofit
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.domain.models.Subscription
 import team.four.mys.domain.models.Valute
-import team.four.mys.domain.usecases.*
+import team.four.mys.domain.usecases.AddSubscriptionUseCase
 import team.four.mys.domain.usecases.SetStatusBarColorUseCase
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-import java.util.*
+import java.util.Locale
 
 class CreateSubscriptionViewModel(
     private val setStatusBarColorUseCase: SetStatusBarColorUseCase,
-    private val getUIDUseCase: GetUIDUseCase,
-    private val setNumberOfSubscriptionsUseCase: SetNumberOfSubscriptionsUseCase,
-    private val setCategoryUseCase: SetCategoryUseCase,
-    private val categoryOfSubscriptionUseCase: CategoryOfSubscriptionUseCase,
     private val retrofit: Retrofit,
-    private val setCategoryTotalPriceUseCase: SetCategoryTotalPriceUseCase
+    private val addSubscriptionUseCase: AddSubscriptionUseCase
 ) : ViewModel() {
 
     private var valute: Valute? = null
@@ -49,39 +48,12 @@ class CreateSubscriptionViewModel(
         return daysInMonthArray
     }
 
-    fun setNumberOfSubscriptions() {
-        setNumberOfSubscriptionsUseCase.execute()
-    }
-
-    fun getUID(): String {
-        return getUIDUseCase.execute()
-    }
-
-    fun setCategory(category: String, price: Double) {
-        setCategoryUseCase.execute(category = category, price = price)
-    }
-
-    fun categoryOfSubscriptions(name: String): String {
-        return categoryOfSubscriptionUseCase.execute(name)
-    }
-
     suspend fun getCurrencies() {
         valute = retrofit.getCurrencies()
     }
 
-    fun setCategoryTotalPrice(price: Double, priceSpinner: String): Double {
-        println(
-            setCategoryTotalPriceUseCase.execute(
-                price = price,
-                priceSpinner = priceSpinner,
-                valute = valute
-            )
-        )
-        return setCategoryTotalPriceUseCase.execute(
-            price = price,
-            priceSpinner = priceSpinner,
-            valute = valute
-        )
+     fun addSubscription(subscription: Subscription) {
+        viewModelScope.launch { addSubscriptionUseCase.execute(subscription = subscription) }
     }
 
 }

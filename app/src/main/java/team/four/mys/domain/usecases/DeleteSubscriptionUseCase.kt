@@ -1,11 +1,11 @@
 package team.four.mys.domain.usecases
 
-import team.four.mys.domain.models.DeleteSubscriptionParam
-import team.four.mys.domain.repository.FirebaseRepository
+import team.four.mys.domain.models.Subscription
+import team.four.mys.domain.repository.RoomRepository
 
-class DeleteSubscriptionUseCase(private val firebaseRepository: FirebaseRepository) {
+class DeleteSubscriptionUseCase(private val roomRepository: RoomRepository) {
 
-    fun execute(deleteSubscriptionParam: DeleteSubscriptionParam) {
-        firebaseRepository.deleteSubscription(deleteSubscriptionParam = deleteSubscriptionParam)
+    suspend fun execute(subscription: Subscription) {
+        roomRepository.deleteSubscription(subscription = subscription)
     }
 }

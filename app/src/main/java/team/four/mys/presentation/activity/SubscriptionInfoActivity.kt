@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.ActivitySubscriptionInfoBinding
-import team.four.mys.domain.models.DeleteSubscriptionParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SubscriptionInfoParam
 import team.four.mys.presentation.viewmodelsactivity.SubscriptionInfoViewModel
@@ -28,19 +27,6 @@ class SubscriptionInfoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonArrowLeft.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-
-        binding.delete.setOnClickListener {
-            viewModel.deleteSubscription(
-                DeleteSubscriptionParam(
-                    intent.getStringExtra("date").toString(),
-                    intent.getStringExtra("dateType").toString(),
-                    intent.getStringExtra("name").toString(),
-                    intent.getStringExtra("price").toString(),
-                    intent.getStringExtra("priceName").toString()
-                )
-            )
             startActivity(Intent(this, MainActivity::class.java))
         }
 

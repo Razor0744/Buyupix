@@ -3,11 +3,11 @@ package team.four.mys.domain.usecases
 import org.junit.Assert
 import org.junit.Test
 
-class GetPriceSpinnerUseCaseTest {
+class GetCurrencyIconUseCaseTest {
 
     @Test
     fun shouldReturnPriceString() {
-        val useCase = GetPriceSpinnerUseCase()
+        val useCase = GetCurrencyIconUseCase()
         val actual = useCase.execute(item = "USD")
         val expected = "$"
 

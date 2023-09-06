@@ -18,7 +18,7 @@ val domainModule = module {
     }
 
     factory<DeleteSubscriptionUseCase> {
-        DeleteSubscriptionUseCase(firebaseRepository = get())
+        DeleteSubscriptionUseCase(roomRepository = get())
     }
 
     factory<GetPriceFireBaseUseCase> {
@@ -65,5 +65,17 @@ val domainModule = module {
 
     factory<SetNavigationColorUseCase> {
         SetNavigationColorUseCase()
+    }
+
+    factory<UpdateSubscriptionUseCase> {
+        UpdateSubscriptionUseCase(roomRepository = get())
+    }
+
+    factory<AddSubscriptionUseCase> {
+        AddSubscriptionUseCase(roomRepository = get())
+    }
+
+    factory<GetSubscriptionsUseCase> {
+        GetSubscriptionsUseCase(roomRepository = get())
     }
 }

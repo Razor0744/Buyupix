@@ -1,6 +1,5 @@
 package team.four.mys.presentation.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,69 +7,68 @@ import com.bumptech.glide.Glide
 import team.four.mys.R
 import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithDateBinding
 import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithoutDateBinding
-import team.four.mys.domain.models.Subscriptions
+import team.four.mys.domain.models.Subscription
 
 class SubscriptionsAdapter(
-    private val context: Context,
-    private val subscriptions: List<Subscriptions>,
+    private val subscriptions: List<Subscription>,
     private val month: String,
-    private val itemClick: (Subscriptions) -> Unit
+    private val itemClick: (Subscription) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ViewHolderWithDate(
         private val binding: RecyclerviewItemSubscriptionsWithDateBinding,
-        private val itemClick: (Subscriptions) -> Unit
+        private val itemClick: (Subscription) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(subscriptions: Subscriptions, context: Context) {
+        fun bind(subscription: Subscription) {
 
             Glide
-                .with(context)
-                .load(subscriptions.image)
+                .with(binding.root)
+                .load(subscription.icon)
                 .into(binding.imageSubscription)
 
-            binding.nameSubscription.text = subscriptions.name
-            binding.priceSubscription.text = context.getString(
+            binding.nameSubscription.text = subscription.name
+            binding.priceSubscription.text = binding.root.context.getString(
                 R.string.priceAdapterSubscriptions,
-                subscriptions.priceSpinner,
-                subscriptions.price
+                subscription.currencyIcon,
+                subscription.price
             )
-            binding.writeOffDateSubscription.text = context.getString(
+            binding.writeOffDateSubscription.text = binding.root.context.getString(
                 R.string.dateAdapterSubscriptions,
-                subscriptions.writeOffDate,
+                subscription.date.toString(),
                 month
             )
 
             itemView.setOnClickListener {
-                itemClick(subscriptions)
+                itemClick(subscription)
             }
         }
     }
 
     inner class ViewHolderWithoutDate(
         private val binding: RecyclerviewItemSubscriptionsWithoutDateBinding,
-        private val itemClick: (Subscriptions) -> Unit
+        private val itemClick: (Subscription) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(subscriptions: Subscriptions, context: Context) {
+        fun bind(subscription: Subscription) {
 
             Glide
-                .with(context)
-                .load(subscriptions.image)
+                .with(binding.root)
+                .load(subscription.icon)
                 .into(binding.imageSubscription)
 
-            binding.nameSubscription.text = subscriptions.name
-            binding.priceSubscription.text = context.getString(
+            binding.nameSubscription.text = subscription.name
+            binding.priceSubscription.text = binding.root.context.getString(
                 R.string.priceAdapterSubscriptions,
-                subscriptions.priceSpinner,
-                subscriptions.price
+                subscription.currencyIcon,
+                subscription.price
             )
 
             itemView.setOnClickListener {
-                itemClick(subscriptions)
+                itemClick(subscription)
             }
         }
     }
@@ -93,16 +91,20 @@ class SubscriptionsAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == HASWRITEOFFDATE) {
-            (holder as ViewHolderWithDate).bind(subscriptions[position], context)
+            (holder as ViewHolderWithDate).bind(subscriptions[position])
         } else {
-            (holder as ViewHolderWithoutDate).bind(subscriptions[position], context)
+            (holder as ViewHolderWithoutDate).bind(subscriptions[position])
         }
     }
 
     override fun getItemCount() = subscriptions.size
 
     override fun getItemViewType(position: Int): Int {
-        return if (subscriptions[position].writeOffDate != null) HASWRITEOFFDATE else NOWRITEOFFDATE
+        return if (position - 1 != -1) {
+            if (subscriptions[position].date != subscriptions[position - 1].date) HASWRITEOFFDATE else NOWRITEOFFDATE
+        } else {
+            HASWRITEOFFDATE
+        }
     }
 
     companion object Const {

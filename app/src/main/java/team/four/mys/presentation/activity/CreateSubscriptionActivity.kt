@@ -5,12 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,9 +16,8 @@ import team.four.mys.R
 import team.four.mys.databinding.ActivityCreatSubscriptionBinding
 import team.four.mys.domain.models.Currencies
 import team.four.mys.domain.models.SetStatusBarParam
+import team.four.mys.domain.models.Subscription
 import team.four.mys.domain.usecases.CustomPositionItemDecorationUseCase
-import team.four.mys.domain.usecases.GetPriceSpinnerUseCase
-import team.four.mys.domain.usecases.GetUrlImageUseCase
 import team.four.mys.presentation.adapters.CalendarAdapter
 import team.four.mys.presentation.adapters.CurrenciesAdapter
 import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
@@ -29,8 +25,6 @@ import java.time.LocalDate
 
 
 class CreateSubscriptionActivity : AppCompatActivity() {
-
-    private val db = Firebase.firestore
 
     private lateinit var binding: ActivityCreatSubscriptionBinding
 
@@ -54,10 +48,10 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         setMonthView()
         priceButtonClick()
         autoCompleteTextView()
-        fireStore()
         calendarVisibility()
         recyclerViewCurrenciesAdapter()
         focusOnEditView()
+        addSubscription()
 
         viewModel.setStatusBarColor(
             SetStatusBarParam(
@@ -68,6 +62,31 @@ class CreateSubscriptionActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.getCurrencies()
+        }
+    }
+
+    private fun addSubscription() {
+        binding.create.setOnClickListener {
+            if (binding.name.text.trim().toString().isNotEmpty()) {
+                if (binding.price.text?.trim().toString().isNotEmpty()) {
+                    if (binding.buttonCalender.text?.trim().toString() != "Write-off date") {
+                        viewModel.addSubscription(
+                            subscription = Subscription(
+                                name = binding.name.text.trim().toString(),
+                                icon = "иконок пока нет",
+                                price = binding.price.text?.trim().toString(),
+                                currency = binding.priceButton.text.trim().toString(),
+                                description = binding.description.text?.trim().toString(),
+                                date = binding.buttonCalender.text?.trim().toString().toLong(),
+                                reminder = binding.switchReminder.isActivated,
+                                category = "реаллизации пока нет",
+                                currencyIcon = "потом"
+                            )
+                        )
+                        startActivity(Intent(this, MainActivity::class.java))
+                    }
+                }
+            }
         }
     }
 
@@ -198,140 +217,6 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                     )
                 )
                 binding.groupCurrencies.visibility = View.INVISIBLE
-            }
-        }
-    }
-
-    private fun fireStore() {
-        binding.create.setOnClickListener {
-            if (binding.name.text.trim().toString().isNotEmpty()) {
-                if (binding.price.text?.trim().toString().isNotEmpty()) {
-                    if (binding.buttonCalender.text?.trim().toString() != "Write-off date") {
-                        db.collection(viewModel.getUID())
-                            .document(binding.buttonCalender.text?.trim().toString())
-                            .collection("date").get()
-                            .addOnSuccessListener {
-                                if (it.documents.isNotEmpty()) {
-                                    val data = hashMapOf(
-                                        "name" to binding.name.text.trim().toString(),
-                                        "price" to binding.price.text?.trim().toString(),
-                                        "description" to binding.description.text?.trim()
-                                            .toString(),
-                                        "image" to GetUrlImageUseCase().execute(
-                                            binding.name.text.trim().toString()
-                                        ),
-                                        "priceSpinner" to GetPriceSpinnerUseCase().execute(
-                                            binding.priceButton.text.toString()
-                                        ),
-                                        "date" to binding.buttonCalender.text.toString(),
-                                        "priceName" to binding.priceButton.text.toString(),
-                                        "dateType" to "noDate"
-                                    )
-                                    db.collection(viewModel.getUID())
-                                        .document(binding.priceButton.text.toString())
-                                        .get()
-                                        .addOnSuccessListener { doc ->
-                                            var priceStart = doc.get("price")
-                                            if (priceStart == null) {
-                                                priceStart = 0
-                                            }
-                                            val priceEnd = priceStart.toString().toFloat() +
-                                                    binding.price.text.toString().trim().toDouble()
-                                            val price = hashMapOf(
-                                                "price" to priceEnd as Number
-                                            )
-                                            db.collection(viewModel.getUID())
-                                                .document(binding.priceButton.text.toString())
-                                                .set(price)
-                                        }
-                                    db.collection(viewModel.getUID())
-                                        .document(binding.buttonCalender.text?.trim().toString())
-                                        .collection("noDate")
-                                        .document(binding.name.text.trim().toString())
-                                        .set(data)
-                                    viewModel.setCategory(
-                                        category = viewModel.categoryOfSubscriptions(
-                                            binding.name.text.trim().toString(),
-                                        ),
-                                        price = viewModel.setCategoryTotalPrice(
-                                            price = binding.price.text?.trim().toString()
-                                                .toDouble(),
-                                            priceSpinner = binding.priceButton.text.trim()
-                                                .toString()
-                                        )
-                                    )
-                                    viewModel.setNumberOfSubscriptions()
-                                    startActivity(Intent(this, MainActivity::class.java))
-                                } else {
-                                    val data = hashMapOf(
-                                        "name" to binding.name.text.trim().toString(),
-                                        "price" to binding.price.text?.trim().toString(),
-                                        "description" to binding.description.text?.trim()
-                                            .toString(),
-                                        "writeOffDate" to binding.buttonCalender.text?.trim()
-                                            .toString(),
-                                        "image" to GetUrlImageUseCase().execute(
-                                            binding.name.text.trim().toString()
-                                        ),
-                                        "priceSpinner" to GetPriceSpinnerUseCase().execute(
-                                            binding.priceButton.text.toString()
-                                        ),
-                                        "date" to binding.buttonCalender.text.toString(),
-                                        "priceName" to binding.priceButton.text.toString(),
-                                        "dateType" to "date"
-                                    )
-                                    db.collection(viewModel.getUID())
-                                        .document(binding.priceButton.text.toString())
-                                        .get()
-                                        .addOnSuccessListener { doc ->
-                                            var priceStart = doc.get("price")
-                                            if (priceStart == null) {
-                                                priceStart = 0
-                                            }
-                                            val priceEnd = priceStart.toString().toFloat() +
-                                                    binding.price.text.toString().trim().toDouble()
-                                            val price = hashMapOf(
-                                                "price" to priceEnd
-                                            )
-                                            db.collection(viewModel.getUID())
-                                                .document(binding.priceButton.text.toString())
-                                                .set(price)
-                                        }
-                                    db.collection(viewModel.getUID())
-                                        .document(binding.buttonCalender.text?.trim().toString())
-                                        .collection("date")
-                                        .document(binding.name.text.trim().toString()).set(data)
-                                    viewModel.setCategory(
-                                        category = viewModel.categoryOfSubscriptions(
-                                            binding.name.text.trim().toString(),
-                                        ),
-                                        price = viewModel.setCategoryTotalPrice(
-                                            price = binding.price.text?.trim().toString()
-                                                .toDouble(),
-                                            priceSpinner = binding.priceButton.text.trim()
-                                                .toString()
-                                        )
-                                    )
-                                    viewModel.setNumberOfSubscriptions()
-                                    startActivity(Intent(this, MainActivity::class.java))
-                                }
-                            }
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Необходимо поставить дату, нажмите на иконку календаря",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Введите цену?",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            } else {
-                Toast.makeText(this, "Напишите название", Toast.LENGTH_LONG).show()
             }
         }
     }
