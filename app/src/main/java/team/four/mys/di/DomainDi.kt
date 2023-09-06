@@ -23,8 +23,8 @@ val domainModule = module {
         GetUIDUseCase(firebaseRepository = get())
     }
 
-    factory<CategoryOfSubscriptionUseCase> {
-        CategoryOfSubscriptionUseCase()
+    factory<GetCategoryOfSubscriptionUseCase> {
+        GetCategoryOfSubscriptionUseCase()
     }
 
     factory<SetStatusBarColorUseCase> {
@@ -55,5 +55,17 @@ val domainModule = module {
 
     factory<GetSubscriptionInfoUseCase> {
         GetSubscriptionInfoUseCase(roomRepository = get())
+    }
+
+    factory<GetCurrencyIconUseCase> {
+        GetCurrencyIconUseCase()
+    }
+
+    factory<GetUrlImageUseCase> {
+        GetUrlImageUseCase()
+    }
+
+    factory<GetCategoryOfSubscriptionUseCase> {
+        GetCategoryOfSubscriptionUseCase()
     }
 }

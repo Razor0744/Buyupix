@@ -2,8 +2,8 @@ package team.four.mys.domain.usecases
 
 class GetCurrencyIconUseCase {
 
-    fun execute(item: String): String {
-        return when (item) {
+    fun execute(currency: String): String {
+        return when (currency) {
             "USD" -> "$"
             "EUR" -> "€"
             "BYN" -> "Br"

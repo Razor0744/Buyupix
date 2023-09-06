@@ -51,7 +51,10 @@ val appModule = module {
         CreateSubscriptionViewModel(
             setStatusBarColorUseCase = get(),
             retrofit = get(),
-            addSubscriptionUseCase = get()
+            addSubscriptionUseCase = get(),
+            getCategoryOfSubscriptionUseCase = get(),
+            getCurrencyIconUseCase = get(),
+            getUrlImageUseCase = get()
         )
     }
 

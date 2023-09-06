@@ -73,14 +73,18 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                         viewModel.addSubscription(
                             subscription = Subscription(
                                 name = binding.name.text.trim().toString(),
-                                icon = "иконок пока нет",
+                                icon = viewModel.getUrlImage(binding.name.text.trim().toString()),
                                 price = binding.price.text?.trim().toString(),
                                 currency = binding.priceButton.text.trim().toString(),
                                 description = binding.description.text?.trim().toString(),
                                 date = binding.buttonCalender.text?.trim().toString().toLong(),
                                 reminder = binding.switchReminder.isActivated,
-                                category = "реаллизации пока нет",
-                                currencyIcon = "потом"
+                                category = viewModel.getCategoryOfSubscription(
+                                    binding.name.text.trim().toString()
+                                ),
+                                currencyIcon = viewModel.getCurrencyIcon(
+                                    binding.priceButton.text.trim().toString()
+                                )
                             )
                         )
                         startActivity(Intent(this, MainActivity::class.java))
@@ -94,32 +98,22 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         binding.groupCurrencies.visibility = View.INVISIBLE
         binding.priceButton.setOnClickListener {
             if (binding.groupCurrencies.visibility == View.INVISIBLE) {
-                binding.priceButton.background =
-                    ResourcesCompat.getDrawable(
-                        resources,
-                        R.drawable.background_price_button_click,
-                        null
-                    )
+                binding.priceButton.background = ResourcesCompat.getDrawable(
+                    resources, R.drawable.background_price_button_click, null
+                )
                 binding.priceButton.setTextColor(
                     ResourcesCompat.getColor(
-                        resources,
-                        R.color.textMain,
-                        null
+                        resources, R.color.textMain, null
                     )
                 )
                 binding.groupCurrencies.visibility = View.VISIBLE
             } else {
-                binding.priceButton.background =
-                    ResourcesCompat.getDrawable(
-                        resources,
-                        R.drawable.item_background_stroke,
-                        null
-                    )
+                binding.priceButton.background = ResourcesCompat.getDrawable(
+                    resources, R.drawable.item_background_stroke, null
+                )
                 binding.priceButton.setTextColor(
                     ResourcesCompat.getColor(
-                        resources,
-                        R.color.textPlaceholder,
-                        null
+                        resources, R.color.textPlaceholder, null
                     )
                 )
                 binding.groupCurrencies.visibility = View.INVISIBLE
@@ -131,24 +125,17 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         val adapter = CurrenciesAdapter(currencies = currencies) {
             binding.priceButton.text = it.name
             binding.groupCurrencies.visibility = View.INVISIBLE
-            binding.priceButton.background =
-                ResourcesCompat.getDrawable(
-                    resources,
-                    R.drawable.item_background_stroke,
-                    null
-                )
+            binding.priceButton.background = ResourcesCompat.getDrawable(
+                resources, R.drawable.item_background_stroke, null
+            )
             binding.priceButton.setTextColor(
                 ResourcesCompat.getColor(
-                    resources,
-                    R.color.textPlaceholder,
-                    null
+                    resources, R.color.textPlaceholder, null
                 )
             )
         }
         val itemDecorator = ResourcesCompat.getDrawable(
-            resources,
-            R.drawable.item_decoration_price,
-            null
+            resources, R.drawable.item_decoration_price, null
         )?.let {
             CustomPositionItemDecorationUseCase(
                 it
@@ -203,17 +190,12 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                 )
             }
             if (binding.groupCurrencies.visibility == View.VISIBLE) {
-                binding.priceButton.background =
-                    ResourcesCompat.getDrawable(
-                        resources,
-                        R.drawable.item_background_stroke,
-                        null
-                    )
+                binding.priceButton.background = ResourcesCompat.getDrawable(
+                    resources, R.drawable.item_background_stroke, null
+                )
                 binding.priceButton.setTextColor(
                     ResourcesCompat.getColor(
-                        resources,
-                        R.color.textPlaceholder,
-                        null
+                        resources, R.color.textPlaceholder, null
                     )
                 )
                 binding.groupCurrencies.visibility = View.INVISIBLE

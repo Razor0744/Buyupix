@@ -1,6 +1,6 @@
 package team.four.mys.domain.usecases
 
-class CategoryOfSubscriptionUseCase {
+class GetCategoryOfSubscriptionUseCase {
 
     fun execute(name: String): String {
         return when (name) {

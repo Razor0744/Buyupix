@@ -8,6 +8,9 @@ import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscription
 import team.four.mys.domain.models.Valute
 import team.four.mys.domain.usecases.AddSubscriptionUseCase
+import team.four.mys.domain.usecases.GetCurrencyIconUseCase
+import team.four.mys.domain.usecases.GetUrlImageUseCase
+import team.four.mys.domain.usecases.GetCategoryOfSubscriptionUseCase
 import team.four.mys.domain.usecases.SetStatusBarColorUseCase
 import java.time.LocalDate
 import java.time.YearMonth
@@ -17,7 +20,10 @@ import java.util.Locale
 class CreateSubscriptionViewModel(
     private val setStatusBarColorUseCase: SetStatusBarColorUseCase,
     private val retrofit: Retrofit,
-    private val addSubscriptionUseCase: AddSubscriptionUseCase
+    private val addSubscriptionUseCase: AddSubscriptionUseCase,
+    private val getCategoryOfSubscriptionUseCase: GetCategoryOfSubscriptionUseCase,
+    private val getUrlImageUseCase: GetUrlImageUseCase,
+    private val getCurrencyIconUseCase: GetCurrencyIconUseCase
 ) : ViewModel() {
 
     private var valute: Valute? = null
@@ -52,8 +58,19 @@ class CreateSubscriptionViewModel(
         valute = retrofit.getCurrencies()
     }
 
-     fun addSubscription(subscription: Subscription) {
+    fun addSubscription(subscription: Subscription) {
         viewModelScope.launch { addSubscriptionUseCase.execute(subscription = subscription) }
     }
 
+    fun getCategoryOfSubscription(name: String): String {
+        return getCategoryOfSubscriptionUseCase.execute(name = name)
+    }
+
+    fun getUrlImage(name: String): String{
+        return getUrlImageUseCase.execute(name = name)
+    }
+
+    fun getCurrencyIcon(currency: String): String{
+        return getCurrencyIconUseCase.execute(currency = currency)
+    }
 }
