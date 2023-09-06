@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentStatisticsBinding
@@ -63,17 +60,8 @@ class StatisticsFragment : Fragment() {
             String.format("%.2f", (activity as MainActivity).otherPrice)
         )
 
-        viewModel.fullPrice.observe(viewLifecycleOwner) { fullPrice ->
-            binding.price.text = getString(R.string.fullPrice, String.format("%.2f", fullPrice))
-        }
-
         viewModel.numberOfSubscriptions.observe(viewLifecycleOwner) { number ->
             binding.textSubscriptions2.text = number.toString()
-        }
-
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel.fullPrice()
-            viewModel.getNumberOfSubscriptions()
         }
 
         viewModel.setStatusBarColor(

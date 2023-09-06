@@ -4,17 +4,13 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.ActivityMainBinding
-import team.four.mys.domain.usecases.SetThemeUseCase
+import team.four.mys.domain.usecases.LocaleHelperUseCase
 import team.four.mys.presentation.fragments.HomeFragment
 import team.four.mys.presentation.fragments.SettingsFragment
 import team.four.mys.presentation.fragments.StatisticsFragment
-import team.four.mys.domain.usecases.LocaleHelperUseCase
 import team.four.mys.presentation.viewmodelsactivity.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -76,10 +72,6 @@ class MainActivity : AppCompatActivity() {
                 replaceFragment(homeFragment)
             }
         }
-
-        CoroutineScope(Dispatchers.IO).launch {
-            getCategories()
-        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -91,16 +83,6 @@ class MainActivity : AppCompatActivity() {
     override fun attachBaseContext(base: Context) {
         LocaleHelperUseCase().setLocale(base, LocaleHelperUseCase().getLanguage(base))
         super.attachBaseContext(LocaleHelperUseCase().onAttach(base))
-    }
-
-    private suspend fun getCategories() {
-        gamingPrice = viewModel.getCategory("Gaming")
-        defencePrice = viewModel.getCategory("Defence")
-        cloudPrice = viewModel.getCategory("Cloud")
-        moviesPrice = viewModel.getCategory("Movies")
-        booksPrice = viewModel.getCategory("Books")
-        musicPrice = viewModel.getCategory("Music")
-        otherPrice = viewModel.getCategory("Other")
     }
 
 }

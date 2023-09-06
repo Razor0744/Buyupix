@@ -3,7 +3,6 @@ package team.four.mys.di
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import team.four.mys.presentation.viewmodelsactivity.AlertViewModel
-import team.four.mys.presentation.viewmodelsactivity.AuthenticationViewModel
 import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
 import team.four.mys.presentation.viewmodelsactivity.DarkModeViewModel
 import team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel
@@ -29,7 +28,6 @@ val appModule = module {
 
     viewModel<SubscriptionInfoViewModel> {
         SubscriptionInfoViewModel(
-            getSubscriptionInfoUseCase = get(),
             setStatusBarColorUseCase = get()
         )
     }
@@ -69,17 +67,13 @@ val appModule = module {
         )
     }
 
-    viewModel<AuthenticationViewModel> {
-        AuthenticationViewModel()
-    }
-
     viewModel<HomeViewModel> {
         HomeViewModel(
             setStatusBarColorUseCase = get(),
             retrofit = get(),
-            getPriceFireBaseUseCase = get(),
             getUIDUseCase = get(),
-            getSubscriptionsUseCase = get()
+            getSubscriptionsUseCase = get(),
+            setNavigationColorUseCase = get()
         )
     }
 
@@ -91,10 +85,7 @@ val appModule = module {
 
     viewModel<StatisticsViewModel> {
         StatisticsViewModel(
-            setStatusBarColorUseCase = get(),
-            retrofit = get(),
-            getPriceFireBaseUseCase = get(),
-            getNumberOfSubscriptionsUseCase = get()
+            setStatusBarColorUseCase = get()
         )
     }
 
@@ -106,7 +97,6 @@ val appModule = module {
 
     viewModel<MainViewModel> {
         MainViewModel(
-            getCategoryUseCase = get(),
             setThemeUseCase = get()
         )
     }
