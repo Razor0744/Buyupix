@@ -68,4 +68,8 @@ val domainModule = module {
     factory<GetCategoryOfSubscriptionUseCase> {
         GetCategoryOfSubscriptionUseCase()
     }
+
+    factory<DeleteSubscriptionUseCase> {
+        DeleteSubscriptionUseCase(roomRepository = get())
+    }
 }

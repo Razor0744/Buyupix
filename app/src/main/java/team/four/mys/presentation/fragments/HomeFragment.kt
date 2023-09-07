@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentHomeBinding
@@ -78,7 +79,7 @@ class HomeFragment : Fragment() {
                 viewModel.date()
             ) {
                 val intent = Intent(requireContext(), SubscriptionInfoActivity::class.java)
-                intent.putExtra("id", it.id)
+                intent.putExtra("subscription", Gson().toJson(it))
                 startActivity(intent)
             }
         binding.recyclerView.adapter = adapterSubscriptions
