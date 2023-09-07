@@ -16,10 +16,10 @@ import team.four.mys.databinding.FragmentSettingsBinding
 import team.four.mys.domain.models.SetNavigationColorParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.usecases.SetNavigationColorUseCase
-import team.four.mys.presentation.activity.AlertActivity
 import team.four.mys.presentation.activity.DarkModeActivity
 import team.four.mys.presentation.activity.FirstActivity
 import team.four.mys.presentation.activity.LanguageActivity
+import team.four.mys.presentation.activity.MainActivity
 import team.four.mys.presentation.viewmodelsfragment.SettingsViewModel
 
 class SettingsFragment : Fragment() {
@@ -38,7 +38,7 @@ class SettingsFragment : Fragment() {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         binding?.alert?.setOnClickListener {
-            startActivity(Intent(context, AlertActivity::class.java))
+            (activity as MainActivity).replaceFragment(AlertFragment())
         }
 
         binding?.darkMode?.setOnClickListener {

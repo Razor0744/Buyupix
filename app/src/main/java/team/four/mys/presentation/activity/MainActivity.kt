@@ -44,9 +44,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> {
                     replaceFragment(homeFragment)
                 }
+
                 R.id.statistics -> {
                     replaceFragment(statisticsFragment)
                 }
+
                 R.id.settings -> {
                     replaceFragment(settingsFragment)
                 }
@@ -59,14 +61,17 @@ class MainActivity : AppCompatActivity() {
                 binding.bottomNavigation.selectedItemId = R.id.home
                 replaceFragment(homeFragment)
             }
+
             "StatisticsFragment" -> {
                 binding.bottomNavigation.selectedItemId = R.id.statistics
                 replaceFragment(statisticsFragment)
             }
+
             "SettingsFragment" -> {
                 binding.bottomNavigation.selectedItemId = R.id.settings
                 replaceFragment(settingsFragment)
             }
+
             else -> {
                 binding.bottomNavigation.selectedItemId = R.id.home
                 replaceFragment(homeFragment)
@@ -74,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame, fragment)
         transaction.commit()

@@ -2,7 +2,7 @@ package team.four.mys.di
 
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import team.four.mys.presentation.viewmodelsactivity.AlertViewModel
+import team.four.mys.presentation.viewmodelsfragment.AlertViewModel
 import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
 import team.four.mys.presentation.viewmodelsactivity.DarkModeViewModel
 import team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel
