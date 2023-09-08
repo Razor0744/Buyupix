@@ -1,12 +1,20 @@
 package team.four.mys.presentation.viewmodelsactivity
 
 import androidx.lifecycle.ViewModel
-import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.domain.usecases.SetStatusBarColorUseCase
+import team.four.mys.domain.models.SettingsPreferencesParam
+import team.four.mys.domain.usecases.GetSettingsUseCase
+import team.four.mys.domain.usecases.SetSettingsUseCase
 
-class DarkModeViewModel(private val setStatusBarColorUseCase: SetStatusBarColorUseCase): ViewModel() {
+class DarkModeViewModel(
+    private val getSettingsUseCase: GetSettingsUseCase,
+    private val setSettingsUseCase: SetSettingsUseCase
+) : ViewModel() {
 
-    fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
-        setStatusBarColorUseCase.execute(setStatusBarParam)
+    fun getSettings(settingsPreferencesParam: SettingsPreferencesParam): SettingsPreferencesParam {
+        return getSettingsUseCase.execute(settingsPreferencesParam = settingsPreferencesParam)
+    }
+
+    fun setSettings(settingsPreferencesParam: SettingsPreferencesParam) {
+        setSettingsUseCase.execute(settingsPreferencesParam = settingsPreferencesParam)
     }
 }

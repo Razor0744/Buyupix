@@ -13,10 +13,7 @@ import com.google.firebase.ktx.Firebase
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentSettingsBinding
-import team.four.mys.domain.models.SetNavigationColorParam
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.domain.usecases.SetNavigationColorUseCase
-import team.four.mys.presentation.activity.DarkModeActivity
 import team.four.mys.presentation.activity.FirstActivity
 import team.four.mys.presentation.activity.LanguageActivity
 import team.four.mys.presentation.activity.MainActivity
@@ -42,7 +39,7 @@ class SettingsFragment : Fragment() {
         }
 
         binding?.darkMode?.setOnClickListener {
-            startActivity(Intent(context, DarkModeActivity::class.java))
+            (activity as MainActivity).replaceFragment(DarkModeFragment())
         }
 
         binding?.language?.setOnClickListener {
@@ -58,13 +55,6 @@ class SettingsFragment : Fragment() {
             SetStatusBarParam(
                 activity = requireActivity(),
                 color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
-            )
-        )
-
-        SetNavigationColorUseCase().execute(
-            SetNavigationColorParam(
-                requireActivity(),
-                ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
             )
         )
 

@@ -13,7 +13,6 @@ import team.four.mys.domain.models.SetNavigationColorParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.domain.usecases.LocaleHelperUseCase
-import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.presentation.adapters.LanguageAdapter
 import team.four.mys.presentation.viewmodelsactivity.LanguageViewModel
 
@@ -22,8 +21,6 @@ class LanguageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLanguageBinding
 
     private val viewModel by viewModel<LanguageViewModel>()
-
-    private lateinit var adapterLanguage: LanguageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +33,6 @@ class LanguageActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        adapter()
-
         viewModel.setStatusBarColor(
             SetStatusBarParam(
                 activity = this,
@@ -45,16 +40,18 @@ class LanguageActivity : AppCompatActivity() {
             )
         )
 
-        SetNavigationColorUseCase().execute(
+        viewModel.setNavigationColor(
             SetNavigationColorParam(
-                this,
-                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+                activity = this,
+                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
             )
         )
+
+        adapter()
     }
 
     private fun adapter() {
-        adapterLanguage =
+        val adapterLanguage =
             LanguageAdapter(
                 language,
                 viewModel.getSettings(SettingsPreferencesParam(key = "Locale"))

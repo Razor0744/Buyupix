@@ -7,9 +7,10 @@
     android:background="@color/backgroundMain"
     tools:context="team.four.mys.presentation.activity.MainActivity">
 
-    <FrameLayout
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frame"
         android:layout_width="match_parent"
+        android:name="team.four.mys.presentation.fragments.HomeFragment"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintTop_toTopOf="parent" />

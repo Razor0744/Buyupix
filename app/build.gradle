@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "team.four.mys"
@@ -63,7 +63,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
 
     //Navigation
-    def nav_version = '2.5.3'
+    def nav_version = '2.7.2'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
