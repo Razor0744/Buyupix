@@ -8,25 +8,27 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import team.four.mys.databinding.FragmentDarkModeBinding
-import team.four.mys.domain.models.DarkMode
+import team.four.mys.R
+import team.four.mys.databinding.FragmentLanguageBinding
+import team.four.mys.domain.models.Language
 import team.four.mys.domain.models.SettingsPreferencesParam
+import team.four.mys.domain.usecases.LocaleHelperUseCase
 import team.four.mys.presentation.activity.MainActivity
-import team.four.mys.presentation.adapters.DarkModeAdapter
-import team.four.mys.presentation.viewmodelsactivity.DarkModeViewModel
+import team.four.mys.presentation.adapters.LanguageAdapter
+import team.four.mys.presentation.viewmodelsactivity.LanguageViewModel
 
-class DarkModeFragment : Fragment() {
+class LanguageFragment : Fragment() {
 
-    private var _binding: FragmentDarkModeBinding? = null
+    private var _binding: FragmentLanguageBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModel<DarkModeViewModel>()
+    private val viewModel by viewModel<LanguageViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDarkModeBinding.inflate(inflater, container, false)
+        _binding = FragmentLanguageBinding.inflate(inflater, container, false)
 
         binding.buttonArrowLeft.setOnClickListener {
             (activity as MainActivity).replaceFragment(SettingsFragment())
@@ -43,30 +45,27 @@ class DarkModeFragment : Fragment() {
     }
 
     private fun adapter() {
-        val adapterDarkMode =
-            DarkModeAdapter(
-                darkMode,
-                viewModel.getSettings(SettingsPreferencesParam(key = "DarkMode")).value
-            ) { darkModeClick ->
-                viewModel.setSettings(
-                    SettingsPreferencesParam(
-                        key = "DarkMode",
-                        value = darkModeClick.name
-                    )
-                )
+        val adapterLanguage =
+            LanguageAdapter(
+                language,
+                viewModel.getSettings(SettingsPreferencesParam(key = "Locale"))
+            ) { language ->
+                when (language.name) {
+                    "USA" -> LocaleHelperUseCase().setLocale(requireContext(), "en")
+                    "Russia" -> LocaleHelperUseCase().setLocale(requireContext(), "ru")
+                }
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 intent.putExtra("fragment", "SettingsFragment")
                 startActivity(intent)
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapterDarkMode
+        binding.recyclerView.adapter = adapterLanguage
     }
 
     companion object {
-        val darkMode = listOf(
-            DarkMode("Dark Theme"),
-            DarkMode("Light Theme"),
-            DarkMode("System Theme")
+        val language = listOf(
+            Language(R.drawable.language_usa, "USA"),
+            Language(R.drawable.language_russia, "Russia")
         )
     }
 

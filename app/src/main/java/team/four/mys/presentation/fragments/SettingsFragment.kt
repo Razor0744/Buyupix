@@ -15,7 +15,6 @@ import team.four.mys.R
 import team.four.mys.databinding.FragmentSettingsBinding
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.presentation.activity.FirstActivity
-import team.four.mys.presentation.activity.LanguageActivity
 import team.four.mys.presentation.activity.MainActivity
 import team.four.mys.presentation.viewmodelsfragment.SettingsViewModel
 
@@ -43,7 +42,7 @@ class SettingsFragment : Fragment() {
         }
 
         binding?.language?.setOnClickListener {
-            startActivity(Intent(context, LanguageActivity::class.java))
+            (activity as MainActivity).replaceFragment(LanguageFragment())
         }
 
         binding?.logOut?.setOnClickListener {

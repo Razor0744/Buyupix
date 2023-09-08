@@ -68,9 +68,7 @@ val appModule = module {
 
     viewModel<LanguageViewModel> {
         LanguageViewModel(
-            setStatusBarColorUseCase = get(),
-            getSettingsUseCase = get(),
-            setNavigationColorUseCase = get()
+            getSettingsUseCase = get()
         )
     }
 

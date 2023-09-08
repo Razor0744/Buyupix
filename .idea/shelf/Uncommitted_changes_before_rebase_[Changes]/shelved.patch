@@ -1,0 +1,470 @@
+Index: app/src/main/java/team/four/mys/presentation/activity/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package team.four.mys.presentation.activity\n\nimport android.content.Context\nimport android.os.Bundle\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.fragment.app.Fragment\nimport org.koin.androidx.viewmodel.ext.android.viewModel\nimport team.four.mys.R\nimport team.four.mys.databinding.ActivityMainBinding\nimport team.four.mys.domain.usecases.LocaleHelperUseCase\nimport team.four.mys.presentation.fragments.HomeFragment\nimport team.four.mys.presentation.fragments.SettingsFragment\nimport team.four.mys.presentation.fragments.StatisticsFragment\nimport team.four.mys.presentation.viewmodelsactivity.MainViewModel\n\nclass MainActivity : AppCompatActivity() {\n\n    private lateinit var binding: ActivityMainBinding\n\n    private val viewModel by viewModel<MainViewModel>()\n\n    //Fragments\n    private val homeFragment = HomeFragment()\n    private val statisticsFragment = StatisticsFragment()\n    private val settingsFragment = SettingsFragment()\n\n    //Categories\n    var gamingPrice = 20f\n    var defencePrice = 20f\n    var cloudPrice = 230f\n    var moviesPrice = 230f\n    var booksPrice = 230f\n    var musicPrice = 199f\n    var otherPrice = 12.99f\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        viewModel.setTheme()\n        super.onCreate(savedInstanceState)\n        binding = ActivityMainBinding.inflate(layoutInflater)\n        setContentView(binding.root)\n\n        binding.bottomNavigation.setOnItemSelectedListener {\n            when (it.itemId) {\n                R.id.home -> {\n                    replaceFragment(homeFragment)\n                }\n                R.id.statistics -> {\n                    replaceFragment(statisticsFragment)\n                }\n                R.id.settings -> {\n                    replaceFragment(settingsFragment)\n                }\n            }\n            true\n        }\n\n        when (intent.getStringExtra(\"fragment\")) {\n            \"HomeFragment\" -> {\n                binding.bottomNavigation.selectedItemId = R.id.home\n                replaceFragment(homeFragment)\n            }\n            \"StatisticsFragment\" -> {\n                binding.bottomNavigation.selectedItemId = R.id.statistics\n                replaceFragment(statisticsFragment)\n            }\n            \"SettingsFragment\" -> {\n                binding.bottomNavigation.selectedItemId = R.id.settings\n                replaceFragment(settingsFragment)\n            }\n            else -> {\n                binding.bottomNavigation.selectedItemId = R.id.home\n                replaceFragment(homeFragment)\n            }\n        }\n    }\n\n    private fun replaceFragment(fragment: Fragment) {\n        val transaction = supportFragmentManager.beginTransaction()\n        transaction.replace(R.id.frame, fragment)\n        transaction.commit()\n    }\n\n    override fun attachBaseContext(base: Context) {\n        LocaleHelperUseCase().setLocale(base, LocaleHelperUseCase().getLanguage(base))\n        super.attachBaseContext(LocaleHelperUseCase().onAttach(base))\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/team/four/mys/presentation/activity/MainActivity.kt b/app/src/main/java/team/four/mys/presentation/activity/MainActivity.kt
+--- a/app/src/main/java/team/four/mys/presentation/activity/MainActivity.kt	(revision 9f6a94fb457954d6f570e28092069522b2adf0cc)
++++ b/app/src/main/java/team/four/mys/presentation/activity/MainActivity.kt	(date 1694109826654)
+@@ -44,9 +44,11 @@
+                 R.id.home -> {
+                     replaceFragment(homeFragment)
+                 }
++
+                 R.id.statistics -> {
+                     replaceFragment(statisticsFragment)
+                 }
++
+                 R.id.settings -> {
+                     replaceFragment(settingsFragment)
+                 }
+@@ -59,14 +61,17 @@
+                 binding.bottomNavigation.selectedItemId = R.id.home
+                 replaceFragment(homeFragment)
+             }
++
+             "StatisticsFragment" -> {
+                 binding.bottomNavigation.selectedItemId = R.id.statistics
+                 replaceFragment(statisticsFragment)
+             }
++
+             "SettingsFragment" -> {
+                 binding.bottomNavigation.selectedItemId = R.id.settings
+                 replaceFragment(settingsFragment)
+             }
++
+             else -> {
+                 binding.bottomNavigation.selectedItemId = R.id.home
+                 replaceFragment(homeFragment)
+@@ -74,7 +79,7 @@
+         }
+     }
+ 
+-    private fun replaceFragment(fragment: Fragment) {
++    fun replaceFragment(fragment: Fragment) {
+         val transaction = supportFragmentManager.beginTransaction()
+         transaction.replace(R.id.frame, fragment)
+         transaction.commit()
+Index: app/src/main/res/layout/activity_alert.xml
+===================================================================
+diff --git a/app/src/main/res/layout/activity_alert.xml b/app/src/main/res/layout/activity_alert.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/activity_alert.xml	(revision 9f6a94fb457954d6f570e28092069522b2adf0cc)
++++ /dev/null	(revision 9f6a94fb457954d6f570e28092069522b2adf0cc)
+@@ -1,49 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:background="@color/backgroundMain"
+-    tools:context=".presentation.activity.AlertActivity">
+-
+-    <androidx.constraintlayout.widget.ConstraintLayout
+-        android:id="@+id/content"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="10dp"
+-        app:layout_constraintTop_toTopOf="parent">
+-
+-        <ImageButton
+-            android:id="@+id/buttonArrowLeft"
+-            style="@style/ArrowLeft"
+-            app:layout_constraintBottom_toBottomOf="parent"
+-            app:layout_constraintLeft_toLeftOf="parent"
+-            app:layout_constraintTop_toTopOf="parent"
+-            tools:ignore="ContentDescription" />
+-
+-        <TextView
+-            android:id="@+id/textAlert"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:fontFamily="@font/roboto_medium"
+-            android:text="@string/alert"
+-            android:textColor="@color/textMain"
+-            android:textSize="24sp"
+-            app:layout_constraintBottom_toBottomOf="parent"
+-            app:layout_constraintLeft_toLeftOf="parent"
+-            app:layout_constraintRight_toRightOf="parent"
+-            app:layout_constraintTop_toTopOf="parent" />
+-
+-    </androidx.constraintlayout.widget.ConstraintLayout>
+-
+-    <androidx.recyclerview.widget.RecyclerView
+-        android:id="@+id/recyclerView"
+-        android:layout_width="match_parent"
+-        android:layout_height="300dp"
+-        android:layout_marginTop="24dp"
+-        app:layout_constraintLeft_toLeftOf="parent"
+-        app:layout_constraintRight_toRightOf="parent"
+-        app:layout_constraintTop_toBottomOf="@id/content" />
+-
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/team/four/mys/presentation/activity/AlertActivity.kt
+===================================================================
+diff --git a/app/src/main/java/team/four/mys/presentation/activity/AlertActivity.kt b/app/src/main/java/team/four/mys/presentation/activity/AlertActivity.kt
+deleted file mode 100644
+--- a/app/src/main/java/team/four/mys/presentation/activity/AlertActivity.kt	(revision 9f6a94fb457954d6f570e28092069522b2adf0cc)
++++ /dev/null	(revision 9f6a94fb457954d6f570e28092069522b2adf0cc)
+@@ -1,74 +0,0 @@
+-package team.four.mys.presentation.activity
+-
+-import android.content.Intent
+-import android.os.Bundle
+-import androidx.appcompat.app.AppCompatActivity
+-import androidx.core.content.res.ResourcesCompat
+-import androidx.recyclerview.widget.LinearLayoutManager
+-import org.koin.androidx.viewmodel.ext.android.viewModel
+-import team.four.mys.R
+-import team.four.mys.databinding.ActivityAlertBinding
+-import team.four.mys.domain.models.Alert
+-import team.four.mys.domain.models.SetNavigationColorParam
+-import team.four.mys.domain.models.SetStatusBarParam
+-import team.four.mys.presentation.adapters.AlertAdapter
+-import team.four.mys.presentation.viewmodelsactivity.AlertViewModel
+-
+-class AlertActivity : AppCompatActivity() {
+-
+-    private lateinit var binding: ActivityAlertBinding
+-
+-    private val viewModel by viewModel<AlertViewModel>()
+-
+-    private lateinit var adapterAlert: AlertAdapter
+-
+-    override fun onCreate(savedInstanceState: Bundle?) {
+-        super.onCreate(savedInstanceState)
+-        binding = ActivityAlertBinding.inflate(layoutInflater)
+-        setContentView(binding.root)
+-
+-        binding.buttonArrowLeft.setOnClickListener {
+-            val intent = Intent(this, MainActivity::class.java)
+-            intent.putExtra("fragment", "SettingsFragment")
+-            startActivity(intent)
+-        }
+-
+-        viewModel.setStatusBarColor(
+-            SetStatusBarParam(
+-                activity = this,
+-                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+-            )
+-        )
+-        viewModel.setNavigationColor(
+-            SetNavigationColorParam(
+-                activity = this,
+-                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+-            )
+-        )
+-
+-        adapter()
+-    }
+-
+-    private fun adapter() {
+-        adapterAlert =
+-            AlertAdapter(
+-                alert,
+-                viewModel.getSettings()
+-            ) { alertClick ->
+-                viewModel.setSettings(value = alertClick.name)
+-                val intent = Intent(this, MainActivity::class.java)
+-                intent.putExtra("fragment", "SettingsFragment")
+-                startActivity(intent)
+-            }
+-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+-        binding.recyclerView.adapter = adapterAlert
+-    }
+-
+-    companion object {
+-        val alert = listOf(
+-            Alert("The day before the write-off"),
+-            Alert("Two days before cancellation"),
+-            Alert("Three days before cancellation")
+-        )
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/java/team/four/mys/di/AppDi.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package team.four.mys.di\n\nimport org.koin.androidx.viewmodel.dsl.viewModel\nimport org.koin.dsl.module\nimport team.four.mys.presentation.viewmodelsactivity.AlertViewModel\nimport team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel\nimport team.four.mys.presentation.viewmodelsactivity.DarkModeViewModel\nimport team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel\nimport team.four.mys.presentation.viewmodelsactivity.LanguageViewModel\nimport team.four.mys.presentation.viewmodelsactivity.MainViewModel\nimport team.four.mys.presentation.viewmodelsactivity.SubscriptionInfoViewModel\nimport team.four.mys.presentation.viewmodelsfragment.CodeSendViewModel\nimport team.four.mys.presentation.viewmodelsfragment.HomeViewModel\nimport team.four.mys.presentation.viewmodelsfragment.LoginViewModel\nimport team.four.mys.presentation.viewmodelsfragment.SettingsViewModel\nimport team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel\n\nval appModule = module {\n\n    viewModel<AlertViewModel> {\n        AlertViewModel(\n            getSettingsUseCase = get(),\n            setSettingsUseCase = get(),\n            setStatusBarColorUseCase = get(),\n            setNavigationColorUseCase = get()\n        )\n    }\n\n    viewModel<SubscriptionInfoViewModel> {\n        SubscriptionInfoViewModel(\n            setStatusBarColorUseCase = get(),\n            getSubscriptionInfoUseCase = get(),\n            deleteSubscriptionUseCase = get()\n        )\n    }\n\n    viewModel<FirstActivityViewModel> {\n        FirstActivityViewModel(\n            setStatusBarColorUseCase = get(),\n            setThemeUseCase = get(),\n            setNavigationColorUseCase = get()\n        )\n    }\n\n    viewModel<CodeSendViewModel> {\n        CodeSendViewModel(\n            setStatusBarColorUseCase = get()\n        )\n    }\n\n    viewModel<CreateSubscriptionViewModel> {\n        CreateSubscriptionViewModel(\n            setStatusBarColorUseCase = get(),\n            retrofit = get(),\n            addSubscriptionUseCase = get(),\n            getCategoryOfSubscriptionUseCase = get(),\n            getCurrencyIconUseCase = get(),\n            getUrlImageUseCase = get()\n        )\n    }\n\n    viewModel<DarkModeViewModel> {\n        DarkModeViewModel(\n            setStatusBarColorUseCase = get()\n        )\n    }\n\n    viewModel<LanguageViewModel> {\n        LanguageViewModel(\n            setStatusBarColorUseCase = get(),\n            getSettingsUseCase = get()\n        )\n    }\n\n    viewModel<HomeViewModel> {\n        HomeViewModel(\n            setStatusBarColorUseCase = get(),\n            retrofit = get(),\n            getUIDUseCase = get(),\n            getSubscriptionsUseCase = get(),\n            setNavigationColorUseCase = get()\n        )\n    }\n\n    viewModel<SettingsViewModel> {\n        SettingsViewModel(\n            setStatusBarColorUseCase = get()\n        )\n    }\n\n    viewModel<StatisticsViewModel> {\n        StatisticsViewModel(\n            setStatusBarColorUseCase = get()\n        )\n    }\n\n    viewModel<LoginViewModel> {\n        LoginViewModel(\n            setStatusBarColorUseCase = get()\n        )\n    }\n\n    viewModel<MainViewModel> {\n        MainViewModel(\n            setThemeUseCase = get()\n        )\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/team/four/mys/di/AppDi.kt b/app/src/main/java/team/four/mys/di/AppDi.kt
+--- a/app/src/main/java/team/four/mys/di/AppDi.kt	(revision 9f6a94fb457954d6f570e28092069522b2adf0cc)
++++ b/app/src/main/java/team/four/mys/di/AppDi.kt	(date 1694109441944)
+@@ -2,7 +2,7 @@
+ 
+ import org.koin.androidx.viewmodel.dsl.viewModel
+ import org.koin.dsl.module
+-import team.four.mys.presentation.viewmodelsactivity.AlertViewModel
++import team.four.mys.presentation.viewmodelsfragment.AlertViewModel
+ import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
+ import team.four.mys.presentation.viewmodelsactivity.DarkModeViewModel
+ import team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel
+Index: app/src/main/java/team/four/mys/presentation/fragments/SettingsFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package team.four.mys.presentation.fragments\n\nimport android.content.Intent\nimport android.os.Bundle\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport androidx.core.content.res.ResourcesCompat\nimport androidx.fragment.app.Fragment\nimport com.google.firebase.auth.FirebaseAuth\nimport com.google.firebase.auth.ktx.auth\nimport com.google.firebase.ktx.Firebase\nimport org.koin.androidx.viewmodel.ext.android.viewModel\nimport team.four.mys.R\nimport team.four.mys.databinding.FragmentSettingsBinding\nimport team.four.mys.domain.models.SetNavigationColorParam\nimport team.four.mys.domain.models.SetStatusBarParam\nimport team.four.mys.domain.usecases.SetNavigationColorUseCase\nimport team.four.mys.presentation.activity.AlertActivity\nimport team.four.mys.presentation.activity.DarkModeActivity\nimport team.four.mys.presentation.activity.FirstActivity\nimport team.four.mys.presentation.activity.LanguageActivity\nimport team.four.mys.presentation.viewmodelsfragment.SettingsViewModel\n\nclass SettingsFragment : Fragment() {\n\n    private var binding: FragmentSettingsBinding? = null\n\n    private val viewModel by viewModel<SettingsViewModel>()\n\n    private val auth: FirebaseAuth = Firebase.auth\n\n    override fun onCreateView(\n        inflater: LayoutInflater,\n        container: ViewGroup?,\n        savedInstanceState: Bundle?\n    ): View? {\n        binding = FragmentSettingsBinding.inflate(inflater, container, false)\n\n        binding?.alert?.setOnClickListener {\n            startActivity(Intent(context, AlertActivity::class.java))\n        }\n\n        binding?.darkMode?.setOnClickListener {\n            startActivity(Intent(context, DarkModeActivity::class.java))\n        }\n\n        binding?.language?.setOnClickListener {\n            startActivity(Intent(context, LanguageActivity::class.java))\n        }\n\n        binding?.logOut?.setOnClickListener {\n            auth.signOut()\n            startActivity(Intent(context, FirstActivity::class.java))\n        }\n\n        viewModel.setStatusBarColor(\n            SetStatusBarParam(\n                activity = requireActivity(),\n                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)\n            )\n        )\n\n        SetNavigationColorUseCase().execute(\n            SetNavigationColorParam(\n                requireActivity(),\n                ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)\n            )\n        )\n\n        return binding?.root\n    }\n\n    override fun onDestroy() {\n        super.onDestroy()\n        binding = null\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/team/four/mys/presentation/fragments/SettingsFragment.kt b/app/src/main/java/team/four/mys/presentation/fragments/SettingsFragment.kt
+--- a/app/src/main/java/team/four/mys/presentation/fragments/SettingsFragment.kt	(revision 9f6a94fb457954d6f570e28092069522b2adf0cc)
++++ b/app/src/main/java/team/four/mys/presentation/fragments/SettingsFragment.kt	(date 1694109516247)
+@@ -16,10 +16,10 @@
+ import team.four.mys.domain.models.SetNavigationColorParam
+ import team.four.mys.domain.models.SetStatusBarParam
+ import team.four.mys.domain.usecases.SetNavigationColorUseCase
+-import team.four.mys.presentation.activity.AlertActivity
+ import team.four.mys.presentation.activity.DarkModeActivity
+ import team.four.mys.presentation.activity.FirstActivity
+ import team.four.mys.presentation.activity.LanguageActivity
++import team.four.mys.presentation.activity.MainActivity
+ import team.four.mys.presentation.viewmodelsfragment.SettingsViewModel
+ 
+ class SettingsFragment : Fragment() {
+@@ -38,7 +38,7 @@
+         binding = FragmentSettingsBinding.inflate(inflater, container, false)
+ 
+         binding?.alert?.setOnClickListener {
+-            startActivity(Intent(context, AlertActivity::class.java))
++            (activity as MainActivity).replaceFragment(AlertFragment())
+         }
+ 
+         binding?.darkMode?.setOnClickListener {
+Index: app/src/main/res/navigation/nav_graph.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/navigation/nav_graph.xml b/app/src/main/res/navigation/nav_graph.xml
+new file mode 100644
+--- /dev/null	(date 1694108875357)
++++ b/app/src/main/res/navigation/nav_graph.xml	(date 1694108875357)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<navigation xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/nav_graph">
++
++</navigation>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_alert.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_alert.xml b/app/src/main/res/layout/fragment_alert.xml
+new file mode 100644
+--- /dev/null	(date 1694109441938)
++++ b/app/src/main/res/layout/fragment_alert.xml	(date 1694109441938)
+@@ -0,0 +1,49 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:background="@color/backgroundMain"
++    tools:context=".presentation.fragments.AlertFragment">
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:id="@+id/content"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="10dp"
++        app:layout_constraintTop_toTopOf="parent">
++
++        <ImageButton
++            android:id="@+id/buttonArrowLeft"
++            style="@style/ArrowLeft"
++            app:layout_constraintBottom_toBottomOf="parent"
++            app:layout_constraintLeft_toLeftOf="parent"
++            app:layout_constraintTop_toTopOf="parent"
++            tools:ignore="ContentDescription" />
++
++        <TextView
++            android:id="@+id/textAlert"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:fontFamily="@font/roboto_medium"
++            android:text="@string/alert"
++            android:textColor="@color/textMain"
++            android:textSize="24sp"
++            app:layout_constraintBottom_toBottomOf="parent"
++            app:layout_constraintLeft_toLeftOf="parent"
++            app:layout_constraintRight_toRightOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
++    </androidx.constraintlayout.widget.ConstraintLayout>
++
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/recyclerView"
++        android:layout_width="match_parent"
++        android:layout_height="300dp"
++        android:layout_marginTop="24dp"
++        app:layout_constraintLeft_toLeftOf="parent"
++        app:layout_constraintRight_toRightOf="parent"
++        app:layout_constraintTop_toBottomOf="@id/content" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/team/four/mys/presentation/fragments/AlertFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/team/four/mys/presentation/fragments/AlertFragment.kt b/app/src/main/java/team/four/mys/presentation/fragments/AlertFragment.kt
+new file mode 100644
+--- /dev/null	(date 1694109441951)
++++ b/app/src/main/java/team/four/mys/presentation/fragments/AlertFragment.kt	(date 1694109441951)
+@@ -0,0 +1,87 @@
++package team.four.mys.presentation.fragments
++
++import android.content.Intent
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import androidx.core.content.res.ResourcesCompat
++import androidx.recyclerview.widget.LinearLayoutManager
++import org.koin.androidx.viewmodel.ext.android.viewModel
++import team.four.mys.R
++import team.four.mys.databinding.FragmentAlertBinding
++import team.four.mys.domain.models.Alert
++import team.four.mys.domain.models.SetNavigationColorParam
++import team.four.mys.domain.models.SetStatusBarParam
++import team.four.mys.presentation.activity.MainActivity
++import team.four.mys.presentation.adapters.AlertAdapter
++import team.four.mys.presentation.viewmodelsfragment.AlertViewModel
++
++
++class AlertFragment : Fragment() {
++
++    private var _binding: FragmentAlertBinding? = null
++    private val binding get() = _binding!!
++
++    private val viewModel by viewModel<AlertViewModel>()
++
++    override fun onCreateView(
++        inflater: LayoutInflater, container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View {
++        _binding = FragmentAlertBinding.inflate(inflater, container, false)
++
++        binding.buttonArrowLeft.setOnClickListener {
++            val intent = Intent(requireContext(), MainActivity::class.java)
++            intent.putExtra("fragment", "SettingsFragment")
++            startActivity(intent)
++        }
++
++        viewModel.setStatusBarColor(
++            SetStatusBarParam(
++                activity = requireActivity(),
++                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
++            )
++        )
++
++        viewModel.setNavigationColor(
++            SetNavigationColorParam(
++                activity = requireActivity(),
++                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
++            )
++        )
++
++        adapter()
++
++        return binding.root
++    }
++
++    override fun onDestroy() {
++        super.onDestroy()
++        _binding = null
++    }
++
++    private fun adapter() {
++        val adapterAlert =
++            AlertAdapter(
++                alert,
++                viewModel.getSettings()
++            ) { alertClick ->
++                viewModel.setSettings(value = alertClick.name)
++                val intent = Intent(requireContext(), MainActivity::class.java)
++                intent.putExtra("fragment", "SettingsFragment")
++                startActivity(intent)
++            }
++        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
++        binding.recyclerView.adapter = adapterAlert
++    }
++
++    companion object {
++        val alert = listOf(
++            Alert("The day before the write-off"),
++            Alert("Two days before cancellation"),
++            Alert("Three days before cancellation")
++        )
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n\n    <!--First-->\n    <string name=\"welcome\">Welcome</string>\n    <string name=\"descriptionFirst\">Manage your subscriptions, lower your bills and stay on top of your financial life.</string>\n    <string name=\"continueButton\">Continue</string>\n\n    <!--Login-->\n    <string name=\"authorization\">Authorization</string>\n    <string name=\"textL\">Enter phone number in international format</string>\n    <string name=\"languageCode\">Country</string>\n    <string name=\"phoneNumber\">Phone Number</string>\n\n    <!--CountryCode-->\n    <string name=\"countryCode\">Country</string>\n\n    <!--CodeSend-->\n    <string name=\"textC\">Enter code from sms</string>\n    <string name=\"codeSendAgain\">Resend code via </string>\n\n    <string name=\"app_name\">Buyupix</string>\n    <string name=\"name_app\">Buyupix</string>\n\n    <!--CreateSubscription-->\n    <string name=\"createSubscription\">Create Sub</string>\n    <string name=\"createNameSubscription\">Name</string>\n    <string name=\"price\">Price</string>\n    <string name=\"description\">Description</string>\n    <string name=\"reminder\">Reminder</string>\n    <string name=\"buttonCreate\">Create</string>\n    <string name=\"writeOffDate\">Write-off date</string>\n\n    <!--Calendar-->\n    <string name=\"monday\">Mon</string>\n    <string name=\"tuesday\">Tue</string>\n    <string name=\"wednesday\">Wed</string>\n    <string name=\"thursday\">Thu</string>\n    <string name=\"friday\">Fri</string>\n    <string name=\"saturday\">Sat</string>\n    <string name=\"sunday\">Sun</string>\n\n    <!--SubscriptionInfo-->\n    <string name=\"subscriptionInfo\">Subs info</string>\n    <string name=\"name\">Name</string>\n    <string name=\"category\">Category</string>\n    <string name=\"priceInfo\">%1$s%2$s</string>\n\n    <!--Navigation-->\n    <string name=\"home\">Home</string>\n    <string name=\"statistics\">Statistic</string>\n    <string name=\"settings\">Settings</string>\n\n    <!--Settings-->\n    <string name=\"alert\">Alert</string>\n    <string name=\"darkMode\">Dark Mode</string>\n    <string name=\"language\">Language</string>\n    <string name=\"about\">About</string>\n    <string name=\"signOut\">Exit</string>\n\n    <!--Home-->\n    <string name=\"firstSubscription\">You have not created any subscription yet. Let is do it right now</string>\n\n    <!--AutoCompleteText-->\n    <!--27-->\n    <string-array name=\"names\">\n        <item>Apple One</item>\n        <item>Discord Nitro</item>\n        <item>Dr.Web</item>\n        <item>Dropbox</item>\n        <item>Flo</item>\n        <item>Google Drive</item>\n        <item>Kaspersky</item>\n        <item>Kion</item>\n        <item>MTC Premium</item>\n        <item>IVI</item>\n        <item>Megogo</item>\n        <item>Microsoft 365</item>\n        <item>MyBook</item>\n        <item>Netflix</item>\n        <item>NordVpn</item>\n        <item>Ozon Premium</item>\n        <item>PornHub</item>\n        <item>Premier One</item>\n        <item>Pure</item>\n        <item>Spotify</item>\n        <item>Start</item>\n        <item>Tinkoff Pro</item>\n        <item>Vk Combo</item>\n        <item>YouTube</item>\n        <item>Амедиотека</item>\n        <item>ЛитРес</item>\n        <item>СберПрайм</item>\n    </string-array>\n\n    <!--Statistic-->\n    <string name=\"fullPrice\">%1$s USD</string>\n    <string name=\"gamingCategory\">Gaming · $%1$s</string>\n    <string name=\"defenceCategory\">Defence · $%1$s</string>\n    <string name=\"cloudCategory\">Cloud · $%1$s</string>\n    <string name=\"moviesCategory\">Movies · $%1$s</string>\n    <string name=\"booksCategory\">Books · $%1$s</string>\n    <string name=\"musicCategory\">Music · $%1$s</string>\n    <string name=\"otherCategory\">Other · $%1$s</string>\n    <string name=\"subscriptions\">Subscriptions</string>\n\n\n    <!--CustomRecyclerAdapterSubscriptions-->\n    <string name=\"priceAdapterSubscriptions\">%1$s%2$s</string>\n    <string name=\"dateAdapterSubscriptions\">%1$s %2$s</string>\n\n    <string-array name=\"pieChartColorArray\">\n        <item>#E480F4</item>\n        <item>#6CC3F3</item>\n        <item>#7167ED</item>\n        <item>#D9455F</item>\n        <item>#6054EA</item>\n    </string-array>\n\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 9f6a94fb457954d6f570e28092069522b2adf0cc)
++++ b/app/src/main/res/values/strings.xml	(date 1694108943223)
+@@ -115,5 +115,7 @@
+         <item>#D9455F</item>
+         <item>#6054EA</item>
+     </string-array>
++    <!-- TODO: Remove or change this placeholder text -->
++    <string name="hello_blank_fragment">Hello blank fragment</string>
+ 
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/team/four/mys/presentation/viewmodelsactivity/AlertViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/team/four/mys/presentation/viewmodelsactivity/AlertViewModel.kt b/app/src/main/java/team/four/mys/presentation/viewmodelsfragment/AlertViewModel.kt
+rename from app/src/main/java/team/four/mys/presentation/viewmodelsactivity/AlertViewModel.kt
+rename to app/src/main/java/team/four/mys/presentation/viewmodelsfragment/AlertViewModel.kt
+--- a/app/src/main/java/team/four/mys/presentation/viewmodelsactivity/AlertViewModel.kt	(revision 9f6a94fb457954d6f570e28092069522b2adf0cc)
++++ b/app/src/main/java/team/four/mys/presentation/viewmodelsfragment/AlertViewModel.kt	(date 1694109441949)
+@@ -1,4 +1,4 @@
+-package team.four.mys.presentation.viewmodelsactivity
++package team.four.mys.presentation.viewmodelsfragment
+ 
+ import androidx.lifecycle.ViewModel
+ import team.four.mys.domain.models.SetNavigationColorParam
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    id 'com.android.application'\n    id 'kotlin-android'\n    id 'com.google.gms.google-services'\n    id 'kotlin-kapt'\n}\n\nandroid {\n    compileSdk 33\n\n    defaultConfig {\n        applicationId \"team.four.mys\"\n        minSdk 26\n        targetSdk 33\n        versionCode 34\n        versionName \"1.4.7\"\n\n        kapt {\n            arguments {arg(\"room.schemaLocation\", \"$projectDir/schemas\")}\n        }\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n    compileOptions {\n        sourceCompatibility JavaVersion.VERSION_17\n        targetCompatibility JavaVersion.VERSION_17\n    }\n    kotlinOptions {\n        jvmTarget = '17'\n    }\n    viewBinding {\n        enabled true\n    }\n    namespace 'team.four.mys'\n}\n\ndependencies {\n\n    //Kotlin\n    implementation 'androidx.recyclerview:recyclerview:1.3.1'\n    implementation 'androidx.core:core-ktx:1.10.1'\n    implementation 'androidx.fragment:fragment-ktx:1.6.1'\n    implementation 'androidx.activity:activity-ktx:1.7.2'\n    implementation 'androidx.appcompat:appcompat:1.6.1'\n    implementation 'com.google.android.material:material:1.9.0'\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\n\n    //Preferences\n    implementation \"androidx.preference:preference-ktx:1.2.1\"\n    testImplementation 'org.testng:testng:6.9.6'\n\n    //Retrofit\n    def retrofit = '2.9.0'\n    implementation \"com.squareup.retrofit2:retrofit:$retrofit\"\n    implementation \"com.squareup.retrofit2:converter-gson:$retrofit\"\n\n    //Navigation\n    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'\n\n    //Glide\n    implementation 'com.github.bumptech.glide:glide:4.14.2'\n\n    //Firebase\n    implementation platform('com.google.firebase:firebase-bom:32.2.3')\n    implementation 'com.google.firebase:firebase-auth-ktx'\n    implementation 'com.google.firebase:firebase-analytics-ktx'\n    implementation 'com.google.firebase:firebase-firestore-ktx:24.7.1'\n    implementation 'com.google.firebase:firebase-appcheck-playintegrity'\n    implementation 'com.google.firebase:firebase-storage-ktx'\n\n    //Google\n    implementation 'com.google.android.gms:play-services-auth:20.7.0'\n\n    //Kotlin Coroutines\n    def coroutines = '1.7.3'\n    implementation \"org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines\"\n    implementation \"org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines\"\n\n    //ViewModel\n    def viewModel = '2.5.1'\n    implementation \"androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel\"\n    implementation \"androidx.lifecycle:lifecycle-livedata-ktx:$viewModel\"\n\n    //Statistic\n    implementation 'com.github.PhilJay:MPAndroidChart:3.1.0'\n\n    //koin\n    def koin_version = '3.4.3'\n    def koin_android_version = '3.4.3'\n    implementation \"io.insert-koin:koin-core:$koin_version\"\n    implementation \"io.insert-koin:koin-android:$koin_android_version\"\n\n    //testing\n    testImplementation 'junit:junit:4.13.2'\n    testImplementation 'org.mockito:mockito-core:4.0.0'\n    testImplementation 'org.mockito.kotlin:mockito-kotlin:4.0.0'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\n\n    //Room\n    def room_version = \"2.5.2\"\n    implementation \"androidx.room:room-runtime:$room_version\"\n    annotationProcessor \"androidx.room:room-compiler:$room_version\"\n    implementation \"androidx.room:room-ktx:$room_version\"\n    kapt \"androidx.room:room-compiler:$room_version\"\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 9f6a94fb457954d6f570e28092069522b2adf0cc)
++++ b/app/build.gradle	(date 1694109568301)
+@@ -63,7 +63,9 @@
+     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+ 
+     //Navigation
+-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
++    def nav_version = '2.5.3'
++    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
++    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+ 
+     //Glide
+     implementation 'com.github.bumptech.glide:glide:4.14.2'
