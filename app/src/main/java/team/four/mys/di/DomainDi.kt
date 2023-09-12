@@ -72,4 +72,8 @@ val domainModule = module {
     factory<DeleteSubscriptionUseCase> {
         DeleteSubscriptionUseCase(roomRepository = get())
     }
+
+    factory<CheckUserUseCase> {
+        CheckUserUseCase(firebaseRepository = get())
+    }
 }

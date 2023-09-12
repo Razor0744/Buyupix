@@ -9,9 +9,7 @@ import team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel
 import team.four.mys.presentation.viewmodelsactivity.LanguageViewModel
 import team.four.mys.presentation.viewmodelsactivity.MainViewModel
 import team.four.mys.presentation.viewmodelsactivity.SubscriptionInfoViewModel
-import team.four.mys.presentation.viewmodelsfragment.CodeSendViewModel
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
-import team.four.mys.presentation.viewmodelsfragment.LoginViewModel
 import team.four.mys.presentation.viewmodelsfragment.SettingsViewModel
 import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
@@ -39,12 +37,6 @@ val appModule = module {
             setStatusBarColorUseCase = get(),
             setThemeUseCase = get(),
             setNavigationColorUseCase = get()
-        )
-    }
-
-    viewModel<CodeSendViewModel> {
-        CodeSendViewModel(
-            setStatusBarColorUseCase = get()
         )
     }
 
@@ -94,15 +86,10 @@ val appModule = module {
         )
     }
 
-    viewModel<LoginViewModel> {
-        LoginViewModel(
-            setStatusBarColorUseCase = get()
-        )
-    }
-
     viewModel<MainViewModel> {
         MainViewModel(
-            setThemeUseCase = get()
+            setThemeUseCase = get(),
+            checkUserUseCase = get()
         )
     }
 

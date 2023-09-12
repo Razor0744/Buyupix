@@ -1,4 +1,4 @@
-package team.four.mys.domain.repository
+package team.four.mys.presentation.customView.pieChart
 
 interface PieChartRepository {
 

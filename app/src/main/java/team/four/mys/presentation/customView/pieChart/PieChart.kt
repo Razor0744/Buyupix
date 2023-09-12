@@ -1,4 +1,4 @@
-package team.four.mys.presentation.customView
+package team.four.mys.presentation.customView.pieChart
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -10,9 +10,6 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import team.four.mys.R
-import team.four.mys.domain.models.PieChartModel
-import team.four.mys.domain.models.PieChartState
-import team.four.mys.domain.repository.PieChartRepository
 import team.four.mys.extensions.dpToPx
 
 /**

@@ -6,24 +6,17 @@ import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentCodeSendBinding
-import team.four.mys.domain.models.SetNavigationColorParam
-import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.presentation.activity.AuthenticationActivity
-import team.four.mys.domain.usecases.SetNavigationColorUseCase
-import team.four.mys.presentation.viewmodelsfragment.CodeSendViewModel
+import team.four.mys.presentation.activity.MainActivity
 
 class CodeSendFragment : Fragment() {
 
     private var binding: FragmentCodeSendBinding? = null
-
-    private val viewModel by viewModel<CodeSendViewModel>()
 
     // firebase
     private lateinit var auth: FirebaseAuth
@@ -41,11 +34,7 @@ class CodeSendFragment : Fragment() {
         binding?.code1?.requestFocus()
 
         binding?.buttonArrowLeft?.setOnClickListener {
-            (activity as AuthenticationActivity).replaceFragment(
-                fragment = LoginFragment(),
-                key = null,
-                value = null
-            )
+            findNavController().navigate(R.id.login_fragment)
         }
 
         binding?.button1?.setOnClickListener {
@@ -92,23 +81,9 @@ class CodeSendFragment : Fragment() {
             focused("11")
             if (codeNumber.trim().isNotEmpty()) {
                 codeNumber = codeNumber.substring(0, codeNumber.length - 1)
-                println(codeNumber)
             }
         }
 
-        viewModel.setStatusBarColor(
-            SetStatusBarParam(
-                activity = requireActivity(),
-                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
-            )
-        )
-
-        SetNavigationColorUseCase().execute(
-            SetNavigationColorParam(
-                activity = requireActivity(),
-                ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
-            )
-        )
         inputType()
         textWatcher()
         timer()
@@ -144,8 +119,7 @@ class CodeSendFragment : Fragment() {
                 binding?.code5 -> binding?.code5?.setText(number)
                 binding?.code6 -> {
                     binding?.code6?.setText(number)
-                    println(codeNumber)
-                    (activity as AuthenticationActivity).verifyPhoneNumberWithCode(code = codeNumber)
+                    (activity as MainActivity).verifyPhoneNumberWithCode(code = codeNumber)
                 }
             }
         } else {
@@ -154,18 +128,22 @@ class CodeSendFragment : Fragment() {
                     binding?.code1?.text = null
                     binding?.code1?.requestFocus()
                 }
+
                 binding?.code3 -> {
                     binding?.code2?.text = null
                     binding?.code2?.requestFocus()
                 }
+
                 binding?.code4 -> {
                     binding?.code3?.text = null
                     binding?.code3?.requestFocus()
                 }
+
                 binding?.code5 -> {
                     binding?.code4?.text = null
                     binding?.code4?.requestFocus()
                 }
+
                 binding?.code6 -> {
                     binding?.code5?.text = null
                     binding?.code5?.requestFocus()
@@ -214,7 +192,7 @@ class CodeSendFragment : Fragment() {
                 binding?.textTimer?.text = "Для повторной отправки нажмите "
                 binding?.timer?.text = "здесь"
                 binding?.timer?.setOnClickListener {
-                    (activity as AuthenticationActivity).resendVerificationCode()
+                    (activity as MainActivity).resendVerificationCode()
                 }
             }
         }.start()

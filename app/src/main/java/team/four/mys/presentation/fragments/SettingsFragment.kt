@@ -1,12 +1,12 @@
 package team.four.mys.presentation.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -14,8 +14,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentSettingsBinding
 import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.presentation.activity.FirstActivity
-import team.four.mys.presentation.activity.MainActivity
 import team.four.mys.presentation.viewmodelsfragment.SettingsViewModel
 
 class SettingsFragment : Fragment() {
@@ -34,20 +32,20 @@ class SettingsFragment : Fragment() {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         binding?.alert?.setOnClickListener {
-            (activity as MainActivity).replaceFragment(AlertFragment())
+            findNavController().navigate(R.id.alert_fragment)
         }
 
         binding?.darkMode?.setOnClickListener {
-            (activity as MainActivity).replaceFragment(DarkModeFragment())
+            findNavController().navigate(R.id.dark_mode_fragment)
         }
 
         binding?.language?.setOnClickListener {
-            (activity as MainActivity).replaceFragment(LanguageFragment())
+            findNavController().navigate(R.id.language_fragment)
         }
 
         binding?.logOut?.setOnClickListener {
             auth.signOut()
-            startActivity(Intent(context, FirstActivity::class.java))
+            findNavController().navigate(R.id.first_fragment)
         }
 
         viewModel.setStatusBarColor(

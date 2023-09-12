@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import team.four.mys.R
 import team.four.mys.databinding.FragmentCountryCodeBinding
 import team.four.mys.domain.models.Country
-import team.four.mys.presentation.activity.AuthenticationActivity
 import team.four.mys.presentation.adapters.CountryAdapter
 
 class CountryCodeFragment : Fragment() {
@@ -23,11 +23,7 @@ class CountryCodeFragment : Fragment() {
         binding = FragmentCountryCodeBinding.inflate(inflater, container, false)
 
         binding?.buttonArrowLeft?.setOnClickListener {
-            (activity as AuthenticationActivity).replaceFragment(
-                LoginFragment(),
-                key = null,
-                value = null
-            )
+            findNavController().navigate(R.id.login_fragment)
         }
 
         adapter()
@@ -45,11 +41,7 @@ class CountryCodeFragment : Fragment() {
             CountryAdapter(
                 country = country
             ) {
-                (activity as AuthenticationActivity).replaceFragment(
-                    LoginFragment(),
-                    key = "number",
-                    value = it.number
-                )
+                findNavController().navigate(R.id.login_fragment)
             }
         binding?.recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         binding?.recyclerView?.adapter = adapterAlert

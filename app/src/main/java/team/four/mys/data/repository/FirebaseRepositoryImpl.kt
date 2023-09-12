@@ -9,4 +9,8 @@ class FirebaseRepositoryImpl(private val firebaseDatabase: FirebaseDatabase) : F
         return firebaseDatabase.getUID()
     }
 
+    override fun checkUser(): Boolean {
+        return firebaseDatabase.checkUser()
+    }
+
 }

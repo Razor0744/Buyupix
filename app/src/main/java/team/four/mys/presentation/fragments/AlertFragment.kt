@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import team.four.mys.R
 import team.four.mys.databinding.FragmentAlertBinding
 import team.four.mys.domain.models.Alert
-import team.four.mys.presentation.activity.MainActivity
 import team.four.mys.presentation.adapters.AlertAdapter
 import team.four.mys.presentation.viewmodelsfragment.AlertViewModel
 
@@ -28,7 +29,7 @@ class AlertFragment : Fragment() {
         _binding = FragmentAlertBinding.inflate(inflater, container, false)
 
         binding.buttonArrowLeft.setOnClickListener {
-            (activity as MainActivity).replaceFragment(SettingsFragment())
+            findNavController().navigate(R.id.settings_fragment)
         }
 
         adapter()
@@ -48,7 +49,7 @@ class AlertFragment : Fragment() {
                 viewModel.getSettings()
             ) { alertClick ->
                 viewModel.setSettings(value = alertClick.name)
-                (activity as MainActivity).replaceFragment(SettingsFragment())
+                findNavController().navigate(R.id.settings_fragment)
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapterAlert

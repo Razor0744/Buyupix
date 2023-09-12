@@ -20,7 +20,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <team.four.mys.presentation.customView.PieChart
+    <team.four.mys.presentation.customView.pieChart.PieChart
         android:id="@+id/pie_chart"
         android:layout_width="match_parent"
         android:layout_height="300dp"

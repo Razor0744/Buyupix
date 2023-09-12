@@ -10,28 +10,12 @@
         android:name="team.four.mys.presentation.fragments.HomeFragment"
         tools:layout="@layout/fragment_home">
 
-        <action
-            android:id="@+id/action_home_to_statistics"
-            app:destination="@id/statistic_fragment" />
-
-        <action
-            android:id="@+id/action_home_to_settings"
-            app:destination="@id/statistic_fragment" />
-
     </fragment>
 
     <fragment
         android:id="@+id/statistic_fragment"
         android:name="team.four.mys.presentation.fragments.StatisticsFragment"
         tools:layout="@layout/fragment_statistics">
-
-        <action
-            android:id="@+id/action_statistic_to_home"
-            app:destination="@id/home_fragment" />
-
-        <action
-            android:id="@+id/action_statistic_to_settings"
-            app:destination="@id/settings_fragment" />
 
     </fragment>
 
@@ -40,18 +24,6 @@
         android:name="team.four.mys.presentation.fragments.SettingsFragment"
         tools:layout="@layout/fragment_settings">
 
-        <action
-            android:id="@+id/action_settings_to_home"
-            app:destination="@id/home_fragment" />
-
-        <action
-            android:id="@+id/action_settings_to_statistics"
-            app:destination="@id/statistic_fragment" />
-
-        <action
-            android:id="@+id/action_settings_to_alert"
-            app:destination="@id/alert_fragment" />
-
     </fragment>
 
     <fragment
@@ -59,9 +31,47 @@
         android:name="team.four.mys.presentation.fragments.AlertFragment"
         tools:layout="@layout/fragment_alert">
 
-        <action
-            android:id="@+id/action_alert_to_settings"
-            app:destination="@id/settings_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/code_send_fragment"
+        android:name="team.four.mys.presentation.fragments.CodeSendFragment"
+        tools:layout="@layout/fragment_code_send">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/country_code_fragment"
+        android:name="team.four.mys.presentation.fragments.CountryCodeFragment"
+        tools:layout="@layout/fragment_country_code">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/first_fragment"
+        android:name="team.four.mys.presentation.fragments.FirstFragment"
+        tools:layout="@layout/fragment_first">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="team.four.mys.presentation.fragments.LoginFragment"
+        tools:layout="@layout/fragment_login">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/dark_mode_fragment"
+        android:name="team.four.mys.presentation.fragments.DarkModeFragment"
+        tools:layout="@layout/fragment_dark_mode">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/language_fragment"
+        android:name="team.four.mys.presentation.fragments.LanguageFragment"
+        tools:layout="@layout/fragment_language">
 
     </fragment>
 

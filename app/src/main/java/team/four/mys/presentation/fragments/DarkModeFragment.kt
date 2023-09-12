@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import team.four.mys.R
 import team.four.mys.databinding.FragmentDarkModeBinding
 import team.four.mys.domain.models.DarkMode
 import team.four.mys.domain.models.SettingsPreferencesParam
@@ -29,7 +31,7 @@ class DarkModeFragment : Fragment() {
         _binding = FragmentDarkModeBinding.inflate(inflater, container, false)
 
         binding.buttonArrowLeft.setOnClickListener {
-            (activity as MainActivity).replaceFragment(SettingsFragment())
+            findNavController().navigate(R.id.settings_fragment)
         }
 
         adapter()
@@ -54,9 +56,7 @@ class DarkModeFragment : Fragment() {
                         value = darkModeClick.name
                     )
                 )
-                val intent = Intent(requireContext(), MainActivity::class.java)
-                intent.putExtra("fragment", "SettingsFragment")
-                startActivity(intent)
+                startActivity(Intent(requireContext(), MainActivity::class.java))
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapterDarkMode

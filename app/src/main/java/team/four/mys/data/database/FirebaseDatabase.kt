@@ -5,4 +5,6 @@ interface FirebaseDatabase {
     fun getUID(): String
 
     fun synchronization()
+
+    fun checkUser(): Boolean
 }

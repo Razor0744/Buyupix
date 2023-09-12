@@ -1,4 +1,4 @@
-package team.four.mys.domain.models
+package team.four.mys.presentation.customView.pieChart
 
 import android.graphics.Color
 import android.graphics.CornerPathEffect
