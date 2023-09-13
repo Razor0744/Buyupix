@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundMain"
+    android:background="@color/background_main"
     tools:context=".presentation.fragments.HomeFragment">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/statistics"
-        android:textColor="@color/textMain"
+        android:textColor="@color/text_main"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@id/text"
         app:pieChartCircleSectionSpace="2"
         app:pieChartCircleStrokeWidth="10dp"
-        app:pieChartColors="@array/pieChartColorArray" />
+        app:pieChartColors="@array/pie_chart_color_array" />
 
     <TextView
         android:id="@+id/month"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-30dp"
         android:fontFamily="@font/roboto"
-        android:textColor="@color/textSecondary"
+        android:textColor="@color/text_secondary"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/pie_chart"
         app:layout_constraintLeft_toLeftOf="@id/pie_chart"
@@ -49,14 +49,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/textMain"
+        android:textColor="@color/text_main"
         android:textSize="22sp"
         app:layout_constraintLeft_toLeftOf="@id/pie_chart"
         app:layout_constraintRight_toRightOf="@id/pie_chart"
         app:layout_constraintTop_toBottomOf="@id/month" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/gamingCategory"
+        android:id="@+id/gaming_category"
         android:layout_width="0dp"
         android:layout_height="28dp"
         android:layout_marginStart="20dp"
@@ -64,27 +64,27 @@
         android:background="@drawable/background_statistic_blue"
         android:fontFamily="@font/roboto"
         android:textAllCaps="false"
-        android:textColor="@color/textMain2"
+        android:textColor="@color/text_main2"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/defenceCategory"
+        app:layout_constraintRight_toLeftOf="@id/defence_category"
         app:layout_constraintTop_toBottomOf="@id/pie_chart" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/defenceCategory"
+        android:id="@+id/defence_category"
         android:layout_width="0dp"
         android:layout_height="28dp"
         android:background="@drawable/background_statistic_yellow"
         android:fontFamily="@font/roboto"
         android:textAllCaps="false"
-        android:textColor="@color/textMain2"
+        android:textColor="@color/text_main2"
         android:textSize="14sp"
-        app:layout_constraintLeft_toRightOf="@id/gamingCategory"
-        app:layout_constraintRight_toLeftOf="@id/cloudCategory"
+        app:layout_constraintLeft_toRightOf="@id/gaming_category"
+        app:layout_constraintRight_toLeftOf="@id/cloud_category"
         app:layout_constraintTop_toBottomOf="@id/pie_chart" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cloudCategory"
+        android:id="@+id/cloud_category"
         android:layout_width="0dp"
         android:layout_height="28dp"
         android:layout_marginStart="11dp"
@@ -92,14 +92,14 @@
         android:background="@drawable/background_statistic_blue_main"
         android:fontFamily="@font/roboto"
         android:textAllCaps="false"
-        android:textColor="@color/textMain2"
+        android:textColor="@color/text_main2"
         android:textSize="14sp"
-        app:layout_constraintLeft_toRightOf="@id/defenceCategory"
+        app:layout_constraintLeft_toRightOf="@id/defence_category"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pie_chart" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/moviesCategory"
+        android:id="@+id/movies_category"
         android:layout_width="0dp"
         android:layout_height="28dp"
         android:layout_marginStart="20dp"
@@ -108,28 +108,28 @@
         android:background="@drawable/background_statistic_red"
         android:fontFamily="@font/roboto"
         android:textAllCaps="false"
-        android:textColor="@color/textMain2"
+        android:textColor="@color/text_main2"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/booksCategory"
-        app:layout_constraintTop_toBottomOf="@id/gamingCategory" />
+        app:layout_constraintRight_toLeftOf="@id/books_category"
+        app:layout_constraintTop_toBottomOf="@id/gaming_category" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/booksCategory"
+        android:id="@+id/books_category"
         android:layout_width="0dp"
         android:layout_height="28dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/background_statistic_blue_light"
         android:fontFamily="@font/roboto"
         android:textAllCaps="false"
-        android:textColor="@color/textMain2"
+        android:textColor="@color/text_main2"
         android:textSize="14sp"
-        app:layout_constraintLeft_toRightOf="@id/moviesCategory"
-        app:layout_constraintRight_toLeftOf="@id/musicCategory"
-        app:layout_constraintTop_toBottomOf="@id/gamingCategory" />
+        app:layout_constraintLeft_toRightOf="@id/movies_category"
+        app:layout_constraintRight_toLeftOf="@id/music_category"
+        app:layout_constraintTop_toBottomOf="@id/gaming_category" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/musicCategory"
+        android:id="@+id/music_category"
         android:layout_width="0dp"
         android:layout_height="28dp"
         android:layout_marginStart="11dp"
@@ -138,14 +138,14 @@
         android:background="@drawable/background_statistic_violet"
         android:fontFamily="@font/roboto"
         android:textAllCaps="false"
-        android:textColor="@color/textMain2"
+        android:textColor="@color/text_main2"
         android:textSize="14sp"
-        app:layout_constraintLeft_toRightOf="@id/booksCategory"
+        app:layout_constraintLeft_toRightOf="@id/books_category"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gamingCategory" />
+        app:layout_constraintTop_toBottomOf="@id/gaming_category" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/otherCategory"
+        android:id="@+id/other_category"
         android:layout_width="0dp"
         android:layout_height="28dp"
         android:layout_marginStart="20dp"
@@ -154,11 +154,11 @@
         android:background="@drawable/background_statistic_turquoise"
         android:fontFamily="@font/roboto"
         android:textAllCaps="false"
-        android:textColor="@color/textMain2"
+        android:textColor="@color/text_main2"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/defenceCategory"
-        app:layout_constraintTop_toBottomOf="@id/musicCategory" />
+        app:layout_constraintRight_toLeftOf="@id/defence_category"
+        app:layout_constraintTop_toBottomOf="@id/music_category" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/subscriptions"
@@ -171,40 +171,40 @@
         android:elevation="2dp"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/maxCost"
-        app:layout_constraintTop_toBottomOf="@id/otherCategory">
+        app:layout_constraintRight_toLeftOf="@id/max_cost"
+        app:layout_constraintTop_toBottomOf="@id/other_category">
 
         <TextView
-            android:id="@+id/textSubscriptions"
+            android:id="@+id/text_subscriptions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/roboto"
             android:gravity="bottom"
             android:text="@string/subscriptions"
-            android:textColor="@color/textSecondary"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textSubscriptions2"
+            android:id="@+id/text_subscriptions2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="top"
-            android:textColor="@color/textMain"
+            android:textColor="@color/text_main"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textSubscriptions" />
+            app:layout_constraintTop_toBottomOf="@id/text_subscriptions" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/maxCost"
+        android:id="@+id/max_cost"
         android:layout_width="0dp"
         android:layout_height="74dp"
         android:layout_marginStart="8dp"
@@ -216,39 +216,39 @@
         android:visibility="invisible"
         app:layout_constraintLeft_toRightOf="@id/subscriptions"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/otherCategory">
+        app:layout_constraintTop_toBottomOf="@id/other_category">
 
         <TextView
-            android:id="@+id/textMaxCost"
+            android:id="@+id/text_max_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/roboto"
             android:gravity="bottom"
             android:text="Max cost"
-            android:textColor="@color/textSecondary"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textMaxCost2"
+            android:id="@+id/text_max_cost2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="top"
             android:text="$12,45"
-            android:textColor="@color/textMain"
+            android:textColor="@color/text_main"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textMaxCost" />
+            app:layout_constraintTop_toBottomOf="@id/text_max_cost" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/minCost"
+        android:id="@+id/min_cost"
         android:layout_width="0dp"
         android:layout_height="74dp"
         android:layout_marginStart="20dp"
@@ -259,36 +259,36 @@
         android:orientation="vertical"
         android:visibility="invisible"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/maxCost"
+        app:layout_constraintRight_toLeftOf="@id/max_cost"
         app:layout_constraintTop_toBottomOf="@id/subscriptions">
 
         <TextView
-            android:id="@+id/textMinCost"
+            android:id="@+id/text_min_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/roboto"
             android:gravity="bottom"
             android:text="Min cost"
-            android:textColor="@color/textSecondary"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textMinCost2"
+            android:id="@+id/text_min_cost2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="top"
             android:text="$0,45"
-            android:textColor="@color/textMain"
+            android:textColor="@color/text_main"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textMinCost" />
+            app:layout_constraintTop_toBottomOf="@id/text_min_cost" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -10,7 +10,7 @@
             android:shape="rectangle"
             android:useLevel="false">
 
-            <solid android:color="@color/backgroundMain" />
+            <solid android:color="@color/background_main" />
             <corners android:radius="44dp" />
             <size
                 android:width="16dp"

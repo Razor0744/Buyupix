@@ -8,6 +8,6 @@
     android:gravity="start|center"
     android:maxLines="1"
     android:paddingStart="13dp"
-    android:textColor="@color/textMain"
+    android:textColor="@color/text_main"
     android:textSize="16sp"
     tools:ignore="RtlSymmetry" />

@@ -95,7 +95,7 @@ class CreateSubscriptionFragment : Fragment() {
                 )
                 binding.priceButton.setTextColor(
                     ResourcesCompat.getColor(
-                        resources, R.color.textMain, null
+                        resources, R.color.text_main, null
                     )
                 )
                 binding.groupCurrencies.visibility = View.VISIBLE
@@ -105,7 +105,7 @@ class CreateSubscriptionFragment : Fragment() {
                 )
                 binding.priceButton.setTextColor(
                     ResourcesCompat.getColor(
-                        resources, R.color.textPlaceholder, null
+                        resources, R.color.text_placeholder, null
                     )
                 )
                 binding.groupCurrencies.visibility = View.INVISIBLE
@@ -122,7 +122,7 @@ class CreateSubscriptionFragment : Fragment() {
             )
             binding.priceButton.setTextColor(
                 ResourcesCompat.getColor(
-                    resources, R.color.textPlaceholder, null
+                    resources, R.color.text_placeholder, null
                 )
             )
         }
@@ -187,7 +187,7 @@ class CreateSubscriptionFragment : Fragment() {
                 )
                 binding.priceButton.setTextColor(
                     ResourcesCompat.getColor(
-                        resources, R.color.textPlaceholder, null
+                        resources, R.color.text_placeholder, null
                     )
                 )
                 binding.groupCurrencies.visibility = View.INVISIBLE
@@ -203,7 +203,7 @@ class CreateSubscriptionFragment : Fragment() {
     }
 
     private fun setMonthView() {
-        binding.monthYearTV.text = viewModel.monthYearFromDate(selectedDate)
+        binding.monthYearTv.text = viewModel.monthYearFromDate(selectedDate)
         val daysInMonth = viewModel.daysInMonthArray(selectedDate)
         val adapterCalendar = CalendarAdapter(daysInMonth) { calendarClick ->
             onItemClick(daysInMonth[calendarClick])

@@ -4,5 +4,5 @@
     <corners
         android:bottomLeftRadius="16dp"
         android:bottomRightRadius="16dp" />
-    <solid android:color="@color/backgroundNavBar" />
+    <solid android:color="@color/background_nav_bar" />
 </shape>

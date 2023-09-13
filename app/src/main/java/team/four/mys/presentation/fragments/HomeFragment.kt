@@ -45,14 +45,14 @@ class HomeFragment : Fragment() {
         viewModel.setStatusBarColor(
             SetStatusBarParam(
                 activity = requireActivity(),
-                color = ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
+                color = ResourcesCompat.getColor(resources, R.color.background_nav_bar, null)
             )
         )
 
         viewModel.setNavigationColor(
             SetNavigationColorParam(
                 activity = requireActivity(),
-                color = ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
+                color = ResourcesCompat.getColor(resources, R.color.background_nav_bar, null)
             )
         )
 

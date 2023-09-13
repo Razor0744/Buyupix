@@ -2,33 +2,33 @@
 
     <!--First-->
     <string name="welcome">Добро пожаловать</string>
-    <string name="descriptionFirst">Управляйте подписками, снижайте свои счета и оставайтесь на вершине своей финансовой жизни.</string>
-    <string name="continueButton">Продолжить</string>
+    <string name="description_first">Управляйте подписками, снижайте свои счета и оставайтесь на вершине своей финансовой жизни.</string>
+    <string name="continue_button">Продолжить</string>
 
     <!--Login-->
     <string name="authorization">Авторизация</string>
-    <string name="textL">Введите номер телефона в международном формате</string>
-    <string name="languageCode">Страна</string>
-    <string name="phoneNumber">Номер телефона</string>
+    <string name="text_l">Введите номер телефона в международном формате</string>
+    <string name="language_code">Страна</string>
+    <string name="phone_number">Номер телефона</string>
 
     <!--CountryCode-->
-    <string name="countryCode">Страна</string>
+    <string name="country_code">Страна</string>
 
     <!--CodeSend-->
-    <string name="textC">Введите код из СМС</string>
-    <string name="codeSendAgain">Повторно отправить код через</string>
+    <string name="text_c">Введите код из СМС</string>
+    <string name="code_send_again">Повторно отправить код через</string>
 
     <string name="app_name">Buyupix</string>
     <string name="name_app">Buyupix</string>
 
     <!--CreateSubscription-->
-    <string name="createSubscription">Содание подписки</string>
-    <string name="createNameSubscription">Название</string>
+    <string name="create_subscription">Содание подписки</string>
+    <string name="create_name_subscription">Название</string>
     <string name="price">Цена</string>
     <string name="description">Описание</string>
     <string name="reminder">Нопоминать</string>
-    <string name="buttonCreate">Создать</string>
-    <string name="writeOffDate">Дата Списания</string>
+    <string name="button_create">Создать</string>
+    <string name="write_off_date">Дата Списания</string>
 
     <!--Calendar-->
     <string name="monday">Пн</string>
@@ -40,7 +40,7 @@
     <string name="sunday">Вс</string>
 
     <!--SubscriptionInfo-->
-    <string name="subscriptionInfo">Информация подписки</string>
+    <string name="subscription_info">Информация подписки</string>
     <string name="name">Название</string>
     <string name="category">Категория</string>
     <string name="priceInfo">%1$s%2$s</string>
@@ -55,23 +55,23 @@
     <string name="darkMode">Тёмная тема</string>
     <string name="language">Язык</string>
     <string name="about">О нас</string>
-    <string name="signOut">Выход</string>
+    <string name="sign_out">Выход</string>
 
     <!--Home-->
-    <string name="firstSubscription">Вы еще не создали ни одной подписки. Давайте сделаем это прямо сейчас</string>
+    <string name="first_subscription">Вы еще не создали ни одной подписки. Давайте сделаем это прямо сейчас</string>
 
     <!--Statistic-->
-    <string name="fullPrice">%1$s USD</string>
-    <string name="gamingCategory">Игры · $%1$s</string>
-    <string name="defenceCategory">Защита · $%1$s</string>
-    <string name="cloudCategory">Хранилище · $%1$s</string>
-    <string name="moviesCategory">Фильмы · $%1$s</string>
-    <string name="booksCategory">Книги · $%1$s</string>
-    <string name="musicCategory">Музыка · $%1$s</string>
-    <string name="otherCategory">Другое · $%1$s</string>
+    <string name="full_price">%1$s USD</string>
+    <string name="gaming_category">Игры · $%1$s</string>
+    <string name="defence_category">Защита · $%1$s</string>
+    <string name="cloud_category">Хранилище · $%1$s</string>
+    <string name="movies_category">Фильмы · $%1$s</string>
+    <string name="books_category">Книги · $%1$s</string>
+    <string name="music_category">Музыка · $%1$s</string>
+    <string name="other_category">Другое · $%1$s</string>
     <string name="subscriptions">Подписки</string>
 
     <!--CustomRecyclerAdapterSubscriptions-->
-    <string name="priceAdapterSubscriptions">%1$s%2$s</string>
-    <string name="dateAdapterSubscriptions">%1$s %2$s</string>
+    <string name="price_adapter_subscriptions">%1$s%2$s</string>
+    <string name="date_adapter_subscriptions">%1$s %2$s</string>
 </resources>

@@ -232,7 +232,7 @@ class LoginFragment : Fragment() {
                         ForegroundColorSpan(
                             ResourcesCompat.getColor(
                                 resources,
-                                R.color.backgroundMain,
+                                R.color.background_main,
                                 null
                             )
                         ), 0, s.toString().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE

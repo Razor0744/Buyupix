@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundMain"
+    android:background="@color/background_main"
     tools:context=".presentation.activity.SubscriptionInfoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,20 +15,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/buttonArrowLeft"
-            style="@style/ArrowLeft"
+            android:id="@+id/button_arrow_left"
+            style="@style/arrow_left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/textLanguage"
+            android:id="@+id/text_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/subscriptionInfo"
-            android:textColor="@color/textMain"
+            android:text="@string/subscription_info"
+            android:textColor="@color/text_main"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -39,7 +39,7 @@
             android:id="@+id/delete"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="@dimen/marginEnd"
+            android:layout_marginEnd="@dimen/margin_end"
             android:background="@drawable/click_on_delete"
             android:src="@drawable/ic_delete"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +50,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageOfSubscription"
+        android:id="@+id/image_of_subscription"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="30dp"
@@ -65,33 +65,33 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/textMain"
+        android:textColor="@color/text_main"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageOfSubscription" />
+        app:layout_constraintTop_toBottomOf="@id/image_of_subscription" />
 
     <TextView
         android:id="@+id/price2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto"
-        android:textColor="@color/textSecondary"
-        android:textSize="@dimen/sizeSecondary"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/size_secondary"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name2" />
 
     <TextView
-        android:id="@+id/nameInLayout"
+        android:id="@+id/name_in_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="38.5dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/name"
-        android:textColor="@color/textMain"
-        android:textSize="@dimen/sizeMain"
+        android:textColor="@color/text_main"
+        android:textSize="@dimen/size_main"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/price2" />
 
@@ -103,24 +103,24 @@
         android:layout_marginEnd="13dp"
         android:fontFamily="@font/roboto"
         android:gravity="center"
-        android:textColor="@color/textSecondary"
-        android:textSize="@dimen/sizeSecondary"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/size_secondary"
         app:drawableRightCompat="@drawable/ic_arrow_right"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/price2" />
 
     <TextView
-        android:id="@+id/priceInLayout"
+        android:id="@+id/price_in_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="37dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/price"
-        android:textColor="@color/textMain"
-        android:textSize="@dimen/sizeMain"
+        android:textColor="@color/text_main"
+        android:textSize="@dimen/size_main"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameInLayout" />
+        app:layout_constraintTop_toBottomOf="@id/name_in_layout" />
 
     <TextView
         android:id="@+id/price"
@@ -130,24 +130,24 @@
         android:layout_marginEnd="13dp"
         android:fontFamily="@font/roboto"
         android:gravity="center"
-        android:textColor="@color/textSecondary"
-        android:textSize="@dimen/sizeSecondary"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/size_secondary"
         app:drawableRightCompat="@drawable/ic_arrow_right"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name" />
 
     <TextView
-        android:id="@+id/descriptionInLayout"
+        android:id="@+id/description_in_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="37dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/description"
-        android:textColor="@color/textMain"
-        android:textSize="@dimen/sizeMain"
+        android:textColor="@color/text_main"
+        android:textSize="@dimen/size_main"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/priceInLayout" />
+        app:layout_constraintTop_toBottomOf="@id/price_in_layout" />
 
     <TextView
         android:id="@+id/description"
@@ -157,24 +157,24 @@
         android:layout_marginEnd="13dp"
         android:fontFamily="@font/roboto"
         android:gravity="center"
-        android:textColor="@color/textSecondary"
-        android:textSize="@dimen/sizeSecondary"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/size_secondary"
         app:drawableRightCompat="@drawable/ic_arrow_right"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/price" />
 
     <TextView
-        android:id="@+id/categoryInLayout"
+        android:id="@+id/category_in_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="34.5dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/category"
-        android:textColor="@color/textMain"
-        android:textSize="@dimen/sizeMain"
+        android:textColor="@color/text_main"
+        android:textSize="@dimen/size_main"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/descriptionInLayout" />
+        app:layout_constraintTop_toBottomOf="@id/description_in_layout" />
 
     <TextView
         android:id="@+id/category"
@@ -184,27 +184,27 @@
         android:layout_marginEnd="13dp"
         android:fontFamily="@font/roboto"
         android:gravity="center"
-        android:textColor="@color/textSecondary"
-        android:textSize="@dimen/sizeSecondary"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/size_secondary"
         app:drawableRightCompat="@drawable/ic_arrow_right"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/description" />
 
     <TextView
-        android:id="@+id/reminderInLayout"
+        android:id="@+id/reminder_in_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginStart="@dimen/margin_start"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/reminder"
-        android:textColor="@color/textMain"
-        android:textSize="@dimen/sizeMain"
+        android:textColor="@color/text_main"
+        android:textSize="@dimen/size_main"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/categoryInLayout" />
+        app:layout_constraintTop_toBottomOf="@id/category_in_layout" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switchReminder"
+        android:id="@+id/switch_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"

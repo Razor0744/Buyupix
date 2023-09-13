@@ -6,39 +6,39 @@
     <color name="grey_100">#3E3D48</color>
     <color name="blue_100">#3E82F9</color>
     <color name="blue_200">#2D8DD8</color>
-    <color name="recyclerViewItemBlack">#434952</color>
-    <color name="recyclerViewItemGrey">#939AA6</color>
+    <color name="recycler_view_item_black">#434952</color>
+    <color name="recycler_view_item_grey">#939AA6</color>
     <color name="grey_200">#F5F5F5</color>
     <color name="grey_300">#7E8899</color>
     <color name="grey_500">#BFC8D8</color>
 
     <!--Background-->
-    <color name="backgroundMain">#191A1F</color>
-    <color name="backgroundSecondary">#6B6B78</color>
-    <color name="backgroundInactive">#2F2F3A</color>
-    <color name="backgroundNavBar">#24242D</color>
-    <color name="backgroundStroke">#6B6B78</color>
+    <color name="background_main">#191A1F</color>
+    <color name="background_secondary">#6B6B78</color>
+    <color name="background_inactive">#2F2F3A</color>
+    <color name="background_nav_bar">#24242D</color>
+    <color name="background_stroke">#6B6B78</color>
 
     <!--Text-->
-    <color name="textMain">#F2F2F2</color>
-    <color name="textMain2">#F9F9F9</color>
-    <color name="textSecondary">#727283</color>
-    <color name="textPlaceholder">#727283</color>
+    <color name="text_main">#F2F2F2</color>
+    <color name="text_main2">#F9F9F9</color>
+    <color name="text_secondary">#727283</color>
+    <color name="text_placeholder">#727283</color>
 
     <!--Button-->
-    <color name="buttonClick">#15161C</color>
-    <color name="buttonLiner">#E56A6F</color>
-    <color name="buttonGray">#24242D</color>
+    <color name="button_click">#15161C</color>
+    <color name="button_liner">#E56A6F</color>
+    <color name="button_gray">#24242D</color>
 
     <!--Accent-->
-    <color name="blueMain">#52ACF1</color>
-    <color name="blueClick">#1F78BC</color>
+    <color name="blue_main">#52ACF1</color>
+    <color name="blue_click">#1F78BC</color>
     <color name="blue">#3B36E1</color>
-    <color name="blueLight">#2BA2D9</color>
+    <color name="blue_light">#2BA2D9</color>
     <color name="yellow">#E9B91D</color>
     <color name="red">#CB393F</color>
     <color name="violet">#9855D8</color>
     <color name="turquoise">#1AB499</color>
 
-    <color name="imageBackground">#242424</color>
+    <color name="image_background">#242424</color>
 </resources>

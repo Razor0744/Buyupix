@@ -2,33 +2,33 @@
 
     <!--First-->
     <string name="welcome">Welcome</string>
-    <string name="descriptionFirst">Manage your subscriptions, lower your bills and stay on top of your financial life.</string>
-    <string name="continueButton">Continue</string>
+    <string name="description_first">Manage your subscriptions, lower your bills and stay on top of your financial life.</string>
+    <string name="continue_button">Continue</string>
 
     <!--Login-->
     <string name="authorization">Authorization</string>
-    <string name="textL">Enter phone number in international format</string>
-    <string name="languageCode">Country</string>
-    <string name="phoneNumber">Phone Number</string>
+    <string name="text_l">Enter phone number in international format</string>
+    <string name="language_code">Country</string>
+    <string name="phone_number">Phone Number</string>
 
     <!--CountryCode-->
-    <string name="countryCode">Country</string>
+    <string name="country_code">Country</string>
 
     <!--CodeSend-->
-    <string name="textC">Enter code from sms</string>
-    <string name="codeSendAgain">Resend code via </string>
+    <string name="text_c">Enter code from sms</string>
+    <string name="code_send_again">Resend code via </string>
 
     <string name="app_name">Buyupix</string>
     <string name="name_app">Buyupix</string>
 
     <!--CreateSubscription-->
-    <string name="createSubscription">Create Sub</string>
-    <string name="createNameSubscription">Name</string>
+    <string name="create_subscription">Create Sub</string>
+    <string name="create_name_subscription">Name</string>
     <string name="price">Price</string>
     <string name="description">Description</string>
     <string name="reminder">Reminder</string>
-    <string name="buttonCreate">Create</string>
-    <string name="writeOffDate">Write-off date</string>
+    <string name="button_create">Create</string>
+    <string name="write_off_date">Write-off date</string>
 
     <!--Calendar-->
     <string name="monday">Mon</string>
@@ -40,7 +40,7 @@
     <string name="sunday">Sun</string>
 
     <!--SubscriptionInfo-->
-    <string name="subscriptionInfo">Subs info</string>
+    <string name="subscription_info">Subs info</string>
     <string name="name">Name</string>
     <string name="category">Category</string>
     <string name="priceInfo">%1$s%2$s</string>
@@ -55,10 +55,10 @@
     <string name="darkMode">Dark Mode</string>
     <string name="language">Language</string>
     <string name="about">About</string>
-    <string name="signOut">Exit</string>
+    <string name="sign_out">Exit</string>
 
     <!--Home-->
-    <string name="firstSubscription">You have not created any subscription yet. Let is do it right now</string>
+    <string name="first_subscription">You have not created any subscription yet. Let is do it right now</string>
 
     <!--AutoCompleteText-->
     <!--27-->
@@ -93,29 +93,27 @@
     </string-array>
 
     <!--Statistic-->
-    <string name="fullPrice">%1$s USD</string>
-    <string name="gamingCategory">Gaming · $%1$s</string>
-    <string name="defenceCategory">Defence · $%1$s</string>
-    <string name="cloudCategory">Cloud · $%1$s</string>
-    <string name="moviesCategory">Movies · $%1$s</string>
-    <string name="booksCategory">Books · $%1$s</string>
-    <string name="musicCategory">Music · $%1$s</string>
-    <string name="otherCategory">Other · $%1$s</string>
+    <string name="full_price">%1$s USD</string>
+    <string name="gaming_category">Gaming · $%1$s</string>
+    <string name="defence_category">Defence · $%1$s</string>
+    <string name="cloud_category">Cloud · $%1$s</string>
+    <string name="movies_category">Movies · $%1$s</string>
+    <string name="books_category">Books · $%1$s</string>
+    <string name="music_category">Music · $%1$s</string>
+    <string name="other_category">Other · $%1$s</string>
     <string name="subscriptions">Subscriptions</string>
 
 
     <!--CustomRecyclerAdapterSubscriptions-->
-    <string name="priceAdapterSubscriptions">%1$s%2$s</string>
-    <string name="dateAdapterSubscriptions">%1$s %2$s</string>
+    <string name="price_adapter_subscriptions">%1$s%2$s</string>
+    <string name="date_adapter_subscriptions">%1$s %2$s</string>
 
-    <string-array name="pieChartColorArray">
+    <string-array name="pie_chart_color_array">
         <item>#E480F4</item>
         <item>#6CC3F3</item>
         <item>#7167ED</item>
         <item>#D9455F</item>
         <item>#6054EA</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

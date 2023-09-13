@@ -51,7 +51,7 @@ class SettingsFragment : Fragment() {
         viewModel.setStatusBarColor(
             SetStatusBarParam(
                 activity = requireActivity(),
-                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+                color = ResourcesCompat.getColor(resources, R.color.background_main, null)
             )
         )
 

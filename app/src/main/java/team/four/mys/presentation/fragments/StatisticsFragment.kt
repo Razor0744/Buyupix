@@ -32,31 +32,31 @@ class StatisticsFragment : Fragment() {
         binding.month.text = viewModel.date()
 
         binding.gamingCategory.text = getString(
-            R.string.gamingCategory,
+            R.string.gaming_category,
             String.format("%.2f", (activity as MainActivity).gamingPrice)
         )
         binding.defenceCategory.text = getString(
-            R.string.defenceCategory,
+            R.string.defence_category,
             String.format("%.2f", (activity as MainActivity).defencePrice)
         )
         binding.cloudCategory.text = getString(
-            R.string.cloudCategory,
+            R.string.cloud_category,
             String.format("%.2f", (activity as MainActivity).cloudPrice)
         )
         binding.moviesCategory.text = getString(
-            R.string.moviesCategory,
+            R.string.movies_category,
             String.format("%.2f", (activity as MainActivity).moviesPrice)
         )
         binding.booksCategory.text = getString(
-            R.string.booksCategory,
+            R.string.books_category,
             String.format("%.2f", (activity as MainActivity).booksPrice)
         )
         binding.musicCategory.text = getString(
-            R.string.musicCategory,
+            R.string.music_category,
             String.format("%.2f", (activity as MainActivity).musicPrice)
         )
         binding.otherCategory.text = getString(
-            R.string.otherCategory,
+            R.string.other_category,
             String.format("%.2f", (activity as MainActivity).otherPrice)
         )
 
@@ -67,14 +67,14 @@ class StatisticsFragment : Fragment() {
         viewModel.setStatusBarColor(
             SetStatusBarParam(
                 activity = requireActivity(),
-                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
+                color = ResourcesCompat.getColor(resources, R.color.background_main, null)
             )
         )
 
         SetNavigationColorUseCase().execute(
             SetNavigationColorParam(
                 requireActivity(),
-                ResourcesCompat.getColor(resources, R.color.backgroundNavBar, null)
+                ResourcesCompat.getColor(resources, R.color.background_nav_bar, null)
             )
         )
 

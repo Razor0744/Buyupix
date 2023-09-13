@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundMain"
+    android:background="@color/background_main"
     tools:context=".presentation.fragments.CodeSendFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,20 +15,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/buttonArrowLeft"
-            style="@style/ArrowLeft"
+            android:id="@+id/button_arrow_left"
+            style="@style/arrow_left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/textLanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/authorization"
-            android:textColor="@color/textMain"
+            android:textColor="@color/text_main"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -45,26 +44,26 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="37dp"
         android:fontFamily="@font/roboto"
-        android:text="@string/textC"
-        android:textColor="@color/textSecondary"
-        android:textSize="@dimen/sizeSecondary"
+        android:text="@string/text_c"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/size_secondary"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/content" />
 
     <View
-        android:id="@+id/centerView"
+        android:id="@+id/center_view"
         android:layout_width="2dp"
         android:layout_height="3dp"
         android:layout_marginTop="32dp"
-        android:background="@color/backgroundMain"
+        android:background="@color/background_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text" />
 
     <EditText
         android:id="@+id/code1"
-        style="@style/StyleItemCodeSendActivity"
+        style="@style/style_item_code_send_activity"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@id/code2"
         app:layout_constraintTop_toBottomOf="@id/text"
@@ -72,7 +71,7 @@
 
     <EditText
         android:id="@+id/code2"
-        style="@style/StyleItemCodeSendActivity"
+        style="@style/style_item_code_send_activity"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@id/code3"
         app:layout_constraintTop_toBottomOf="@id/text"
@@ -80,23 +79,23 @@
 
     <EditText
         android:id="@+id/code3"
-        style="@style/StyleItemCodeSendActivity"
+        style="@style/style_item_code_send_activity"
         android:layout_marginEnd="3dp"
-        app:layout_constraintEnd_toStartOf="@id/centerView"
+        app:layout_constraintEnd_toStartOf="@id/center_view"
         app:layout_constraintTop_toBottomOf="@id/text"
         tools:ignore="Autofill,LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/code4"
-        style="@style/StyleItemCodeSendActivity"
+        style="@style/style_item_code_send_activity"
         android:layout_marginStart="3dp"
-        app:layout_constraintStart_toEndOf="@id/centerView"
+        app:layout_constraintStart_toEndOf="@id/center_view"
         app:layout_constraintTop_toBottomOf="@id/text"
         tools:ignore="Autofill,LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/code5"
-        style="@style/StyleItemCodeSendActivity"
+        style="@style/style_item_code_send_activity"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@id/code4"
         app:layout_constraintTop_toBottomOf="@id/text"
@@ -104,7 +103,7 @@
 
     <EditText
         android:id="@+id/code6"
-        style="@style/StyleItemCodeSendActivity"
+        style="@style/style_item_code_send_activity"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@id/code5"
         app:layout_constraintTop_toBottomOf="@id/text"
@@ -120,13 +119,13 @@
         app:layout_constraintTop_toBottomOf="@id/code2">
 
         <TextView
-            android:id="@+id/textTimer"
+            android:id="@+id/text_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
-            android:text="@string/codeSendAgain"
-            android:textColor="@color/textSecondary"
-            android:textSize="@dimen/sizeSecondary" />
+            android:text="@string/code_send_again"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/size_secondary" />
 
         <TextView
             android:id="@+id/timer"
@@ -134,13 +133,13 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
             android:text="0:30"
-            android:textColor="@color/blueMain"
-            android:textSize="@dimen/sizeSecondary" />
+            android:textColor="@color/blue_main"
+            android:textSize="@dimen/size_secondary" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/button1"
-        style="@style/LayoutLoginActivity"
+        style="@style/layout_login_activity"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="6dp"
@@ -151,7 +150,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            style="@style/Text1LoginActivity"
+            style="@style/text1_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -162,7 +161,7 @@
 
     <LinearLayout
         android:id="@+id/button2"
-        style="@style/LayoutLoginActivity"
+        style="@style/layout_login_activity"
         android:layout_marginBottom="6dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -171,7 +170,7 @@
         app:layout_constraintRight_toLeftOf="@id/button3">
 
         <TextView
-            style="@style/Text1LoginActivity"
+            style="@style/text1_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -179,7 +178,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            style="@style/Text2LoginActivity"
+            style="@style/text2_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -190,7 +189,7 @@
 
     <LinearLayout
         android:id="@+id/button3"
-        style="@style/LayoutLoginActivity"
+        style="@style/layout_login_activity"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="6dp"
@@ -201,7 +200,7 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <TextView
-            style="@style/Text1LoginActivity"
+            style="@style/text1_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -209,7 +208,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            style="@style/Text2LoginActivity"
+            style="@style/text2_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -220,7 +219,7 @@
 
     <LinearLayout
         android:id="@+id/button4"
-        style="@style/LayoutLoginActivity"
+        style="@style/layout_login_activity"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="6dp"
@@ -231,7 +230,7 @@
         app:layout_constraintRight_toLeftOf="@id/button2">
 
         <TextView
-            style="@style/Text1LoginActivity"
+            style="@style/text1_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -239,7 +238,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            style="@style/Text2LoginActivity"
+            style="@style/text2_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -250,7 +249,7 @@
 
     <LinearLayout
         android:id="@+id/button5"
-        style="@style/LayoutLoginActivity"
+        style="@style/layout_login_activity"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="6dp"
@@ -261,7 +260,7 @@
         app:layout_constraintRight_toLeftOf="@id/button3">
 
         <TextView
-            style="@style/Text1LoginActivity"
+            style="@style/text1_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -269,7 +268,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            style="@style/Text2LoginActivity"
+            style="@style/text2_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -280,7 +279,7 @@
 
     <LinearLayout
         android:id="@+id/button6"
-        style="@style/LayoutLoginActivity"
+        style="@style/layout_login_activity"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="6dp"
@@ -291,7 +290,7 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <TextView
-            style="@style/Text1LoginActivity"
+            style="@style/text1_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -299,7 +298,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            style="@style/Text2LoginActivity"
+            style="@style/text2_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -310,7 +309,7 @@
 
     <LinearLayout
         android:id="@+id/button7"
-        style="@style/LayoutLoginActivity"
+        style="@style/layout_login_activity"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="6dp"
@@ -321,7 +320,7 @@
         app:layout_constraintRight_toLeftOf="@id/button2">
 
         <TextView
-            style="@style/Text1LoginActivity"
+            style="@style/text1_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -329,7 +328,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            style="@style/Text2LoginActivity"
+            style="@style/text2_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -340,7 +339,7 @@
 
     <LinearLayout
         android:id="@+id/button8"
-        style="@style/LayoutLoginActivity"
+        style="@style/layout_login_activity"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="6dp"
@@ -351,7 +350,7 @@
         app:layout_constraintRight_toLeftOf="@id/button3">
 
         <TextView
-            style="@style/Text1LoginActivity"
+            style="@style/text1_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -359,7 +358,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            style="@style/Text2LoginActivity"
+            style="@style/text2_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -370,7 +369,7 @@
 
     <LinearLayout
         android:id="@+id/button9"
-        style="@style/LayoutLoginActivity"
+        style="@style/layout_login_activity"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="6dp"
@@ -380,7 +379,7 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <TextView
-            style="@style/Text1LoginActivity"
+            style="@style/text1_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -388,7 +387,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            style="@style/Text2LoginActivity"
+            style="@style/text2_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -399,7 +398,7 @@
 
     <LinearLayout
         android:id="@+id/button0"
-        style="@style/LayoutLoginActivity"
+        style="@style/layout_login_activity"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="12dp"
@@ -409,7 +408,7 @@
         app:layout_constraintRight_toLeftOf="@id/button3">
 
         <TextView
-            style="@style/Text1LoginActivity"
+            style="@style/text1_login_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -420,7 +419,7 @@
 
     <FrameLayout
         android:id="@+id/button11"
-        style="@style/LayoutLoginActivity"
+        style="@style/layout_login_activity"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="12dp"

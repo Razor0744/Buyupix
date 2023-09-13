@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundMain"
+    android:background="@color/background_main"
     tools:context="team.four.mys.presentation.activity.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
@@ -13,21 +13,21 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@color/backgroundNavBar"
+        android:background="@color/background_nav_bar"
         app:itemBackground="@drawable/click_on_navigation"
         app:itemIconTint="@drawable/navigation_view_state"
-        app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyleClick"
-        app:itemTextAppearanceInactive="@style/BottomNavigationViewTextStyle"
+        app:itemTextAppearanceActive="@style/bottom_navigation_view_text_style_click"
+        app:itemTextAppearanceInactive="@style/bottom_navigation_view_text_style"
         app:itemTextColor="@drawable/navigation_view_state"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

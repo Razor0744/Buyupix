@@ -3,29 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/heightSecondary"
-    android:layout_marginStart="@dimen/marginForBackgroundItems"
-    android:layout_marginEnd="@dimen/marginForBackgroundItems"
+    android:layout_height="@dimen/height_secondary"
+    android:layout_marginStart="@dimen/margin_for_background_items"
+    android:layout_marginEnd="@dimen/margin_for_background_items"
     android:background="@drawable/click_on_items">
 
     <TextView
-        android:id="@+id/textAlert"
+        android:id="@+id/text_alert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginStartRecyclerSettings"
+        android:layout_marginStart="@dimen/margin_start_recycler_settings"
         android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/textMain"
-        android:textSize="@dimen/sizeMain"
+        android:textColor="@color/text_main"
+        android:textSize="@dimen/size_main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlSymmetry" />
 
     <ImageView
-        android:id="@+id/imageAlert"
+        android:id="@+id/image_alert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/marginEndRecyclerSettings"
+        android:layout_marginEnd="@dimen/margin_end_recycler_settings"
         android:src="@drawable/ic_radio_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"

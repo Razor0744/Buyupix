@@ -87,17 +87,17 @@ class PieChart @JvmOverloads constructor(
 
             // Секция круговой диаграммы
             circleStrokeWidth = typeArray.getDimension(
-                R.styleable.PieChart_pieChartCircleStrokeWidth,
+                R.styleable.PieChart_pie_chart_circle_stroke_width,
                 circleStrokeWidth
             )
             circlePadding =
-                typeArray.getDimension(R.styleable.PieChart_pieChartCirclePadding, circlePadding)
+                typeArray.getDimension(R.styleable.PieChart_pie_chart_circle_padding, circlePadding)
             circlePaintRoundSize = typeArray.getBoolean(
-                R.styleable.PieChart_pieChartCirclePaintRoundSize,
+                R.styleable.PieChart_pie_chart_circle_paint_round_size,
                 circlePaintRoundSize
             )
             circleSectionSpace = typeArray.getFloat(
-                R.styleable.PieChart_pieChartCircleSectionSpace,
+                R.styleable.PieChart_pie_chart_circle_section_space,
                 circleSectionSpace
             )
 

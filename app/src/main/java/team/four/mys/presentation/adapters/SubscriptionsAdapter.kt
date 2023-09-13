@@ -31,12 +31,12 @@ class SubscriptionsAdapter(
 
             binding.nameSubscription.text = subscription.name
             binding.priceSubscription.text = binding.root.context.getString(
-                R.string.priceAdapterSubscriptions,
+                R.string.price_adapter_subscriptions,
                 subscription.currencyIcon,
                 subscription.price
             )
             binding.writeOffDateSubscription.text = binding.root.context.getString(
-                R.string.dateAdapterSubscriptions,
+                R.string.date_adapter_subscriptions,
                 subscription.date.toString(),
                 month
             )
@@ -62,7 +62,7 @@ class SubscriptionsAdapter(
 
             binding.nameSubscription.text = subscription.name
             binding.priceSubscription.text = binding.root.context.getString(
-                R.string.priceAdapterSubscriptions,
+                R.string.price_adapter_subscriptions,
                 subscription.currencyIcon,
                 subscription.price
             )

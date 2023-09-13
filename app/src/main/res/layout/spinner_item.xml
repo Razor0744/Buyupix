@@ -8,7 +8,7 @@
     android:gravity="center_vertical"
     android:paddingStart="13dp"
     android:paddingEnd="11dp"
-    android:textColor="@color/textPlaceholder"
+    android:textColor="@color/text_placeholder"
     android:textSize="16sp"
     app:drawableEndCompat="@drawable/arrow_down"
     tools:ignore="RtlSymmetry" />
