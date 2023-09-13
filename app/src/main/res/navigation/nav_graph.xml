@@ -82,4 +82,11 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/subscription_info_fragment"
+        android:name="team.four.mys.presentation.fragments.SubscriptionInfoFragment"
+        tools:layout="@layout/fragment_subscription_info">
+
+    </fragment>
+
 </navigation>

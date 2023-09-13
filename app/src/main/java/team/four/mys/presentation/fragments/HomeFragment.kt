@@ -1,10 +1,10 @@
 package team.four.mys.presentation.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
@@ -12,9 +12,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentHomeBinding
 import team.four.mys.domain.models.Subscription
-import team.four.mys.presentation.activity.SubscriptionInfoActivity
 import team.four.mys.presentation.adapters.SubscriptionsAdapter
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
+
 
 class HomeFragment : Fragment() {
 
@@ -61,9 +61,8 @@ class HomeFragment : Fragment() {
                 subscriptions,
                 viewModel.date()
             ) {
-                val intent = Intent(requireContext(), SubscriptionInfoActivity::class.java)
-                intent.putExtra("subscription", Gson().toJson(it))
-                startActivity(intent)
+                val bundle = bundleOf("subscription" to Gson().toJson(it))
+                findNavController().navigate(R.id.subscription_info_fragment, bundle)
             }
         binding.recyclerView.adapter = adapterSubscriptions
     }

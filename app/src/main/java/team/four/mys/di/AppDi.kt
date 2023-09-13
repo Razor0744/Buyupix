@@ -7,7 +7,7 @@ import team.four.mys.presentation.viewmodelsfragment.CreateSubscriptionViewModel
 import team.four.mys.presentation.viewmodelsfragment.DarkModeViewModel
 import team.four.mys.presentation.viewmodelsfragment.LanguageViewModel
 import team.four.mys.presentation.viewmodelsactivity.MainViewModel
-import team.four.mys.presentation.viewmodelsactivity.SubscriptionInfoViewModel
+import team.four.mys.presentation.viewmodelsfragment.SubscriptionInfoViewModel
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
 import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
