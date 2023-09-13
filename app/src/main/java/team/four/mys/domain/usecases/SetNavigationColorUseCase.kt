@@ -1,10 +1,10 @@
 package team.four.mys.domain.usecases
 
-import team.four.mys.domain.models.SetNavigationColorParam
+import android.app.Activity
 
 class SetNavigationColorUseCase {
 
-    fun execute(setNavigationColorParam: SetNavigationColorParam) {
-        setNavigationColorParam.activity.window.navigationBarColor = setNavigationColorParam.color
+    fun execute(activity: Activity, color: Int) {
+        activity.window.navigationBarColor = color
     }
 }

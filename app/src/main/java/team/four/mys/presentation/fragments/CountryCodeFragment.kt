@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,7 +43,8 @@ class CountryCodeFragment : Fragment() {
             CountryAdapter(
                 country = country
             ) {
-                findNavController().navigate(R.id.login_fragment)
+                val bundle = bundleOf("number" to it.number)
+                findNavController().navigate(R.id.login_fragment, bundle)
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapterAlert

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="PieChart">
-        <attr name="pieChartColors" format="reference" />
+        <attr name="pie_chart_colors" format="reference" />
 
         <attr name="pie_chart_circle_stroke_width" format="dimension" />
         <attr name="pie_chart_circle_padding" format="dimension" />

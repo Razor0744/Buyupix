@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -69,6 +70,8 @@ class MainActivity : AppCompatActivity() {
 
         visibilityNavElements(navController)
         callbacks()
+        navigationBarColor(navController)
+        statusBarColor(navController)
     }
 
     private fun callbacks() {
@@ -188,6 +191,40 @@ class MainActivity : AppCompatActivity() {
                 R.id.settings_fragment -> binding.bottomNavigation.visibility = View.VISIBLE
 
                 else -> binding.bottomNavigation.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun statusBarColor(navController: NavController) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.home_fragment -> viewModel.setStatusBarColor(
+                    activity = this,
+                    color = ResourcesCompat.getColor(resources, R.color.background_nav_bar, null)
+                )
+
+                else -> viewModel.setStatusBarColor(
+                    activity = this,
+                    color = ResourcesCompat.getColor(resources, R.color.background_main, null)
+                )
+            }
+        }
+    }
+
+    private fun navigationBarColor(navController: NavController) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.home_fragment,
+                R.id.settings_fragment,
+                R.id.statistic_fragment -> viewModel.setNavigationColor(
+                    activity = this,
+                    color = ResourcesCompat.getColor(resources, R.color.background_nav_bar, null)
+                )
+
+                else -> viewModel.setNavigationColor(
+                    activity = this,
+                    color = ResourcesCompat.getColor(resources, R.color.background_main, null)
+                )
             }
         }
     }

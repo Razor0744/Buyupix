@@ -3,14 +3,12 @@ package team.four.mys.di
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import team.four.mys.presentation.viewmodelsfragment.AlertViewModel
-import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
-import team.four.mys.presentation.viewmodelsactivity.DarkModeViewModel
-import team.four.mys.presentation.viewmodelsactivity.FirstActivityViewModel
-import team.four.mys.presentation.viewmodelsactivity.LanguageViewModel
+import team.four.mys.presentation.viewmodelsfragment.CreateSubscriptionViewModel
+import team.four.mys.presentation.viewmodelsfragment.DarkModeViewModel
+import team.four.mys.presentation.viewmodelsfragment.LanguageViewModel
 import team.four.mys.presentation.viewmodelsactivity.MainViewModel
 import team.four.mys.presentation.viewmodelsactivity.SubscriptionInfoViewModel
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
-import team.four.mys.presentation.viewmodelsfragment.SettingsViewModel
 import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
 val appModule = module {
@@ -18,31 +16,19 @@ val appModule = module {
     viewModel<AlertViewModel> {
         AlertViewModel(
             getSettingsUseCase = get(),
-            setSettingsUseCase = get(),
-            setStatusBarColorUseCase = get(),
-            setNavigationColorUseCase = get()
+            setSettingsUseCase = get()
         )
     }
 
     viewModel<SubscriptionInfoViewModel> {
         SubscriptionInfoViewModel(
-            setStatusBarColorUseCase = get(),
             getSubscriptionInfoUseCase = get(),
             deleteSubscriptionUseCase = get()
         )
     }
 
-    viewModel<FirstActivityViewModel> {
-        FirstActivityViewModel(
-            setStatusBarColorUseCase = get(),
-            setThemeUseCase = get(),
-            setNavigationColorUseCase = get()
-        )
-    }
-
     viewModel<CreateSubscriptionViewModel> {
         CreateSubscriptionViewModel(
-            setStatusBarColorUseCase = get(),
             retrofit = get(),
             addSubscriptionUseCase = get(),
             getCategoryOfSubscriptionUseCase = get(),
@@ -66,30 +52,23 @@ val appModule = module {
 
     viewModel<HomeViewModel> {
         HomeViewModel(
-            setStatusBarColorUseCase = get(),
             retrofit = get(),
             getUIDUseCase = get(),
-            getSubscriptionsUseCase = get(),
-            setNavigationColorUseCase = get()
-        )
-    }
-
-    viewModel<SettingsViewModel> {
-        SettingsViewModel(
-            setStatusBarColorUseCase = get()
+            getSubscriptionsUseCase = get()
         )
     }
 
     viewModel<StatisticsViewModel> {
         StatisticsViewModel(
-            setStatusBarColorUseCase = get()
         )
     }
 
     viewModel<MainViewModel> {
         MainViewModel(
             setThemeUseCase = get(),
-            checkUserUseCase = get()
+            checkUserUseCase = get(),
+            setNavigationColorUseCase = get(),
+            setStatusBarColorUseCase = get()
         )
     }
 

@@ -1,19 +1,13 @@
 package team.four.mys.presentation.viewmodelsfragment
 
 import androidx.lifecycle.ViewModel
-import team.four.mys.domain.models.SetNavigationColorParam
-import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.domain.usecases.GetSettingsUseCase
-import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.domain.usecases.SetSettingsUseCase
-import team.four.mys.domain.usecases.SetStatusBarColorUseCase
 
 class AlertViewModel(
     private val getSettingsUseCase: GetSettingsUseCase,
-    private val setSettingsUseCase: SetSettingsUseCase,
-    private val setStatusBarColorUseCase: SetStatusBarColorUseCase,
-    private val setNavigationColorUseCase: SetNavigationColorUseCase
+    private val setSettingsUseCase: SetSettingsUseCase
 ) : ViewModel() {
 
     fun getSettings(): String? {
@@ -22,13 +16,5 @@ class AlertViewModel(
 
     fun setSettings(value: String?) {
         setSettingsUseCase.execute(SettingsPreferencesParam(key = "Alert", value = value))
-    }
-
-    fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
-        setStatusBarColorUseCase.execute(setStatusBarParam)
-    }
-
-    fun setNavigationColor(setNavigationColorParam: SetNavigationColorParam) {
-        setNavigationColorUseCase.execute(setNavigationColorParam = setNavigationColorParam)
     }
 }

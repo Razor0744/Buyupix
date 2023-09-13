@@ -15,7 +15,7 @@ import team.four.mys.domain.models.DarkMode
 import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.presentation.activity.MainActivity
 import team.four.mys.presentation.adapters.DarkModeAdapter
-import team.four.mys.presentation.viewmodelsactivity.DarkModeViewModel
+import team.four.mys.presentation.viewmodelsfragment.DarkModeViewModel
 
 class DarkModeFragment : Fragment() {
 

@@ -82,7 +82,7 @@ class PieChart @JvmOverloads constructor(
             val typeArray = context.obtainStyledAttributes(attrs, R.styleable.PieChart)
 
             // Секция списка цветов
-            val colorResId = typeArray.getResourceId(R.styleable.PieChart_pieChartColors, 0)
+            val colorResId = typeArray.getResourceId(R.styleable.PieChart_pie_chart_colors, 0)
             pieChartColors = typeArray.resources.getStringArray(colorResId).toList()
 
             // Секция круговой диаграммы

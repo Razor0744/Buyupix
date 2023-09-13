@@ -1,4 +1,4 @@
-package team.four.mys.presentation.viewmodelsactivity
+package team.four.mys.presentation.viewmodelsfragment
 
 import androidx.lifecycle.ViewModel
 import team.four.mys.domain.models.SettingsPreferencesParam

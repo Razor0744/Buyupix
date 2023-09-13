@@ -16,7 +16,7 @@ import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.domain.usecases.LocaleHelperUseCase
 import team.four.mys.presentation.activity.MainActivity
 import team.four.mys.presentation.adapters.LanguageAdapter
-import team.four.mys.presentation.viewmodelsactivity.LanguageViewModel
+import team.four.mys.presentation.viewmodelsfragment.LanguageViewModel
 
 class LanguageFragment : Fragment() {
 

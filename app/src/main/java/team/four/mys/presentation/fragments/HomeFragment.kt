@@ -5,15 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentHomeBinding
-import team.four.mys.domain.models.SetNavigationColorParam
-import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscription
 import team.four.mys.presentation.activity.SubscriptionInfoActivity
 import team.four.mys.presentation.adapters.SubscriptionsAdapter
@@ -41,20 +38,6 @@ class HomeFragment : Fragment() {
         }
 
         binding.month.text = viewModel.date()
-
-        viewModel.setStatusBarColor(
-            SetStatusBarParam(
-                activity = requireActivity(),
-                color = ResourcesCompat.getColor(resources, R.color.background_nav_bar, null)
-            )
-        )
-
-        viewModel.setNavigationColor(
-            SetNavigationColorParam(
-                activity = requireActivity(),
-                color = ResourcesCompat.getColor(resources, R.color.background_nav_bar, null)
-            )
-        )
 
         viewModel.subscriptions.observe(viewLifecycleOwner) {
             subscriptions = it.sortedBy { sub -> sub.date }

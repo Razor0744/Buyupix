@@ -19,7 +19,7 @@ import team.four.mys.domain.models.Subscription
 import team.four.mys.domain.usecases.CustomPositionItemDecorationUseCase
 import team.four.mys.presentation.adapters.CalendarAdapter
 import team.four.mys.presentation.adapters.CurrenciesAdapter
-import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
+import team.four.mys.presentation.viewmodelsfragment.CreateSubscriptionViewModel
 import java.time.LocalDate
 
 class CreateSubscriptionFragment : Fragment() {

@@ -3,26 +3,21 @@ package team.four.mys.presentation.viewmodelsfragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import team.four.mys.data.api.retrofit.currencies.Retrofit
-import team.four.mys.domain.models.SetNavigationColorParam
-import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscription
 import team.four.mys.domain.models.Valute
 import team.four.mys.domain.usecases.GetSubscriptionsUseCase
 import team.four.mys.domain.usecases.GetUIDUseCase
-import team.four.mys.domain.usecases.SetNavigationColorUseCase
-import team.four.mys.domain.usecases.SetStatusBarColorUseCase
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 class HomeViewModel(
-    private val setStatusBarColorUseCase: SetStatusBarColorUseCase,
     private val retrofit: Retrofit,
     private val getUIDUseCase: GetUIDUseCase,
-    private val getSubscriptionsUseCase: GetSubscriptionsUseCase,
-    private val setNavigationColorUseCase: SetNavigationColorUseCase,
+    private val getSubscriptionsUseCase: GetSubscriptionsUseCase
 ) : ViewModel() {
 
     //Price
@@ -47,21 +42,13 @@ class HomeViewModel(
         }
     }
 
-    fun setStatusBarColor(setStatusBarParam: SetStatusBarParam) {
-        setStatusBarColorUseCase.execute(setStatusBarParam)
-    }
-
     fun getUID(): String {
         return getUIDUseCase.execute()
     }
 
     fun getSubscriptions() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             subscriptions.postValue(getSubscriptionsUseCase.execute())
         }
-    }
-
-    fun setNavigationColor(setNavigationColorParam: SetNavigationColorParam) {
-        setNavigationColorUseCase.execute(setNavigationColorParam = setNavigationColorParam)
     }
 }

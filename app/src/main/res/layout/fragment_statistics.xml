@@ -27,9 +27,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text"
-        app:pieChartCircleSectionSpace="2"
-        app:pieChartCircleStrokeWidth="10dp"
-        app:pieChartColors="@array/pie_chart_color_array" />
+        app:pie_chart_circle_section_space="2"
+        app:pie_chart_circle_stroke_width="10dp"
+        app:pie_chart_colors="@array/pie_chart_color_array"/>
 
     <TextView
         android:id="@+id/month"

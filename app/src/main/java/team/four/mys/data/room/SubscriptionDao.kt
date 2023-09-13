@@ -11,17 +11,17 @@ import team.four.mys.domain.models.Subscription
 interface SubscriptionDao {
 
     @Query("SELECT * FROM subscriptions")
-    suspend fun getSubscriptions(): List<Subscription>
+    fun getSubscriptions(): List<Subscription>
 
     @Query("SELECT * FROM subscriptions WHERE id == :id")
-    suspend fun getSubscriptionInfo(id: Long): Subscription
+    fun getSubscriptionInfo(id: Long): Subscription
 
     @Insert
-    suspend fun addSubscription(subscription: Subscription)
+    fun addSubscription(subscription: Subscription)
 
     @Update
-    suspend fun updateSubscription(subscription: Subscription)
+    fun updateSubscription(subscription: Subscription)
 
     @Delete
-    suspend fun deleteSubscription(subscription: Subscription)
+    fun deleteSubscription(subscription: Subscription)
 }

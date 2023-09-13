@@ -4,14 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentStatisticsBinding
-import team.four.mys.domain.models.SetNavigationColorParam
-import team.four.mys.domain.models.SetStatusBarParam
-import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.presentation.activity.MainActivity
 import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
@@ -63,20 +59,6 @@ class StatisticsFragment : Fragment() {
         viewModel.numberOfSubscriptions.observe(viewLifecycleOwner) { number ->
             binding.textSubscriptions2.text = number.toString()
         }
-
-        viewModel.setStatusBarColor(
-            SetStatusBarParam(
-                activity = requireActivity(),
-                color = ResourcesCompat.getColor(resources, R.color.background_main, null)
-            )
-        )
-
-        SetNavigationColorUseCase().execute(
-            SetNavigationColorParam(
-                requireActivity(),
-                ResourcesCompat.getColor(resources, R.color.background_nav_bar, null)
-            )
-        )
 
         pieChart()
 

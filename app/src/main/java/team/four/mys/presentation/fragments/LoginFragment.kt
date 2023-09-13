@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import team.four.mys.R
 import team.four.mys.databinding.FragmentLoginBinding
 import team.four.mys.presentation.activity.MainActivity
+import java.lang.IndexOutOfBoundsException
 
 
 class LoginFragment : Fragment() {
@@ -26,7 +27,7 @@ class LoginFragment : Fragment() {
     private val countryCodes = listOf("+7", "+375", "+1")
     private val countryName = listOf("Russian Federation", "Belarus", "USA")
     private val countryNumberFormat = listOf("0000000000", "000000000", "0000000000")
-    private lateinit var countryNumberFormat2: String
+    private var countryNumberFormat2: String = "00000000000"
     private var lengthCountryCode = 0
 
     // Timer
@@ -169,6 +170,7 @@ class LoginFragment : Fragment() {
             v?.onTouchEvent(event) ?: true
         }
 
+        textChangeCountryCode()
         keyboardFalse()
         deleteChar()
         textChangeCountryNumberFormat()
@@ -184,7 +186,6 @@ class LoginFragment : Fragment() {
     private fun keyboardFalse() {
         binding.phoneNumber.setRawInputType(InputType.TYPE_NULL)
         binding.phoneNumber.requestFocus()
-        textChangeCountryCode()
         val number = arguments?.getString("number", null)
         if (number != null) {
             binding.phoneNumber1.text = number
@@ -200,6 +201,7 @@ class LoginFragment : Fragment() {
                         textType = false
                         setCountry(i)
                         setNumberFormat(i)
+                        println("ok")
                         break
                     } else if (s?.length == 5) {
                         textType = false
@@ -228,15 +230,23 @@ class LoginFragment : Fragment() {
         binding.phoneNumber2.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 val text = SpannableString(countryNumberFormat2).apply {
-                    setSpan(
-                        ForegroundColorSpan(
-                            ResourcesCompat.getColor(
-                                resources,
-                                R.color.background_main,
-                                null
-                            )
-                        ), 0, s.toString().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
+                    try {
+                        setSpan(
+                            ForegroundColorSpan(
+                                ResourcesCompat.getColor(
+                                    resources,
+                                    R.color.background_main,
+                                    null
+                                )
+                            ), 0, s.toString().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                    } catch (e: IndexOutOfBoundsException) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Влзможно неверный формат номера",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
                 binding.numberFormat.text = text
             }
