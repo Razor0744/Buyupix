@@ -1,21 +1,20 @@
-package team.four.mys.presentation.activity
+package team.four.mys.presentation.fragments
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
-import team.four.mys.databinding.ActivityCreatSubscriptionBinding
+import team.four.mys.databinding.FragmentCreateSubscriptionBinding
 import team.four.mys.domain.models.Currencies
-import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscription
 import team.four.mys.domain.usecases.CustomPositionItemDecorationUseCase
 import team.four.mys.presentation.adapters.CalendarAdapter
@@ -23,26 +22,23 @@ import team.four.mys.presentation.adapters.CurrenciesAdapter
 import team.four.mys.presentation.viewmodelsactivity.CreateSubscriptionViewModel
 import java.time.LocalDate
 
+class CreateSubscriptionFragment : Fragment() {
 
-class CreateSubscriptionActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityCreatSubscriptionBinding
+    private var _binding: FragmentCreateSubscriptionBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel by viewModel<CreateSubscriptionViewModel>()
 
-    private lateinit var adapterCalendar: CalendarAdapter
-
     private var selectedDate: LocalDate = LocalDate.now()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityCreatSubscriptionBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentCreateSubscriptionBinding.inflate(inflater, container, false)
 
         binding.buttonArrowLeft.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("fragment", "HomeFragment")
-            startActivity(intent)
+            findNavController().navigate(R.id.home_fragment)
         }
 
         setMonthView()
@@ -53,16 +49,12 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         focusOnEditView()
         addSubscription()
 
-        viewModel.setStatusBarColor(
-            SetStatusBarParam(
-                activity = this,
-                color = ResourcesCompat.getColor(resources, R.color.backgroundMain, null)
-            )
-        )
+        return binding.root
+    }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel.getCurrencies()
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun addSubscription() {
@@ -78,7 +70,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                 currency = binding.priceButton.text.trim().toString(),
                                 description = binding.description.text?.trim().toString(),
                                 date = binding.buttonCalender.text?.trim().toString().toLong(),
-                                reminder = binding.switchReminder.isActivated,
+                                reminder = binding.switchReminder.isChecked,
                                 category = viewModel.getCategoryOfSubscription(
                                     binding.name.text.trim().toString()
                                 ),
@@ -87,7 +79,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
                                 )
                             )
                         )
-                        startActivity(Intent(this, MainActivity::class.java))
+                        findNavController().navigate(R.id.home_fragment)
                     }
                 }
             }
@@ -171,8 +163,8 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     private fun focusOnEditView() {
         binding.constrainParent.setOnClickListener {
             if (binding.name.isFocused || binding.price.isFocused || binding.description.isFocused || binding.buttonCalender.isFocused) {
-                val imm = getSystemService(
-                    INPUT_METHOD_SERVICE
+                val imm = requireActivity().getSystemService(
+                    AppCompatActivity.INPUT_METHOD_SERVICE
                 ) as InputMethodManager
                 imm.hideSoftInputFromWindow(binding.name.windowToken, 0)
             }
@@ -205,7 +197,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
 
     private fun autoCompleteTextView() {
         val names = resources.getStringArray(R.array.names)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, names)
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, names)
         binding.name.setAdapter(adapter)
 
     }
@@ -213,10 +205,10 @@ class CreateSubscriptionActivity : AppCompatActivity() {
     private fun setMonthView() {
         binding.monthYearTV.text = viewModel.monthYearFromDate(selectedDate)
         val daysInMonth = viewModel.daysInMonthArray(selectedDate)
-        adapterCalendar = CalendarAdapter(daysInMonth) { calendarClick ->
+        val adapterCalendar = CalendarAdapter(daysInMonth) { calendarClick ->
             onItemClick(daysInMonth[calendarClick])
         }
-        binding.recyclerView.layoutManager = GridLayoutManager(this, 7)
+        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 7)
         binding.recyclerView.adapter = adapterCalendar
         binding.recyclerView.suppressLayout(true)
 
@@ -243,7 +235,7 @@ class CreateSubscriptionActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
+    private companion object {
         val currencies = listOf(
             Currencies("USD"),
             Currencies("EUR"),

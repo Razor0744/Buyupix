@@ -62,7 +62,7 @@ class DarkModeFragment : Fragment() {
         binding.recyclerView.adapter = adapterDarkMode
     }
 
-    companion object {
+    private companion object {
         val darkMode = listOf(
             DarkMode("Dark Theme"),
             DarkMode("Light Theme"),

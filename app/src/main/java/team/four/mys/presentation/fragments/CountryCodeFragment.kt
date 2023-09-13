@@ -14,26 +14,27 @@ import team.four.mys.presentation.adapters.CountryAdapter
 
 class CountryCodeFragment : Fragment() {
 
-    private var binding: FragmentCountryCodeBinding? = null
+    private var _binding: FragmentCountryCodeBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentCountryCodeBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentCountryCodeBinding.inflate(inflater, container, false)
 
-        binding?.buttonArrowLeft?.setOnClickListener {
+        binding.buttonArrowLeft.setOnClickListener {
             findNavController().navigate(R.id.login_fragment)
         }
 
         adapter()
 
-        return binding?.root
+        return binding.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        binding = null
+        _binding = null
     }
 
     private fun adapter() {
@@ -43,11 +44,11 @@ class CountryCodeFragment : Fragment() {
             ) {
                 findNavController().navigate(R.id.login_fragment)
             }
-        binding?.recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-        binding?.recyclerView?.adapter = adapterAlert
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapterAlert
     }
 
-    companion object {
+    private companion object {
         val country = listOf(
             Country(R.drawable.language_russia, "Russian Federation", "+7"),
             Country(R.drawable.language_usa, "USA", "+1"),

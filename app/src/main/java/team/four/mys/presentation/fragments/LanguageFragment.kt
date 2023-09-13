@@ -61,7 +61,7 @@ class LanguageFragment : Fragment() {
         binding.recyclerView.adapter = adapterLanguage
     }
 
-    companion object {
+    private companion object {
         val language = listOf(
             Language(R.drawable.language_usa, "USA"),
             Language(R.drawable.language_russia, "Russia")

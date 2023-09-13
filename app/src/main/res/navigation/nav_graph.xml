@@ -75,4 +75,11 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/create_subscription_fragment"
+        android:name="team.four.mys.presentation.fragments.CreateSubscriptionFragment"
+        tools:layout="@layout/fragment_create_subscription">
+
+    </fragment>
+
 </navigation>

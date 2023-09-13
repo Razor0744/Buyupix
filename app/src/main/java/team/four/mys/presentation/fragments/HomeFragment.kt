@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
@@ -14,7 +15,6 @@ import team.four.mys.databinding.FragmentHomeBinding
 import team.four.mys.domain.models.SetNavigationColorParam
 import team.four.mys.domain.models.SetStatusBarParam
 import team.four.mys.domain.models.Subscription
-import team.four.mys.presentation.activity.CreateSubscriptionActivity
 import team.four.mys.presentation.activity.SubscriptionInfoActivity
 import team.four.mys.presentation.adapters.SubscriptionsAdapter
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.createSubscription.setOnClickListener {
-            startActivity(Intent(context, CreateSubscriptionActivity::class.java))
+            findNavController().navigate(R.id.create_subscription_fragment)
         }
 
         binding.month.text = viewModel.date()

@@ -55,7 +55,7 @@ class AlertFragment : Fragment() {
         binding.recyclerView.adapter = adapterAlert
     }
 
-    companion object {
+    private companion object {
         val alert = listOf(
             Alert("The day before the write-off"),
             Alert("Two days before cancellation"),
