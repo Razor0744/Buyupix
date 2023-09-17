@@ -5,7 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import team.four.mys.domain.models.Subscription
 
 @Dao
 interface SubscriptionDao {

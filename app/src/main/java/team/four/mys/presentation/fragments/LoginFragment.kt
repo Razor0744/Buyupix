@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.*
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -241,11 +242,7 @@ class LoginFragment : Fragment() {
                             ), 0, s.toString().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
                     } catch (e: IndexOutOfBoundsException) {
-                        Toast.makeText(
-                            requireContext(),
-                            "Влзможно неверный формат номера",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        Log.e("phoneNumber", e.toString())
                     }
                 }
                 binding.numberFormat.text = text

@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import team.four.mys.data.api.retrofit.currencies.Retrofit
-import team.four.mys.domain.models.Subscription
+import team.four.mys.data.room.Subscription
 import team.four.mys.domain.models.Valute
 import team.four.mys.domain.usecases.AddSubscriptionUseCase
 import team.four.mys.domain.usecases.GetCategoryOfSubscriptionUseCase

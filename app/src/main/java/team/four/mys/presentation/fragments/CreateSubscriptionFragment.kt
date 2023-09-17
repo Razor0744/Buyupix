@@ -15,7 +15,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentCreateSubscriptionBinding
 import team.four.mys.domain.models.Currencies
-import team.four.mys.domain.models.Subscription
+import team.four.mys.data.room.Subscription
 import team.four.mys.domain.usecases.CustomPositionItemDecorationUseCase
 import team.four.mys.presentation.adapters.CalendarAdapter
 import team.four.mys.presentation.adapters.CurrenciesAdapter

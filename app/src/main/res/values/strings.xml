@@ -108,6 +108,7 @@
     <string name="price_adapter_subscriptions">%1$s%2$s</string>
     <string name="date_adapter_subscriptions">%1$s %2$s</string>
 
+    <!--PieChart-->
     <string-array name="pie_chart_color_array">
         <item>#E480F4</item>
         <item>#6CC3F3</item>
@@ -115,5 +116,5 @@
         <item>#D9455F</item>
         <item>#6054EA</item>
     </string-array>
-
+    
 </resources>

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import team.four.mys.domain.models.Subscription
+import team.four.mys.data.room.Subscription
 import team.four.mys.domain.usecases.DeleteSubscriptionUseCase
 import team.four.mys.domain.usecases.GetSubscriptionInfoUseCase
 

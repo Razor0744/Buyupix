@@ -1,4 +1,4 @@
-package team.four.mys.domain.models
+package team.four.mys.data.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

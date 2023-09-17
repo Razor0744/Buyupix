@@ -10,8 +10,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
+import team.four.mys.data.room.Subscription
 import team.four.mys.databinding.FragmentHomeBinding
-import team.four.mys.domain.models.Subscription
 import team.four.mys.presentation.adapters.SubscriptionsAdapter
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
 
@@ -53,6 +53,7 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        println("home destroy")
     }
 
     private fun adapter() {

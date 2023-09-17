@@ -1,7 +1,7 @@
 package team.four.mys.data.repository
 
 import team.four.mys.data.room.SubscriptionDao
-import team.four.mys.domain.models.Subscription
+import team.four.mys.data.room.Subscription
 import team.four.mys.domain.repository.RoomRepository
 
 class RoomRepositoryImpl(private val subscriptionDao: SubscriptionDao) : RoomRepository {

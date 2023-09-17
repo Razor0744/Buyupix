@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import team.four.mys.R
 import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithDateBinding
 import team.four.mys.databinding.RecyclerviewItemSubscriptionsWithoutDateBinding
-import team.four.mys.domain.models.Subscription
+import team.four.mys.data.room.Subscription
 
 class SubscriptionsAdapter(
     private val subscriptions: List<Subscription>,

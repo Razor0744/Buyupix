@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import team.four.mys.data.api.retrofit.currencies.Retrofit
-import team.four.mys.domain.models.Subscription
+import team.four.mys.data.room.Subscription
 import team.four.mys.domain.models.Valute
 import team.four.mys.domain.usecases.GetSubscriptionsUseCase
 import team.four.mys.domain.usecases.GetUIDUseCase
@@ -50,5 +50,14 @@ class HomeViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             subscriptions.postValue(getSubscriptionsUseCase.execute())
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        println("home vm cleared")
+    }
+
+    init {
+        println("home vm created")
     }
 }

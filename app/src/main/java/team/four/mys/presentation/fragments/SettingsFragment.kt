@@ -14,7 +14,8 @@ import team.four.mys.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
 
-    private var binding: FragmentSettingsBinding? = null
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding get() = _binding!!
 
     private val auth: FirebaseAuth = Firebase.auth
 
@@ -22,31 +23,31 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSettingsBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
-        binding?.alert?.setOnClickListener {
+        binding.alert.setOnClickListener {
             findNavController().navigate(R.id.alert_fragment)
         }
 
-        binding?.darkMode?.setOnClickListener {
+        binding.darkMode.setOnClickListener {
             findNavController().navigate(R.id.dark_mode_fragment)
         }
 
-        binding?.language?.setOnClickListener {
+        binding.language.setOnClickListener {
             findNavController().navigate(R.id.language_fragment)
         }
 
-        binding?.logOut?.setOnClickListener {
+        binding.logOut.setOnClickListener {
             auth.signOut()
             findNavController().navigate(R.id.first_fragment)
         }
 
-        return binding?.root
+        return binding.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        binding = null
+        _binding = null
     }
 }

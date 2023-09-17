@@ -10,7 +10,7 @@ import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentSubscriptionInfoBinding
-import team.four.mys.domain.models.Subscription
+import team.four.mys.data.room.Subscription
 import team.four.mys.presentation.viewmodelsfragment.SubscriptionInfoViewModel
 
 class SubscriptionInfoFragment : Fragment() {
