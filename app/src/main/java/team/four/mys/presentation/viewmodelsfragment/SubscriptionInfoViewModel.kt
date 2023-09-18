@@ -18,13 +18,13 @@ class SubscriptionInfoViewModel(
     var subscriptionInfo = MutableLiveData<Subscription>()
 
     fun getSubscriptionInfo(id: Long) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Default) {
             subscriptionInfo.postValue(getSubscriptionInfoUseCase.execute(id = id))
         }
     }
 
     fun deleteSubscription(subscription: Subscription) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Default) {
             deleteSubscriptionUseCase.execute(subscription = subscription)
         }
     }

@@ -5,7 +5,7 @@ import team.four.mys.domain.repository.RoomRepository
 
 class UpdateSubscriptionUseCase(private val roomRepository: RoomRepository) {
 
-    suspend fun execute(subscription: Subscription){
+    fun execute(subscription: Subscription){
         roomRepository.updateSubscription(subscription = subscription)
     }
 }

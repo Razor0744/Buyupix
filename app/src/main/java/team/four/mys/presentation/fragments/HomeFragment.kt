@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.component.getScopeName
 import team.four.mys.R
 import team.four.mys.data.room.Subscription
 import team.four.mys.databinding.FragmentHomeBinding
@@ -53,7 +55,6 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        println("home destroy")
     }
 
     private fun adapter() {

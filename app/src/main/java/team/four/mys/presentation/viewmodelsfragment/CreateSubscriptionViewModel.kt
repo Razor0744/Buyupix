@@ -53,7 +53,7 @@ class CreateSubscriptionViewModel(
     }
 
     fun addSubscription(subscription: Subscription) {
-        viewModelScope.launch(Dispatchers.IO) { addSubscriptionUseCase.execute(subscription = subscription) }
+        viewModelScope.launch(Dispatchers.Default) { addSubscriptionUseCase.execute(subscription = subscription) }
     }
 
     fun getCategoryOfSubscription(name: String): String {

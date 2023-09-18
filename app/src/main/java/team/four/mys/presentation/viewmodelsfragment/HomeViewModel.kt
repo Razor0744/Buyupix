@@ -47,7 +47,7 @@ class HomeViewModel(
     }
 
     fun getSubscriptions() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Default) {
             subscriptions.postValue(getSubscriptionsUseCase.execute())
         }
     }

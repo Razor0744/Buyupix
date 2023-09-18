@@ -6,23 +6,23 @@ import team.four.mys.domain.repository.RoomRepository
 
 class RoomRepositoryImpl(private val subscriptionDao: SubscriptionDao) : RoomRepository {
 
-    override suspend fun getSubscriptions(): List<Subscription> {
+    override fun getSubscriptions(): List<Subscription> {
         return subscriptionDao.getSubscriptions()
     }
 
-    override suspend fun getSubscriptionInfo(id: Long): Subscription {
+    override fun getSubscriptionInfo(id: Long): Subscription {
        return subscriptionDao.getSubscriptionInfo(id = id)
     }
 
-    override suspend fun addSubscription(subscription: Subscription) {
+    override fun addSubscription(subscription: Subscription) {
         subscriptionDao.addSubscription(subscription = subscription)
     }
 
-    override suspend fun updateSubscription(subscription: Subscription) {
+    override fun updateSubscription(subscription: Subscription) {
         subscriptionDao.updateSubscription(subscription = subscription)
     }
 
-    override suspend fun deleteSubscription(subscription: Subscription) {
+    override fun deleteSubscription(subscription: Subscription) {
         subscriptionDao.deleteSubscription(subscription = subscription)
     }
 }
