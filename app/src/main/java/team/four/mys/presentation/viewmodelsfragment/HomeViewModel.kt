@@ -1,5 +1,6 @@
 package team.four.mys.presentation.viewmodelsfragment
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,7 +28,8 @@ class HomeViewModel(
     private var valute: Valute? = null
     var fullPrice = MutableLiveData<Float>()
 
-    var subscriptions = MutableLiveData<List<Subscription>>()
+    private var subscriptionsData = MutableLiveData<List<Subscription>>()
+    val subscriptions: LiveData<List<Subscription>> = subscriptionsData
 
     fun date(): String {
         return SimpleDateFormat("LLLL", Locale.getDefault()).format(Date())
@@ -46,18 +48,14 @@ class HomeViewModel(
         return getUIDUseCase.execute()
     }
 
-    fun getSubscriptions() {
-        viewModelScope.launch(Dispatchers.IO) {
-            subscriptions.postValue(getSubscriptionsUseCase.execute())
-        }
-    }
-
     override fun onCleared() {
         super.onCleared()
         println("home vm cleared")
     }
 
     init {
-        println("home vm created")
+        viewModelScope.launch(Dispatchers.Default) {
+            subscriptionsData.postValue(getSubscriptionsUseCase.execute())
+        }
     }
 }

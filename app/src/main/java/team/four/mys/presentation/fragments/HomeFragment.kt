@@ -45,15 +45,12 @@ class HomeFragment : Fragment() {
             adapter()
         }
 
-        viewModel.getSubscriptions()
-
         return binding.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        println("home destroy")
     }
 
     private fun adapter() {
