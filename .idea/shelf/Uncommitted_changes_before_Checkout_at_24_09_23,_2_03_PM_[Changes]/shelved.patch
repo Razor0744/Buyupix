@@ -1,0 +1,249 @@
+Index: app/src/main/java/team/four/mys/presentation/fragments/HomeFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package team.four.mys.presentation.fragments\n\nimport android.os.Bundle\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport androidx.core.os.bundleOf\nimport androidx.fragment.app.Fragment\nimport androidx.lifecycle.viewModelScope\nimport androidx.navigation.fragment.findNavController\nimport com.google.gson.Gson\nimport org.koin.androidx.viewmodel.ext.android.viewModel\nimport org.koin.core.component.getScopeName\nimport team.four.mys.R\nimport team.four.mys.data.room.Subscription\nimport team.four.mys.databinding.FragmentHomeBinding\nimport team.four.mys.presentation.adapters.SubscriptionsAdapter\nimport team.four.mys.presentation.viewmodelsfragment.HomeViewModel\n\n\nclass HomeFragment : Fragment() {\n\n    private var _binding: FragmentHomeBinding? = null\n    private val binding get() = _binding!!\n\n    private val viewModel by viewModel<HomeViewModel>()\n\n    private lateinit var subscriptions: List<Subscription>\n    private lateinit var adapterSubscriptions: SubscriptionsAdapter\n\n    override fun onCreateView(\n        inflater: LayoutInflater,\n        container: ViewGroup?,\n        savedInstanceState: Bundle?\n    ): View {\n        _binding = FragmentHomeBinding.inflate(inflater, container, false)\n\n        binding.createSubscription.setOnClickListener {\n            findNavController().navigate(R.id.create_subscription_fragment)\n        }\n\n        binding.month.text = viewModel.date()\n\n        viewModel.subscriptions.observe(viewLifecycleOwner) {\n            subscriptions = it.sortedBy { sub -> sub.date }\n            if (subscriptions.isEmpty()) visibilityFirstApp()\n            adapter()\n        }\n\n        viewModel.getSubscriptions()\n\n        return binding.root\n    }\n\n    override fun onDestroy() {\n        super.onDestroy()\n        _binding = null\n    }\n\n    private fun adapter() {\n        adapterSubscriptions =\n            SubscriptionsAdapter(\n                subscriptions,\n                viewModel.date()\n            ) {\n                val bundle = bundleOf(\"subscription\" to Gson().toJson(it))\n                findNavController().navigate(R.id.subscription_info_fragment, bundle)\n            }\n        binding.recyclerView.adapter = adapterSubscriptions\n    }\n\n    private fun visibilityFirstApp() {\n        binding.textView.visibility = View.VISIBLE\n        binding.line3.visibility = View.VISIBLE\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/team/four/mys/presentation/fragments/HomeFragment.kt b/app/src/main/java/team/four/mys/presentation/fragments/HomeFragment.kt
+--- a/app/src/main/java/team/four/mys/presentation/fragments/HomeFragment.kt	(revision 301a6643df91ae9aede66401d89b8ad3bb8e96f9)
++++ b/app/src/main/java/team/four/mys/presentation/fragments/HomeFragment.kt	(date 1695578578723)
+@@ -6,11 +6,9 @@
+ import android.view.ViewGroup
+ import androidx.core.os.bundleOf
+ import androidx.fragment.app.Fragment
+-import androidx.lifecycle.viewModelScope
+ import androidx.navigation.fragment.findNavController
+ import com.google.gson.Gson
+ import org.koin.androidx.viewmodel.ext.android.viewModel
+-import org.koin.core.component.getScopeName
+ import team.four.mys.R
+ import team.four.mys.data.room.Subscription
+ import team.four.mys.databinding.FragmentHomeBinding
+@@ -47,8 +45,6 @@
+             adapter()
+         }
+ 
+-        viewModel.getSubscriptions()
+-
+         return binding.root
+     }
+ 
+Index: app/src/test/java/team/four/mys/domain/usecases/CheckUserUseCaseTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/team/four/mys/domain/usecases/CheckUserUseCaseTest.kt b/app/src/test/java/team/four/mys/domain/usecases/CheckUserUseCaseTest.kt
+new file mode 100644
+--- /dev/null	(date 1695154476834)
++++ b/app/src/test/java/team/four/mys/domain/usecases/CheckUserUseCaseTest.kt	(date 1695154476834)
+@@ -0,0 +1,24 @@
++package team.four.mys.domain.usecases
++
++import org.junit.Assert
++import org.junit.Test
++import org.mockito.Mockito
++import org.mockito.kotlin.mock
++import team.four.mys.domain.repository.FirebaseRepository
++
++class CheckUserUseCaseTest {
++
++    private val firebaseRepository = mock<FirebaseRepository>()
++
++    @Test
++    fun shouldReturnTrue() {
++
++        Mockito.`when`(firebaseRepository.checkUser()).thenReturn(true)
++
++        val useCase = CheckUserUseCase(firebaseRepository = firebaseRepository)
++        val expected = true
++        val actual = useCase.execute()
++
++        Assert.assertEquals(expected, actual)
++    }
++}
+\ No newline at end of file
+Index: app/src/test/java/team/four/mys/domain/usecases/GetCurrencyIconUseCaseTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package team.four.mys.domain.usecases\n\nimport org.junit.Assert\nimport org.junit.Test\n\nclass GetCurrencyIconUseCaseTest {\n\n    @Test\n    fun shouldReturnPriceString() {\n        val useCase = GetCurrencyIconUseCase()\n        val actual = useCase.execute(item = \"USD\")\n        val expected = \"$\"\n\n        Assert.assertEquals(expected, actual)\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/team/four/mys/domain/usecases/GetCurrencyIconUseCaseTest.kt b/app/src/test/java/team/four/mys/domain/usecases/GetCurrencyIconUseCaseTest.kt
+--- a/app/src/test/java/team/four/mys/domain/usecases/GetCurrencyIconUseCaseTest.kt	(revision 301a6643df91ae9aede66401d89b8ad3bb8e96f9)
++++ b/app/src/test/java/team/four/mys/domain/usecases/GetCurrencyIconUseCaseTest.kt	(date 1695152929535)
+@@ -8,7 +8,7 @@
+     @Test
+     fun shouldReturnPriceString() {
+         val useCase = GetCurrencyIconUseCase()
+-        val actual = useCase.execute(item = "USD")
++        val actual = useCase.execute(currency = "USD")
+         val expected = "$"
+ 
+         Assert.assertEquals(expected, actual)
+Index: app/src/test/java/team/four/mys/domain/usecases/GetSubscriptionInfoUseCaseTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/team/four/mys/domain/usecases/GetSubscriptionInfoUseCaseTest.kt b/app/src/test/java/team/four/mys/domain/usecases/GetSubscriptionInfoUseCaseTest.kt
+new file mode 100644
+--- /dev/null	(date 1695160583586)
++++ b/app/src/test/java/team/four/mys/domain/usecases/GetSubscriptionInfoUseCaseTest.kt	(date 1695160583586)
+@@ -0,0 +1,36 @@
++package team.four.mys.domain.usecases
++
++import org.junit.Assert
++import org.junit.Test
++import org.mockito.Mockito
++import org.mockito.kotlin.mock
++import team.four.mys.data.room.Subscription
++import team.four.mys.domain.repository.RoomRepository
++
++class GetSubscriptionInfoUseCaseTest {
++
++    private val roomRepository = mock<RoomRepository>()
++
++    @Test
++    fun shouldReturnSubscription() {
++        val model = Subscription(
++            id = 2,
++            name = "Spotify",
++            icon = "Any",
++            price = "55",
++            currency = "USD",
++            currencyIcon = "$",
++            date = 17,
++            reminder = true,
++            category = "Gaming"
++        )
++
++        Mockito.`when`(roomRepository.getSubscriptionInfo(2)).thenReturn(model)
++
++        val useCase = GetSubscriptionInfoUseCase(roomRepository = roomRepository)
++        val expected = model
++        val actual = useCase.execute(2)
++
++        Assert.assertEquals(expected, actual)
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/team/four/mys/presentation/viewmodelsfragment/HomeViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package team.four.mys.presentation.viewmodelsfragment\n\nimport androidx.lifecycle.MutableLiveData\nimport androidx.lifecycle.ViewModel\nimport androidx.lifecycle.viewModelScope\nimport kotlinx.coroutines.Dispatchers\nimport kotlinx.coroutines.launch\nimport team.four.mys.data.api.retrofit.currencies.Retrofit\nimport team.four.mys.data.room.Subscription\nimport team.four.mys.domain.models.Valute\nimport team.four.mys.domain.usecases.GetSubscriptionsUseCase\nimport team.four.mys.domain.usecases.GetUIDUseCase\nimport java.text.SimpleDateFormat\nimport java.util.Date\nimport java.util.Locale\n\nclass HomeViewModel(\n    private val retrofit: Retrofit,\n    private val getUIDUseCase: GetUIDUseCase,\n    private val getSubscriptionsUseCase: GetSubscriptionsUseCase\n) : ViewModel() {\n\n    //Price\n    private var EUR: Float? = null\n    private var BYN: Float? = null\n    private var USD: Float? = null\n    private var valute: Valute? = null\n    var fullPrice = MutableLiveData<Float>()\n\n    var subscriptions = MutableLiveData<List<Subscription>>()\n\n    fun date(): String {\n        return SimpleDateFormat(\"LLLL\", Locale.getDefault()).format(Date())\n    }\n\n    fun fullPrice() {\n        viewModelScope.launch {\n            valute = retrofit.getCurrencies()\n            BYN = valute?.BYN?.Value?.toFloat()\n            USD = valute?.USD?.Value?.toFloat()\n            EUR = valute?.EUR?.Value?.toFloat()\n        }\n    }\n\n    fun getUID(): String {\n        return getUIDUseCase.execute()\n    }\n\n    fun getSubscriptions() {\n        viewModelScope.launch(Dispatchers.Default) {\n            subscriptions.postValue(getSubscriptionsUseCase.execute())\n        }\n    }\n\n    override fun onCleared() {\n        super.onCleared()\n        println(\"home vm cleared\")\n    }\n\n    init {\n        println(\"home vm created\")\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/team/four/mys/presentation/viewmodelsfragment/HomeViewModel.kt b/app/src/main/java/team/four/mys/presentation/viewmodelsfragment/HomeViewModel.kt
+--- a/app/src/main/java/team/four/mys/presentation/viewmodelsfragment/HomeViewModel.kt	(revision 301a6643df91ae9aede66401d89b8ad3bb8e96f9)
++++ b/app/src/main/java/team/four/mys/presentation/viewmodelsfragment/HomeViewModel.kt	(date 1695505798958)
+@@ -1,5 +1,6 @@
+ package team.four.mys.presentation.viewmodelsfragment
+ 
++import androidx.lifecycle.LiveData
+ import androidx.lifecycle.MutableLiveData
+ import androidx.lifecycle.ViewModel
+ import androidx.lifecycle.viewModelScope
+@@ -27,7 +28,8 @@
+     private var valute: Valute? = null
+     var fullPrice = MutableLiveData<Float>()
+ 
+-    var subscriptions = MutableLiveData<List<Subscription>>()
++    private var subscriptionsData = MutableLiveData<List<Subscription>>()
++    val subscriptions: LiveData<List<Subscription>> = subscriptionsData
+ 
+     fun date(): String {
+         return SimpleDateFormat("LLLL", Locale.getDefault()).format(Date())
+@@ -46,18 +48,14 @@
+         return getUIDUseCase.execute()
+     }
+ 
+-    fun getSubscriptions() {
+-        viewModelScope.launch(Dispatchers.Default) {
+-            subscriptions.postValue(getSubscriptionsUseCase.execute())
+-        }
+-    }
+-
+     override fun onCleared() {
+         super.onCleared()
+         println("home vm cleared")
+     }
+ 
+     init {
+-        println("home vm created")
++        viewModelScope.launch(Dispatchers.Default) {
++            subscriptionsData.postValue(getSubscriptionsUseCase.execute())
++        }
+     }
+ }
+\ No newline at end of file
+Index: app/src/test/java/team/four/mys/domain/usecases/GetSettingsUseCaseTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/team/four/mys/domain/usecases/GetSettingsUseCaseTest.kt b/app/src/test/java/team/four/mys/domain/usecases/GetSettingsUseCaseTest.kt
+new file mode 100644
+--- /dev/null	(date 1695155536862)
++++ b/app/src/test/java/team/four/mys/domain/usecases/GetSettingsUseCaseTest.kt	(date 1695155536862)
+@@ -0,0 +1,28 @@
++package team.four.mys.domain.usecases
++
++import org.junit.Assert
++import org.junit.Test
++import org.mockito.Mockito
++import org.mockito.kotlin.mock
++import team.four.mys.domain.models.SettingsPreferencesParam
++import team.four.mys.domain.repository.SettingsRepository
++
++class GetSettingsUseCaseTest {
++
++    private val settingsRepository = mock<SettingsRepository>()
++
++    @Test
++    fun shouldReturnString() {
++
++        Mockito.`when`(settingsRepository.getSettings(SettingsPreferencesParam())).thenReturn(
++            SettingsPreferencesParam(value = "SystemTheme")
++        )
++
++        val useCase = GetSettingsUseCase(settingsRepository = settingsRepository)
++        val expected = SettingsPreferencesParam(value = "SystemTheme")
++        val actual =
++            useCase.execute(settingsPreferencesParam = SettingsPreferencesParam())
++
++        Assert.assertEquals(expected, actual)
++    }
++}
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    id 'com.android.application'\n    id 'kotlin-android'\n    id 'com.google.gms.google-services'\n    id 'kotlin-kapt'\n    id 'androidx.navigation.safeargs.kotlin'\n}\n\nandroid {\n    compileSdk 34\n\n    defaultConfig {\n        applicationId \"team.four.mys\"\n        minSdk 26\n        targetSdk 33\n        versionCode 34\n        versionName \"1.4.7\"\n\n        kapt {\n            arguments {arg(\"room.schemaLocation\", \"$projectDir/schemas\")}\n        }\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n    compileOptions {\n        sourceCompatibility JavaVersion.VERSION_17\n        targetCompatibility JavaVersion.VERSION_17\n    }\n    kotlinOptions {\n        jvmTarget = '17'\n    }\n    viewBinding {\n        enabled true\n    }\n    namespace 'team.four.mys'\n}\n\ndependencies {\n\n    //Kotlin\n    implementation 'androidx.recyclerview:recyclerview:1.3.1'\n    implementation 'androidx.core:core-ktx:1.12.0'\n    implementation 'androidx.fragment:fragment-ktx:1.6.1'\n    implementation 'androidx.activity:activity-ktx:1.7.2'\n    implementation 'androidx.appcompat:appcompat:1.6.1'\n    implementation 'com.google.android.material:material:1.9.0'\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\n\n    //Preferences\n    implementation \"androidx.preference:preference-ktx:1.2.1\"\n    testImplementation 'org.testng:testng:6.9.6'\n\n    //Retrofit\n    def retrofit = '2.9.0'\n    implementation \"com.squareup.retrofit2:retrofit:$retrofit\"\n    implementation \"com.squareup.retrofit2:converter-gson:$retrofit\"\n\n    //Navigation\n    def nav_version = '2.7.2'\n    implementation \"androidx.navigation:navigation-fragment-ktx:$nav_version\"\n    implementation \"androidx.navigation:navigation-ui-ktx:$nav_version\"\n\n    //Glide\n    implementation 'com.github.bumptech.glide:glide:4.14.2'\n\n    //Firebase\n    implementation platform('com.google.firebase:firebase-bom:32.2.3')\n    implementation 'com.google.firebase:firebase-auth-ktx'\n    implementation 'com.google.firebase:firebase-analytics-ktx'\n    implementation 'com.google.firebase:firebase-firestore-ktx:24.7.1'\n    implementation 'com.google.firebase:firebase-appcheck-playintegrity'\n    implementation 'com.google.firebase:firebase-storage-ktx'\n\n    //Google\n    implementation 'com.google.android.gms:play-services-auth:20.7.0'\n\n    //Kotlin Coroutines\n    def coroutines = '1.7.3'\n    implementation \"org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines\"\n    implementation \"org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines\"\n\n    //ViewModel\n    def viewModel = '2.5.1'\n    implementation \"androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel\"\n    implementation \"androidx.lifecycle:lifecycle-livedata-ktx:$viewModel\"\n\n    //Statistic\n    implementation 'com.github.PhilJay:MPAndroidChart:3.1.0'\n\n    //koin\n    def koin_version = '3.4.3'\n    def koin_android_version = '3.4.3'\n    implementation \"io.insert-koin:koin-core:$koin_version\"\n    implementation \"io.insert-koin:koin-android:$koin_android_version\"\n\n    //testing\n    testImplementation 'junit:junit:4.13.2'\n    testImplementation 'org.mockito:mockito-core:4.0.0'\n    testImplementation 'org.mockito.kotlin:mockito-kotlin:4.0.0'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\n\n    //Room\n    def room_version = \"2.5.2\"\n    implementation \"androidx.room:room-runtime:$room_version\"\n    annotationProcessor \"androidx.room:room-compiler:$room_version\"\n    implementation \"androidx.room:room-ktx:$room_version\"\n    kapt \"androidx.room:room-compiler:$room_version\"\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 301a6643df91ae9aede66401d89b8ad3bb8e96f9)
++++ b/app/build.gradle	(date 1695242323278)
+@@ -64,7 +64,7 @@
+     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+ 
+     //Navigation
+-    def nav_version = '2.7.2'
++    def nav_version = '2.7.3'
+     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+ 
+@@ -75,7 +75,7 @@
+     implementation platform('com.google.firebase:firebase-bom:32.2.3')
+     implementation 'com.google.firebase:firebase-auth-ktx'
+     implementation 'com.google.firebase:firebase-analytics-ktx'
+-    implementation 'com.google.firebase:firebase-firestore-ktx:24.7.1'
++    implementation 'com.google.firebase:firebase-firestore-ktx:24.8.1'
+     implementation 'com.google.firebase:firebase-appcheck-playintegrity'
+     implementation 'com.google.firebase:firebase-storage-ktx'
+ 
