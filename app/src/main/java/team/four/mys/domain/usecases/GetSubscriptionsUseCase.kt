@@ -5,7 +5,7 @@ import team.four.mys.domain.repository.RoomRepository
 
 class GetSubscriptionsUseCase(private val roomRepository: RoomRepository) {
 
-    suspend fun execute(): List<Subscription>{
+    fun execute(): List<Subscription> {
         return roomRepository.getSubscriptions()
     }
 }
