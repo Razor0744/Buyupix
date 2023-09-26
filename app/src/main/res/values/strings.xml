@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!--First-->
     <string name="welcome">Welcome</string>
@@ -6,16 +6,17 @@
     <string name="continue_button">Continue</string>
 
     <!--Login-->
-    <string name="authorization">Authorization</string>
-    <string name="text_l">Enter phone number in international format</string>
-    <string name="language_code">Country</string>
-    <string name="phone_number">Phone Number</string>
+    <string name="text_view_big_login_fragment">Let\'s get started</string>
+    <string name="text_l">Enter your phone number. We will send you\na confirmation code there</string>
+    <string name="edit_text_phone_number_login_fragment">Mobile Number</string>
+    <string name="button_continue_login_fragment">Continue</string>
 
     <!--CountryCode-->
-    <string name="country_code">Country</string>
+    <string name="text_view_country_code_fragment">Country</string>
 
     <!--CodeSend-->
-    <string name="text_c">Enter code from sms</string>
+    <string name="text_view_big_code_send_fragment">Code</string>
+    <string name="text_view_enter_code_code_send_fragment">Enter the code you received</string>
     <string name="code_send_again">Resend code via </string>
 
     <string name="app_name">Buyupix</string>

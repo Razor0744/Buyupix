@@ -56,22 +56,24 @@
     </style>
 
     <style name="style_item_code_send_activity">
-        <item name="android:textSize">18sp</item>
+        <item name="android:inputType"></item>
+        <item name="android:textSize">@dimen/text_size_main</item>
         <item name="android:maxLength">1</item>
-        <item name="android:textColor">@color/text_main</item>
+        <item name="android:textColor">@color/text_primary</item>
         <item name="android:gravity">center</item>
-        <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:layout_width">30dp</item>
-        <item name="android:layout_height">37dp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">44dp</item>
         <item name="android:background">@drawable/focused_code_send</item>
-        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginTop">56dp</item>
     </style>
 
     <style name="arrow_left">
-        <item name="android:layout_marginStart">14dp</item>
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:background">@drawable/click_on_arrow_left</item>
+        <item name="android:layout_marginTop">26dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:background">@drawable/image_button_click_on_arrow_left</item>
         <item name="android:src">@drawable/ic_arrow_left</item>
     </style>
 

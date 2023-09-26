@@ -59,6 +59,14 @@
         android:name="team.four.mys.presentation.fragments.LoginFragment"
         tools:layout="@layout/fragment_login">
 
+        <action
+            android:id="@+id/action_login_fragment_to_code_send_fragment"
+            app:destination="@id/code_send_fragment" />
+
+        <action
+            android:id="@+id/action_login_fragment_to_country_code_fragment"
+            app:destination="@id/country_code_fragment" />
+
     </fragment>
 
     <fragment

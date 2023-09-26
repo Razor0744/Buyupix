@@ -2,25 +2,27 @@
 <resources>
 
     <!-- Height-->
-    <dimen name="height_main">46dp</dimen>
+    <dimen name="height_main">52dp</dimen>
+    <dimen name="height_button">50dp</dimen>
     <dimen name="height_recycler_view_subscriptions">52dp</dimen>
     <dimen name="height_secondary">56dp</dimen>
 
     <!--Margin-->
     <dimen name="margin_top">16dp</dimen>
-    <dimen name="margin_start">20dp</dimen>
-    <dimen name="margin_end">20dp</dimen>
+    <dimen name="margin_start">16dp</dimen>
+    <dimen name="margin_end">16dp</dimen>
     <dimen name="margin_start_recycler_settings">12dp</dimen>
     <dimen name="margin_end_recycler_settings">12dp</dimen>
     <dimen name="margin_for_background_items">8dp</dimen>
 
     <!--Padding-->
-    <dimen name="padding_start">16dp</dimen>
+    <dimen name="padding_start">14dp</dimen>
     <dimen name="padding_end">12dp</dimen>
 
     <!--Size-->
-    <dimen name="size_main">16sp</dimen>
-    <dimen name="size_secondary">14sp</dimen>
+    <dimen name="text_size_big">32sp</dimen>
+    <dimen name="text_size_main">16sp</dimen>
+    <dimen name="text_size_secondary">14sp</dimen>
 
     <!--TextInputLayout-->
     <dimen name="height_input_layout">51dp</dimen>
@@ -28,4 +30,7 @@
 
     <!--ButtonArrowLeft-->
     <dimen name="height_and_width_button_arrow_left">40dp</dimen>
+
+    <!--Radius-->
+    <dimen name="radius_main">10dp</dimen>
 </resources>

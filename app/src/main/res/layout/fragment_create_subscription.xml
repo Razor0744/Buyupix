@@ -82,7 +82,7 @@
             android:inputType="text"
             android:maxLines="1"
             android:paddingStart="@dimen/padding_start"
-            android:textSize="@dimen/size_main"
+            android:textSize="@dimen/text_size_main"
             tools:ignore="RtlSymmetry" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -98,7 +98,7 @@
         android:hint="@string/price"
         android:textColor="@color/text_main"
         android:textColorHint="@color/text_placeholder"
-        android:textSize="@dimen/size_main"
+        android:textSize="@dimen/text_size_main"
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopEnd="8dp"
@@ -141,7 +141,7 @@
         android:text="USD"
         android:textAllCaps="false"
         android:textColor="@color/text_placeholder"
-        android:textSize="@dimen/size_main"
+        android:textSize="@dimen/text_size_main"
         app:drawableEndCompat="@drawable/arrow_down"
         app:layout_constraintLeft_toRightOf="@id/price_layout"
         app:layout_constraintRight_toRightOf="parent"
@@ -159,7 +159,7 @@
         android:hint="@string/description"
         android:textColor="@color/text_main"
         android:textColorHint="@color/text_placeholder"
-        android:textSize="@dimen/size_main"
+        android:textSize="@dimen/text_size_main"
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopEnd="8dp"
@@ -196,7 +196,7 @@
         android:hint="@string/write_off_date"
         android:textColor="@color/text_main"
         android:textColorHint="@color/text_placeholder"
-        android:textSize="@dimen/size_main"
+        android:textSize="@dimen/text_size_main"
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopEnd="8dp"
@@ -248,7 +248,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/reminder"
             android:textColor="@color/text_main"
-            android:textSize="@dimen/size_main"
+            android:textSize="@dimen/text_size_main"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -280,7 +280,7 @@
         android:text="@string/button_create"
         android:textAllCaps="false"
         android:textColor="@color/text_main2"
-        android:textSize="@dimen/size_main"
+        android:textSize="@dimen/text_size_main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

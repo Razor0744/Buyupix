@@ -107,7 +107,7 @@ class SubscriptionsAdapter(
         }
     }
 
-    companion object Const {
+    private companion object Const {
         const val HASWRITEOFFDATE = 0
         const val NOWRITEOFFDATE = 1
     }

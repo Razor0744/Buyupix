@@ -25,7 +25,7 @@ class CountryCodeFragment : Fragment() {
         _binding = FragmentCountryCodeBinding.inflate(inflater, container, false)
 
         binding.buttonArrowLeft.setOnClickListener {
-            findNavController().navigate(R.id.login_fragment)
+            findNavController().popBackStack()
         }
 
         adapter()
@@ -43,7 +43,9 @@ class CountryCodeFragment : Fragment() {
             CountryAdapter(
                 country = country
             ) {
-                val bundle = bundleOf("number" to it.number)
+                val bundle = bundleOf(
+                    "number" to it.number
+                )
                 findNavController().navigate(R.id.login_fragment, bundle)
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -52,9 +54,9 @@ class CountryCodeFragment : Fragment() {
 
     private companion object {
         val country = listOf(
-            Country(R.drawable.language_russia, "Russian Federation", "+7"),
-            Country(R.drawable.language_usa, "USA", "+1"),
-            Country(R.drawable.language_russia, "Belarus", "+375")
+            Country(icon = R.drawable.ic_russia, name = "Russian Federation", number = "+7"),
+            Country(icon = R.drawable.ic_usa, name = "USA", number = "+1"),
+            Country(icon = R.drawable.ic_belarus, name = "Belarus", number = "+375")
         )
     }
 }

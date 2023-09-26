@@ -22,7 +22,6 @@
     <!--Text-->
     <color name="text_main">#3F3F3F</color>
     <color name="text_main2">#F9F9F9</color>
-    <color name="text_secondary">#9EA2AB</color>
     <color name="text_placeholder">#A8A8A8</color>
 
     <!--Button-->
@@ -33,7 +32,6 @@
     <!--Accent-->
     <color name="blue_main">#2D8DD8</color>
     <color name="blue_click">#1F78BC</color>
-    <color name="blue">#443FEE</color>
     <color name="blue_light">#44B6EB</color>
     <color name="yellow">#FFCE2F</color>
     <color name="red">#E05358</color>
@@ -41,4 +39,31 @@
     <color name="turquoise">#2DD1B5</color>
 
     <color name="image_background">#D9D9D9</color>
+
+
+    <!--New Colors-->
+    <!--Primitives-->
+    <color name="neutral_0">#FFFFFF</color>
+    <color name="neutral_100">#FAFBFC</color>
+    <color name="neutral_200">#F0F3F5</color>
+    <color name="neutral_300">#EDEFF3</color>
+    <color name="neutral_350">#F0F0F0</color>
+    <color name="neutral_400">#E0E4E7</color>
+    <color name="neutral_700">#787E8A</color>
+    <color name="neutral_900">#1A1B1E</color>
+    <color name="blue">#3983EC</color>
+    <color name="blue_300">#1D7AFF</color>
+
+    <!--Tokens-->
+    <color name="brand_primary">@color/blue</color>
+    <color name="brand_primary_hover">@color/blue_300</color>
+    <color name="input_background">@color/neutral_300</color>
+    <color name="input_active">@color/neutral_400</color>
+    <color name="text_white">@color/neutral_0</color>
+    <color name="text_primary">@color/neutral_900</color>
+    <color name="text_secondary">@color/neutral_700</color>
+    <color name="background">@color/neutral_100</color>
+    <color name="click">@color/neutral_200</color>
+    <color name="substrate">@color/neutral_0</color>
+    <color name="brand_border">@color/neutral_350</color>
 </resources>
