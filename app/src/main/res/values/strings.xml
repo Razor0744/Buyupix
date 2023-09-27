@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!--First-->
     <string name="welcome">Welcome</string>
@@ -17,7 +17,8 @@
     <!--CodeSend-->
     <string name="text_view_big_code_send_fragment">Code</string>
     <string name="text_view_enter_code_code_send_fragment">Enter the code you received</string>
-    <string name="code_send_again">Resend code via </string>
+    <string name="do_not_have_code_code_send_fragment">Don\'t have a code?</string>
+    <string name="resend_code_code_send_fragment">Resend code again after %1$s</string>
 
     <string name="app_name">Buyupix</string>
     <string name="name_app">Buyupix</string>
