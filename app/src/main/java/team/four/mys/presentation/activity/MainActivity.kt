@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity() {
         if (viewModel.checkUser()) {
             navController.navigate(R.id.home_fragment)
         } else {
-            navController.navigate(R.id.first_fragment)
+            navController.navigate(R.id.login_fragment)
         }
     }
 
