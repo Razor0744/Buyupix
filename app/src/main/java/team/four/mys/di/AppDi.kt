@@ -52,7 +52,6 @@ val appModule = module {
 
     viewModel<HomeViewModel> {
         HomeViewModel(
-            retrofit = get(),
             getUIDUseCase = get(),
             getSubscriptionsUseCase = get()
         )

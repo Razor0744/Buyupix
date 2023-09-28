@@ -40,7 +40,7 @@ class SettingsFragment : Fragment() {
 
         binding.logOut.setOnClickListener {
             auth.signOut()
-            findNavController().navigate(R.id.first_fragment)
+            findNavController().navigate(R.id.login_fragment)
         }
 
         return binding.root

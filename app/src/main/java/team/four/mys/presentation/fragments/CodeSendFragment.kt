@@ -98,7 +98,7 @@ class CodeSendFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 binding.textViewResendCode.text =
                     getString(
-                        R.string.resend_code_code_send_fragment,
+                        R.string.text_view_resend_code_code_send_fragment,
                         counter.toString()
                     )
                 counter--

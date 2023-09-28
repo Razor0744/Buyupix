@@ -17,8 +17,8 @@
     <!--CodeSend-->
     <string name="text_view_big_code_send_fragment">Code</string>
     <string name="text_view_enter_code_code_send_fragment">Enter the code you received</string>
-    <string name="do_not_have_code_code_send_fragment">Don\'t have a code?</string>
-    <string name="resend_code_code_send_fragment">Resend code again after %1$s</string>
+    <string name="text_view_do_not_have_code_code_send_fragment">Don\'t have a code?</string>
+    <string name="text_view_resend_code_code_send_fragment">Resend code again after %1$s</string>
 
     <string name="app_name">Buyupix</string>
     <string name="name_app">Buyupix</string>
@@ -60,7 +60,8 @@
     <string name="sign_out">Exit</string>
 
     <!--Home-->
-    <string name="first_subscription">You have not created any subscription yet. Let is do it right now</string>
+    <string name="text_view_do_not_have_subscription_home_fragment">You don\'t have any subscriptions yet.\nLet\'s create one right now</string>
+    <string name="button_create_home_fragment">Create</string>
 
     <!--AutoCompleteText-->
     <!--27-->

@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
@@ -24,7 +27,6 @@ class HomeFragment : Fragment() {
     private val viewModel by viewModel<HomeViewModel>()
 
     private lateinit var subscriptions: List<Subscription>
-    private lateinit var adapterSubscriptions: SubscriptionsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,15 +35,17 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.createSubscription.setOnClickListener {
+        binding.createSubscriptionButton2.setOnClickListener {
             findNavController().navigate(R.id.create_subscription_fragment)
         }
 
-        binding.month.text = viewModel.date()
+        binding.createSubscriptionButton.setOnClickListener {
+            findNavController().navigate(R.id.create_subscription_fragment)
+        }
 
         viewModel.subscriptions.observe(viewLifecycleOwner) {
             subscriptions = it.sortedBy { sub -> sub.date }
-            if (subscriptions.isEmpty()) visibilityFirstApp()
+            if (subscriptions.isNotEmpty()) visibilityFirstApp()
             adapter()
         }
 
@@ -54,19 +58,27 @@ class HomeFragment : Fragment() {
     }
 
     private fun adapter() {
-        adapterSubscriptions =
+        val adapterSubscriptions =
             SubscriptionsAdapter(
-                subscriptions,
-                viewModel.date()
+                subscriptions = subscriptions,
+                month = viewModel.date()
             ) {
                 val bundle = bundleOf("subscription" to Gson().toJson(it))
                 findNavController().navigate(R.id.subscription_info_fragment, bundle)
             }
+        val dividerItemDecoration = DividerItemDecoration(
+            requireContext(),
+            VERTICAL
+        )
+        ResourcesCompat.getDrawable(resources, R.drawable.item_decoration_recycler_view_subscription, null)
+            ?.let { dividerItemDecoration.setDrawable(it) }
+        binding.recyclerView.addItemDecoration(dividerItemDecoration)
         binding.recyclerView.adapter = adapterSubscriptions
     }
 
     private fun visibilityFirstApp() {
-        binding.textView.visibility = View.VISIBLE
-        binding.line3.visibility = View.VISIBLE
+        binding.doNotHaveSubscriptionLinearLayout.visibility = View.GONE
+        binding.searchEditText.visibility = View.VISIBLE
+        binding.createSubscriptionButton.visibility = View.VISIBLE
     }
 }
