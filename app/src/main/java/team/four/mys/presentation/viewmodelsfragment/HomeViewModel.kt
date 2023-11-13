@@ -18,8 +18,8 @@ class HomeViewModel(
     private val getSubscriptionsUseCase: GetSubscriptionsUseCase
 ) : ViewModel() {
 
-    private var subscriptionsData = MutableLiveData<List<Subscription>>()
-    val subscriptions: LiveData<List<Subscription>> = subscriptionsData
+    private var subscriptionsLiveData = MutableLiveData<List<Subscription>>()
+    val subscriptions: LiveData<List<Subscription>> = subscriptionsLiveData
 
     fun date(): String {
         return SimpleDateFormat("LLLL", Locale.getDefault()).format(Date())
@@ -31,7 +31,7 @@ class HomeViewModel(
 
     init {
         viewModelScope.launch(Dispatchers.Default) {
-            subscriptionsData.postValue(getSubscriptionsUseCase.execute())
+            subscriptionsLiveData.postValue(getSubscriptionsUseCase.execute())
         }
     }
 }
