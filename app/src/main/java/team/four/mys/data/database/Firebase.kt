@@ -16,7 +16,7 @@ class Firebase : FirebaseDatabase {
     private val user = FirebaseAuth.getInstance().currentUser
 
     private val documentName = "data"
-    private val documentNumberSync = "time"
+    private val documentTimeSync = "time"
 
     private val TAG = "Firebase"
 
@@ -54,14 +54,14 @@ class Firebase : FirebaseDatabase {
             .addOnFailureListener { e -> Log.e(TAG, e.toString()) }
     }
 
-    override suspend fun getNumberSync(uid: String): DocumentSnapshot? = suspendCoroutine {
+    override suspend fun getTimeSync(uid: String): String? = suspendCoroutine {
         db
             .collection(uid)
-            .document(documentNumberSync)
+            .document(documentTimeSync)
             .get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    it.resume(document)
+                    it.resume(document.getString("time"))
                 } else {
                     it.resume(null)
                 }
@@ -72,11 +72,11 @@ class Firebase : FirebaseDatabase {
             }
     }
 
-    override fun setNumberSync(uid: String, number: Int) {
+    override fun setTimeSync(uid: String, time: String) {
         db
             .collection(uid)
-            .document(documentNumberSync)
-            .set(number)
+            .document(documentTimeSync)
+            .set(time)
             .addOnSuccessListener {
                 Log.i(TAG, "set data is successful")
             }

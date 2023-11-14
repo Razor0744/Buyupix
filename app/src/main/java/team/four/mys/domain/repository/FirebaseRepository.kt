@@ -11,9 +11,9 @@ interface FirebaseRepository {
 
     fun setData(uid: String, list: List<Subscription>)
 
-    suspend fun getNumberSync(uid: String): DocumentSnapshot?
+    suspend fun getTimeSync(uid: String): String?
 
-    fun setNumberSync(uid: String, number: Int)
+    fun setTimeSync(uid: String, time: String)
 
     fun checkUser(): Boolean
 }

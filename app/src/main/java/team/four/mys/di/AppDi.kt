@@ -9,6 +9,7 @@ import team.four.mys.presentation.viewmodelsfragment.LanguageViewModel
 import team.four.mys.presentation.viewmodelsactivity.MainViewModel
 import team.four.mys.presentation.viewmodelsfragment.SubscriptionInfoViewModel
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
+import team.four.mys.presentation.viewmodelsfragment.SplashScreenViewModel
 import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
 val appModule = module {
@@ -68,6 +69,15 @@ val appModule = module {
             checkUserUseCase = get(),
             setNavigationColorUseCase = get(),
             setStatusBarColorUseCase = get()
+        )
+    }
+
+    viewModel<SplashScreenViewModel> {
+        SplashScreenViewModel(
+            getSettingsUseCase = get(),
+            getTimeSyncFirebaseUseCase = get(),
+            getUIDUseCase = get(),
+            checkTimeSyncUseCase = get()
         )
     }
 

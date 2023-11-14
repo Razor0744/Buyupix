@@ -76,4 +76,12 @@ val domainModule = module {
     factory<CheckUserUseCase> {
         CheckUserUseCase(firebaseRepository = get())
     }
+
+    factory<GetTimeSyncFirebaseUseCase> {
+        GetTimeSyncFirebaseUseCase(firebaseRepository = get())
+    }
+
+    factory<CheckTimeSyncUseCase> {
+        CheckTimeSyncUseCase()
+    }
 }

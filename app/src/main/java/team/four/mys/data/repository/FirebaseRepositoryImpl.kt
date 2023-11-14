@@ -19,12 +19,12 @@ class FirebaseRepositoryImpl(private val firebaseDatabase: FirebaseDatabase) : F
         firebaseDatabase.setData(uid = uid, list = list)
     }
 
-    override suspend fun getNumberSync(uid: String): DocumentSnapshot? {
-        return firebaseDatabase.getNumberSync(uid = uid)
+    override suspend fun getTimeSync(uid: String): String? {
+        return firebaseDatabase.getTimeSync(uid = uid)
     }
 
-    override fun setNumberSync(uid: String, number: Int) {
-        firebaseDatabase.setNumberSync(uid = uid, number = number)
+    override fun setTimeSync(uid: String, time: String) {
+        firebaseDatabase.setTimeSync(uid = uid, time = time)
     }
 
     override fun checkUser(): Boolean {
