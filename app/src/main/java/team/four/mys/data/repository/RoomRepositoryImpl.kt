@@ -1,12 +1,14 @@
 package team.four.mys.data.repository
 
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 import team.four.mys.data.room.SubscriptionDao
 import team.four.mys.data.room.Subscription
 import team.four.mys.domain.repository.RoomRepository
 
 class RoomRepositoryImpl(private val subscriptionDao: SubscriptionDao) : RoomRepository {
 
-    override fun getSubscriptions(): List<Subscription> {
+    override fun getSubscriptions(): Single<List<Subscription>> {
         return subscriptionDao.getSubscriptions()
     }
 

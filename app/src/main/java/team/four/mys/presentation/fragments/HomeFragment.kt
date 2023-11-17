@@ -1,6 +1,7 @@
 package team.four.mys.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.google.gson.Gson
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.data.room.Subscription
@@ -28,6 +31,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var subscriptions: List<Subscription>
 
+    val compositeDisposable = CompositeDisposable()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,11 +48,23 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.create_subscription_fragment)
         }
 
-        viewModel.subscriptions.observe(viewLifecycleOwner) {
-            subscriptions = it.sortedBy { sub -> sub.date }
-            if (subscriptions.isNotEmpty()) visibilityFirstApp()
-            adapter()
-        }
+//        viewModel.subscriptions.observe(viewLifecycleOwner) {
+//            subscriptions = it.sortedBy { sub -> sub.date }
+//            if (subscriptions.isNotEmpty()) visibilityFirstApp()
+//            adapter()
+//        }
+        val disposable = viewModel.getSubscriptions
+            .subscribe(
+                {
+                    subscriptions = it.sortedBy { sub -> sub.date }
+                    if (subscriptions.isNotEmpty()) visibilityFirstApp()
+                    adapter()
+                    Log.i("RX", it.toString())
+                },
+                { Log.i("RX", it.toString()) }
+            )
+        compositeDisposable.add(disposable)
+
 
         return binding.root
     }
@@ -55,6 +72,7 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        compositeDisposable.dispose()
     }
 
     private fun adapter() {
@@ -70,7 +88,11 @@ class HomeFragment : Fragment() {
             requireContext(),
             VERTICAL
         )
-        ResourcesCompat.getDrawable(resources, R.drawable.item_decoration_recycler_view_subscription, null)
+        ResourcesCompat.getDrawable(
+            resources,
+            R.drawable.item_decoration_recycler_view_subscription,
+            null
+        )
             ?.let { dividerItemDecoration.setDrawable(it) }
         binding.recyclerView.addItemDecoration(dividerItemDecoration)
         binding.recyclerView.adapter = adapterSubscriptions
