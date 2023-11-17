@@ -29,8 +29,8 @@ class SplashScreenActivity : AppCompatActivity() {
         }
 
         viewModel.timeSettings.observe(this) {
-            if (it == null) {
-                timeSettings = it!!
+            if (it != null) {
+                timeSettings = it
                 viewModel.checkTimeSync(timeSettings = timeSettings, timeFirebase = timeFirebase)
             } else {
                 startActivityToNext()
@@ -46,9 +46,6 @@ class SplashScreenActivity : AppCompatActivity() {
     private fun startActivityToNext() {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("time", checkTime)
-        println(timeFirebase)
-        println(timeSettings)
-        println(checkTime)
         startActivity(intent)
     }
 }

@@ -10,7 +10,7 @@ class SettingsPreferences(context: Context): SettingsStorage {
     private var preferences = context.getSharedPreferences(NAME, MODE)
 
     override fun getSettings(settingsPreferencesParam: SettingsPreferencesParam): SettingsPreferencesParam {
-        val value = preferences.getString(settingsPreferencesParam.key, "null")
+        val value = preferences.getString(settingsPreferencesParam.key, null)
         return SettingsPreferencesParam(value = value)
     }
 

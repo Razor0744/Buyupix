@@ -32,6 +32,10 @@ class SplashScreenViewModel(
         )
     }
 
+    private suspend fun getTimeFirebase() {
+        timeFirebaseLiveData.postValue(getTimeSyncFirebaseUseCase.execute(uid = getUIDUseCase.execute()))
+    }
+
     fun checkTimeSync(timeFirebase: String, timeSettings: String) {
         checkTimeLiveData.postValue(
             checkTimeSyncUseCase.execute(
@@ -42,8 +46,8 @@ class SplashScreenViewModel(
     }
 
     init {
-        viewModelScope.launch(Dispatchers.Default) {
-            timeFirebaseLiveData.postValue(getTimeSyncFirebaseUseCase.execute(uid = getUIDUseCase.execute()))
+        viewModelScope.launch(Dispatchers.IO) {
+            getTimeFirebase()
         }
     }
 }
