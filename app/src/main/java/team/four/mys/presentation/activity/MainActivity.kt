@@ -50,9 +50,7 @@ class MainActivity : AppCompatActivity() {
     private var storedVerificationId: String = ""
     private lateinit var phoneNumber: String
 
-    private companion object {
-        private const val TAG = "PhoneAuthActivity"
-    }
+    private val TAG = "PhoneAuthActivity"
 
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController

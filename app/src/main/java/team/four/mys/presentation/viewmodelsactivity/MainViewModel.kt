@@ -29,5 +29,4 @@ class MainViewModel(
     fun setNavigationColor(activity: Activity, color: Int) {
         setNavigationColorUseCase.execute(activity = activity, color = color)
     }
-
 }
