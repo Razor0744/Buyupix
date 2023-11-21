@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.google.gson.Gson
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
@@ -31,7 +30,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var subscriptions: List<Subscription>
 
-    val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,12 +47,12 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.create_subscription_fragment)
         }
 
-//        viewModel.subscriptions.observe(viewLifecycleOwner) {
-//            subscriptions = it.sortedBy { sub -> sub.date }
-//            if (subscriptions.isNotEmpty()) visibilityFirstApp()
-//            adapter()
-//        }
-        val disposable = viewModel.getSubscriptions
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        compositeDisposable.add(viewModel.getSubscriptions()
             .subscribe(
                 {
                     subscriptions = it.sortedBy { sub -> sub.date }
@@ -63,16 +62,18 @@ class HomeFragment : Fragment() {
                 },
                 { Log.i("RX", it.toString()) }
             )
-        compositeDisposable.add(disposable)
-
-
-        return binding.root
+        )
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
         compositeDisposable.dispose()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        compositeDisposable.clear()
     }
 
     private fun adapter() {

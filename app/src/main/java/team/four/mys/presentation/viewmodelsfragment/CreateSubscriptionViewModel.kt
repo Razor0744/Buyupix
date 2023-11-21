@@ -2,11 +2,14 @@ package team.four.mys.presentation.viewmodelsfragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import team.four.mys.data.api.retrofit.currencies.Retrofit
 import team.four.mys.data.room.Subscription
-import team.four.mys.domain.models.Valute
+import team.four.mys.domain.models.CurrenciesJSON
 import team.four.mys.domain.usecases.AddSubscriptionUseCase
 import team.four.mys.domain.usecases.GetCategoryOfSubscriptionUseCase
 import team.four.mys.domain.usecases.GetCurrencyIconUseCase
@@ -23,8 +26,6 @@ class CreateSubscriptionViewModel(
     private val getUrlImageUseCase: GetUrlImageUseCase,
     private val getCurrencyIconUseCase: GetCurrencyIconUseCase
 ) : ViewModel() {
-
-    private var valute: Valute? = null
 
     fun monthYearFromDate(date: LocalDate): String {
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("LLLL")
@@ -48,8 +49,10 @@ class CreateSubscriptionViewModel(
         return daysInMonthArray
     }
 
-    suspend fun getCurrencies() {
-        valute = retrofit.getCurrencies()
+    fun getCurrencies(): Single<CurrenciesJSON> {
+         return retrofit.getCurrencies()
+             .subscribeOn(Schedulers.io())
+             .subscribeOn(AndroidSchedulers.mainThread())
     }
 
     fun addSubscription(subscription: Subscription) {

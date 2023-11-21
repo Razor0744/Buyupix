@@ -1,6 +1,7 @@
 package team.four.mys.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentCreateSubscriptionBinding
@@ -31,6 +33,8 @@ class CreateSubscriptionFragment : Fragment() {
 
     private var selectedDate: LocalDate = LocalDate.now()
 
+    private val compositeDisposable = CompositeDisposable()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +54,17 @@ class CreateSubscriptionFragment : Fragment() {
         addSubscription()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        compositeDisposable.add(viewModel.getCurrencies()
+            .subscribe({
+                       Log.i("RETROFIT", it.Valute.toString())
+            }, {
+                Log.e("RETROFIT", it.toString())
+            })
+        )
     }
 
     override fun onDestroy() {
