@@ -7,10 +7,15 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.data.room.Subscription
@@ -25,8 +30,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel by viewModel<HomeViewModel>()
-
-    private lateinit var subscriptions: List<Subscription>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,13 +46,22 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.create_subscription_fragment)
         }
 
-        viewModel.subscriptions.observe(viewLifecycleOwner) {
-            subscriptions = it.sortedBy { sub -> sub.date }
-            if (subscriptions.isNotEmpty()) visibilityFirstApp()
-            adapter()
+        lifecycleScope.launch(Dispatchers.IO) {
+            getSubscriptions()
         }
 
         return binding.root
+    }
+
+    private suspend fun getSubscriptions() {
+        viewModel.getSubscriptions()
+            .catch { println(it) }
+            .collect {
+                withContext(Dispatchers.Main) {
+                    if (it.isNotEmpty()) visibilityFirstApp()
+                    adapter(it.sortedBy { sub -> sub.date })
+                }
+            }
     }
 
     override fun onDestroy() {
@@ -57,7 +69,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun adapter() {
+    private fun adapter(subscriptions: List<Subscription>) {
         val adapterSubscriptions =
             SubscriptionsAdapter(
                 subscriptions = subscriptions,
@@ -70,8 +82,11 @@ class HomeFragment : Fragment() {
             requireContext(),
             VERTICAL
         )
-        ResourcesCompat.getDrawable(resources, R.drawable.item_decoration_recycler_view_subscription, null)
-            ?.let { dividerItemDecoration.setDrawable(it) }
+        ResourcesCompat.getDrawable(
+            resources,
+            R.drawable.item_decoration_recycler_view_subscription,
+            null
+        )?.let { dividerItemDecoration.setDrawable(it) }
         binding.recyclerView.addItemDecoration(dividerItemDecoration)
         binding.recyclerView.adapter = adapterSubscriptions
     }

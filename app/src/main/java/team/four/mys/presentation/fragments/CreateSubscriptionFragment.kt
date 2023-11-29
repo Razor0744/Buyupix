@@ -10,17 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
+import team.four.mys.data.room.Subscription
 import team.four.mys.databinding.FragmentCreateSubscriptionBinding
 import team.four.mys.domain.models.Currencies
-import team.four.mys.data.room.Subscription
 import team.four.mys.domain.usecases.CustomPositionItemDecorationUseCase
-import team.four.mys.presentation.adapters.CalendarAdapter
 import team.four.mys.presentation.adapters.CurrenciesAdapter
 import team.four.mys.presentation.viewmodelsfragment.CreateSubscriptionViewModel
-import java.time.LocalDate
 
 class CreateSubscriptionFragment : Fragment() {
 
@@ -28,8 +25,6 @@ class CreateSubscriptionFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel by viewModel<CreateSubscriptionViewModel>()
-
-    private var selectedDate: LocalDate = LocalDate.now()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,10 +36,8 @@ class CreateSubscriptionFragment : Fragment() {
             findNavController().navigate(R.id.home_fragment)
         }
 
-        setMonthView()
         priceButtonClick()
         autoCompleteTextView()
-        calendarVisibility()
         recyclerViewCurrenciesAdapter()
         focusOnEditView()
         addSubscription()
@@ -137,29 +130,6 @@ class CreateSubscriptionFragment : Fragment() {
         binding.recyclerViewCurrencies.adapter = adapter
     }
 
-    private fun calendarVisibility() {
-        binding.groupCalendar.visibility = View.INVISIBLE
-        binding.calendarVis.setOnClickListener {
-            if (binding.groupCalendar.visibility == View.INVISIBLE) {
-                binding.groupCalendar.visibility = View.VISIBLE
-                binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(
-                    null,
-                    null,
-                    ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar_click, null),
-                    null
-                )
-            } else {
-                binding.groupCalendar.visibility = View.INVISIBLE
-                binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(
-                    null,
-                    null,
-                    ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar, null),
-                    null
-                )
-            }
-        }
-    }
-
     private fun focusOnEditView() {
         binding.constrainParent.setOnClickListener {
             if (binding.name.isFocused || binding.price.isFocused || binding.description.isFocused || binding.buttonCalender.isFocused) {
@@ -172,15 +142,6 @@ class CreateSubscriptionFragment : Fragment() {
             binding.price.clearFocus()
             binding.description.clearFocus()
             binding.buttonCalender.clearFocus()
-            if (binding.groupCalendar.visibility == View.VISIBLE) {
-                binding.groupCalendar.visibility = View.INVISIBLE
-                binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(
-                    null,
-                    null,
-                    ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar, null),
-                    null
-                )
-            }
             if (binding.groupCurrencies.visibility == View.VISIBLE) {
                 binding.priceButton.background = ResourcesCompat.getDrawable(
                     resources, R.drawable.item_background_stroke, null
@@ -200,39 +161,6 @@ class CreateSubscriptionFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, names)
         binding.name.setAdapter(adapter)
 
-    }
-
-    private fun setMonthView() {
-        binding.monthYearTv.text = viewModel.monthYearFromDate(selectedDate)
-        val daysInMonth = viewModel.daysInMonthArray(selectedDate)
-        val adapterCalendar = CalendarAdapter(daysInMonth) { calendarClick ->
-            onItemClick(daysInMonth[calendarClick])
-        }
-        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 7)
-        binding.recyclerView.adapter = adapterCalendar
-        binding.recyclerView.suppressLayout(true)
-
-        binding.buttonLeftCalendar.setOnClickListener {
-            selectedDate = selectedDate.minusMonths(1)
-            setMonthView()
-        }
-        binding.buttonRightCalendar.setOnClickListener {
-            selectedDate = selectedDate.plusMonths(1)
-            setMonthView()
-        }
-    }
-
-    private fun onItemClick(dayText: String) {
-        if (dayText != "") {
-            binding.buttonCalender.setText(dayText)
-            binding.groupCalendar.visibility = View.INVISIBLE
-            binding.buttonCalender.setCompoundDrawablesWithIntrinsicBounds(
-                null,
-                null,
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_calendar, null),
-                null
-            )
-        }
     }
 
     private companion object {

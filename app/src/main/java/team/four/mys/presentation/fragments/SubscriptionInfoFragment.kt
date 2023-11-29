@@ -5,8 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentSubscriptionInfoBinding
@@ -40,26 +47,36 @@ class SubscriptionInfoFragment : Fragment() {
             findNavController().navigate(R.id.home_fragment)
         }
 
-        viewModel.subscriptionInfo.observe(viewLifecycleOwner) {
-            binding.name2.text = it.name
-            binding.name.text = it.name
-            binding.price2.text =
-                getString(R.string.priceInfo, it.currencyIcon, it.price)
-            binding.price.text =
-                getString(R.string.priceInfo, it.currencyIcon, it.price)
-            binding.description.text = it.description
-            binding.category.text = it.category
-            binding.switchReminder.isChecked = it.reminder
+        lifecycleScope.launch(Dispatchers.IO) {
+            getSubscriptionInfo(
+                id = Gson().fromJson(
+                    arguments?.getString("subscription"),
+                    Subscription::class.java
+                ).id!!
+            )
         }
 
-        viewModel.getSubscriptionInfo(
-            id =  Gson().fromJson(
-                arguments?.getString("subscription"),
-                Subscription::class.java
-            ).id!!
-        )
-
         return binding.root
+    }
+
+    private suspend fun getSubscriptionInfo(id: Long) {
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.getSubscriptionInfo(id = id)
+                .catch { println(it) }
+                .collect {
+                    withContext(Dispatchers.Main) {
+                        binding.name2.text = it.name
+                        binding.name.text = it.name
+                        binding.price2.text =
+                            getString(R.string.priceInfo, it.currencyIcon, it.price)
+                        binding.price.text =
+                            getString(R.string.priceInfo, it.currencyIcon, it.price)
+                        binding.description.text = it.description
+                        binding.category.text = it.category
+                        binding.switchReminder.isChecked = it.reminder
+                    }
+                }
+        }
     }
 
     override fun onDestroy() {

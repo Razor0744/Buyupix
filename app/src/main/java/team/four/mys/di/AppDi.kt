@@ -29,7 +29,6 @@ val appModule = module {
 
     viewModel<CreateSubscriptionViewModel> {
         CreateSubscriptionViewModel(
-            retrofit = get(),
             addSubscriptionUseCase = get(),
             getCategoryOfSubscriptionUseCase = get(),
             getCurrencyIconUseCase = get(),
