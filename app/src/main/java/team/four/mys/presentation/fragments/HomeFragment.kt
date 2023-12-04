@@ -7,13 +7,18 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -54,18 +59,27 @@ class HomeFragment : Fragment() {
     }
 
     private suspend fun getSubscriptions() {
-        viewModel.getSubscriptions()
-            .catch { println(it) }
-            .collect {
-                withContext(Dispatchers.Main) {
-                    if (it.isNotEmpty()) visibilityFirstApp()
-                    adapter(it.sortedBy { sub -> sub.date })
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.getSubscriptions()
+                .catch {
+                    println(it)
                 }
-            }
+                .onCompletion {
+                    println("Bye coroutines")
+                }
+                .onEach {
+                    withContext(Dispatchers.Main) {
+                        if (it.isNotEmpty()) visibilityFirstApp()
+                        adapter(it.sortedBy { sub -> sub.date })
+                    }
+                }
+                .single()
+        }
+
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 

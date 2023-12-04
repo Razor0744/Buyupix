@@ -168,9 +168,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkUser() {
-        if (viewModel.checkUser()) {
-            navController.navigate(R.id.home_fragment)
-        } else {
+        if (!viewModel.checkUser()) {
             navController.navigate(R.id.login_fragment)
         }
     }

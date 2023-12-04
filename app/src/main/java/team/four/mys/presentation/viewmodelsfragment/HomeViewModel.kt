@@ -13,9 +13,6 @@ class HomeViewModel(
     private val getSubscriptionsUseCase: GetSubscriptionsUseCase
 ) : ViewModel() {
 
-//    private var subscriptionsLiveData = MutableLiveData<List<Subscription>>()
-//    val subscriptions: LiveData<List<Subscription>> = subscriptionsLiveData
-
     fun getSubscriptions() = flow {
         emit(getSubscriptionsUseCase.execute())
     }
