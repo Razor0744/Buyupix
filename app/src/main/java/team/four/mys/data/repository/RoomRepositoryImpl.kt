@@ -3,8 +3,9 @@ package team.four.mys.data.repository
 import team.four.mys.data.room.SubscriptionDao
 import team.four.mys.data.room.Subscription
 import team.four.mys.domain.repository.RoomRepository
+import javax.inject.Inject
 
-class RoomRepositoryImpl(private val subscriptionDao: SubscriptionDao) : RoomRepository {
+class RoomRepositoryImpl @Inject constructor(private val subscriptionDao: SubscriptionDao) : RoomRepository {
 
     override fun getSubscriptions(): List<Subscription> {
         return subscriptionDao.getSubscriptions()

@@ -1,23 +1,16 @@
 package team.four.mys.app
 
 import android.app.Application
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
-import team.four.mys.di.appModule
-import team.four.mys.di.dataModule
-import team.four.mys.di.domainModule
+import team.four.mys.di.AppComponent
+import team.four.mys.di.DaggerAppComponent
 
 class App : Application() {
+
+    lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
 
-        startKoin {
-            androidLogger(Level.DEBUG)
-            androidContext(this@App)
-            modules(listOf(appModule, domainModule, dataModule))
-        }
+        appComponent = DaggerAppComponent.factory().create(this)
     }
 }

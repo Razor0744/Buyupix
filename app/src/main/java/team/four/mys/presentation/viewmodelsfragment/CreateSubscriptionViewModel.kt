@@ -9,8 +9,9 @@ import team.four.mys.domain.usecases.AddSubscriptionUseCase
 import team.four.mys.domain.usecases.GetCategoryOfSubscriptionUseCase
 import team.four.mys.domain.usecases.GetCurrencyIconUseCase
 import team.four.mys.domain.usecases.GetUrlImageUseCase
+import javax.inject.Inject
 
-class CreateSubscriptionViewModel(
+class CreateSubscriptionViewModel @Inject constructor(
     private val addSubscriptionUseCase: AddSubscriptionUseCase,
     private val getCategoryOfSubscriptionUseCase: GetCategoryOfSubscriptionUseCase,
     private val getUrlImageUseCase: GetUrlImageUseCase,

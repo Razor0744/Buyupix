@@ -4,8 +4,9 @@ import com.google.firebase.firestore.DocumentSnapshot
 import team.four.mys.data.database.FirebaseDatabase
 import team.four.mys.data.room.Subscription
 import team.four.mys.domain.repository.FirebaseRepository
+import javax.inject.Inject
 
-class FirebaseRepositoryImpl(private val firebaseDatabase: FirebaseDatabase) : FirebaseRepository {
+class FirebaseRepositoryImpl @Inject constructor(private val firebaseDatabase: FirebaseDatabase) : FirebaseRepository {
 
     override fun getUID(): String {
         return firebaseDatabase.getUID()

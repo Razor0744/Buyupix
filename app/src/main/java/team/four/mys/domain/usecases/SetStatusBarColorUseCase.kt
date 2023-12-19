@@ -3,10 +3,10 @@ package team.four.mys.domain.usecases
 import android.app.Activity
 import android.content.res.Configuration
 import android.view.View
-import androidx.core.view.WindowCompat
 import team.four.mys.domain.models.SettingsPreferencesParam
+import javax.inject.Inject
 
-class SetStatusBarColorUseCase(
+class SetStatusBarColorUseCase @Inject constructor(
     private val getSettingsUseCase: GetSettingsUseCase
 ) {
 

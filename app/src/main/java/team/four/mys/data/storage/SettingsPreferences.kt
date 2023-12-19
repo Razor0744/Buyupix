@@ -2,8 +2,9 @@ package team.four.mys.data.storage
 
 import android.content.Context
 import team.four.mys.domain.models.SettingsPreferencesParam
+import javax.inject.Inject
 
-class SettingsPreferences(context: Context): SettingsStorage {
+class SettingsPreferences @Inject constructor(context: Context): SettingsStorage {
 
     private val NAME = "Settings"
     private val MODE = Context.MODE_PRIVATE

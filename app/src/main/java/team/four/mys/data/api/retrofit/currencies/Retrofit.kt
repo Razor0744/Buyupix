@@ -6,10 +6,11 @@ import retrofit2.Response
 import team.four.mys.data.api.retrofit.RetrofitClient
 import team.four.mys.domain.models.CurrenciesJSON
 import team.four.mys.domain.models.Valute
+import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class Retrofit(private val retrofitClient: RetrofitClient) {
+class Retrofit @Inject constructor(private val retrofitClient: RetrofitClient) {
 
     suspend fun getCurrencies(): Valute? = suspendCoroutine {
         retrofitClient.currenciesService.getCurrencies().enqueue(object : Callback<CurrenciesJSON> {

@@ -8,27 +8,31 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentDarkModeBinding
 import team.four.mys.domain.models.DarkMode
 import team.four.mys.domain.models.SettingsPreferencesParam
+import team.four.mys.extensions.appComponent
 import team.four.mys.presentation.activity.MainActivity
 import team.four.mys.presentation.adapters.DarkModeAdapter
 import team.four.mys.presentation.viewmodelsfragment.DarkModeViewModel
+import javax.inject.Inject
 
 class DarkModeFragment : Fragment() {
 
     private var _binding: FragmentDarkModeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModel<DarkModeViewModel>()
+    @Inject
+     lateinit var viewModel: DarkModeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDarkModeBinding.inflate(inflater, container, false)
+
+        requireContext().appComponent.injectDarkModeFragment(this)
 
         binding.buttonArrowLeft.setOnClickListener {
             findNavController().navigate(R.id.settings_fragment)

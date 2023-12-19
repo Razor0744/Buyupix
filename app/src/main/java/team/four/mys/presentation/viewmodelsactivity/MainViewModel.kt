@@ -6,8 +6,9 @@ import team.four.mys.domain.usecases.CheckUserUseCase
 import team.four.mys.domain.usecases.SetNavigationColorUseCase
 import team.four.mys.domain.usecases.SetStatusBarColorUseCase
 import team.four.mys.domain.usecases.SetThemeUseCase
+import javax.inject.Inject
 
-class MainViewModel(
+class MainViewModel @Inject constructor(
     private val setThemeUseCase: SetThemeUseCase,
     private val checkUserUseCase: CheckUserUseCase,
     private val setNavigationColorUseCase: SetNavigationColorUseCase,

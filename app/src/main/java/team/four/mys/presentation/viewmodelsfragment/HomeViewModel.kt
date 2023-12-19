@@ -7,8 +7,9 @@ import team.four.mys.domain.usecases.GetUIDUseCase
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import javax.inject.Inject
 
-class HomeViewModel(
+class HomeViewModel @Inject constructor(
     private val getUIDUseCase: GetUIDUseCase,
     private val getSubscriptionsUseCase: GetSubscriptionsUseCase
 ) : ViewModel() {

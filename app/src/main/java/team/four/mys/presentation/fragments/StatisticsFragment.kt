@@ -5,18 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentStatisticsBinding
 import team.four.mys.presentation.activity.MainActivity
-import team.four.mys.presentation.viewmodelsfragment.StatisticsViewModel
 
 class StatisticsFragment : Fragment() {
 
     private var _binding: FragmentStatisticsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModel<StatisticsViewModel>()
+//    private val viewModel by viewModel<StatisticsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,7 +23,7 @@ class StatisticsFragment : Fragment() {
     ): View {
         _binding = FragmentStatisticsBinding.inflate(inflater, container, false)
 
-        binding.month.text = viewModel.date()
+//        binding.month.text = viewModel.date()
 
         binding.gamingCategory.text = getString(
             R.string.gaming_category,
@@ -56,9 +54,9 @@ class StatisticsFragment : Fragment() {
             String.format("%.2f", (activity as MainActivity).otherPrice)
         )
 
-        viewModel.numberOfSubscriptions.observe(viewLifecycleOwner) { number ->
-            binding.textSubscriptions2.text = number.toString()
-        }
+//        viewModel.numberOfSubscriptions.observe(viewLifecycleOwner) { number ->
+//            binding.textSubscriptions2.text = number.toString()
+//        }
 
         pieChart()
 

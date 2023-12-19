@@ -10,27 +10,31 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.data.room.Subscription
 import team.four.mys.databinding.FragmentCreateSubscriptionBinding
 import team.four.mys.domain.models.Currencies
 import team.four.mys.domain.usecases.CustomPositionItemDecorationUseCase
+import team.four.mys.extensions.appComponent
 import team.four.mys.presentation.adapters.CurrenciesAdapter
 import team.four.mys.presentation.viewmodelsfragment.CreateSubscriptionViewModel
+import javax.inject.Inject
 
 class CreateSubscriptionFragment : Fragment() {
 
     private var _binding: FragmentCreateSubscriptionBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModel<CreateSubscriptionViewModel>()
+    @Inject
+     lateinit var viewModel: CreateSubscriptionViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCreateSubscriptionBinding.inflate(inflater, container, false)
+
+        requireContext().appComponent.injectCreateSubscriptionFragment(this)
 
         binding.buttonArrowLeft.setOnClickListener {
             findNavController().navigate(R.id.home_fragment)

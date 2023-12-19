@@ -21,12 +21,13 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.data.room.Subscription
 import team.four.mys.databinding.FragmentHomeBinding
+import team.four.mys.extensions.appComponent
 import team.four.mys.presentation.adapters.SubscriptionsAdapter
 import team.four.mys.presentation.viewmodelsfragment.HomeViewModel
+import javax.inject.Inject
 
 
 class HomeFragment : Fragment() {
@@ -34,7 +35,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModel<HomeViewModel>()
+    @Inject
+     lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +44,8 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        requireContext().appComponent.injectHomeFragment(this)
 
         binding.createSubscriptionButton2.setOnClickListener {
             findNavController().navigate(R.id.create_subscription_fragment)

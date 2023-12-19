@@ -4,8 +4,9 @@ import androidx.lifecycle.ViewModel
 import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.domain.usecases.GetSettingsUseCase
 import team.four.mys.domain.usecases.SetSettingsUseCase
+import javax.inject.Inject
 
-class DarkModeViewModel(
+class DarkModeViewModel @Inject constructor(
     private val getSettingsUseCase: GetSettingsUseCase,
     private val setSettingsUseCase: SetSettingsUseCase
 ) : ViewModel() {

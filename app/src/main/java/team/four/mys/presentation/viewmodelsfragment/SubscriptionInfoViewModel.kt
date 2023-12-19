@@ -8,8 +8,9 @@ import kotlinx.coroutines.launch
 import team.four.mys.data.room.Subscription
 import team.four.mys.domain.usecases.DeleteSubscriptionUseCase
 import team.four.mys.domain.usecases.GetSubscriptionInfoUseCase
+import javax.inject.Inject
 
-class SubscriptionInfoViewModel(
+class SubscriptionInfoViewModel @Inject constructor(
     private val getSubscriptionInfoUseCase: GetSubscriptionInfoUseCase,
     private val deleteSubscriptionUseCase: DeleteSubscriptionUseCase
 ) : ViewModel() {

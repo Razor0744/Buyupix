@@ -14,24 +14,28 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
-import team.four.mys.databinding.FragmentSubscriptionInfoBinding
 import team.four.mys.data.room.Subscription
+import team.four.mys.databinding.FragmentSubscriptionInfoBinding
+import team.four.mys.extensions.appComponent
 import team.four.mys.presentation.viewmodelsfragment.SubscriptionInfoViewModel
+import javax.inject.Inject
 
 class SubscriptionInfoFragment : Fragment() {
 
     private var _binding: FragmentSubscriptionInfoBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModel<SubscriptionInfoViewModel>()
+    @Inject
+    lateinit var viewModel: SubscriptionInfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSubscriptionInfoBinding.inflate(inflater, container, false)
+
+        requireContext().appComponent.injectSubscriptionInfoFragment(this)
 
         binding.buttonArrowLeft.setOnClickListener {
             findNavController().navigate(R.id.home_fragment)

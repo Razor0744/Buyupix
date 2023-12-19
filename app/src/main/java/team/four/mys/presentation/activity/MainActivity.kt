@@ -17,18 +17,20 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.ActivityMainBinding
 import team.four.mys.domain.usecases.LocaleHelperUseCase
+import team.four.mys.extensions.appComponent
 import team.four.mys.presentation.viewmodelsactivity.MainViewModel
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val viewModel by viewModel<MainViewModel>()
+    @Inject
+    lateinit var viewModel: MainViewModel
 
     //Categories
     var gamingPrice = 20f
@@ -56,6 +58,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        appComponent.injectMainActivity(this)
         viewModel.setTheme()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

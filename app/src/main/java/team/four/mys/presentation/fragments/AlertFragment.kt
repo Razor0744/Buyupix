@@ -7,26 +7,30 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentAlertBinding
 import team.four.mys.domain.models.Alert
+import team.four.mys.extensions.appComponent
 import team.four.mys.presentation.adapters.AlertAdapter
 import team.four.mys.presentation.viewmodelsfragment.AlertViewModel
+import javax.inject.Inject
 
 
 class AlertFragment : Fragment() {
 
+    @Inject
+    lateinit var viewModel: AlertViewModel
+
     private var _binding: FragmentAlertBinding? = null
     private val binding get() = _binding!!
-
-    private val viewModel by viewModel<AlertViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAlertBinding.inflate(inflater, container, false)
+
+        requireContext().appComponent.injectAlertFragment(this)
 
         binding.buttonArrowLeft.setOnClickListener {
             findNavController().navigate(R.id.settings_fragment)

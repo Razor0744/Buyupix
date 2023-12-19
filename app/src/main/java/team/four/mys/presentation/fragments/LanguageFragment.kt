@@ -8,28 +8,32 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.four.mys.R
 import team.four.mys.databinding.FragmentLanguageBinding
 import team.four.mys.domain.models.Language
 import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.domain.usecases.LocaleHelperUseCase
+import team.four.mys.extensions.appComponent
 import team.four.mys.presentation.activity.MainActivity
 import team.four.mys.presentation.adapters.LanguageAdapter
 import team.four.mys.presentation.viewmodelsfragment.LanguageViewModel
+import javax.inject.Inject
 
 class LanguageFragment : Fragment() {
 
     private var _binding: FragmentLanguageBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModel<LanguageViewModel>()
+    @Inject
+     lateinit var viewModel: LanguageViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLanguageBinding.inflate(inflater, container, false)
+
+        requireContext().appComponent.injectLanguageFragment(this)
 
         binding.buttonArrowLeft.setOnClickListener {
             findNavController().navigate(R.id.settings_fragment)

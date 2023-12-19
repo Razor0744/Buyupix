@@ -3,8 +3,9 @@ package team.four.mys.presentation.viewmodelsfragment
 import androidx.lifecycle.ViewModel
 import team.four.mys.domain.models.SettingsPreferencesParam
 import team.four.mys.domain.usecases.GetSettingsUseCase
+import javax.inject.Inject
 
-class LanguageViewModel(
+class LanguageViewModel @Inject constructor(
     private val getSettingsUseCase: GetSettingsUseCase
 ) : ViewModel() {
 
